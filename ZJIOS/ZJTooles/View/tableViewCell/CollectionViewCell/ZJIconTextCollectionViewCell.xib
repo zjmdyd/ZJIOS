@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ZJIconTextCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kfP-ot-MhG">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0U-KY-bOc">
+                        <rect key="frame" x="0.0" y="41" width="100" height="18"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLs-WI-yVF">
+                        <rect key="frame" x="0.0" y="41" width="100" height="18"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-XJ-OpS">
+                        <rect key="frame" x="0.0" y="50" width="100" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxZ-Al-sek">
+                        <rect key="frame" x="76" y="0.0" width="24" height="24"/>
+                        <state key="normal" backgroundImage="ic_shanchu_cha"/>
+                        <connections>
+                            <action selector="btnEvent:" destination="gTV-IL-0wX" eventType="touchUpInside" id="f0C-vn-d8v"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="kfP-ot-MhG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6vT-kf-YeH"/>
+                <constraint firstAttribute="trailing" secondItem="WxZ-Al-sek" secondAttribute="trailing" id="HA0-ph-lxB"/>
+                <constraint firstItem="j0U-KY-bOc" firstAttribute="leading" secondItem="WLs-WI-yVF" secondAttribute="leading" id="PBR-rY-qYH"/>
+                <constraint firstAttribute="trailing" secondItem="DGo-XJ-OpS" secondAttribute="trailing" id="S0j-vh-Fxu"/>
+                <constraint firstItem="j0U-KY-bOc" firstAttribute="trailing" secondItem="WLs-WI-yVF" secondAttribute="trailing" id="UdA-7s-LHe"/>
+                <constraint firstAttribute="bottom" secondItem="kfP-ot-MhG" secondAttribute="bottom" id="WGh-kJ-nYZ"/>
+                <constraint firstItem="WLs-WI-yVF" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="bUc-Tl-BXq"/>
+                <constraint firstItem="kfP-ot-MhG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bXS-hD-Jxi"/>
+                <constraint firstItem="WxZ-Al-sek" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eQ6-nn-9cH"/>
+                <constraint firstItem="j0U-KY-bOc" firstAttribute="bottom" secondItem="WLs-WI-yVF" secondAttribute="bottom" id="eWi-5V-xHE"/>
+                <constraint firstItem="j0U-KY-bOc" firstAttribute="top" secondItem="WLs-WI-yVF" secondAttribute="top" id="h6U-Y8-wen"/>
+                <constraint firstItem="DGo-XJ-OpS" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ima-yS-hsz"/>
+                <constraint firstAttribute="trailing" secondItem="kfP-ot-MhG" secondAttribute="trailing" id="pFD-VW-veH"/>
+                <constraint firstAttribute="trailing" secondItem="WLs-WI-yVF" secondAttribute="trailing" id="pn0-rC-RgW"/>
+                <constraint firstItem="DGo-XJ-OpS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rp5-Nu-bu4"/>
+                <constraint firstItem="WLs-WI-yVF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zT1-0z-IlO"/>
+            </constraints>
+            <connections>
+                <outlet property="borderBottomCST" destination="eWi-5V-xHE" id="vio-oM-npI"/>
+                <outlet property="borderLeasingCST" destination="PBR-rY-qYH" id="yXN-Jr-J3o"/>
+                <outlet property="borderTopCST" destination="h6U-Y8-wen" id="zCJ-r0-HW0"/>
+                <outlet property="borderTrailingCST" destination="UdA-7s-LHe" id="RLh-Mr-0PP"/>
+                <outlet property="deleteBtn" destination="WxZ-Al-sek" id="yWS-4v-PRz"/>
+                <outlet property="iconBottom" destination="WGh-kJ-nYZ" id="TXb-pa-TdA"/>
+                <outlet property="iconIV" destination="kfP-ot-MhG" id="Q4r-fG-eUa"/>
+                <outlet property="iconLeading" destination="bXS-hD-Jxi" id="jWU-2e-NbS"/>
+                <outlet property="iconTop" destination="6vT-kf-YeH" id="oM2-bZ-ePJ"/>
+                <outlet property="iconTrailing" destination="pFD-VW-veH" id="mLM-ad-46z"/>
+                <outlet property="label" destination="DGo-XJ-OpS" id="wH4-Qn-GuY"/>
+                <outlet property="labelCenterCST" destination="ima-yS-hsz" id="FAd-hs-D1P"/>
+                <outlet property="textBorderView" destination="j0U-KY-bOc" id="sJm-XD-YrC"/>
+                <outlet property="textCenterY" destination="bUc-Tl-BXq" id="NZz-m4-pql"/>
+                <outlet property="textField" destination="WLs-WI-yVF" id="gl8-ct-jpg"/>
+            </connections>
+            <point key="canvasLocation" x="-4536" y="-1007"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_shanchu_cha" width="24" height="24"/>
+    </resources>
+</document>
