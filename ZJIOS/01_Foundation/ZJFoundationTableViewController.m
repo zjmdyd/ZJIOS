@@ -55,8 +55,7 @@
     NSString *vcName = self.titles[indexPath.row];
     ZJViewController *vc = [[NSClassFromString(vcName) alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-//    [self showViewController:vc sender:nil];
-    [self.navigationController pushViewController:vc direction:kCATransitionFromRight];
+    [self showViewController:vc sender:nil];
 }
 
 /*

@@ -13,9 +13,12 @@
 
 @implementation UIViewController (ZJViewController)
 
-- (UIViewController *)preControllerWithIndex:(NSInteger)index {
+- (UIViewController *)preControllerWithIndex:(NSUInteger)index {
     NSArray *ary = self.navigationController.viewControllers;
-    return ary[ary.count - (index + 1)];
+    if (index > ary.count - 1) {
+        index = ary.count - 1;
+    }
+    return ary[ary.count - 1 - index];
 }
 
 - (void)popToVCWithIndex:(NSInteger)index {

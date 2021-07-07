@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (ZJViewController)
 
-- (UIViewController *)preControllerWithIndex:(NSInteger)index;
+- (UIViewController *)preControllerWithIndex:(NSUInteger)index;
 - (void)popToVCWithIndex:(NSInteger)index;
 - (void)popToVCWithName:(NSString *)name;
 

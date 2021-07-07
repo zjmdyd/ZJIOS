@@ -20,13 +20,9 @@
 }
 
 - (void)popViewController:(UIViewController *)viewController transdirectionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
-    
-}
-
-- (void)popViewControllerFromDirection:(CATransitionSubtype)direction {
     CATransition *transition = [CATransition animation];
-    transition.type = kCATransitionReveal;
-    transition.subtype = direction;
+    transition.type = type;
+    transition.subtype = subtype;
     transition.duration = 0.25;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     [self.view.layer addAnimation:transition forKey:kCATransition];
