@@ -21,8 +21,11 @@
     return ary[ary.count - 1 - index];
 }
 
-- (void)popToVCWithIndex:(NSInteger)index {
+- (void)popToVCWithIndex:(NSUInteger)index {
     NSArray *vcs = self.navigationController.viewControllers;
+    if (index > vcs.count - 1) {
+        index = vcs.count - 1;
+    }
     [self.navigationController popToViewController:vcs[index] animated:YES];
 }
 
@@ -36,6 +39,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
 }
 

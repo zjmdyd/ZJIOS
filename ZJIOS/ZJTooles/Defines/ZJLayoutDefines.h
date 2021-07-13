@@ -54,4 +54,5 @@
 #define kIsIphoneXMax (kScreenH > 812)       // 是否是iphoneX Max系列
 #endif
 
+
 #endif /* ZJLayoutDefines_h */

@@ -523,9 +523,9 @@
 			isa = PBXGroup;
 			children = (
 				3883B8FF268EA83B00236663 /* ZJDefine.h */,
+				3883B900268EA83B00236663 /* ZJLayoutDefines.h */,
 				3883B8FD268EA83B00236663 /* ZJOtherDefines.h */,
 				3883B8FE268EA83B00236663 /* ZJScrollViewDefines.h */,
-				3883B900268EA83B00236663 /* ZJLayoutDefines.h */,
 			);
 			path = Defines;
 			sourceTree = "<group>";
@@ -1040,6 +1040,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X69A28X2L6;
 				INFOPLIST_FILE = ZJIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1058,6 +1059,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X69A28X2L6;
 				INFOPLIST_FILE = ZJIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

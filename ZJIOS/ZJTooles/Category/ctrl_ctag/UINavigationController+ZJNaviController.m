@@ -7,11 +7,13 @@
 
 #import "UINavigationController+ZJNaviController.h"
 
+#define TransDuration 0.25
+
 @implementation UINavigationController (ZJNaviController)
 
-- (void)showViewController:(UIViewController *)viewController transdirectionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
+- (void)showViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.25;
+    transition.duration = TransDuration;
     transition.type = type;
     transition.subtype = subtype;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
@@ -19,11 +21,11 @@
     [self pushViewController:viewController animated:NO];
 }
 
-- (void)popViewController:(UIViewController *)viewController transdirectionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
+- (void)popViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
     CATransition *transition = [CATransition animation];
     transition.type = type;
     transition.subtype = subtype;
-    transition.duration = 0.25;
+    transition.duration = TransDuration;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     [self.view.layer addAnimation:transition forKey:kCATransition];
     [self popViewControllerAnimated:NO];

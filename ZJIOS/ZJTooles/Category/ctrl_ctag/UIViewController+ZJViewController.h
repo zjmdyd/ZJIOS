@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (ZJViewController)
 
 - (UIViewController *)preControllerWithIndex:(NSUInteger)index;
-- (void)popToVCWithIndex:(NSInteger)index;
+- (void)popToVCWithIndex:(NSUInteger)index;
 - (void)popToVCWithName:(NSString *)name;
 
 #pragma mark - UIBarButtonItem
