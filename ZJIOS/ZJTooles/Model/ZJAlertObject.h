@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *msg;
+@property (nonatomic, assign) UIAlertControllerStyle alertStyle;
+@property (nonatomic, strong) NSArray <NSString *>*sheetTitles;
+
+
 @property (nonatomic, copy) NSString *value;
 @property (nonatomic, copy, nullable) NSString *cancelTitle;
 @property (nonatomic, copy, nullable) NSString *otherTitle;
@@ -26,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<UIAlertViewDelegate> delegate;
 
 //
-@property (nonatomic, strong) NSArray *sheetTitles;
 @property (nonatomic, strong) NSArray *sheetObjects;
 @property (nonatomic, assign) BOOL needCancel;
 

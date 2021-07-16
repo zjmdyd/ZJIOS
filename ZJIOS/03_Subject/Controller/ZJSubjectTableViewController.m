@@ -7,6 +7,7 @@
 
 #import "ZJSubjectTableViewController.h"
 #import "ZJViewController.h"
+#import "UIViewController+ZJViewController.h"
 
 @interface ZJSubjectTableViewController ()
 
@@ -50,9 +51,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *vcName = self.titles[indexPath.row];
-    ZJViewController *vc = [[NSClassFromString(vcName) alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self showViewController:vc sender:nil];
+    [self showVCWithName:vcName hidesBottom:YES];
 }
 
 /*

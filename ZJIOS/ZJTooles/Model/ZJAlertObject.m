@@ -16,6 +16,7 @@
         self.cancelTitle = @"取消";
         self.otherTitle = @"确定";
         self.needCancel = YES;
+        self.alertStyle = UIAlertControllerStyleAlert;
     }
     return self;
 }

@@ -7,7 +7,6 @@
 
 #import "UIViewController+ZJViewController.h"
 #import "ZJMentionObject.h"
-//#import "ZJDefine.h"
 
 #define  barItemAction @"barItemAction:"
 
@@ -27,6 +26,18 @@
         index = vcs.count - 1;
     }
     [self.navigationController popToViewController:vcs[index] animated:YES];
+}
+
+- (void)showVCWithName:(NSString *)vcName {
+    [self showVCWithName:vcName hidesBottom:NO];
+}
+
+- (void)showVCWithName:(NSString *)vcName hidesBottom:(BOOL)hidden {
+    if ([vcName isKindOfClass:[NSString class]] && vcName.length) {
+        UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
+        vc.hidesBottomBarWhenPushed = hidden;
+        [self showViewController:vc sender:nil];
+    }
 }
 
 - (void)popToVCWithName:(NSString *)name {
@@ -66,7 +77,7 @@
     return item;
 }
 
-- (NSArray *)barButtonWithImageNames:(NSArray *)imgNames {
+- (NSArray<UIBarButtonItem *> *)barButtonWithImageNames:(NSArray *)imgNames {
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < imgNames.count; i++) {
         UIBarButtonItem *item = [self barButtonWithImageName:imgNames[i]];
@@ -77,17 +88,23 @@
     return [array copy];
 }
 
+/*
+ <_UIButtonBarStackView: 0x7fbc6773bc10; frame = (259 0; 100 44); layer = <CALayer: 0x600000f004c0>> buttonBar=0x600003796940
+ <_UIButtonBarStackView: 0x7fe96c732f30; frame = (270 0; 97 44); layer = <CALayer: 0x600002f51040>> buttonBar=0x6000010fe490
+自定义UIBarButtonItem和使用系统的UIBarButtonItem会出现与x方向上的偏移
+ */
 - (UIBarButtonItem *)barButtonItemWithCustomViewWithImageNames:(NSArray *)images {
     SEL sel = NSSelectorFromString(barItemAction);
-    
-    CGFloat width = 35;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width*images.count+8, width)];
+    CGFloat itemWidth = 46, btnWidth = 24;
+    CGFloat offsetX = 8, originX = 11, originY = 9.5;
+    CGFloat adjust = 11;    // 修正值,调整自定义item与系统方法创建的item与屏幕边距的差别
     NSInteger count = images.count;
-    if (count > 2) count = 2;
+    CGFloat width = itemWidth*count + offsetX*(count-1);
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width-2)];
     for (int i = 0; i < count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.tag = i;
-        btn.frame = CGRectMake(view.frame.size.width-(width*(i+1) + 8*i), 0, width, width);
+        btn.frame = CGRectMake(width - (itemWidth*(i+1) + offsetX*i) + originX + adjust, originY, btnWidth, btnWidth);
         [btn setImage:[[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         [btn addTarget:self action:sel forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];

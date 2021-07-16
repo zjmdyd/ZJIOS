@@ -6,6 +6,7 @@
 //
 
 #import "ZJUIKitTableViewController.h"
+#import "UIViewController+ZJViewController.h"
 
 @interface ZJUIKitTableViewController ()
 
@@ -17,17 +18,17 @@
     [super viewDidLoad];
     
     [self initAry];
-    [self initSetting];
+//    [self initSetting];
 }
 
 - (void)initAry {
-    self.titles = @[@"NSString"];
-    
+    self.titles = @[@"ZJBarButtonItemViewController", @"ZJAlertViewController"];
     
 }
 
+
+
 - (void)initSetting {
-    self.view.backgroundColor = [UIColor greenColor];
 //    NSLog(@"%s", __func__);
     
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
@@ -71,14 +72,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = self.titles[indexPath.row];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSString *vcName = self.titles[indexPath.row];
+    [self showVCWithName:vcName hidesBottom:YES];
 }
 
 /*

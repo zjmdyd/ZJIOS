@@ -10,6 +10,7 @@
 #define ZJDefine_h
 
 #import "ZJScrollViewDefines.h"
+#import "ZJFuncDefine.h"
 #import "ZJLayoutDefines.h"
 #import "ZJOtherDefines.h"
 

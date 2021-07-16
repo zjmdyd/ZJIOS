@@ -8,6 +8,7 @@
 #import "ZJFoundationTableViewController.h"
 #import "ZJCopyStongViewController.h"
 #import "UINavigationController+ZJNaviController.h"
+#import "UIViewController+ZJViewController.h"
 
 @interface ZJFoundationTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,9 +55,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.titles[indexPath.row];
-    ZJViewController *vc = [[NSClassFromString(vcName) alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self showViewController:vc sender:nil];
+    [self showVCWithName:vcName hidesBottom:YES];
 }
 
 /*

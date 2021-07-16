@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIViewController *)preControllerWithIndex:(NSUInteger)index;
 - (void)popToVCWithIndex:(NSUInteger)index;
 - (void)popToVCWithName:(NSString *)name;
+- (void)showVCWithName:(NSString *)vcName;
+- (void)showVCWithName:(NSString *)vcName hidesBottom:(BOOL)hidden;
 
 #pragma mark - UIBarButtonItem
 
@@ -23,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIBarButtonItem *)barButtonWithImageName:(NSString *)imgName;
 
 /**
- *  创建多个UIBarButtonItem(系统默认)此方法效果不好,建议使用barbuttonWithCustomViewWithImageNames:
+ *  创建多个UIBarButtonItem(系统默认)此方法不能调整item之间的间距,需调整建议使用barbuttonWithCustomViewWithImageNames:
  */
-- (NSArray *)barButtonWithImageNames:(NSArray *)imgNames;
+- (NSArray<UIBarButtonItem *> *)barButtonWithImageNames:(NSArray *)imgNames;
 
 /**
  *  自定义UIBarButtonItem

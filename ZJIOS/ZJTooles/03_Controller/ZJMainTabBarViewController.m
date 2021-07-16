@@ -26,8 +26,8 @@
 
 - (void)initSetting {
     NSArray *titles = @[@"Foundation", @"UIKit", @"Subject"];
-    NSArray *images = @[@"1", @"2", @"4"];   // @"3",
-    NSArray *selectImages = @[@"1-1", @"2-1", @"4-1"];   // @"3-1",
+    NSArray *images = @[@"b-tab-1", @"b-tab-11", @"b-tab-31"];   // @"3",
+    NSArray *selectImages = @[@"b-tab-2", @"b-tab-12", @"b-tab-32"];   // @"3-1",
     NSArray *vcNames = @[@"ZJFoundationTableViewController", @"ZJUIKitTableViewController", @"ZJSubjectTableViewController"];
     
     NSMutableArray *ary = [NSMutableArray array];
