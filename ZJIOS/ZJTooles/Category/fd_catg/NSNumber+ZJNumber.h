@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSNumber (ZJNumber)
 
+// 判断数值是否在合理数值范围
 - (NSInteger)validValueWithRange:(NSRange)range;
 - (NSInteger)validValueWithRange:(NSRange)range defaultValue:(NSInteger)value;
 

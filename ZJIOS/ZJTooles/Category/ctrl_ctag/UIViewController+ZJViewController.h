@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^AlertActionCompl)(UIAlertAction *act, NSArray *textFields);
+
 @interface UIViewController (ZJViewController)
 
 - (UIViewController *)preControllerWithIndex:(NSUInteger)index;
@@ -38,17 +40,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - alert
 
-- (void)alertWithAlertObject:(ZJAlertObject *)object;
-- (void)alertSheetWithWithAlertObject:(ZJAlertObject *)object;
+- (void)alertFunc:(ZJAlertObject *)object alertCompl:(AlertActionCompl)callBack;
 
 
 #pragma mark - 系统分享
 
 - (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text path:(NSString *)path;
-
-#pragma mark - NSNotificationCenter
-
-- (void)removeNotificationObserver;
 
 @end
 

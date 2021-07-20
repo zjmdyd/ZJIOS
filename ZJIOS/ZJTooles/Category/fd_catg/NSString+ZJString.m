@@ -105,7 +105,7 @@
     while([scanner isAtEnd] == NO) {
         [scanner scanUpToString:@"<" intoString:nil];
         [scanner scanUpToString:@">" intoString:&text];
-        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
         //去除空格
         html = [html stringByReplacingOccurrencesOfString:@" " withString:@""];
     }

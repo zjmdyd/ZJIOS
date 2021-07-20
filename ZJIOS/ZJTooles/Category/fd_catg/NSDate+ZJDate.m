@@ -70,7 +70,7 @@
 //是否在同一周
 - (BOOL)isSameWeek {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    int unit = NSCalendarUnitWeekday | NSCalendarUnitMonth | NSCalendarUnitYear ;
+    int unit = NSCalendarUnitWeekOfYear | NSCalendarUnitYear;
     
     //1.获得当前时间的 年月日
     NSDateComponents *nowCmps = [calendar components:unit fromDate:[NSDate date]];
@@ -78,35 +78,38 @@
     //2.获得self
     NSDateComponents *selfCmps = [calendar components:unit fromDate:self];
     
-    return (selfCmps.year == nowCmps.year) && (selfCmps.month == nowCmps.month) && (selfCmps.day == nowCmps.day);
+    return (selfCmps.year == nowCmps.year) && (selfCmps.weekOfYear == nowCmps.weekOfYear);
 }
 
 //根据日期求星期几
 - (NSString *)weekdayStringFromDate {
-    
-    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"星期天", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六", nil];
-    
+    NSArray *weekdays = [NSArray arrayWithObjects:[NSNull null], @"星期天", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六", nil];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
     NSTimeZone *timeZone = [[NSTimeZone alloc] initWithName:@"Asia/Shanghai"];
-    
     [calendar setTimeZone: timeZone];
     
     NSCalendarUnit calendarUnit = NSCalendarUnitWeekday;
-    
     NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:self];
     
     return [weekdays objectAtIndex:theComponents.weekday];
-    
+}
+
+- (NSInteger)daySpanWithDate:(NSDate *)date {
+    return [NSDate daySpanFromDate:self toDate:date];
+}
+
++ (NSInteger)daySpanFromDate:(NSDate *)firstDate toDate:(NSDate *)secondDate {
+    NSCalendar *chineseClendar  = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSDateComponents *cmps = [chineseClendar components:unitFlags fromDate:firstDate toDate:secondDate  options:0];
+    NSInteger diffDay = [cmps day];
+    return diffDay;
 }
 
 //是否为今天
 - (BOOL)isToday {
-    //now: 2015-09-05 11:23:00
-    //self 调用这个方法的对象本身
-    
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    int unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear ;
+    int unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
     
     //1.获得当前时间的 年月日
     NSDateComponents *nowCmps = [calendar components:unit fromDate:[NSDate date]];
@@ -119,10 +122,7 @@
 
 //是否为昨天
 - (BOOL)isYesterday {
-    //2014-05-01
     NSDate *nowDate = [[NSDate date] dateWithYMD];
-    
-    //2014-04-30
     NSDate *selfDate = [self dateWithYMD];
     
     //获得nowDate和selfDate的差距
@@ -149,8 +149,8 @@
 - (NSDate *)dateWithYMD {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"yyyy-MM-dd";
-    NSString *selfStr = [fmt stringFromDate:self];
-    return [fmt dateFromString:selfStr];
+    NSString *selfStr = [fmt stringFromDate:self];  // date-->字符串
+    return [fmt dateFromString:selfStr];    // 字符串-->date
 }
 
 @end

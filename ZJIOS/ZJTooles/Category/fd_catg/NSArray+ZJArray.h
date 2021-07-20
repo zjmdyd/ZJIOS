@@ -11,8 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (ZJArray)
 
+// 创建多维数组，暂只支持二维数组
 + (NSArray *)multiArrayWithPrototype:(NSArray *)array;
-+ (NSArray *)multiArrayWithPrototype:(NSArray *)array value:(id)value;
++ (NSArray *)multiArrayWithPrototype:(NSArray *)array value:(nonnull id)value;
 
 - (NSString *)joinToStringWithSeparateString:(NSString *)str;
 - (NSString *)joinToStringWithSeparateString:(NSString *)str endIndex:(NSInteger)endIndex;
@@ -25,8 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSNumber *)average;
 
 + (NSArray *)sexStrings;
+// 00~23
 + (NSArray *)hourStrings;
+// 00~59
 + (NSArray *)minuteStrings;
+// 十二星座
 + (NSArray *)twelveConstellations;
 
 @end

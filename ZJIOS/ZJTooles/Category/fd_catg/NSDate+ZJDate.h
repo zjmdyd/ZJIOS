@@ -31,17 +31,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSInteger)age;
 
-- (BOOL)isSameWeek;
-- (BOOL)isToday;
-- (BOOL)isYesterday;
-- (NSString *)dayString;
-
 /**
  *  时间戳转化成年龄
  *
  *  @return 周岁
  */
 + (NSInteger)ageWithTimeIntervel:(NSInteger)timeInterval;
+
+// 两个日期间的间隔天数
+- (NSInteger)daySpanWithDate:(NSDate *)date;
++ (NSInteger)daySpanFromDate:(NSDate *)firstDate toDate:(NSDate *)secondDate;
+
+- (BOOL)isSameWeek;
+- (BOOL)isToday;
+- (BOOL)isYesterday;
+- (NSString *)dayString;
+
+
 
 @end
 

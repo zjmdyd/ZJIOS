@@ -73,7 +73,9 @@
 		6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025126940991003B652F /* UINavigationController+ZJNaviController.m */; };
 		6516025826942C97003B652F /* UIViewController+ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025726942C97003B652F /* UIViewController+ZJViewController.m */; };
 		6567DE6B26A166BF008F5199 /* ZJAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6567DE6A26A166BF008F5199 /* ZJAlertViewController.m */; };
+		6574BD3026A66F5E00FA5920 /* ZJNSDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574BD2F26A66F5E00FA5920 /* ZJNSDataViewController.m */; };
 		658AE87026A0119A00688CC5 /* ZJBarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658AE86F26A0119A00688CC5 /* ZJBarButtonItemViewController.m */; };
+		65E8460826A5274D00285833 /* ZJTextInputConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E8460726A5274D00285833 /* ZJTextInputConfig.m */; };
 		65F7C6A82692E74600121EBD /* UITableView+ZJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6892692E74500121EBD /* UITableView+ZJTableView.m */; };
 		65F7C6A92692E74600121EBD /* UIImage+ZJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68A2692E74500121EBD /* UIImage+ZJImage.m */; };
 		65F7C6AA2692E74600121EBD /* UILabel+ZJLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68C2692E74500121EBD /* UILabel+ZJLabel.m */; };
@@ -248,8 +250,12 @@
 		6567DE6926A166BF008F5199 /* ZJAlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJAlertViewController.h; sourceTree = "<group>"; };
 		6567DE6A26A166BF008F5199 /* ZJAlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJAlertViewController.m; sourceTree = "<group>"; };
 		65681785269E8B6600D5ACB9 /* ZJFuncDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJFuncDefine.h; sourceTree = "<group>"; };
+		6574BD2E26A66F5E00FA5920 /* ZJNSDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJNSDataViewController.h; sourceTree = "<group>"; };
+		6574BD2F26A66F5E00FA5920 /* ZJNSDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJNSDataViewController.m; sourceTree = "<group>"; };
 		658AE86E26A0119A00688CC5 /* ZJBarButtonItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBarButtonItemViewController.h; sourceTree = "<group>"; };
 		658AE86F26A0119A00688CC5 /* ZJBarButtonItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJBarButtonItemViewController.m; sourceTree = "<group>"; };
+		65E8460626A5274D00285833 /* ZJTextInputConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTextInputConfig.h; sourceTree = "<group>"; };
+		65E8460726A5274D00285833 /* ZJTextInputConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTextInputConfig.m; sourceTree = "<group>"; };
 		65F7C6872692E6F900121EBD /* ZJUICatg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJUICatg.h; sourceTree = "<group>"; };
 		65F7C6882692E74500121EBD /* UITextView+ZJTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZJTextView.h"; sourceTree = "<group>"; };
 		65F7C6892692E74500121EBD /* UITableView+ZJTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ZJTableView.m"; sourceTree = "<group>"; };
@@ -394,6 +400,8 @@
 			children = (
 				38EBE1412675BB5B00E090D9 /* ZJFoundationTableViewController.h */,
 				38EBE1422675BB5B00E090D9 /* ZJFoundationTableViewController.m */,
+				6574BD2E26A66F5E00FA5920 /* ZJNSDataViewController.h */,
+				6574BD2F26A66F5E00FA5920 /* ZJNSDataViewController.m */,
 				3883B93C268EAE1300236663 /* ZJMutableAryViewController.h */,
 				3883B93D268EAE1300236663 /* ZJMutableAryViewController.m */,
 				382EE90426750E52008AB02C /* ZJCopyStongViewController.h */,
@@ -548,6 +556,8 @@
 				3883B92C268EABC200236663 /* ZJModelHeaderFile.h */,
 				3883B92E268EABC200236663 /* ZJAlertObject.h */,
 				3883B929268EABC200236663 /* ZJAlertObject.m */,
+				65E8460626A5274D00285833 /* ZJTextInputConfig.h */,
+				65E8460726A5274D00285833 /* ZJTextInputConfig.m */,
 				3883B934268EABC200236663 /* ZJKeyboardManager.h */,
 				3883B931268EABC200236663 /* ZJKeyboardManager.m */,
 				3883B92D268EABC200236663 /* ZJMentionObject.h */,
@@ -819,12 +829,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				38A1F0BC267B538D00A4D044 /* NSTimer+ZJBlockTimer.m in Sources */,
+				6574BD3026A66F5E00FA5920 /* ZJNSDataViewController.m in Sources */,
 				65F7C6DB2692F40B00121EBD /* NSObject+ZJObject.m in Sources */,
 				65F7C6AB2692E74600121EBD /* UIView+ZJView.m in Sources */,
 				384FE19A268DDB5F00E568AF /* ZJTestServerViewController.m in Sources */,
 				38A1F08D26774A6200A4D044 /* ZJViewController.m in Sources */,
 				3883B936268EABC300236663 /* ZJAlertObject.m in Sources */,
 				65F7C6D82692EC7000121EBD /* UIDevice+ZJDevice.m in Sources */,
+				65E8460826A5274D00285833 /* ZJTextInputConfig.m in Sources */,
 				388B32DC267D98780071F530 /* ZJCategoryViewController.m in Sources */,
 				65F7C6AE2692E74600121EBD /* UIGestureRecognizer+ZJGestureRecognizer.m in Sources */,
 				382EE8E126750B04008AB02C /* main.m in Sources */,

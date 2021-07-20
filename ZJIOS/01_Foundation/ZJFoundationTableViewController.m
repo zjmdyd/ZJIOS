@@ -26,7 +26,7 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController"];
+    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController"];
 }
 
 - (void)initSetting {

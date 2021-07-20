@@ -23,21 +23,10 @@
 }
 
 - (void)jsonToModel:(id)obj {
-//    for (NSString *key in self.allKeys) {
-//        NSString *key0 = [key checkSysConflictKey];
-//        if ([[obj objectProperties] containsObject:key0]) {
-//            [obj setValue:self[key] forKey:key0];
-//        }
-//    }
     [self jsonToModel:obj withSpecifyKeys:nil];
-
 }
-//
-//- (void)noNullJsonToModel:(id)obj {
-//    [self noNullJsonToModel:obj withSpecifyKeys:nil];
-//}
 
-- (void)jsonToModel:(id)obj withSpecifyKeys:(NSArray *)spKeys {
+- (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)spKeys {
     NSDictionary *dic = [self noNullDic];
     
     for (NSString *key in dic.allKeys) {
@@ -49,6 +38,26 @@
             [obj setValue:dic[key] forKey:key0];
         }
     }
+}
+
+- (BOOL)containsKey:(NSString *)key {
+    return [self containsKey:key caseInsensitive:NO];
+}
+
+- (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive {
+    for (NSString *str in self.allKeys) {
+        if (caseInsensitive) {
+            if ([str caseInsensitiveCompare:key] == NSOrderedSame) {
+                return YES;
+            }
+        }else {
+            if ([str isEqualToString:key]) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
 }
 
 - (NSString *)httpParamsString {
@@ -64,26 +73,6 @@
     }
     
     return str.mutableCopy;
-}
-
-- (BOOL)containsKey:(NSString *)key {
-    for (NSString *str in self.allKeys) {
-        if ([str isEqualToString:key]) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
-- (BOOL)containsKeyCaseInsensitive:(NSString *)key {
-    for (NSString *str in self.allKeys) {
-        if ([str caseInsensitiveCompare:key] == NSOrderedSame) {
-            return YES;
-        }
-    }
-    
-    return NO;
 }
 
 @end

@@ -7,6 +7,7 @@
 
 #import "ZJUIKitTableViewController.h"
 #import "UIViewController+ZJViewController.h"
+#import <Vision/Vision.h>
 
 @interface ZJUIKitTableViewController ()
 

@@ -118,57 +118,46 @@
 /* UIAlertController改标题颜色
  [[alert valueForKey:@"alertController"] setValue:[@"aa" attrWithForegroundColor:[UIColor redColor]] forKey:@"attributedTitle"];
  */
-// input
-- (void)alertWithAlertObject:(ZJAlertObject *)object {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:object.title message:object.msg delegate:object.delegate cancelButtonTitle:object.cancelTitle otherButtonTitles:object.otherTitle, nil];
-    alert.alertViewStyle = object.alertViewStyle;
-    alert.tag = object.tag;
-    
-    if (alert.alertViewStyle != UIAlertViewStyleDefault) {
-        UITextField *tf = [alert textFieldAtIndex:0];
-        tf.textAlignment = NSTextAlignmentCenter;
-        tf.placeholder = [NSString stringWithFormat:@"请输入%@", object.title];
-        tf.keyboardType = object.keyboardType;
-        tf.text = object.value;
-    }
-    
-    [alert show];
-}
 
-#define  alertSheetEvent @"alertSheetEvent:"
-
-- (void)alertSheetWithWithAlertObject:(ZJAlertObject *)object {
-    UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:object.title message:object.msg preferredStyle:UIAlertControllerStyleActionSheet];
-    NSArray *ary = object.sheetObjects;
-    if (ary.count == 0) {
-        ary = object.sheetTitles;
-    }
-    for (int i = 0; i < ary.count; i++) {
-        NSString *title;
-        if (object.sheetObjects) {
-            ZJMentionObject *sheetObj = ary[i];
-            title = [NSString stringWithFormat:@"%@(%@)", sheetObj.firstText, sheetObj.secondText];
+- (void)alertFunc:(ZJAlertObject *)object alertCompl:(AlertActionCompl)callBack {
+    UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:object.title message:object.msg preferredStyle:object.alertStyle];
+    NSUInteger count = object.sheetTitles.count;
+    for (int i = 0; i < count; i++) {
+        UIAlertActionStyle style;
+        
+        if (object.needCancel && object.cancelIndex == i) {
+            style = UIAlertActionStyleCancel;
+        }else if (object.needDestructive && object.destructiveIndex == i) {
+            style = UIAlertActionStyleDestructive;
         }else {
-            title = ary[i];
+            style = UIAlertActionStyleDefault;
         }
-        UIAlertAction *act = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            SEL sel = NSSelectorFromString(alertSheetEvent);
-            if ([self respondsToSelector:sel]) {
-                [self performSelector:sel withObject:@(i)];
-            }
+        
+        NSString *title = object.sheetTitles[i];
+        UIAlertAction *act = [UIAlertAction actionWithTitle:title style:style handler:^(UIAlertAction * _Nonnull action) {
+            callBack(action, ctrl.textFields);
         }];
         [ctrl addAction:act];
+    }
+    //
+    for (int i = 0; i < object.textFieldConfigs.count; i++) {
+        [ctrl addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            ZJTextInputConfig *config = object.textFieldConfigs[i];
+            textField.tag = config.tag;
+            textField.text = config.text;
+            textField.placeholder = config.placehold;
+            textField.secureTextEntry = config.secureText;
+            textField.textAlignment = config.textAlignment;
+            textField.keyboardType = config.keyboardType;
+            if (config.font) {
+                textField.font = config.font;
+            }
+            NSLog(@"textField1 = %@", textField);
+        }];
     }
     
-    if (object.needCancel) {
-        UIAlertAction *act = [UIAlertAction actionWithTitle:object.cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        [ctrl addAction:act];
-    }
     [self presentViewController:ctrl animated:YES completion:nil];
 }
-
 #pragma mark - 系统分享
 
 /**
@@ -217,12 +206,6 @@
         }
         NSLog(@"activityError = %@", activityError);
     };
-}
-
-#pragma mark - NSNotificationCenter
-
-- (void)removeNotificationObserver {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

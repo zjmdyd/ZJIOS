@@ -18,14 +18,6 @@
     return array;
 }
 
-+ (NSMutableArray *)arrayWithEmptyObjectWithCount:(NSInteger)count {
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < count; i++) {
-        [array addObject:@""];
-    }
-    
-    return array;
-}
 
 - (void)resetBoolValues {
     for(int i = 0; i < self.count; i++) {
@@ -33,6 +25,10 @@
             self[i] = @(NO);
         }
     }
+}
+
+- (void)changeBoolValueAtIndex:(NSInteger)index {
+    [self changeBoolValueAtIndex:index needReset:NO];
 }
 
 - (void)changeBoolValueAtIndex:(NSInteger)index needReset:(BOOL)need {

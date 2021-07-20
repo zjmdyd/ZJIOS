@@ -15,11 +15,11 @@
 
 - (NSInteger)validValueWithRange:(NSRange)range defaultValue:(NSInteger)value {
     if ([self isKindOfClass:[NSNumber class]]) {
-        NSInteger aValue = self.integerValue;
-        if (aValue < range.location || aValue > range.length) {
+        NSInteger sValue = self.integerValue;
+        if (sValue < range.location || sValue > range.length) {
             return value;
         }else {
-            return aValue;
+            return sValue;
         }
     }
     

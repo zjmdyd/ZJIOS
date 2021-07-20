@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "ZJTextInputConfig.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJAlertObject : NSObject
@@ -16,22 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *msg;
 @property (nonatomic, assign) UIAlertControllerStyle alertStyle;
-@property (nonatomic, strong) NSArray <NSString *>*sheetTitles;
-
-
-@property (nonatomic, copy) NSString *value;
-@property (nonatomic, copy, nullable) NSString *cancelTitle;
-@property (nonatomic, copy, nullable) NSString *otherTitle;
-@property (nonatomic, assign) NSInteger tag;
-@property (nonatomic, assign) BOOL secureText;
-@property (nonatomic, assign) UIKeyboardType keyboardType;
-@property (nonatomic, assign) NSTextAlignment textAlignment;
-@property (nonatomic, assign) UIAlertViewStyle alertViewStyle;
-@property (nonatomic, weak) id<UIAlertViewDelegate> delegate;
-
-//
-@property (nonatomic, strong) NSArray *sheetObjects;
+@property (nonatomic, strong) NSArray<NSString *> *sheetTitles;
 @property (nonatomic, assign) BOOL needCancel;
+@property (nonatomic, assign) NSUInteger cancelIndex;
+@property (nonatomic, assign) BOOL needDestructive;
+@property (nonatomic, assign) NSUInteger destructiveIndex;
+@property (nonatomic, strong) NSArray<ZJTextInputConfig *> *textFieldConfigs;
 
 @end
 

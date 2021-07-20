@@ -14,7 +14,7 @@
     return [self multiArrayWithPrototype:array value:@""];
 }
 
-+ (NSArray *)multiArrayWithPrototype:(NSArray *)array value:(id)value {
++ (NSArray *)multiArrayWithPrototype:(NSArray *)array value:(nonnull id)value {
     NSMutableArray *ary = [NSMutableArray array];
     for (int i = 0; i < array.count; i++) {
         NSMutableArray *sAry = [NSMutableArray arrayWithObject:value count:[array[i] count]];
@@ -43,7 +43,6 @@
     }
     return string;
 }
-
 
 #pragma mark - 处理数据
 

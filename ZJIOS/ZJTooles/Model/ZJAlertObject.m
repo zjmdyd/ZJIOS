@@ -13,9 +13,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.cancelTitle = @"取消";
-        self.otherTitle = @"确定";
+        // 当needCancel为YES时，默认第一个item为cancel
         self.needCancel = YES;
+        self.cancelIndex = 0;
+        self.sheetTitles = @[@"取消", @"确定"];
         self.alertStyle = UIAlertControllerStyleAlert;
     }
     return self;
