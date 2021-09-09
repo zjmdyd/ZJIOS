@@ -19,14 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"%s", __func__);
     [self initAry];
     [self initSetting];
     [UIScreen mainScreen].brightness = .1;
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController"];
+    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController", @"ZJAryViewController", @"ZJNScannerViewController", @"ZJTimerViewController"];
 }
 
 - (void)initSetting {
@@ -58,6 +58,10 @@
     [self showVCWithName:vcName hidesBottom:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"%s", __func__);
+}
 /*
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

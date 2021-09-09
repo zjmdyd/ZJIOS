@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)descriptionStrWithDefault:(NSString *)defaultStr;
 
 - (NSString *)pathWithParam:(id)param;
+// 字符串转json
 - (NSDictionary *)stringToJson;
 - (NSString *)separateWithCharacter:(NSString *)cha;
 - (BOOL)isOnlineResource;
@@ -82,7 +83,8 @@ typedef NS_ENUM(NSInteger, MD5Type) {
 
 - (BOOL)isPureInt;
 - (BOOL)isPureFloat;
-
+- (NSString *)addWrapStyle;
+- (NSString *)endTagString;
 /**
  首尾填充字符串:默认首部填充
 

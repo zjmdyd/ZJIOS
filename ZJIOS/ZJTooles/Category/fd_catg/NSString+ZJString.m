@@ -296,6 +296,60 @@
     return [scan scanFloat:&val] && [scan isAtEnd];
 }
 
+- (NSString *)addWrapStyle {
+    NSMutableString *changeStr = self.mutableCopy;
+    NSInteger offsetLoc = 0;
+    for (int i = 0; i < self.length; i++) {
+        NSString *sub = [self substringWithRange:NSMakeRange(i, 1)];
+        if ([sub isEqualToString:@","]) {       // 找到标点符号
+            NSLog(@"找到标点符号:%@ loc = %d", sub, i);
+            int j = i - 2;                      // 记录h5标签结尾位置
+            NSString *sub2 = [self substringWithRange:NSMakeRange(i - 1, 1)];
+            if ([sub2 isEqualToString:@">"]) {  // 找到标点符号前面紧挨着的h5标签
+                NSLog(@"找到h5结束位置:%d", i - 1);
+                NSMutableString *mark = [NSMutableString string];  // 记录h5标签的字符串
+                while (j >= 0) {
+                    NSString *beforeChar = [self substringWithRange:NSMakeRange(j, 1)];
+                    if ([beforeChar isEqualToString:@"<"]) { // 找到匹配的h5标签
+                        NSLog(@"找到h5开始:%d, 结束的h5标签 = %@", j, mark);
+                        break;
+                    }else {
+                        [mark insertString:beforeChar atIndex:0];
+                        NSLog(@"mark = %@", mark);
+                    }
+                    j--;
+                }
+                NSInteger beganMarkLen = mark.length + 1; // 3 + 2 + 4
+                NSInteger startLoc = j - beganMarkLen;
+                NSString *beganMark = [NSString stringWithFormat:@"<%@>", [mark substringFromIndex:1]];
+                NSLog(@"需要匹配的beganMark = %@", beganMark);
+                while (startLoc >= 0) {
+                    NSString *beganMatchStr = [self substringWithRange:NSMakeRange(startLoc, beganMarkLen)];
+                    NSLog(@"往前找:%@, startLoc = %ld", beganMatchStr, (long)startLoc);
+                    if ([beganMatchStr isEqualToString:beganMark]) {
+                        NSLog(@"匹配到了, 开始位置:%ld", (long)startLoc);
+                        NSString *inseartTag = @"<h11>";
+                        [changeStr insertString:[inseartTag endTagString] atIndex:i+1 + offsetLoc];
+                        [changeStr insertString:inseartTag atIndex:startLoc + offsetLoc];
+                        offsetLoc += 11;
+                        NSLog(@"匹配后的结果:%@, offsetLoc = %ld", changeStr, (long)offsetLoc);
+                        break;
+                    }else {
+                        startLoc--;
+                    }
+                }
+            }
+        }
+    }
+    
+    return changeStr;
+}
+
+- (NSString *)endTagString {
+    NSString *endTagStr = [self substringWithRange:NSMakeRange(1, self.length-2)];
+    return [NSString stringWithFormat:@"</%@>", endTagStr];
+}
+
 #pragma mark - 填充字符串
 
 - (NSString *)fillStringWithCharacter:(NSString *)character len:(NSInteger)len {

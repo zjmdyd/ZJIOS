@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)containsKey:(NSString *)key;
 - (BOOL)containsKeyCaseInsensitive:(NSString *)key;
 - (NSString *)httpParamsString;
+- (void)base64Dic;
 
 @end
 

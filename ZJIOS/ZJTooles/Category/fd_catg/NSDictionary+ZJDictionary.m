@@ -75,4 +75,15 @@
     return str.mutableCopy;
 }
 
+- (void)base64Dic {
+    // 1
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
+    NSLog(@"==%@",data);//转化成Data
+    // 2转化成64字符串
+    NSString *getStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+
+
+}
+
 @end
