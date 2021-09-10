@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL secureText;
 @property (nonatomic, assign) UIKeyboardType keyboardType;
 @property (nonatomic, assign) NSTextAlignment textAlignment;
+@property (nonatomic, strong) UIColor *textColor;
 
 @end
 

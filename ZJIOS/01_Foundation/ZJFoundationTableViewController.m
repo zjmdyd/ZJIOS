@@ -30,8 +30,13 @@
 }
 
 - (void)initSetting {
-    
+    self.navigationItem.rightBarButtonItem = [self barbuttonWithSystemType:UIBarButtonSystemItemDone];
+//    [self barbuttonWithTitle:@"呵呵"];
 }
+//
+//- (void)barItemAction:(UIBarButtonItem *)sender {
+//    NSLog(@"%s", __func__);
+//}
 
 #pragma mark - UITableViewDataSource
 

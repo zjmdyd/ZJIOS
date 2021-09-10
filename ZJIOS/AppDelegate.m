@@ -20,6 +20,23 @@
     return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    NSLog(@"%s", __func__);
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"%s", __func__);
+    UIApplication*   app = [UIApplication sharedApplication];
+    __block    UIBackgroundTaskIdentifier bgTask;
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+}
 
 #pragma mark - UISceneSession lifecycle
 
@@ -59,7 +76,7 @@
                      * The device is out of space.
                      * The store could not be migrated to the current model version.
                      Check the error message to determine what the actual problem was.
-                    */
+                     */
                     NSLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }

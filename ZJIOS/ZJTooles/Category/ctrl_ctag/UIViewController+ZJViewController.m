@@ -7,8 +7,7 @@
 
 #import "UIViewController+ZJViewController.h"
 #import "ZJMentionObject.h"
-
-#define  barItemAction @"barItemAction:"
+#import "ZJAlertAction.h"
 
 @implementation UIViewController (ZJViewController)
 
@@ -21,11 +20,11 @@
 }
 
 - (void)popToVCWithIndex:(NSUInteger)index {
-    NSArray *vcs = self.navigationController.viewControllers;
-    if (index > vcs.count - 1) {
-        index = vcs.count - 1;
+    NSArray *arys = self.navigationController.viewControllers;
+    if (index > arys.count - 1) {
+        index = arys.count - 1;
     }
-    [self.navigationController popToViewController:vcs[index] animated:YES];
+    [self.navigationController popToViewController:arys[index] animated:YES];
 }
 
 - (void)showVCWithName:(NSString *)vcName {
@@ -56,23 +55,27 @@
 
 #pragma mark - UIBarButtonItem
 
+#define kBarItemEvent @"barItemAction:"
+#define kBarItemAction NSSelectorFromString(kBarItemEvent)
+
+- (void)barItemAction:(UIBarButtonItem *)sender {
+    
+}
+
 - (UIBarButtonItem *)barbuttonWithSystemType:(UIBarButtonSystemItem)type {
-    SEL s = NSSelectorFromString(barItemAction);
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:type target:self action:s];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:type target:self action:kBarItemAction];
     
     return item;
 }
 
 - (UIBarButtonItem *)barbuttonWithTitle:(NSString *)title {
-    SEL s = NSSelectorFromString(barItemAction);
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:s];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:kBarItemAction];
     
     return item;
 }
 
 - (UIBarButtonItem *)barButtonWithImageName:(NSString *)imgName {
-    SEL s = NSSelectorFromString(barItemAction);
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:imgName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:s];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:imgName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:kBarItemAction];
     
     return item;
 }
@@ -94,7 +97,6 @@
 自定义UIBarButtonItem和使用系统的UIBarButtonItem会出现与x方向上的偏移
  */
 - (UIBarButtonItem *)barButtonItemWithCustomViewWithImageNames:(NSArray *)images {
-    SEL sel = NSSelectorFromString(barItemAction);
     CGFloat itemWidth = 46, btnWidth = 24;
     CGFloat offsetX = 8, originX = 11, originY = 9.5;
     CGFloat adjust = 11;    // 修正值,调整自定义item与系统方法创建的item与屏幕边距的差别
@@ -106,7 +108,7 @@
         btn.tag = i;
         btn.frame = CGRectMake(width - (itemWidth*(i+1) + offsetX*i) + originX + adjust, originY, btnWidth, btnWidth);
         [btn setImage:[[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-        [btn addTarget:self action:sel forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:kBarItemAction forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
     }
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:view];
@@ -115,16 +117,15 @@
 }
 
 #pragma mark - alert
+
 /* UIAlertController改标题颜色
  [[alert valueForKey:@"alertController"] setValue:[@"aa" attrWithForegroundColor:[UIColor redColor]] forKey:@"attributedTitle"];
  */
-
 - (void)alertFunc:(ZJAlertObject *)object alertCompl:(AlertActionCompl)callBack {
     UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:object.title message:object.msg preferredStyle:object.alertStyle];
-    NSUInteger count = object.sheetTitles.count;
+    NSUInteger count = object.actTitles.count;
     for (int i = 0; i < count; i++) {
         UIAlertActionStyle style;
-        
         if (object.needCancel && object.cancelIndex == i) {
             style = UIAlertActionStyleCancel;
         }else if (object.needDestructive && object.destructiveIndex == i) {
@@ -133,31 +134,37 @@
             style = UIAlertActionStyleDefault;
         }
         
-        NSString *title = object.sheetTitles[i];
-        UIAlertAction *act = [UIAlertAction actionWithTitle:title style:style handler:^(UIAlertAction * _Nonnull action) {
-            callBack(action, ctrl.textFields);
+        NSString *title = object.actTitles[i];
+        ZJAlertAction *act = [ZJAlertAction actionWithTitle:title style:style handler:^(UIAlertAction * _Nonnull action) {
+            callBack((ZJAlertAction *)action, ctrl.textFields);
         }];
+        act.tag = i;
+        if (object.needSetTitleColor) {
+            [act setValue:object.actTitleColors[i] forKey:@"_titleTextColor"];
+        }
         [ctrl addAction:act];
     }
     //
-    for (int i = 0; i < object.textFieldConfigs.count; i++) {
-        [ctrl addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            ZJTextInputConfig *config = object.textFieldConfigs[i];
-            textField.tag = config.tag;
-            textField.text = config.text;
-            textField.placeholder = config.placehold;
-            textField.secureTextEntry = config.secureText;
-            textField.textAlignment = config.textAlignment;
-            textField.keyboardType = config.keyboardType;
-            if (config.font) {
+    if (object.alertStyle == UIAlertControllerStyleAlert) {
+        for (int i = 0; i < object.textFieldConfigs.count; i++) {
+            [ctrl addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                ZJTextInputConfig *config = object.textFieldConfigs[i];
+                textField.tag = config.tag;
+                textField.text = config.text;
+                textField.placeholder = config.placehold;
+                textField.secureTextEntry = config.secureText;
+                textField.textAlignment = config.textAlignment;
+                textField.keyboardType = config.keyboardType;
+                textField.textColor = config.textColor;
                 textField.font = config.font;
-            }
-            NSLog(@"textField1 = %@", textField);
-        }];
+                NSLog(@"textField1 = %@", textField);
+            }];
+        }
     }
     
     [self presentViewController:ctrl animated:YES completion:nil];
 }
+
 #pragma mark - 系统分享
 
 /**

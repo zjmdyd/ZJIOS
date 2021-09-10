@@ -10,6 +10,7 @@
 @interface ZJTimerViewController ()
 
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -19,13 +20,28 @@
     [super viewDidLoad];
     
     self.index = 0;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
+//    NSLog(@"backgroundTimeRemaining = %f", [UIApplication sharedApplication].backgroundTimeRemaining);
+    __block UIBackgroundTaskIdentifier bgIdt = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+//        [[UIApplication sharedApplication] endBackgroundTask:bgIdt];
+    }];
+     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)timerEvent:(NSTimer *)sender {
     self.index++;
     NSLog(@"index = %ld", (long)self.index);
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+}
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+}
+
 
 /*
 #pragma mark - Navigation

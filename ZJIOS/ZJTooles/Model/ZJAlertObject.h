@@ -16,12 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *msg;
 @property (nonatomic, assign) UIAlertControllerStyle alertStyle;
-@property (nonatomic, strong) NSArray<NSString *> *sheetTitles;
+@property (nonatomic, strong) NSArray<NSString *> *actTitles;
+@property (nonatomic, strong) NSArray<UIColor *> *actTitleColors;
 @property (nonatomic, assign) BOOL needCancel;
-@property (nonatomic, assign) NSUInteger cancelIndex;
 @property (nonatomic, assign) BOOL needDestructive;
+@property (nonatomic, assign) NSUInteger cancelIndex;
 @property (nonatomic, assign) NSUInteger destructiveIndex;
 @property (nonatomic, strong) NSArray<ZJTextInputConfig *> *textFieldConfigs;
+@property (nonatomic, assign) BOOL needSetTitleColor;
 
 @end
 

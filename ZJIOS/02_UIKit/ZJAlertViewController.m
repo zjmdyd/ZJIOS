@@ -25,13 +25,17 @@
     ZJAlertObject *obj = [ZJAlertObject new];
     obj.title = @"标题";
     obj.msg = @"message";
-    obj.sheetTitles = @[@"取消", @"下一个"];
+    obj.actTitles = @[@"取消", @"确定"];
+    obj.actTitleColors = @[[UIColor redColor], [UIColor greenColor]];
+//    obj.needDestructive = YES;
+//    obj.destructiveIndex = 1;
     obj.alertStyle = UIAlertControllerStyleAlert;
     ZJTextInputConfig *cfg = [[ZJTextInputConfig alloc] init];
     cfg.text = @"hello";
+    cfg.textColor = [UIColor redColor];
     obj.textFieldConfigs = @[cfg];
-    [self alertFunc:obj alertCompl:^(UIAlertAction *act, NSArray *textFields) {
-        NSLog(@"%@--%@", act.title, textFields);
+    [self alertFunc:obj alertCompl:^(ZJAlertAction *act, NSArray *textFields) {
+        NSLog(@"%@--%@--%ld", act.title, textFields, (long)act.tag);
     }];
 }
 

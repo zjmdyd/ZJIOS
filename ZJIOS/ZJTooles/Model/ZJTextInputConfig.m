@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         self.tag = 0;
+        self.secureText = NO;
         self.textAlignment = NSTextAlignmentLeft;
         self.keyboardType = UIKeyboardTypeDefault;
     }

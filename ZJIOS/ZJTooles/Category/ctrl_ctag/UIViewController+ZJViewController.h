@@ -7,10 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJAlertObject.h"
+#import "ZJAlertAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^AlertActionCompl)(UIAlertAction *act, NSArray *textFields);
+typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 
 @interface UIViewController (ZJViewController)
 
