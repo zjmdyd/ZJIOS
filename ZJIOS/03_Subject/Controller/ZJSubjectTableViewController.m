@@ -23,7 +23,7 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJRuntimeViewController", @"ZJBlockViewController", @"ZJTestSuperViewController", @"ZJTestServerViewController"];
+    self.titles = @[@"ZJRuntimeViewController", @"ZJBlockViewController", @"ZJTestSuperViewController", @"ZJTestServerViewController", @"ZJRegxViewController"];
 }
 
 - (void)initSetting {

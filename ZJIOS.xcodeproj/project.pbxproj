@@ -16,6 +16,8 @@
 		382EE8EB26750B05008AB02C /* ZJIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8EA26750B05008AB02C /* ZJIOSTests.m */; };
 		382EE8F626750B05008AB02C /* ZJIOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8F526750B05008AB02C /* ZJIOSUITests.m */; };
 		382EE90626750E52008AB02C /* ZJCopyStongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE90526750E52008AB02C /* ZJCopyStongViewController.m */; };
+		3845042C26993F5600715E6E /* ZJRegxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3845042B26993F5600715E6E /* ZJRegxViewController.m */; };
+		3845042E269941F000715E6E /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 3845042D269941F000715E6E /* test.html */; };
 		384FE193268DC28C00E568AF /* ZJSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 384FE192268DC28C00E568AF /* ZJSocketManager.m */; };
 		384FE19A268DDB5F00E568AF /* ZJTestServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384FE198268DDB5F00E568AF /* ZJTestServerViewController.m */; };
 		384FE19B268DDB5F00E568AF /* ZJTestServerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384FE199268DDB5F00E568AF /* ZJTestServerViewController.xib */; };
@@ -146,6 +148,9 @@
 		382EE8F726750B05008AB02C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382EE90426750E52008AB02C /* ZJCopyStongViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJCopyStongViewController.h; sourceTree = "<group>"; };
 		382EE90526750E52008AB02C /* ZJCopyStongViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJCopyStongViewController.m; sourceTree = "<group>"; };
+		3845042A26993F5600715E6E /* ZJRegxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJRegxViewController.h; sourceTree = "<group>"; };
+		3845042B26993F5600715E6E /* ZJRegxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJRegxViewController.m; sourceTree = "<group>"; };
+		3845042D269941F000715E6E /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		384FE191268DC28C00E568AF /* ZJSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJSocketManager.h; sourceTree = "<group>"; };
 		384FE192268DC28C00E568AF /* ZJSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJSocketManager.m; sourceTree = "<group>"; };
 		384FE197268DDB5F00E568AF /* ZJTestServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestServerViewController.h; sourceTree = "<group>"; };
@@ -386,6 +391,7 @@
 				382EE90326750DEC008AB02C /* 01_Foundation */,
 				382EE8DA26750B04008AB02C /* Assets.xcassets */,
 				382EE8DC26750B04008AB02C /* LaunchScreen.storyboard */,
+				3845042D269941F000715E6E /* test.html */,
 				3883B9BB268EBE9800236663 /* userHelp.html */,
 				382EE8DF26750B04008AB02C /* Info.plist */,
 				382EE8E026750B04008AB02C /* main.m */,
@@ -630,6 +636,8 @@
 			children = (
 				38EBE1472675BB8900E090D9 /* ZJSubjectTableViewController.h */,
 				38EBE1482675BB8900E090D9 /* ZJSubjectTableViewController.m */,
+				3845042A26993F5600715E6E /* ZJRegxViewController.h */,
+				3845042B26993F5600715E6E /* ZJRegxViewController.m */,
 				38D13DB1268084F300BCAC42 /* ZJPointerAryViewController.h */,
 				38D13DB2268084F300BCAC42 /* ZJPointerAryViewController.m */,
 				38A1F09826798FE700A4D044 /* ZJRunLoopViewController.h */,
@@ -813,6 +821,7 @@
 			files = (
 				38A1F0A22679A6B400A4D044 /* MVC.jpeg in Resources */,
 				38AB576B268334B80014CECE /* block_malloc.png in Resources */,
+				3845042E269941F000715E6E /* test.html in Resources */,
 				38A1F0A32679A6B400A4D044 /* MVVM.jpeg in Resources */,
 				38AB576C268334B80014CECE /* block_stack.png in Resources */,
 				38D13DB0267F8D4000BCAC42 /* block-struct.jpeg in Resources */,
@@ -865,6 +874,7 @@
 				6502DC8826EB5FF900D597BC /* ZJKeyboardManager.m in Sources */,
 				65F7C6AB2692E74600121EBD /* UIView+ZJView.m in Sources */,
 				384FE19A268DDB5F00E568AF /* ZJTestServerViewController.m in Sources */,
+				3845042C26993F5600715E6E /* ZJRegxViewController.m in Sources */,
 				38A1F08D26774A6200A4D044 /* ZJViewController.m in Sources */,
 				65F7C6D82692EC7000121EBD /* UIDevice+ZJDevice.m in Sources */,
 				388B32DC267D98780071F530 /* ZJCategoryViewController.m in Sources */,
