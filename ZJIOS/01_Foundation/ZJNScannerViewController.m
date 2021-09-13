@@ -16,30 +16,59 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSString *str = @"<h9><i>Monday, July 15th</i></h9><h7>beach</h7>, near our hotel. My sister and I tried paragliding.";
-    NSString *str = @"<h6>aaa</h6>,<h10>bbb</h10>.<h7>ccc</h7>?";
-    [self addWrapStyle:str];
-//    [self testLen];
+//    <h11><h6>aaa</h6>,</h11><h11><h10>bbb</h10>.</h11><h11><h7>ccc</h7>?</h11>
+//    [self test0];
+    [self test1];
 }
 
+- (void)test0 {
+    NSString *str = @"</h7>...";
+    NSArray *punctuations = @[@",", @".", @"!", @"?", @":", @"..."];
+    for (int i = 0; i < str.length; i++) {
+        if (i+2 < str.length) {
+            NSString *punc3 = [str substringWithRange:NSMakeRange(i, 3)];
+            if ([punctuations containsObject:punc3]) {
+                NSLog(@"找到省略号:%d", i);
+            }
+        }
+    }
+}
+
+- (void)test1 {
+    NSString *str = @"<h6>aaa</h6>,<h10>bbb</h10>.<h7>ccc</h7>...<h7>ccc</h7>?";
+    [self addWrapStyle:str];
+}
+//   0   4  7
+//
 - (NSString *)addWrapStyle:(NSString *)originString {
     NSMutableString *changeStr = originString.mutableCopy;
     NSInteger offsetLoc = 0;
-    NSArray *punctuations = @[@",", @".", @"!", @"?", @":"];
-    NSInteger nextEndIndex = 0;     // 记录changeStr的结束标记
+    NSArray *punctuations = @[@",", @".", @"!", @"?", @":", @"..."];
+//    NSInteger nextEndIndex = 0;     // 记录changeStr的结束标记
     for (int i = 0; i < originString.length; i++) {
-        NSString *sub = [originString substringWithRange:NSMakeRange(i, 1)];
-        if ([punctuations containsObject:sub]) {    // 找到标点符号
-            NSLog(@"找到标点符号:%@ loc = %d", sub, i);
+        NSInteger puncLen = 1;  // 标点默认长度
+        NSString *punc1 = [originString substringWithRange:NSMakeRange(i, 1)];
+        NSString *punc3;
+        BOOL containPunc3 = NO;
+        if (i + 2 < originString.length) {
+            punc3 = [originString substringWithRange:NSMakeRange(i, 3)];
+            if ([punctuations containsObject:punc3]) {
+                containPunc3 = YES;
+                puncLen = 3;
+            }
+        }
+        
+        if ([punctuations containsObject:punc1] || containPunc3) {    // 找到标点符号
+            NSLog(@"找到标点符号:%@ loc = %d", punc1, i);
             int j = i - 2;                          // 记录h5标签结尾位置
             NSString *sub2 = [originString substringWithRange:NSMakeRange(i - 1, 1)];
             if ([sub2 isEqualToString:@">"]) {      // 找到标点符号前面紧挨着的h5标签
                 NSLog(@"找到h5结束位置:%d", i - 1);
-                NSMutableString *mark = [NSMutableString string];  // 记录h5标签的字符串(不包含<>)
+                NSMutableString *mark = [NSMutableString string];  // 保存h5标签的字符串(不包含<>)
                 while (j >= 0) {
                     NSString *beforeChar = [originString substringWithRange:NSMakeRange(j, 1)];
                     if ([beforeChar isEqualToString:@"<"]) { // 找到匹配的h5标签
-                        NSLog(@"找到h5开始:%d, 结束的h5标签 = %@", j, mark);
+                        NSLog(@"找到h5开始位置:%d, 结束的h5标签 = %@", j, mark);
                         break;
                     }else {
                         [mark insertString:beforeChar atIndex:0];
@@ -57,10 +86,13 @@
                     if ([beganMatchStr isEqualToString:beganMark]) {
                         NSLog(@"匹配到了, 开始位置:%ld", (long)startLoc);
                         NSString *inseartTag = @"<h11>";
-                        [changeStr insertString:[inseartTag endTagString] atIndex:i+1 + offsetLoc];
+                        [changeStr insertString:[inseartTag endTagString] atIndex:i+puncLen + offsetLoc];
                         [changeStr insertString:inseartTag atIndex:startLoc + offsetLoc];
                         offsetLoc += 11;
                         NSLog(@"匹配后的结果:%@-->offsetLoc = %ld", changeStr, (long)offsetLoc);
+                        if (puncLen == 3) {
+                            i += 2; // 省略号特殊处理
+                        }
                         break;
                     }else {
                         startLoc--;
