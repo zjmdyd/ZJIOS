@@ -35,7 +35,8 @@
 }
 
 - (void)test1 {
-    NSString *str = @"<h6>aaa</h6>,<h10>bbb</h10>.<h7>ccc</h7>...<h7>ccc</h7>?";
+//    NSString *str = @"<h6>aaa</h6>,<h10>bbb</h10>.<h7>ccc</h7>...<h7>ccc</h7>?";
+    NSString *str = @"<h7>Could</h7><h7>you</h7><h7>please</h7>...?";
     [self addWrapStyle:str];
 }
 //   0   4  7
@@ -46,8 +47,8 @@
     NSArray *punctuations = @[@",", @".", @"!", @"?", @":", @"..."];
 //    NSInteger nextEndIndex = 0;     // 记录changeStr的结束标记
     for (int i = 0; i < originString.length; i++) {
-        NSInteger puncLen = 1;  // 标点默认长度
         NSString *punc1 = [originString substringWithRange:NSMakeRange(i, 1)];
+        NSInteger puncLen = 1;  // 标点默认长度
         NSString *punc3;
         BOOL containPunc3 = NO;
         if (i + 2 < originString.length) {
@@ -59,7 +60,7 @@
         }
         
         if ([punctuations containsObject:punc1] || containPunc3) {    // 找到标点符号
-            NSLog(@"找到标点符号:%@ loc = %d", punc1, i);
+            NSLog(@"找到标点符号:%@ loc = %d, containPunc3 = %d", punc1, i, containPunc3);
             int j = i - 2;                          // 记录h5标签结尾位置
             NSString *sub2 = [originString substringWithRange:NSMakeRange(i - 1, 1)];
             if ([sub2 isEqualToString:@">"]) {      // 找到标点符号前面紧挨着的h5标签
