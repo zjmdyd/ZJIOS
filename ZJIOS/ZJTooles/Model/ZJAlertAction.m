@@ -9,4 +9,10 @@
 
 @implementation ZJAlertAction
 
+- (void)setTitleColor:(UIColor *)titleColor {
+    _titleColor = titleColor;
+    
+    [self setValue:_titleColor forKey:@"_titleTextColor"];
+}
+
 @end

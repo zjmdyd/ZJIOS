@@ -140,7 +140,7 @@
         }];
         act.tag = i;
         if (object.needSetTitleColor) {
-            [act setValue:object.actTitleColors[i] forKey:@"_titleTextColor"];
+            act.titleColor = object.actTitleColors[i];
         }
         [ctrl addAction:act];
     }
@@ -157,7 +157,6 @@
                 textField.keyboardType = config.keyboardType;
                 textField.textColor = config.textColor;
                 textField.font = config.font;
-                NSLog(@"textField1 = %@", textField);
             }];
         }
     }
