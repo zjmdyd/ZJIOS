@@ -19,9 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param keys 需特殊赋值的key
 - (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)keys;
 - (BOOL)containsKey:(NSString *)key;
-- (BOOL)containsKeyCaseInsensitive:(NSString *)key;
+- (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive;
 - (NSString *)httpParamsString;
-- (void)base64Dic;
 
 @end
 

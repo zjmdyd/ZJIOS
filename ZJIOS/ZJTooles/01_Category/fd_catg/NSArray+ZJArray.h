@@ -9,27 +9,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, TimeStringType) {
+    TimeStringTypeOf12Hour,
+    TimeStringTypeOf24Hour,
+    TimeStringTypeOfMinute,
+    TimeStringTypeOfSecond,
+};
+
 @interface NSArray (ZJArray)
 
-// 创建多维数组，暂只支持二维数组
+/// 创建多维数组，暂只支持二维数组
+/// @param array NSArray *ary = [NSArray multiArrayWithPrototype:@[@[@"", @""], @[@""]] value:@"1"];
 + (NSArray *)multiArrayWithPrototype:(NSArray *)array;
 + (NSArray *)multiArrayWithPrototype:(NSArray *)array value:(nonnull id)value;
 
 - (NSString *)joinToStringWithSeparateString:(NSString *)str;
-- (NSString *)joinToStringWithSeparateString:(NSString *)str endIndex:(NSInteger)endIndex;
+- (NSString *)joinToStringWithSeparateString:(NSString *)str range:(NSRange)range;
 
 /**
  *  获取数组中的最值,元素须为NSNumber类型
  */
-- (NSNumber *)maxValue;
-- (NSNumber *)minValue;
-- (NSNumber *)average;
+- (float)maxValue;
+- (float)minValue;
+- (float)average;
 
 + (NSArray *)sexStrings;
-// 00~23
-+ (NSArray *)hourStrings;
-// 00~59
-+ (NSArray *)minuteStrings;
 // 十二星座
 + (NSArray *)twelveConstellations;
 

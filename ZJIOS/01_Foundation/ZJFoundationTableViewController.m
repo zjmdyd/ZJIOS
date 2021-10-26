@@ -9,24 +9,28 @@
 #import "ZJCopyStongViewController.h"
 #import "UINavigationController+ZJNaviController.h"
 #import "UIViewController+ZJViewController.h"
-
+#import "ZJLayoutDefines.h"
 @interface ZJFoundationTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
 @implementation ZJFoundationTableViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%s", __func__);
+//    NSLog(@"%s", __func__);
     [self initAry];
     [self initSetting];
-    [UIScreen mainScreen].brightness = .1;
+    
+//    NSLog(@"statusBar_size = %@", NSStringFromCGSize([self getStatusBarSize]));
+    NSLog(@"%f", kStatusBarH);
+    
+    NSLog(@"navigationBar_size = %@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
+    NSLog(@"tabBar_size = %@", NSStringFromCGSize(self.tabBarController.tabBar.bounds.size));
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController", @"ZJAryViewController", @"ZJNScannerViewController", @"ZJTimerViewController"];
+    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController", @"ZJAryViewController", @"ZJNScannerViewController", @"ZJTimerViewController", @"ZJNSNumberViewController"];
 }
 
 - (void)initSetting {
@@ -65,7 +69,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"%s", __func__);
+//    NSLog(@"%s", __func__);
 }
 /*
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

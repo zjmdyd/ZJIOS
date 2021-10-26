@@ -47,7 +47,7 @@
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
     if(error) {
-        NSLog(@"json转化失败：%@",error);
+        NSLog(@"json转化失败：%@", error);
         return nil;
     }
     return dic;

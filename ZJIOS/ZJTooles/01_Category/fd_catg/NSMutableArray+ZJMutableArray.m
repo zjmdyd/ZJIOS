@@ -18,7 +18,6 @@
     return array;
 }
 
-
 - (void)resetBoolValues {
     for(int i = 0; i < self.count; i++) {
         if ([self[i] boolValue]) {

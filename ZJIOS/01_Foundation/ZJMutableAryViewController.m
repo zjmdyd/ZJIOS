@@ -6,6 +6,7 @@
 //
 
 #import "ZJMutableAryViewController.h"
+#import "NSArray+ZJArray.h"
 
 @interface ZJMutableAryViewController ()
 
@@ -22,8 +23,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test1];
+    [self test0];
+//    [self test1];
 }
+
+- (void)test0 {
+    NSArray *ary = [NSArray multiArrayWithPrototype:@[@[@"", @""], @[@""]] value:@"1"];
+    NSLog(@"ary = %@, %@", ary, ary.class);
+    for (NSArray *sAry in ary) {
+        NSLog(@"sAry = %@, %@", sAry, sAry.class);
+    }
+}
+
 /*
  2021-07-05 09:58:29.622767+0800 ZJIOS[1153:60296] (
      1,

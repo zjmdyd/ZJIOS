@@ -19,20 +19,20 @@
 #define DefaultSectionFooterHeight 8
 #endif
 
-#ifndef DefaultFooterViewMarginTop
-#define DefaultFooterViewMarginTop 35
-#endif
-
-#ifndef DefaultIconCellRowHeight
-#define DefaultIconCellRowHeight 80
-#endif
-
 #ifndef DefaultSectionTitleHeight
 #define DefaultSectionTitleHeight 35
 #endif
 
+#ifndef DefaultFooterViewMarginTop
+#define DefaultFooterViewMarginTop 35
+#endif
+
 #ifndef DefaultCellHeight
 #define DefaultCellHeight 44
+#endif
+
+#ifndef DefaultIconCellRowHeight
+#define DefaultIconCellRowHeight 80
 #endif
 
 #ifndef DefaultInputCellHeight
@@ -40,11 +40,11 @@
 #endif
 
 #ifndef DefaultMargin
-#define DefaultMargin 16    // 默认边距
+#define DefaultMargin 16        // 默认边距
 #endif
 
-#ifndef DefaultSpan
-#define DefaultSpan 8       // 默认边距2
+#ifndef DefaultLittleMargin
+#define DefaultLittleMargin 8   // 默认边距2
 #endif
 
 #endif /* ZJTableViewDefines_h */

@@ -15,3 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+/*
+ //⚠️ 重点: 30=线的宽度 4=每条线的间距 10=线的宽度 8=每条线的间距
+ [shapeLayer setLineDashPattern:@[@30,@4,@10,@8]];
+ */

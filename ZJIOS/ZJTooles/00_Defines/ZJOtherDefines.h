@@ -9,7 +9,6 @@
 #ifndef ZJOtherDefines_h
 #define ZJOtherDefines_h
 
-
 #ifndef DefaultAnimationDuration
 #define DefaultAnimationDuration 0.5
 #endif

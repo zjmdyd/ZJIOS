@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJKeyboardManager : NSObject
 
-@property (nonatomic, assign) CGFloat keyboardOffsetY;
 + (instancetype)shareInstance;
+@property (nonatomic, assign) CGFloat keyboardOffsetY;
 @property (nonatomic, assign) BOOL enable;
 
 @end

@@ -6,6 +6,7 @@
 //
 
 #import "ZJAryViewController.h"
+#import "NSArray+ZJArray.h"
 
 @interface ZJAryViewController ()
 
@@ -16,7 +17,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test2];
+    [self test0];
+//    [self test2];
+}
+
+- (void)test0 {
+    NSRange range = NSMakeRange(1, 3);
+    NSArray *ary = @[@0, @1, @2, @3, @4, @5];
+    NSArray *sAry = [ary subarrayWithRange:range];
+    NSLog(@"sAry = %@", sAry);
+    
+    NSString *str = [ary joinToStringWithSeparateString:@","];
+    NSLog(@"jAry = %@", str);
 }
 
 - (void)test1 {

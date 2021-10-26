@@ -27,14 +27,15 @@
 #pragma mark - 拼接字符串
 
 - (NSString *)joinToStringWithSeparateString:(NSString *)str {
-    return [self joinToStringWithSeparateString:str endIndex:self.count];
+    return [self joinToStringWithSeparateString:str range:NSMakeRange(0, self.count)];
 }
 
-- (NSString *)joinToStringWithSeparateString:(NSString *)str endIndex:(NSInteger)endIndex {
+- (NSString *)joinToStringWithSeparateString:(NSString *)str range:(NSRange)range {
     if (![self isKindOfClass:[NSArray class]]) return @"";
     
     NSMutableString *string = [NSMutableString string];
-    for (int i = 0; i < endIndex; i++) {
+    NSUInteger endIndex = range.location + range.length;
+    for (NSUInteger i = range.location; i < endIndex; i++) {
         if (i < endIndex - 1) {
             [string appendString:[NSString stringWithFormat:@"%@%@", self[i], str]];
         }else {
@@ -46,7 +47,7 @@
 
 #pragma mark - 处理数据
 
-- (NSNumber *)maxValue {
+- (float)maxValue {
     float max = FLT_MIN;
     for (int i = 0; i < self.count; i++) {
         NSNumber *value = self[i];
@@ -58,10 +59,10 @@
         }
     }
     
-    return @(max);
+    return max;
 }
 
-- (NSNumber *)minValue {
+- (float)minValue {
     float min = FLT_MAX;
     for (int i = 0; i < self.count; i++) {
         NSNumber *value = self[i];
@@ -73,10 +74,10 @@
         }
     }
     
-    return @(min);
+    return min;
 }
 
-- (NSNumber *)average {
+- (float)average {
     float sum = 0.0;
     for (int i = 0; i < self.count; i++) {
         NSNumber *value = self[i];
@@ -85,7 +86,7 @@
         }
     }
     
-    return @(sum/self.count);
+    return sum/self.count;
 }
 
 #pragma mark - 常量字符串
@@ -94,18 +95,11 @@
     return @[@"男", @"女"];
 }
 
-+ (NSArray *)hourStrings {
++ (NSArray *)timeStringWithType:(TimeStringType)type {
     NSMutableArray *ary = [NSMutableArray array];
-    for (int i = 0; i < 24; i++) {
-        [ary addObject:[NSString stringWithFormat:@"%02d", i]];
-    }
-    
-    return ary;
-}
-
-+ (NSArray *)minuteStrings {
-    NSMutableArray *ary = [NSMutableArray array];
-    for (int i = 0; i < 60; i++) {
+    NSArray *nums = @[@12, @24, @60, @60];
+    int count = [nums[type] intValue];
+    for (int i = 0; i < count; i++) {
         [ary addObject:[NSString stringWithFormat:@"%02d", i]];
     }
     

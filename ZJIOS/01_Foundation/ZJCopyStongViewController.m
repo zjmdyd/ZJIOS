@@ -27,9 +27,10 @@
     [self.ary addObject:@"first element"];
     NSLog(@"ary = %@", self.ary);
     
-    [self test0];
+//    [self test0];
 //    [self test2];
 //    [self test3];
+    [self test4];
 }
 /*
  内存地址由低到高分别为:程序区-->数据区-->堆区-->栈区
@@ -101,14 +102,21 @@
     NSLog(@"%p--%p--%@", self.cpStr, &_cpStr, self.cpStr);
 }
 
-//2021-06-14 17:23:30.628184+0800 ZJIOS[3418:257455] 0x6000016b0360--0x7ffee2f66588--hello meiemi
-//2021-06-14 17:23:30.628347+0800 ZJIOS[3418:257455] 0x6000016b0360--0x7fc56c41fd90--hello meiemi
-//2021-06-14 17:23:30.628508+0800 ZJIOS[3418:257455] 0x600001869700--0x7fc56c41fd88--hello baby!
+//2021-09-15 17:01:52.620591+0800 ZJIOS[9518:262421] 0x600001330ff0--0x7ffee90adb08--hello baby!
+//2021-09-15 17:01:52.620846+0800 ZJIOS[9518:262421] 0x600001330ff0--0x7ffb8ed289f0--hello baby!
+//2021-09-15 17:01:52.621086+0800 ZJIOS[9518:262421] 0x600001d17ac0--0x7ffb8ed289e8--hello baby!
+
+//2021-09-15 17:01:52.621331+0800 ZJIOS[9518:262421] 0x600001330ff0--0x7ffee90adb08--hello meiemi
+//2021-09-15 17:01:52.621528+0800 ZJIOS[9518:262421] 0x600001330ff0--0x7ffb8ed289f0--hello meiemi
+//2021-09-15 17:01:52.621728+0800 ZJIOS[9518:262421] 0x600001d17ac0--0x7ffb8ed289e8--hello baby!
 - (void)test4 {
     // 第三种场景：用NSMutableString点语法赋值
     NSMutableString *originStrinng = @"hello baby!".mutableCopy;
     self.stgStr = originStrinng;
     self.cpStr = originStrinng;
+    NSLog(@"%p--%p--%@", originStrinng, &originStrinng, originStrinng);
+    NSLog(@"%p--%p--%@", self.stgStr, &_stgStr, self.stgStr);
+    NSLog(@"%p--%p--%@", self.cpStr, &_cpStr, self.cpStr);
     [originStrinng setString:@"hello meiemi"];
     NSLog(@"%p--%p--%@", originStrinng, &originStrinng, originStrinng);
     NSLog(@"%p--%p--%@", self.stgStr, &_stgStr, self.stgStr);
@@ -120,7 +128,7 @@
  当我们用self.copyyStr = originStr赋值时，会调用coppyStr的setter方法，而_copyyStr = originStr 赋值时给_copyyStr实例变量直接赋值，并不会调用copyyStr的setter方法，而在setter方法中有一个非常关键的语句：
  _cpStr = [cpStr copy];
  第三种场景中用self.cpStr = originStr 赋值时，调用cpStr的setter方法，setter方法对传入的cpStr做了次深拷贝生成了一个新的对象赋值给_cpStr，所以_cpStr指向的地址和对象值都不再和originStr相同。
- 
+ 总结:
  当原字符串是NSString时，由于是不可变字符串，所以，不管使用strong还是copy修饰，都是指向原来的对象，copy操作只是做了一次浅拷贝。
  而当源字符串是NSMutableString时，strong只是将源字符串的引用计数加1，而copy则是对原字符串做了次深拷贝，从而生成了一个新的对象，并且copy的对象指向这个新对象。另外需要注意的是，这个copy属性对象的类型始终是NSString，而不是NSMutableString，如果想让拷贝过来的对象是可变的，就要使用mutableCopy。
  所以，如果源字符串是NSMutableString的时候，使用strong只会增加引用计数。

@@ -13,17 +13,17 @@
     return [self validValueWithRange:range defaultValue:0];
 }
 
-- (NSInteger)validValueWithRange:(NSRange)range defaultValue:(NSInteger)value {
+- (NSInteger)validValueWithRange:(NSRange)range defaultValue:(NSInteger)defaultValue {
     if ([self isKindOfClass:[NSNumber class]]) {
-        NSInteger sValue = self.integerValue;
-        if (sValue < range.location || sValue > range.length) {
-            return value;
+        NSInteger value = self.integerValue;
+        if (value < range.location || value > range.location + range.length) {
+            return defaultValue;
         }else {
-            return sValue;
+            return value;
         }
     }
     
-    return value;
+    return defaultValue;
 }
 
 @end

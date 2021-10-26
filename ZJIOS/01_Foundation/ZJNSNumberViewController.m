@@ -1,31 +1,26 @@
 //
-//  ZJDictionaryNullViewController.m
+//  ZJNSNumberViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2021/6/17.
+//  Created by issuser on 2021/9/29.
 //
 
-#import "ZJDictionaryNullViewController.h"
+#import "ZJNSNumberViewController.h"
+#import "NSNumber+ZJNumber.h"
 
-@interface ZJDictionaryNullViewController ()
+@interface ZJNSNumberViewController ()
 
 @end
 
-@implementation ZJDictionaryNullViewController
+@implementation ZJNSNumberViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSMutableDictionary *dic = @{}.mutableCopy;
-    [dic setObject:[NSNull null] forKey:@"num"];
-    NSLog(@"%@", dic);
+    
+    NSNumber *num = @10;
+    BOOL valid = [num validValueWithRange:NSMakeRange(6, 5)];
+    NSLog(@"num = %d", valid);
 }
-
-/*
- {
-     num = "<null>";
- }
- */
 
 /*
 #pragma mark - Navigation

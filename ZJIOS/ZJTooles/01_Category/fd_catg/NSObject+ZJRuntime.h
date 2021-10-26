@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)objectProperties;
 - (id)nextResponderWithTargetClassName:(NSString *)className;
 
+- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector;
+
 @end
 
 NS_ASSUME_NONNULL_END
