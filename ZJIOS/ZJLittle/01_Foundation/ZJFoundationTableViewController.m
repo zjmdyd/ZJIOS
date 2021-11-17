@@ -27,16 +27,47 @@
     
     NSLog(@"navigationBar_size = %@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
     NSLog(@"tabBar_size = %@", NSStringFromCGSize(self.tabBarController.tabBar.bounds.size));
+    
+    NSArray *ary = @[@(30.1), @(20.1), @(100), @(31), @(59)];
+    for (int i = 0; i < ary.count; i++) {
+        float value = [ary[i] floatValue];
+        [self refineMax:value];
+    }
 }
 
 - (void)initAry {
     self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController", @"ZJAryViewController", @"ZJNScannerViewController", @"ZJTimerViewController", @"ZJNSNumberViewController"];
+}
+//NSArray *ary = @[@(30.1), @(20.1), @(100), @(31), @(59)];
+- (float)refineMax:(float)maxValue {
+    NSLog(@"原始值:%f", maxValue);
+    maxValue = maxValue * 1.2;
+    float minValue = 20;
+    if (maxValue < minValue) {
+        maxValue = minValue;
+    }else {
+        int iMaxValue = (int)ceilf(maxValue);
+        NSLog(@"未修正的maxValue = %f, 向上取整后的值 = %d", maxValue, iMaxValue);
+        int mode = 4;   // 取余因子
+        int m = iMaxValue % mode; // 对4取余后的值
+        NSLog(@"对%d取余后的值:%d", mode, m);
+        if (m > 0) {
+            int addVal = mode - m;
+            maxValue = iMaxValue + addVal;
+        }else {
+            maxValue = iMaxValue;
+        }
+    }
+    NSLog(@"修正后的的maxValue = %f", maxValue);
+    
+    return maxValue;
 }
 
 - (void)initSetting {
     self.navigationItem.rightBarButtonItem = [self barbuttonWithSystemType:UIBarButtonSystemItemDone];
 //    [self barbuttonWithTitle:@"呵呵"];
 }
+
 //
 //- (void)barItemAction:(UIBarButtonItem *)sender {
 //    NSLog(@"%s", __func__);

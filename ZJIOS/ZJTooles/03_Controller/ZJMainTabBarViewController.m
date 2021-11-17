@@ -25,10 +25,10 @@
 }
 
 - (void)initSetting {
-    NSArray *titles = @[@"Foundation", @"UIKit", @"Subject"];
-    NSArray *images = @[@"b-tab-1", @"b-tab-11", @"b-tab-31"];   // @"3",
-    NSArray *selectImages = @[@"b-tab-2", @"b-tab-12", @"b-tab-32"];   // @"3-1",
-    NSArray *vcNames = @[@"ZJFoundationTableViewController", @"ZJUIKitTableViewController", @"ZJSubjectTableViewController"];
+    NSArray *titles = @[@"Foundation", @"UIKit", @"Controller", @"Subject"];
+    NSArray *images = @[@"b-tab-1", @"b-tab-11", @"b-tab-31", @"b-tab-31"];   // @"3",
+    NSArray *selectImages = @[@"b-tab-2", @"b-tab-12", @"b-tab-32", @"b-tab-32"];   // @"3-1",
+    NSArray *vcNames = @[@"ZJFoundationTableViewController", @"ZJUIKitTableViewController", @"ZJCtrlTableViewController", @"ZJSubjectTableViewController"];
     
     NSMutableArray *ary = [NSMutableArray array];
     for (int i = 0; i < vcNames.count; i++) {

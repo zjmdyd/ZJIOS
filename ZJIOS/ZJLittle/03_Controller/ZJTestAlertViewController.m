@@ -1,27 +1,26 @@
 //
-//  ZJAlertViewController.m
+//  ZJTestAlertViewController.m
 //  ZJIOS
 //
 //  Created by issuser on 2021/7/16.
 //
 
-#import "ZJAlertViewController.h"
+#import "ZJTestAlertViewController.h"
 #import "UIViewController+ZJViewController.h"
 
-@interface ZJAlertViewController ()
+@interface ZJTestAlertViewController ()
 
 @end
 
-@implementation ZJAlertViewController
+@implementation ZJTestAlertViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //    [self test0];
-    [self test1];
+    [self test];
 }
 
-- (void)test1 {
+- (void)test {
     ZJAlertObject *obj = [ZJAlertObject new];
     obj.title = @"标题";
     obj.msg = @"message";

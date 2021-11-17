@@ -6,8 +6,6 @@
 //
 
 #import "UIViewController+ZJViewController.h"
-#import "ZJMentionObject.h"
-#import "ZJAlertAction.h"
 
 @implementation UIViewController (ZJViewController)
 
@@ -170,7 +168,12 @@
 /**
  系统分享
  */
-- (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text path:(NSString *)path {
+- (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text url:(NSString *)url {
+    //分享的图片
+    UIImage *imageToShare;
+    if (icon.length) {
+        imageToShare = [UIImage imageNamed:icon];
+    }
     //分享的标题
     NSString *textToShare;
     if (text.length) {
@@ -178,19 +181,13 @@
     }else {
         textToShare = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     }
-    //分享的图片
-    UIImage *imageToShare;
-    if (icon.length) {
-        imageToShare = [UIImage imageNamed:icon];
-    }
     //分享的url
     NSURL *urlToShare;
-    if (path.length) {
-        urlToShare = [NSURL URLWithString:path];
+    if (url.length) {
+        urlToShare = [NSURL URLWithString:url];
     }
-    //在这里呢 如果想分享图片 就把图片添加进去  文字什么的通上
+    //在这里 如果想分享图片 就把图片添加进去  文字什么的加上
     NSMutableArray *activityItems = @[textToShare].mutableCopy;
-    
     if (imageToShare) {
         [activityItems addObject:imageToShare];
     }
@@ -205,11 +202,9 @@
     // 分享之后的回调
     activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
         if (completed) {
-            NSLog(@"completed");
-            //分享 成功
+            NSLog(@"completed");    //分享 成功
         } else  {
-            NSLog(@"cancled");
-            //分享 取消
+            NSLog(@"cancled");      //分享 取消
         }
         NSLog(@"activityError = %@", activityError);
     };

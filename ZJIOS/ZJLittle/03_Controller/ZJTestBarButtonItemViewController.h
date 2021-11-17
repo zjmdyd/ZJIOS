@@ -1,5 +1,5 @@
 //
-//  ZJBarButtonItemViewController.h
+//  ZJTestBarButtonItemViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2021/7/15.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJBarButtonItemViewController : ZJViewController
+@interface ZJTestBarButtonItemViewController : ZJViewController
 
 @end
 

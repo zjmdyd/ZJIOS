@@ -1,64 +1,37 @@
 //
-//  ZJUIKitTableViewController.m
+//  ZJCtrlTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2021/6/13.
+//  Created by issuser on 2021/11/17.
 //
 
-#import "ZJUIKitTableViewController.h"
+#import "ZJCtrlTableViewController.h"
 #import "UIViewController+ZJViewController.h"
-#import <Vision/Vision.h>
 
-@interface ZJUIKitTableViewController ()
+@interface ZJCtrlTableViewController ()
 
 @end
 
-@implementation ZJUIKitTableViewController
+@implementation ZJCtrlTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initAry];
-//    [self initSetting];
+    [self initSetting];
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJBarButtonItemViewController", @"ZJAlertViewController"];
-    
+    self.titles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertViewController"];
 }
 
-
-
 - (void)initSetting {
-//    NSLog(@"%s", __func__);
     
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
-       
-       //开始时间
-       dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
-       /** 设置定时器
-        * para2: 任务开始时间
-        * para3: 任务的间隔
-        * para4: 可接受的误差时间，设置0即不允许出现误差
-        * Tips: 单位均为纳秒
-        */
-       dispatch_source_set_timer(timer, start, 1.0 * NSEC_PER_SEC, 0.0 * NSEC_PER_SEC);
-       /** 设置定时器任务
-        * 可以通过block方式
-        * 也可以通过C函数方式
-        */
-       dispatch_source_set_event_handler(timer, ^{
-           static int index = 0;
-           NSLog(@"index: %d", index++);
-           NSLog(@"%@", [NSThread currentThread]);
-
-           if(index == 5) {
-               //终止定时器(如果没有终止方法,则定时器不会启动)
-               dispatch_suspend(timer);
-           }
-       });
-       //启动任务，GCD计时器创建后需要手动启动
-       dispatch_resume(timer);
 }
 
 #pragma mark - UITableViewDataSource
@@ -74,17 +47,17 @@
     }
     cell.textLabel.text = self.titles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.titles[indexPath.row];
     [self showVCWithName:vcName hidesBottom:YES];
 }
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

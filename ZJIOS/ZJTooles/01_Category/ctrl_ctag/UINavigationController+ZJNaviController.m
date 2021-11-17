@@ -11,7 +11,7 @@
 
 @implementation UINavigationController (ZJNaviController)
 
-- (void)showViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
+- (void)pushViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype {
     CATransition *transition = [CATransition animation];
     transition.duration = TransDuration;
     transition.type = type;

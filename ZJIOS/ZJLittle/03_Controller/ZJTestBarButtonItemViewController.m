@@ -1,24 +1,28 @@
 //
-//  ZJBarButtonItemViewController.m
+//  ZJTestBarButtonItemViewController.m
 //  ZJIOS
 //
 //  Created by issuser on 2021/7/15.
 //
 
-#import "ZJBarButtonItemViewController.h"
+#import "ZJTestBarButtonItemViewController.h"
 #import "UIViewController+ZJViewController.h"
 
-@interface ZJBarButtonItemViewController ()
+@interface ZJTestBarButtonItemViewController ()
 
 @end
 
-@implementation ZJBarButtonItemViewController
+@implementation ZJTestBarButtonItemViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"more", @"setting"]];
+    [self initSetting];
     [self test];
+}
+
+- (void)initSetting {
+    self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"more", @"setting"]];
 }
 
 - (void)test {

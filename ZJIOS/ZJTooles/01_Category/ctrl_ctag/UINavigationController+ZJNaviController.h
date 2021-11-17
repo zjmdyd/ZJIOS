@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UINavigationController (ZJNaviController)
 
-- (void)showViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype;
+- (void)pushViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype;
 - (void)popViewController:(UIViewController *)viewController transitionType:(CATransitionType)type subType:(CATransitionSubtype)subtype;
 
 @end

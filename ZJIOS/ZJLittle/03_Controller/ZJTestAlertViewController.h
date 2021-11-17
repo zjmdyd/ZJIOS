@@ -1,5 +1,5 @@
 //
-//  ZJAlertViewController.h
+//  ZJTestAlertViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2021/7/16.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJAlertViewController : ZJViewController
+@interface ZJTestAlertViewController : ZJViewController
 
 @end
 

@@ -46,7 +46,7 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 
 #pragma mark - 系统分享
 
-- (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text path:(NSString *)path;
+- (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text url:(NSString *)url;
 
 @end
 
