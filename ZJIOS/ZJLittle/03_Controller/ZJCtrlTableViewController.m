@@ -27,7 +27,7 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertViewController"];
+    self.titles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertTableViewController"];
 }
 
 - (void)initSetting {

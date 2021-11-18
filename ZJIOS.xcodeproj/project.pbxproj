@@ -71,6 +71,7 @@
 		6502DC8726EB5FF900D597BC /* ZJTextInputConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6502DC8026EB5FF900D597BC /* ZJTextInputConfig.m */; };
 		6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025126940991003B652F /* UINavigationController+ZJNaviController.m */; };
 		6516025826942C97003B652F /* UIViewController+ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025726942C97003B652F /* UIViewController+ZJViewController.m */; };
+		6531ED0527465790005BC5A3 /* ZJTestAlertTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6531ED0427465790005BC5A3 /* ZJTestAlertTableViewController.m */; };
 		6567DE6B26A166BF008F5199 /* ZJTestAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6567DE6A26A166BF008F5199 /* ZJTestAlertViewController.m */; };
 		6574BD3026A66F5E00FA5920 /* ZJNSDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574BD2F26A66F5E00FA5920 /* ZJNSDataViewController.m */; };
 		6585A8CC26CA9A7A00306DD8 /* ZJNScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6585A8CB26CA9A7A00306DD8 /* ZJNScannerViewController.m */; };
@@ -256,6 +257,8 @@
 		6516025626942C97003B652F /* UIViewController+ZJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZJViewController.h"; sourceTree = "<group>"; };
 		6516025726942C97003B652F /* UIViewController+ZJViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZJViewController.m"; sourceTree = "<group>"; };
 		6516025926943177003B652F /* ZJCtrlCatg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJCtrlCatg.h; sourceTree = "<group>"; };
+		6531ED0327465790005BC5A3 /* ZJTestAlertTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestAlertTableViewController.h; sourceTree = "<group>"; };
+		6531ED0427465790005BC5A3 /* ZJTestAlertTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestAlertTableViewController.m; sourceTree = "<group>"; };
 		6567DE6926A166BF008F5199 /* ZJTestAlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestAlertViewController.h; sourceTree = "<group>"; };
 		6567DE6A26A166BF008F5199 /* ZJTestAlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestAlertViewController.m; sourceTree = "<group>"; };
 		65681785269E8B6600D5ACB9 /* ZJFuncDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJFuncDefine.h; sourceTree = "<group>"; };
@@ -752,6 +755,8 @@
 				6597C21227450935003161AB /* ZJTestShareViewController.m */,
 				658AE86E26A0119A00688CC5 /* ZJTestBarButtonItemViewController.h */,
 				658AE86F26A0119A00688CC5 /* ZJTestBarButtonItemViewController.m */,
+				6531ED0327465790005BC5A3 /* ZJTestAlertTableViewController.h */,
+				6531ED0427465790005BC5A3 /* ZJTestAlertTableViewController.m */,
 				6567DE6926A166BF008F5199 /* ZJTestAlertViewController.h */,
 				6567DE6A26A166BF008F5199 /* ZJTestAlertViewController.m */,
 			);
@@ -944,6 +949,7 @@
 				38A1F0932678F54300A4D044 /* ZJRuntimeViewController.m in Sources */,
 				6594920B271143C500FDD87D /* UIApplication+SystemSound.m in Sources */,
 				6502DC8726EB5FF900D597BC /* ZJTextInputConfig.m in Sources */,
+				6531ED0527465790005BC5A3 /* ZJTestAlertTableViewController.m in Sources */,
 				6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */,
 				388B32E5267E554D0071F530 /* ZJFruit+ZJFruitCatgy.m in Sources */,
 				3883B93E268EAE1300236663 /* ZJMutableAryViewController.m in Sources */,

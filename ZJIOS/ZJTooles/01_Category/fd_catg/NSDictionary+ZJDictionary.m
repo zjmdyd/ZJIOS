@@ -40,11 +40,11 @@
     }
 }
 
-- (BOOL)containsKey:(NSString *)key {
-    return [self containsKey:key caseInsensitive:NO];
+- (BOOL)i_containsKey:(NSString *)key {
+    return [self i_containsKey:key caseInsensitive:NO];
 }
 
-- (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive {
+- (BOOL)i_containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive {
     for (NSString *str in self.allKeys) {
         if (caseInsensitive) {
             if ([str caseInsensitiveCompare:key] == NSOrderedSame) {

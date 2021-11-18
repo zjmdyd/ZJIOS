@@ -124,9 +124,9 @@
     NSUInteger count = object.actTitles.count;
     for (int i = 0; i < count; i++) {
         UIAlertActionStyle style;
-        if (object.needCancel && object.cancelIndex == i) {
+        if (i == object.cancelIndex && object.needCancel) {
             style = UIAlertActionStyleCancel;
-        }else if (object.needDestructive && object.destructiveIndex == i) {
+        }else if (i == object.destructiveIndex && object.needDestructive) {
             style = UIAlertActionStyleDestructive;
         }else {
             style = UIAlertActionStyleDefault;
