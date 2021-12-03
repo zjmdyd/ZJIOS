@@ -33,7 +33,7 @@
     }
 }
 
-// 按位异或
+// 按位异或(校验和)
 + (Byte)xorCheckout:(Byte *)srcBytes len:(uint32_t)len {
     Byte checkout = 0x00;
     for (int i = 0; i < len; i++) {

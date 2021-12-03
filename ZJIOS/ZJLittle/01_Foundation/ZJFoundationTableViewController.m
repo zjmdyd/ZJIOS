@@ -6,10 +6,8 @@
 //
 
 #import "ZJFoundationTableViewController.h"
-#import "ZJCopyStongViewController.h"
-#import "UINavigationController+ZJNaviController.h"
 #import "UIViewController+ZJViewController.h"
-#import "ZJLayoutDefines.h"
+
 @interface ZJFoundationTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
@@ -18,60 +16,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSLog(@"%s", __func__);
+
     [self initAry];
     [self initSetting];
-    
-//    NSLog(@"statusBar_size = %@", NSStringFromCGSize([self getStatusBarSize]));
-    NSLog(@"%f", kStatusBarH);
-    
-    NSLog(@"navigationBar_size = %@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
-    NSLog(@"tabBar_size = %@", NSStringFromCGSize(self.tabBarController.tabBar.bounds.size));
-    
-    NSArray *ary = @[@(30.1), @(20.1), @(100), @(31), @(59)];
-    for (int i = 0; i < ary.count; i++) {
-        float value = [ary[i] floatValue];
-        [self refineMax:value];
-    }
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJCopyStongViewController", @"ZJCopyMutableCopyViewController", @"ZJAssignnWeakViewController", @"ZJDictionaryNullViewController", @"ZJMutableAryViewController", @"ZJWebViewController", @"ZJNSDataViewController", @"ZJAryViewController", @"ZJNScannerViewController", @"ZJTimerViewController", @"ZJNSNumberViewController"];
-}
-//NSArray *ary = @[@(30.1), @(20.1), @(100), @(31), @(59)];
-- (float)refineMax:(float)maxValue {
-    NSLog(@"原始值:%f", maxValue);
-    maxValue = maxValue * 1.2;
-    float minValue = 20;
-    if (maxValue < minValue) {
-        maxValue = minValue;
-    }else {
-        int iMaxValue = (int)ceilf(maxValue);
-        NSLog(@"未修正的maxValue = %f, 向上取整后的值 = %d", maxValue, iMaxValue);
-        int mode = 4;   // 取余因子
-        int m = iMaxValue % mode; // 对4取余后的值
-        NSLog(@"对%d取余后的值:%d", mode, m);
-        if (m > 0) {
-            int addVal = mode - m;
-            maxValue = iMaxValue + addVal;
-        }else {
-            maxValue = iMaxValue;
-        }
-    }
-    NSLog(@"修正后的的maxValue = %f", maxValue);
-    
-    return maxValue;
+    self.titles = @[@"ZJTestAryViewController", @"ZJTestNSRangeViewController", @"ZJTestStringViewController", @"ZJTestCharacterSetViewController"];
 }
 
 - (void)initSetting {
-    self.navigationItem.rightBarButtonItem = [self barbuttonWithSystemType:UIBarButtonSystemItemDone];
-//    [self barbuttonWithTitle:@"呵呵"];
+//    int i = 10, j = 11;
+//    if (i - j > 0) {
+//        NSLog(@"i>j");
+//    }else {
+//        NSLog(@"i<j");
+//    }
+//    
+//    int m = 10; unsigned int n = 11;
+//    if (m - n > 0) {
+//        NSLog(@"i>j");
+//    }else {
+//        NSLog(@"i<j");
+//    }
 }
-
-//
-//- (void)barItemAction:(UIBarButtonItem *)sender {
-//    NSLog(@"%s", __func__);
-//}
 
 #pragma mark - UITableViewDataSource
 
@@ -95,13 +63,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.titles[indexPath.row];
-    [self showVCWithName:vcName hidesBottom:YES];
+    [self showVCWithName:vcName];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-//    NSLog(@"%s", __func__);
-}
 /*
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

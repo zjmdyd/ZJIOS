@@ -15,9 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  * 获取对象的所有属性
  */
 - (NSArray *)objectProperties;
-- (id)nextResponderWithTargetClassName:(NSString *)className;
 
-- (void)swizzleMethod:(SEL)origSelector withMethod:(SEL)newSelector;
+- (id)nextResponderWithTargetClassName:(NSString *)className;
 
 @end
 

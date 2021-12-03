@@ -13,6 +13,7 @@
 #import "ZJAlertAction.h"
 #import "ZJAlertObject.h"
 #import "ZJAlertSheetObj.h"
+#import "ZJCtrlConfig.h"
 #import "ZJTimerPoolManager.h"
 #import "ZJKeyboardManager.h"
 

@@ -94,7 +94,7 @@
                     if ([beganMatchStr isEqualToString:beganMark]) {
                         NSLog(@"匹配到了, 开始位置:%ld", (long)startLoc);
                         NSString *inseartTag = @"<h11>";
-                        [changeStr insertString:[inseartTag endTagString] atIndex:i+puncLen + offsetLoc];
+//                        [changeStr insertString:[inseartTag endTagString] atIndex:i+puncLen + offsetLoc];
                         [changeStr insertString:inseartTag atIndex:startLoc + offsetLoc];
                         offsetLoc += 11;
                         NSLog(@"匹配后的结果:%@-->offsetLoc = %ld", changeStr, (long)offsetLoc);

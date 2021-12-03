@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "ZJAlertObject.h"
 #import "ZJAlertAction.h"
+#import "ZJCtrlConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,10 +17,22 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 @interface UIViewController (ZJViewController)
 
 - (UIViewController *)preControllerWithIndex:(NSUInteger)index;
+
 - (void)popToVCWithIndex:(NSUInteger)index;
 - (void)popToVCWithName:(NSString *)name;
-- (void)showVCWithName:(NSString *)vcName;
-- (void)showVCWithName:(NSString *)vcName hidesBottom:(BOOL)hidden;
+
+- (void)showVCWithConfig:(ZJCtrlConfig *)ctrlConfig;
+
+- (void)showVCWithName:(NSString *)name;
+- (void)showVCWithName:(NSString *)name title:(NSString *)title;
+- (void)showVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden;
+
+/**
+ *  根据控制器名字创建控制器
+ */
++ (UIViewController *)createVCWithName:(NSString *)name;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden;
 
 #pragma mark - UIBarButtonItem
 

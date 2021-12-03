@@ -23,7 +23,8 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJRuntimeViewController", @"ZJBlockViewController", @"ZJTestSuperViewController", @"ZJTestServerViewController"];
+    self.titles = @[@"ZJTestMethodSwizzlingViewController"];
+//    @[@"ZJRuntimeViewController", @"ZJBlockViewController", @"ZJTestSuperViewController", @"ZJTestServerViewController"];
 }
 
 - (void)initSetting {
@@ -51,7 +52,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *vcName = self.titles[indexPath.row];
-    [self showVCWithName:vcName hidesBottom:YES];
+    [self showVCWithName:vcName];
 }
 
 /*

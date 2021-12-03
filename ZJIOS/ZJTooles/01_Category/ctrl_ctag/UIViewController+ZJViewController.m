@@ -25,16 +25,72 @@
     [self.navigationController popToViewController:arys[index] animated:YES];
 }
 
-- (void)showVCWithName:(NSString *)vcName {
-    [self showVCWithName:vcName hidesBottom:NO];
+- (void)showVCWithName:(NSString *)name {
+    [self showVCWithName:name title:@"" isGroup:YES hidesBottom:YES];
 }
 
-- (void)showVCWithName:(NSString *)vcName hidesBottom:(BOOL)hidden {
-    if ([vcName isKindOfClass:[NSString class]] && vcName.length) {
-        UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
-        vc.hidesBottomBarWhenPushed = hidden;
+- (void)showVCWithName:(NSString *)name title:(NSString *)title {
+    [self showVCWithName:name title:title isGroup:YES hidesBottom:YES];
+}
+
+- (void)showVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden {
+    ZJCtrlConfig *config = [ZJCtrlConfig new];
+    config.vcName = name;
+    config.isGroup = isGroup;
+    config.hiddenBottom = hidden;
+    [self showVCWithConfig:config];
+}
+
+- (void)showVCWithConfig:(ZJCtrlConfig *)ctrlConfig {
+    UIViewController *vc = [UIViewController createVCWithConfig:ctrlConfig];
+    if (vc) {
         [self showViewController:vc sender:nil];
     }
+}
+
++ (UIViewController *)createVCWithConfig:(ZJCtrlConfig *)ctrlConfig {
+    NSString *vcName = ctrlConfig.vcName;
+    if ([vcName isKindOfClass:[NSString class]] && vcName.length) {
+        UIViewController *vc = [NSClassFromString(vcName) alloc];
+        if ([vc isKindOfClass:[UITableViewController class]]) {
+            if (@available(iOS 13.0, *)) {
+                vc = [(UITableViewController *)vc initWithStyle:ctrlConfig.isGroup ? UITableViewStyleInsetGrouped : UITableViewStylePlain];
+            } else {
+                vc = [(UITableViewController *)vc initWithStyle:ctrlConfig.isGroup ? UITableViewStyleGrouped : UITableViewStylePlain];
+            }
+        }else {
+            vc = [vc init];
+        }
+        NSString *title = ctrlConfig.title;
+        if ([title isKindOfClass:[NSString class]] && title.length) {
+            vc.title = title;
+        }
+        UIColor *color = ctrlConfig.vcBackgroundColor;
+        if ([color isKindOfClass:[UIColor class]]) {
+            vc.view.backgroundColor = color;
+        }
+        
+        vc.hidesBottomBarWhenPushed = ctrlConfig.hiddenBottom;
+        return vc;
+    }
+    
+    return nil;
+}
+
++ (UIViewController *)createVCWithName:(NSString *)name {
+    return [self createVCWithName:name title:@"" isGroup:YES hidesBottom:YES];
+}
+
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title {
+    return [self createVCWithName:name title:title isGroup:YES hidesBottom:YES];
+}
+
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden {
+    ZJCtrlConfig *config = [ZJCtrlConfig new];
+    config.vcName = name;
+    config.isGroup = isGroup;
+    config.hiddenBottom = hidden;
+    return [self createVCWithConfig:config];
 }
 
 - (void)popToVCWithName:(NSString *)name {
@@ -120,7 +176,7 @@
  [[alert valueForKey:@"alertController"] setValue:[@"aa" attrWithForegroundColor:[UIColor redColor]] forKey:@"attributedTitle"];
  */
 - (void)alertFunc:(ZJAlertObject *)object alertCompl:(AlertActionCompl)callBack {
-    UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:object.title message:object.msg preferredStyle:object.alertStyle];
+    UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:object.title message:object.msg preferredStyle:object.alertCtrlStyle];
     NSUInteger count = object.actTitles.count;
     for (int i = 0; i < count; i++) {
         UIAlertActionStyle style;
@@ -131,7 +187,6 @@
         }else {
             style = UIAlertActionStyleDefault;
         }
-        
         NSString *title = object.actTitles[i];
         ZJAlertAction *act = [ZJAlertAction actionWithTitle:title style:style handler:^(UIAlertAction * _Nonnull action) {
             callBack((ZJAlertAction *)action, ctrl.textFields);
@@ -143,7 +198,7 @@
         [ctrl addAction:act];
     }
     //
-    if (object.alertStyle == UIAlertControllerStyleAlert) {
+    if (object.alertCtrlStyle == UIAlertControllerStyleAlert) {
         for (int i = 0; i < object.textFieldConfigs.count; i++) {
             [ctrl addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
                 ZJTextInputConfig *config = object.textFieldConfigs[i];

@@ -21,19 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)jsonString;
 
-/**
- *  根据控制器名字创建控制器
- */
-- (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title;
-- (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title isGroupTableVC:(BOOL)isGroup;
 
-- (NSString *)unitMoneyText;
-- (NSString *)unitMoneyTextHasPoint:(BOOL)hasPoint;
-- (NSString *)unitMoneyTextDefaultText:(NSString *)text;
-- (NSString *)unitMoneyTextDefaultText:(NSString *)text hasPoint:(BOOL)hasPoint;
-
-- (NSString *)centMoneyText;    // 元--> 分
-- (NSString *)tenThousandMoneyText; // 万->元
 
 - (NSString *)numValidText;
 - (NSString *)numValidTextWithDefault:(NSString *)defaultText;

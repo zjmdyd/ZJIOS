@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *msg;
-@property (nonatomic, assign) UIAlertControllerStyle alertStyle;
+@property (nonatomic, assign) UIAlertControllerStyle alertCtrlStyle;
 @property (nonatomic, strong) NSArray<NSString *> *actTitles;
 @property (nonatomic, strong) NSArray<UIColor *> *actTitleColors;
 @property (nonatomic, assign) BOOL needCancel;

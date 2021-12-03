@@ -57,7 +57,7 @@
 - (void)saveToFileWithURL:(NSString *)requestURL {
     if (self && [NSJSONSerialization isValidJSONObject:self]) {
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:nil];
-        NSString *filePath = [requestURL jsonFilePath];
+        NSString *filePath;// = [requestURL jsonFilePath];
         NSError *writeError = nil;
         if ([jsonData writeToFile:filePath options:0 error:&writeError]) {
             NSLog(@"写入缓存文件成功：%@", filePath);
@@ -77,26 +77,6 @@
     return str;
 }
 
-- (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title {
-    return [self createVCWithName:name title:title isGroupTableVC:NO];
-}
-
-- (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title isGroupTableVC:(BOOL)isGroup {
-    UIViewController *vc = [NSClassFromString(name) alloc];
-    if ([vc isKindOfClass:[UITableViewController class]]) {
-        vc = [(UITableViewController *)vc initWithStyle:isGroup ? UITableViewStyleGrouped : UITableViewStylePlain];
-    }else {
-        vc = [vc init];
-        vc.view.backgroundColor = [UIColor whiteColor];;
-    }
-    
-    if ([vc isKindOfClass:[UIViewController class]]) {
-        vc.title = title;
-    }
-    
-    return vc;
-}
-
 - (NSString *)numValidText {
     return [self numValidTextWithDefault:@"--"];
 }
@@ -109,43 +89,5 @@
     return defaultText;
 }
 
-- (NSString *)unitMoneyText {
-    return [self unitMoneyTextDefaultText:@"" hasPoint:NO];
-}
 
-- (NSString *)unitMoneyTextHasPoint:(BOOL)hasPoint {
-    return [self unitMoneyTextDefaultText:@"" hasPoint:hasPoint];
-}
-
-- (NSString *)unitMoneyTextDefaultText:(NSString *)text {
-    return [self unitMoneyTextDefaultText:text hasPoint:NO];
-}
-
-- (NSString *)unitMoneyTextDefaultText:(NSString *)text hasPoint:(BOOL)hasPoint {
-    NSString *str = text;
-    if ([self isKindOfClass:[NSNumber class]]) {
-        if (hasPoint) {
-            str = [NSString stringWithFormat:@"%.2f", ((NSNumber *)self).floatValue/100];
-        }else {
-            str = [NSString stringWithFormat:@"%.0f", ((NSNumber *)self).floatValue/100];
-        }
-    }
-    
-    return str;
-}
-
-- (NSString *)centMoneyText {
-    if (([self isKindOfClass:[NSString class]] && [((NSString *)self) isNoEmptyString]) || [self isKindOfClass:[NSNumber class]]) {
-        return [NSString stringWithFormat:@"%.0f", ((NSString *)self).floatValue*100];
-    }
-    
-    return @"";
-}
-
-- (NSString *)tenThousandMoneyText {
-    if (([self isKindOfClass:[NSString class]] && [((NSString *)self) isNoEmptyString]) || [self isKindOfClass:[NSNumber class]]) {
-        return [NSString stringWithFormat:@"%.0f", ((NSString *)self).floatValue*10000];
-    }
-    return @"";
-}
 @end

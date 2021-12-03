@@ -82,7 +82,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *vcName = self.titles[indexPath.row];
-    [self showVCWithName:vcName hidesBottom:YES];
+    [self showVCWithName:vcName];
 }
 
 /*

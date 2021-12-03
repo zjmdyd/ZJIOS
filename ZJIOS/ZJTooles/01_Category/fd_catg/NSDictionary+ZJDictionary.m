@@ -14,7 +14,8 @@
 - (NSDictionary *)noNullDic {
     NSMutableDictionary *dic = self.mutableCopy;
     for (NSString *key in dic.allKeys) {
-        if ([dic[key] isKindOfClass:[NSNull class]]) {
+        id value = dic[key];
+        if ([value isKindOfClass:[NSNull class]] || value == nil) {
             dic[key] = @"";
         }
     }
@@ -29,22 +30,23 @@
 - (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)spKeys {
     NSDictionary *dic = [self noNullDic];
     
+    NSArray *properties = [obj objectProperties];
     for (NSString *key in dic.allKeys) {
         if (spKeys && ![spKeys containsObject:key]) {
             continue;
         }
         NSString *key0 = [key checkSysConflictKey];
-        if ([[obj objectProperties] containsObject:key0]) {
+        if ([properties containsObject:key0]) {
             [obj setValue:dic[key] forKey:key0];
         }
     }
 }
 
-- (BOOL)i_containsKey:(NSString *)key {
-    return [self i_containsKey:key caseInsensitive:NO];
+- (BOOL)containsKey:(NSString *)key {
+    return [self containsKey:key caseInsensitive:NO];
 }
 
-- (BOOL)i_containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive {
+- (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive {
     for (NSString *str in self.allKeys) {
         if (caseInsensitive) {
             if ([str caseInsensitiveCompare:key] == NSOrderedSame) {

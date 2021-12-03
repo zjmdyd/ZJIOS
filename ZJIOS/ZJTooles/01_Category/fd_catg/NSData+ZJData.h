@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)bitwiseNot:(Byte *)bytes desBytes:(Byte *)desBytes len:(uint8_t)len;
 
-// 按位异或
+// 按位异或(校验和)
 + (Byte)xorCheckout:(Byte *)srcBytes len:(uint32_t)len;
 
 // 32位整形-->byte数组

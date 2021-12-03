@@ -11,8 +11,13 @@
 @interface ZJTestAlertTableViewController ()
 
 @property (nonatomic, strong) NSArray *actTitles;
+@property (nonatomic, assign) UIAlertControllerStyle alertCtrlStyle;
 @property (nonatomic, assign) BOOL needCancelActStyle;
+@property (nonatomic, assign) BOOL needDestructiveActStyle;
 @property (nonatomic, assign) NSInteger cancelIndex;
+@property (nonatomic, assign) NSInteger destructiveIndex;
+@property (nonatomic, assign) BOOL needTextField;
+
 @end
 
 @implementation ZJTestAlertTableViewController
@@ -26,63 +31,121 @@
 
 - (void)initAry {
     self.actTitles = @[@"item0", @"item1", @"item2"];
-    self.sectionTitles = @[@"UIAlertControllerStyleActionSheet", @"UIAlertControllerStyleAlert"];
+    self.sectionTitles = @[@"选择AlertControllerStyle", @"AlertActionStyleCancel", @"AlertActionStyleDestructive", @"TextField", @"Show"];
     self.cellTitles = @[
-        @[],
-        @[@"UIAlertActionStyleCancel", @"cencelIndex"],
+        @[@"AlertStyleActionSheet", @"AlertStyleAlert"],
+        @[@"UIAlertActionStyleCancel", @"CancelIndex"],
+        @[@"UIAlertActionStyleDestructive", @"DestructiveIndex"],
+        @[@"TextField"],
+        @[@"ShowAlert"],
     ];
 }
 
 - (void)initSetting {
-    
+    self.alertCtrlStyle = UIAlertControllerStyleActionSheet;
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.cellTitles.count;
+    NSInteger secCount = self.sectionTitles.count;
+    return self.alertCtrlStyle == UIAlertControllerStyleAlert ? secCount : secCount - 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray *ary = self.cellTitles[section];
     if (section == 1) {
         return self.needCancelActStyle ? ary.count : ary.count - 1;
+    }else if (section == 2) {
+        return self.needDestructiveActStyle ? ary.count : ary.count - 1;
     }
+    
     return ary.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SystemTableViewCell];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SystemTableViewCell];
     }
-    cell.textLabel.text = self.cellTitles[indexPath.section][indexPath.row];
+    NSInteger secOffset = [self secOffset:indexPath.section];
+
+    cell.textLabel.text = self.cellTitles[indexPath.section + secOffset][indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    if (indexPath.section == 1) {
-        
-    }
-    if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            UISwitch *swh = [[UISwitch alloc] init];
+    // 0 1 2 3 4
+    if (indexPath.section == 0 || (indexPath.row == 0 && (indexPath.section < self.sectionTitles.count - 1 - secOffset))) {
+        UISwitch *swh = [[UISwitch alloc] init];
+        if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                swh.on = self.alertCtrlStyle == UIAlertControllerStyleActionSheet;
+            }else {
+                swh.on = self.alertCtrlStyle == UIAlertControllerStyleAlert;
+            }
+        }else if(indexPath.section == 1) {
             swh.on = self.needCancelActStyle;
-            [swh addTarget:self action:@selector(swhEvent:) forControlEvents:UIControlEventValueChanged];
-            cell.accessoryView = swh;
+        }else if(indexPath.section == 2) {
+            swh.on = self.needDestructiveActStyle;
         }else {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"cancelIndex = %ld", (long)self.cancelIndex];
+            swh.on = self.needTextField;
         }
+
+        NSInteger tagOffset = 0;
+        if (indexPath.section > 0) {
+            tagOffset = 1;
+        }
+        swh.tag = indexPath.row + (indexPath.section + tagOffset);    // 0, 1, 2, 3, 4
+        NSLog(@"%ld, sec= %ld, row = %ld", (long)swh.tag, (long)indexPath.section, (long)indexPath.row);
+        [swh addTarget:self action:@selector(swhEvent:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryView = swh;
+    }else {
+        cell.accessoryView = nil;
+    }
+    if(indexPath.row == 1 && (indexPath.section == 1 || indexPath.section == 2)) {
+        if (indexPath.section == 1) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"cancelIndex = %ld", (long)self.cancelIndex];
+        }else {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"destructiveIndex = %ld", (long)self.destructiveIndex];
+        }
+    }else {
+        cell.detailTextLabel.text = nil;
     }
     
     return cell;
 }
 
 - (void)swhEvent:(UISwitch *)sender {
-    self.needCancelActStyle = sender.isOn;
+    if (sender.tag < 2) {
+        if (sender.isOn) {
+            self.alertCtrlStyle = sender.tag == 0 ?  UIAlertControllerStyleActionSheet : UIAlertControllerStyleAlert;
+        }else {
+            self.alertCtrlStyle = sender.tag == 0 ?  UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet;
+        }
+    }else if(sender.tag == 4) {
+        self.needTextField = sender.isOn;
+    }else{
+        if (sender.tag == 2) {  // Cancel
+            self.needCancelActStyle = sender.isOn;
+            if ([self resetConflict]) {
+                self.destructiveIndex = (++self.destructiveIndex) % self.actTitles.count;
+            }
+        }else {                 // Destructive
+            self.needDestructiveActStyle = sender.isOn;
+            if ([self resetConflict]) {
+                self.cancelIndex = (++self.cancelIndex) % self.actTitles.count;
+            }
+        }
+    }
+    
     [self.tableView reloadData];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.sectionTitles[section];
+    NSInteger secOffset = [self secOffset:section];
+    return self.sectionTitles[section + secOffset];
+}
+
+- (NSInteger)secOffset:(NSInteger)section {
+    return (self.alertCtrlStyle == UIAlertControllerStyleActionSheet && section > 2) ? 1 : 0;
 }
 
 #pragma mark - UITableViewDelegate
@@ -90,33 +153,55 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIAlertControllerStyle style = indexPath.section == 0 ? UIAlertControllerStyleActionSheet : UIAlertControllerStyleAlert;
-    if (indexPath.row == 0) {
-        [self showAlertWithStyle:style];
+    NSInteger secOffset = [self secOffset:indexPath.section];
+    
+    if (indexPath.section == self.sectionTitles.count - 1 - secOffset) {
+        [self showAlertCtrl];
     }else {
-        self.cancelIndex = (++self.cancelIndex) % self.actTitles.count;
-        [self.tableView reloadData];
+        if (indexPath.section > 0 && indexPath.row == 1) {
+            if (indexPath.section == 1) {
+                self.cancelIndex = (++self.cancelIndex) % self.actTitles.count;
+                if ([self resetConflict]) {
+                    self.destructiveIndex = (++self.destructiveIndex) % self.actTitles.count;
+                }
+            }else {
+                self.destructiveIndex = (++self.destructiveIndex) % self.actTitles.count;
+                if ([self resetConflict]) {
+                    self.cancelIndex = (++self.cancelIndex) % self.actTitles.count;
+                }
+            }
+            [self.tableView reloadData];
+        }
     }
 }
 
-- (void)showAlertWithStyle:(UIAlertControllerStyle)style {
+- (BOOL)resetConflict {
+    if (self.needCancelActStyle == self.needDestructiveActStyle == YES && self.cancelIndex == self.destructiveIndex) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)showAlertCtrl {
     ZJAlertObject *obj = [ZJAlertObject new];
     obj.title = @"标题";
     obj.msg = @"message";
     obj.actTitles = self.actTitles;
-    obj.actTitleColors = @[[UIColor blueColor], [UIColor greenColor], [UIColor redColor]];
+//    obj.actTitleColors = @[[UIColor blueColor], [UIColor greenColor], [UIColor yellowColor]];
+    obj.alertCtrlStyle = self.alertCtrlStyle;
     obj.needCancel = self.needCancelActStyle;
     obj.cancelIndex = self.cancelIndex;
-    obj.alertStyle = style;
-    if (style == UIAlertControllerStyleAlert) {
-//        ZJTextInputConfig *cfg = [[ZJTextInputConfig alloc] init];
-//        cfg.text = @"hello";
-//        cfg.textColor = [UIColor redColor];
-//        obj.textFieldConfigs = @[cfg];
-    }else {
-        //        obj.needDestructive = NO;
-                //    obj.destructiveIndex = 1;
+    obj.needDestructive = self.needDestructiveActStyle;
+    obj.destructiveIndex = self.destructiveIndex;
+    if (self.alertCtrlStyle == UIAlertControllerStyleAlert && self.needTextField) {
+        ZJTextInputConfig *cfg = [[ZJTextInputConfig alloc] init];
+        cfg.text = @"hello";
+        cfg.textColor = [UIColor redColor];
+        obj.textFieldConfigs = @[cfg];
     }
+    NSLog(@"needCancelActStyle = %d, cancelIndex = %ld", self.needCancelActStyle, (long)self.cancelIndex);
+    NSLog(@"needDestructiveActStyle = %d, destructiveIndex = %ld", self.needDestructiveActStyle, (long)self.destructiveIndex);
     
     [self alertFunc:obj alertCompl:^(ZJAlertAction *act, NSArray *textFields) {
         NSLog(@"%@, %@, %ld", act.title, textFields, (long)act.tag);

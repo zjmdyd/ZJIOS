@@ -56,7 +56,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.titles[indexPath.row];
-    [self showVCWithName:vcName hidesBottom:YES];
+    [self showVCWithName:vcName];
 }
 /*
 // Override to support conditional editing of the table view.

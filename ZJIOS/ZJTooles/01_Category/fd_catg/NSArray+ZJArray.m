@@ -17,8 +17,8 @@
 + (NSArray *)multiArrayWithPrototype:(NSArray *)array value:(nonnull id)value {
     NSMutableArray *ary = [NSMutableArray array];
     for (int i = 0; i < array.count; i++) {
-        NSMutableArray *sAry = [NSMutableArray arrayWithObject:value count:[array[i] count]];
-        [ary addObject:sAry];
+        NSMutableArray *subAry = [NSMutableArray arrayWithObject:value count:[array[i] count]];
+        [ary addObject:subAry];
     }
     
     return ary;
@@ -91,10 +91,6 @@
 
 #pragma mark - 常量字符串
 
-+ (NSArray *)sexStrings {
-    return @[@"男", @"女"];
-}
-
 + (NSArray *)timeStringWithType:(TimeStringType)type {
     NSMutableArray *ary = [NSMutableArray array];
     NSArray *nums = @[@12, @24, @60, @60];
@@ -104,6 +100,10 @@
     }
     
     return ary;
+}
+
++ (NSArray *)sexStrings {
+    return @[@"男", @"女"];
 }
 
 + (NSArray *)twelveConstellations {

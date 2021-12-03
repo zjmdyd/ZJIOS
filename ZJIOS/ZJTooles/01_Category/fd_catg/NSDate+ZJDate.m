@@ -38,6 +38,19 @@
     return time1 - time2;
 }
 
+//+ (NSString *)hy_stringFromDate:(NSDate *)date withFormat:(NSString *)format {
+//    static NSDateFormatter *dateFormater = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        dateFormater = [[NSDateFormatter alloc] init];
+//    });
+//    dateFormater.timeZone = [NSTimeZone systemTimeZone];
+//    dateFormater.locale = [NSLocale autoupdatingCurrentLocale];
+//    dateFormater.dateFormat = format;
+//    
+//    return [dateFormater stringFromDate:date];
+//}
+
 #pragma mark - 年龄
 
 - (NSInteger)age {
@@ -139,8 +152,8 @@
     }else if ([self isYesterday]) {
         day = @"昨天";
     }else {
-        NSString *str = [NSString hy_stringFromDate:self withFormat:@"yyyy-MM-dd HH:mm:ss"];
-        day = [str timeYMDStringDefaultString:@"--"];
+//        NSString *str = [NSString hy_stringFromDate:self withFormat:@"yyyy-MM-dd HH:mm:ss"];
+//        day = [str timeYMDStringDefaultString:@"--"];
     }
     return day;
 }

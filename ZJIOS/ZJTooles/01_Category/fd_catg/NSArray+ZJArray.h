@@ -33,7 +33,10 @@ typedef NS_ENUM(NSInteger, TimeStringType) {
 - (float)minValue;
 - (float)average;
 
++ (NSArray *)timeStringWithType:(TimeStringType)type;
+
 + (NSArray *)sexStrings;
+
 // 十二星座
 + (NSArray *)twelveConstellations;
 

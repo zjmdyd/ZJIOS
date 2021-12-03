@@ -16,10 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// dic->model
 /// @param obj 目标model
-/// @param keys 需特殊赋值的key
+/// @param keys 给特定属性赋值的keys
 - (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)keys;
-- (BOOL)i_containsKey:(NSString *)key;
-- (BOOL)i_containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive;
+
+- (BOOL)containsKey:(NSString *)key;
+- (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive;
+
 - (NSString *)httpParamsString;
 
 @end

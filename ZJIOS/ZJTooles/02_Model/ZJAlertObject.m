@@ -17,7 +17,7 @@
         self.needCancel = YES;
         self.cancelIndex = 0;
         self.actTitles = @[@"取消", @"确定"];
-        self.alertStyle = UIAlertControllerStyleAlert;
+        self.alertCtrlStyle = UIAlertControllerStyleAlert;
     }
     
     return self;
