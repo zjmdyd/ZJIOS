@@ -44,6 +44,8 @@
     NSCharacterSet *invertCharacterSet = defaultCharacterSet.invertedSet;
     NSString *url_invert_allow = [[originUlr copy] stringByAddingPercentEncodingWithAllowedCharacters:invertCharacterSet];
     NSLog(@"url_invert_allow = %@", url_invert_allow);
+    NSString *decodeString = [url_invert_allow stringByRemovingPercentEncoding];
+    NSLog(@"decodeString = %@", decodeString);
 }
 
 /*

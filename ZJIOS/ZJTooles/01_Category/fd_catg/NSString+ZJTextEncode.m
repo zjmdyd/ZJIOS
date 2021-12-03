@@ -46,20 +46,9 @@
 #pragma 字符串编码
 
 - (NSString *)URLEncodedString {
-    NSString *unencodedString = self;
-    if (!unencodedString) return nil;
+    if (!self) return nil;
     
-    [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
-    
-    
-    NSString *encodedString = (NSString *)
-    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                              (CFStringRef)unencodedString,
-                                                              NULL,
-                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                              kCFStringEncodingUTF8));
-    
+    NSString *encodedString = [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return encodedString;
 }
 
@@ -67,13 +56,10 @@
  *  URLDecode
  */
 - (NSString *)URLDecodedString {
-    NSString *encodedString = self;
-    if (!encodedString) return nil;
+    if (!self) return nil;
     
-    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-                                                                                                                     (__bridge CFStringRef)encodedString,
-                                                                                                                     CFSTR(""),
-                                                                                                                     CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    NSString *decodedString = [self stringByRemovingPercentEncoding];
+
     return decodedString;
 }
 
