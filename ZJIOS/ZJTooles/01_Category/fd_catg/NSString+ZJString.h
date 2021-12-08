@@ -24,28 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)separateWithCharacter:(NSString *)cha;
 
-// 去除换行符
-- (NSString *)removeLineSeparate;
-
-/**
- 去除字符串HTML标签
- */
-- (NSString *)filterHTML;
-
 /**
  *  字符串翻转
  */
 - (NSString *)invertString;
 - (NSString *)invertStringWithSegmentLenth:(int)len;
-
-/**
- 汉字转拼音
- */
-- (NSString *)pinYin;
-- (NSString *)firstCharactor;
-
-- (BOOL)isPureInt;
-- (BOOL)isPureFloat;
 
 @end
 

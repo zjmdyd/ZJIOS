@@ -19,6 +19,7 @@
     [self test0];
 }
 
+//2021-12-07 16:25:26.509359+0800 ZJIOS[18390:165713] str1 = def, str2 = abc
 - (void)test0 {
     NSString *str = @"abcdefg";
     NSString *str1 = [str substringWithRange:NSMakeRange(3, 3)];

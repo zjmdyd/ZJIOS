@@ -12,13 +12,11 @@
 #define UIColorFromHex(s)   [UIColor colorWithRed:(((s&0xFF0000) >> 16))/255.0 green:(((s&0x00FF00) >> 8))/255.0 blue:(s&0x0000FF)/255.0 alpha:1.0]
 #define UIColorFromHexA(s, a)   [UIColor colorWithRed:(((s&0xFF0000) >> 16))/255.0 green:(((s&0x00FF00) >> 8))/255.0 blue:(s&0x0000FF)/255.0 alpha:a]
 
-#ifdef DEBUG //调试
-
+#ifdef DEBUG // 调试
 #define ZJNSLog(FORMAT, ...) fprintf(stderr, "%s:%zd\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
-
-#else // 发布
-
+#else       // 发布
 #define ZJNSLog(FORMAT, ...) nil
+#endif
 
 // #用来把参数转换成字符串
 #define P(A) printf("%s:%d\n",#A,A);

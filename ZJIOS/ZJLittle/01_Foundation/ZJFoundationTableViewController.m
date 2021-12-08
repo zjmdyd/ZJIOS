@@ -22,23 +22,11 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJTestAryViewController", @"ZJTestNSRangeViewController", @"ZJTestStringViewController", @"ZJTestCharacterSetViewController"];
+    self.titles = @[@"ZJTestAryViewController", @"ZJTestNSRangeViewController", @"ZJTestStringViewController", @"ZJTestCharacterSetViewController", @"ZJTestDocumentViewController", @"ZJNScannerViewController"];
 }
 
 - (void)initSetting {
-//    int i = 10, j = 11;
-//    if (i - j > 0) {
-//        NSLog(@"i>j");
-//    }else {
-//        NSLog(@"i<j");
-//    }
-//    
-//    int m = 10; unsigned int n = 11;
-//    if (m - n > 0) {
-//        NSLog(@"i>j");
-//    }else {
-//        NSLog(@"i<j");
-//    }
+    
 }
 
 #pragma mark - UITableViewDataSource

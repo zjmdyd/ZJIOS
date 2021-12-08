@@ -24,6 +24,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)fillStringWithCharacter:(NSString *)character len:(NSInteger)len;
 - (NSString *)fillStringWithCharacter:(NSString *)character len:(NSInteger)len atBegan:(BOOL)began;
 
+// 去除换行符
+- (NSString *)removeLineSeparate;
+
+/**
+ 去除字符串HTML标签
+ */
+- (NSString *)filterHTML;
+
+/**
+ 汉字转拼音
+ */
+- (NSString *)pinYin;
+- (NSString *)firstCharactor;
+
 @end
 
 NS_ASSUME_NONNULL_END

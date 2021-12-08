@@ -11,20 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (ZJObject)
-/**
- *  保存 读取 删除文件
- */
-- (void)writeToFileWithPathComponent:(NSString *)name;
-- (id)readFileWithPathComponent:(NSString *)name;
-- (void)removeFileWithPathComponent:(NSString *)name;
-- (void)saveToFileWithURL:(NSString *)requestURL;
 
 - (NSString *)jsonString;
 
+- (NSString *)descriptionText;
+- (NSString *)descriptionTextWithDefault:(NSString *)defaultText;
 
-
-- (NSString *)numValidText;
-- (NSString *)numValidTextWithDefault:(NSString *)defaultText;
 @end
 
 NS_ASSUME_NONNULL_END

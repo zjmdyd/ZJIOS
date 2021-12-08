@@ -21,7 +21,7 @@
 }
 
 
-- (BOOL)hasNumber:(NSString *)string {
++ (BOOL)hasNumber:(NSString *)string {
     if ([string isEmptyString]) {
         return NO;
     }
@@ -35,7 +35,7 @@
 }
 
 //手机号正则
-- (BOOL)isValidPhone:(NSString *)string {
++ (BOOL)isValidPhone:(NSString *)string {
     if ([string isEmptyString]) {
         return NO;
     }
@@ -50,7 +50,7 @@
 
 
 //身份证号正则
-- (BOOL)isValidID:(NSString *)string {
++ (BOOL)isValidID:(NSString *)string {
     if ([string isEmptyString]) {
         return NO;
     }

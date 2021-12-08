@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, MD5Type) {
  */
 - (NSString *)URLEncodedString;
 - (NSString *)URLDecodedString;
+- (NSString *)encodeJsonFileName;
 
 @end
 

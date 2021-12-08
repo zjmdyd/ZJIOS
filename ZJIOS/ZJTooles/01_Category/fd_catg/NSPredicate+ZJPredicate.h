@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSPredicate (ZJPredicate)
 
 + (BOOL)judgeLetterWithString:(NSString *)string;
-- (BOOL)hasNumber:(NSString *)string;
-- (BOOL)isValidPhone:(NSString *)string;
-- (BOOL)isValidID:(NSString *)string;
++ (BOOL)hasNumber:(NSString *)string;
++ (BOOL)isValidPhone:(NSString *)string;
++ (BOOL)isValidID:(NSString *)string;
 
 @end
 

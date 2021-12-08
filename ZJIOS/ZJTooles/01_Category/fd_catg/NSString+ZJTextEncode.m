@@ -63,4 +63,10 @@
     return decodedString;
 }
 
+- (NSString *)encodeJsonFileName {
+    if (!self) return nil;
+    NSString *fileName = [self md5WithType:MD5Type32BitUppercase];
+    return [NSString stringWithFormat:@"%@.json", fileName];
+}
+
 @end
