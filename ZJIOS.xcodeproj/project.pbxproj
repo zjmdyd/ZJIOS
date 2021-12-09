@@ -98,6 +98,7 @@
 		65ABCA9A274E2F1400377283 /* NSString+ZJTextEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABCA99274E2F1400377283 /* NSString+ZJTextEncode.m */; };
 		65ABF0D226D7A48300A08267 /* ZJTestNibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABF0D026D7A48300A08267 /* ZJTestNibViewController.m */; };
 		65ABF0D326D7A48300A08267 /* ZJTestNibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ABF0D126D7A48300A08267 /* ZJTestNibViewController.xib */; };
+		65B130B12761F98200F4B3B3 /* ZJTestDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */; };
 		65B1D2C1270469B200E64329 /* ZJNSNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B1D2C0270469B200E64329 /* ZJNSNumberViewController.m */; };
 		65BFCB6E26B002D90060BD4A /* ZJAryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BFCB6D26B002D90060BD4A /* ZJAryViewController.m */; };
 		65C574F1274CF22100D8FE00 /* ZJTestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */; };
@@ -325,6 +326,8 @@
 		65ABF0CF26D7A48300A08267 /* ZJTestNibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestNibViewController.h; sourceTree = "<group>"; };
 		65ABF0D026D7A48300A08267 /* ZJTestNibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestNibViewController.m; sourceTree = "<group>"; };
 		65ABF0D126D7A48300A08267 /* ZJTestNibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJTestNibViewController.xib; sourceTree = "<group>"; };
+		65B130AF2761F98200F4B3B3 /* ZJTestDateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestDateViewController.h; sourceTree = "<group>"; };
+		65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestDateViewController.m; sourceTree = "<group>"; };
 		65B1D2BF270469B200E64329 /* ZJNSNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJNSNumberViewController.h; sourceTree = "<group>"; };
 		65B1D2C0270469B200E64329 /* ZJNSNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJNSNumberViewController.m; sourceTree = "<group>"; };
 		65BFCB6C26B002D90060BD4A /* ZJAryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJAryViewController.h; sourceTree = "<group>"; };
@@ -487,26 +490,9 @@
 				656E6610275F581D00CFD5FC /* ZJTestDocumentViewController.m */,
 				6585A8CA26CA9A7A00306DD8 /* ZJNScannerViewController.h */,
 				6585A8CB26CA9A7A00306DD8 /* ZJNScannerViewController.m */,
-				6574BD2E26A66F5E00FA5920 /* ZJNSDataViewController.h */,
-				6574BD2F26A66F5E00FA5920 /* ZJNSDataViewController.m */,
-				3883B93C268EAE1300236663 /* ZJMutableAryViewController.h */,
-				3883B93D268EAE1300236663 /* ZJMutableAryViewController.m */,
-				382EE90426750E52008AB02C /* ZJCopyStongViewController.h */,
-				382EE90526750E52008AB02C /* ZJCopyStongViewController.m */,
-				38A1F0A9267A49CF00A4D044 /* ZJCopyMutableCopyViewController.h */,
-				38A1F0AA267A49CF00A4D044 /* ZJCopyMutableCopyViewController.m */,
-				38A1F08E26775DA500A4D044 /* ZJAssignnWeakViewController.h */,
-				38A1F08F26775DA500A4D044 /* ZJAssignnWeakViewController.m */,
-				38A1F0BD267B57C500A4D044 /* ZJDictionaryNullViewController.h */,
-				38A1F0BE267B57C500A4D044 /* ZJDictionaryNullViewController.m */,
-				3883B9B8268EBE2800236663 /* ZJWebViewController.h */,
-				3883B9B9268EBE2800236663 /* ZJWebViewController.m */,
-				65BFCB6C26B002D90060BD4A /* ZJAryViewController.h */,
-				65BFCB6D26B002D90060BD4A /* ZJAryViewController.m */,
-				6587046E26E6006D00669B5D /* ZJTimerViewController.h */,
-				6587046F26E6006D00669B5D /* ZJTimerViewController.m */,
-				65B1D2BF270469B200E64329 /* ZJNSNumberViewController.h */,
-				65B1D2C0270469B200E64329 /* ZJNSNumberViewController.m */,
+				65B130AF2761F98200F4B3B3 /* ZJTestDateViewController.h */,
+				65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */,
+				65B130AE2761F93300F4B3B3 /* rest */,
 			);
 			path = 01_Foundation;
 			sourceTree = "<group>";
@@ -833,6 +819,33 @@
 			path = 03_Controller;
 			sourceTree = "<group>";
 		};
+		65B130AE2761F93300F4B3B3 /* rest */ = {
+			isa = PBXGroup;
+			children = (
+				6574BD2E26A66F5E00FA5920 /* ZJNSDataViewController.h */,
+				6574BD2F26A66F5E00FA5920 /* ZJNSDataViewController.m */,
+				3883B93C268EAE1300236663 /* ZJMutableAryViewController.h */,
+				3883B93D268EAE1300236663 /* ZJMutableAryViewController.m */,
+				382EE90426750E52008AB02C /* ZJCopyStongViewController.h */,
+				382EE90526750E52008AB02C /* ZJCopyStongViewController.m */,
+				38A1F0A9267A49CF00A4D044 /* ZJCopyMutableCopyViewController.h */,
+				38A1F0AA267A49CF00A4D044 /* ZJCopyMutableCopyViewController.m */,
+				38A1F08E26775DA500A4D044 /* ZJAssignnWeakViewController.h */,
+				38A1F08F26775DA500A4D044 /* ZJAssignnWeakViewController.m */,
+				38A1F0BD267B57C500A4D044 /* ZJDictionaryNullViewController.h */,
+				38A1F0BE267B57C500A4D044 /* ZJDictionaryNullViewController.m */,
+				3883B9B8268EBE2800236663 /* ZJWebViewController.h */,
+				3883B9B9268EBE2800236663 /* ZJWebViewController.m */,
+				65BFCB6C26B002D90060BD4A /* ZJAryViewController.h */,
+				65BFCB6D26B002D90060BD4A /* ZJAryViewController.m */,
+				6587046E26E6006D00669B5D /* ZJTimerViewController.h */,
+				6587046F26E6006D00669B5D /* ZJTimerViewController.m */,
+				65B1D2BF270469B200E64329 /* ZJNSNumberViewController.h */,
+				65B1D2C0270469B200E64329 /* ZJNSNumberViewController.m */,
+			);
+			name = rest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1000,6 +1013,7 @@
 				388B32DC267D98780071F530 /* ZJCategoryViewController.m in Sources */,
 				65F7C6AE2692E74600121EBD /* UIGestureRecognizer+ZJGestureRecognizer.m in Sources */,
 				382EE8E126750B04008AB02C /* main.m in Sources */,
+				65B130B12761F98200F4B3B3 /* ZJTestDateViewController.m in Sources */,
 				38EBE18E2675BE0200E090D9 /* ZJTableViewController.m in Sources */,
 				65F7C6CC2692E9CC00121EBD /* NSString+ZJString.m in Sources */,
 				38A1F09A26798FE700A4D044 /* ZJRunLoopViewController.m in Sources */,

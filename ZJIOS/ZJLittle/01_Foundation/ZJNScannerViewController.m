@@ -21,8 +21,16 @@
 }
 
 // 扫描字符串直到遇到NSCharacterSet字符集的字符时停止，指针指向的地址存储的内容为遇到跳过字符集字符之前的内容
+/*
+ 2021-12-09 15:43:27.553115+0800 ZJIOS[3948:132229] num = 1, str = a
+ 2021-12-09 15:43:27.553479+0800 ZJIOS[3948:132229] num = 2, str = bm
+ 2021-12-09 15:43:27.553589+0800 ZJIOS[3948:132229] num = 3, str = c
+ 2021-12-09 15:43:27.553680+0800 ZJIOS[3948:132229] num = 4, str = d
+ 2021-12-09 15:43:27.553757+0800 ZJIOS[3948:132229] num = 5, str = e
+ 2021-12-09 15:43:27.553849+0800 ZJIOS[3948:132229] num = 6, str = f
+ */
 - (void)test3 {
-    NSString *numString = @"a1bm2c3dn4e5f6";
+    NSString *numString = @"a1bm2c3d4e5f6";
     NSScanner *scanner = [NSScanner scannerWithString:numString];
     NSCharacterSet *numSet = [NSCharacterSet decimalDigitCharacterSet];
     while (NO == [scanner isAtEnd]) {
@@ -44,12 +52,12 @@
 - (void)test2 {
     NSString *test = @"AABBTCCDD";
     NSScanner *scanner = [NSScanner scannerWithString:test];
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"T"];
-    scanner.charactersToBeSkipped = set;
-    NSCharacterSet *set2 = [NSCharacterSet characterSetWithCharactersInString:@"ABCD"];
+    NSCharacterSet *skipSet = [NSCharacterSet characterSetWithCharactersInString:@"T"];
+    scanner.charactersToBeSkipped = skipSet;
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"ABCD"];
     NSString *str;
     while (![scanner isAtEnd]) {
-        [scanner scanCharactersFromSet:set2 intoString:&str];
+        [scanner scanCharactersFromSet:set intoString:&str];
         NSLog(@"%@", str);
     }
 }

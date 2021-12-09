@@ -10,25 +10,18 @@
 
 @implementation NSDate (ZJDate)
 
-- (NSDateComponents *)components {
+- (NSDateComponents *)basicComponents {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday fromDate:self];
+    NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth fromDate:self];
     
     return comps;
 }
 
-- (BOOL)isEqualToDate:(NSDate *)date {
-    NSDateComponents *componentsA = self.components;
-    NSDateComponents *componentsB = date.components;
-    return componentsA.year == componentsB.year && componentsA.month == componentsB.month && componentsA.day == componentsB.day;
-}
-
-- (NSString *)timestampString {
-    return @((NSInteger)[self timeIntervalSince1970]).stringValue;
-}
-
-+ (NSString *)todayTimestampString {
-    return [[NSDate date] timestampString];
+- (NSDateComponents *)detailComponents {
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitYearForWeekOfYear | NSCalendarUnitTimeZone fromDate:self];
+    
+    return comps;
 }
 
 - (NSTimeInterval)timestampSpanWithOther:(NSDate *)date {
@@ -38,30 +31,17 @@
     return time1 - time2;
 }
 
-//+ (NSString *)hy_stringFromDate:(NSDate *)date withFormat:(NSString *)format {
-//    static NSDateFormatter *dateFormater = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        dateFormater = [[NSDateFormatter alloc] init];
-//    });
-//    dateFormater.timeZone = [NSTimeZone systemTimeZone];
-//    dateFormater.locale = [NSLocale autoupdatingCurrentLocale];
-//    dateFormater.dateFormat = format;
-//    
-//    return [dateFormater stringFromDate:date];
-//}
-
 #pragma mark - 年龄
 
 - (NSInteger)age {
     // 出生日期转换 年月日
-    NSDateComponents *comp1 = [self components];
+    NSDateComponents *comp1 = [self basicComponents];
     NSInteger brithYear  = [comp1 year];
     NSInteger brithMonth = [comp1 month];
     NSInteger brithDay   = [comp1 day];
     
     // 获取系统当前 年月日
-    NSDateComponents *comp2 = [[NSDate date] components];
+    NSDateComponents *comp2 = [[NSDate date] basicComponents];
     NSInteger currentYear  = [comp2 year];
     NSInteger currentMonth = [comp2 month];
     NSInteger currentDay   = [comp2 day];
@@ -75,23 +55,79 @@
     return iAge;
 }
 
-+ (NSInteger)ageWithTimeIntervel:(NSInteger)timeInterval {
++ (NSInteger)ageWithTimeIntervel:(NSTimeInterval)timeInterval {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     return [date age];
 }
 
-//是否在同一周
-- (BOOL)isSameWeek {
+// 判断两个日期是否在同一周
+- (BOOL)isSameWeekWithDate:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    int unit = NSCalendarUnitWeekOfYear | NSCalendarUnitYear;
+    NSUInteger unit = NSCalendarUnitYear | NSCalendarUnitWeekOfYear;
+    
+    // 1.获得指定日期时间的components
+    NSDateComponents *cmp1 = [calendar components:unit fromDate:date];
+    
+    // 2.获得self的components
+    NSDateComponents *cmp2 = [calendar components:unit fromDate:self];
+    
+    return (cmp1.year == cmp2.year) && (cmp1.weekOfYear == cmp2.weekOfYear);
+}
+
+// 是否为今天
+- (BOOL)isToday {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     
     //1.获得当前时间的 年月日
-    NSDateComponents *nowCmps = [calendar components:unit fromDate:[NSDate date]];
+    NSDateComponents *cmp1 = [calendar components:unit fromDate:[NSDate date]];
     
     //2.获得self
-    NSDateComponents *selfCmps = [calendar components:unit fromDate:self];
+    NSDateComponents *cmp2 = [calendar components:unit fromDate:self];
     
-    return (selfCmps.year == nowCmps.year) && (selfCmps.weekOfYear == nowCmps.weekOfYear);
+    return (cmp1.year == cmp2.year) && (cmp1.month == cmp2.month) && (cmp1.day == cmp2.day);
+}
+
+//是否为昨天
+- (BOOL)isYesterday {
+    //获得nowDate和selfDate的差距
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:self toDate:[NSDate date] options:0];
+    return cmps.day == 1;
+}
+
+// 字符串转Date
++ (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format {
+    NSDateFormatter *fmt = [self baseFormatterWithString:format];
+    NSLog(@"fmt = %@", fmt);
+    return [fmt dateFromString:string];
+}
+
+// Date转字符串
+- (NSString *)dateToStringWithFormat:(NSString *)format {
+    NSDateFormatter *fmt = [NSDate baseFormatterWithString:format];
+    NSLog(@"fmt = %@", fmt);
+
+    return [fmt stringFromDate:self];
+}
+
+// 时间戳-->Date-->转字符串
++ (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withFormat:(NSString *)format {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    
+    return [date dateToStringWithFormat:format];
+}
+
++ (NSDateFormatter *)baseFormatterWithString:(NSString *)format {
+    static NSDateFormatter *fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+    });
+    fmt.locale = [NSLocale autoupdatingCurrentLocale];
+    fmt.dateFormat = format;
+
+    return fmt;
 }
 
 //根据日期求星期几
@@ -119,31 +155,34 @@
     return diffDay;
 }
 
-//是否为今天
-- (BOOL)isToday {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    int unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
-    
-    //1.获得当前时间的 年月日
-    NSDateComponents *nowCmps = [calendar components:unit fromDate:[NSDate date]];
-    
-    //2.获得self
-    NSDateComponents *selfCmps = [calendar components:unit fromDate:self];
-    
-    return (selfCmps.year == nowCmps.year) && (selfCmps.month == nowCmps.month) && (selfCmps.day == nowCmps.day);
+- (BOOL)isEqualToDate:(NSDate *)date {
+    NSDateComponents *componentsA = self.basicComponents;
+    NSDateComponents *componentsB = date.basicComponents;
+    return componentsA.year == componentsB.year && componentsA.month == componentsB.month && componentsA.day == componentsB.day;
 }
 
-//是否为昨天
-- (BOOL)isYesterday {
-    NSDate *nowDate = [[NSDate date] dateWithYMD];
-    NSDate *selfDate = [self dateWithYMD];
-    
-    //获得nowDate和selfDate的差距
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:selfDate toDate:nowDate options:0];
-    
-    return cmps.day == 1;
-}
+//+ (NSString *)hy_stringFromDate:(NSDate *)date withFormat:(NSString *)format {
+//    static NSDateFormatter *dateFormater = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        dateFormater = [[NSDateFormatter alloc] init];
+//    });
+//    dateFormater.timeZone = [NSTimeZone systemTimeZone];
+//    dateFormater.locale = [NSLocale autoupdatingCurrentLocale];
+//    dateFormater.dateFormat = format;
+//
+//    return [dateFormater stringFromDate:date];
+//}
+
+
+//- (NSString *)timestampString {
+//    return @([self timeIntervalSince1970]).stringValue;
+//}
+//
+//+ (NSString *)todayTimestampString {
+//    return [[NSDate date] timestampString];
+//}
+
 
 - (NSString *)dayString {
     NSString *day = @"--";
@@ -152,18 +191,10 @@
     }else if ([self isYesterday]) {
         day = @"昨天";
     }else {
-//        NSString *str = [NSString hy_stringFromDate:self withFormat:@"yyyy-MM-dd HH:mm:ss"];
-//        day = [str timeYMDStringDefaultString:@"--"];
+        //        NSString *str = [NSString hy_stringFromDate:self withFormat:@"yyyy-MM-dd HH:mm:ss"];
+        //        day = [str timeYMDStringDefaultString:@"--"];
     }
     return day;
-}
-
-//格式化
-- (NSDate *)dateWithYMD {
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy-MM-dd";
-    NSString *selfStr = [fmt stringFromDate:self];  // date-->字符串
-    return [fmt dateFromString:selfStr];    // 字符串-->date
 }
 
 @end

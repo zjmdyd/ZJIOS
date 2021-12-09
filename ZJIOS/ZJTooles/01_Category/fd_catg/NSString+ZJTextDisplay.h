@@ -11,9 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (ZJTextDisplay)
 
-- (NSString *)descriptionStr;
-- (NSString *)descriptionStrWithDefault:(NSString *)defaultStr;
-
 /**
  首尾填充字符串:默认首部填充
 
