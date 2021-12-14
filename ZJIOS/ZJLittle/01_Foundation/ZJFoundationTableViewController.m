@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJTestAryViewController", @"ZJTestNSRangeViewController", @"ZJTestStringViewController", @"ZJTestCharacterSetViewController", @"ZJTestDocumentViewController", @"ZJNScannerViewController", @"ZJTestDateViewController"];
+    self.titles = @[@"ZJTestAryViewController", @"ZJTestDataViewController", @"ZJTestNSRangeViewController", @"ZJTestStringViewController", @"ZJTestCharacterSetViewController", @"ZJTestDocumentViewController", @"ZJNScannerViewController", @"ZJTestDateViewController"];
 }
 
 - (void)initSetting {

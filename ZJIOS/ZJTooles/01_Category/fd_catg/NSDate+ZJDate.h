@@ -14,14 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDateComponents *)basicComponents;
 - (NSDateComponents *)detailComponents;
 
-/**
- *  判断两日期是否相等   精确到年月日
- */
-- (BOOL)isEqualToDate:(NSDate *)date;
-
-//- (NSString *)timestampString;
-//+ (NSString *)todayTimestampString;
 - (NSTimeInterval)timestampSpanWithOther:(NSDate *)date;
+
+// 字符串转Date
++ (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format;
+
+// Date转字符串
+- (NSString *)dateToStringWithFormat:(NSString *)format;
+
+// 时间戳转字符串
++ (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withFormat:(NSString *)format;
 
 #pragma mark - 年龄
 
@@ -33,26 +35,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)age;
 + (NSInteger)ageWithTimeIntervel:(NSTimeInterval)timeInterval;
 
-// 字符串转Date
-+ (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format;
-
-// Date转字符串
-- (NSString *)dateToStringWithFormat:(NSString *)format;
-
-// 时间戳转字符串
-+ (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withFormat:(NSString *)format;
-
 - (BOOL)isToday;
 - (BOOL)isYesterday;
 
-//判断两个日期是否在同一周
+// 判断两个日期是否在同一周
 - (BOOL)isSameWeekWithDate:(NSDate *)date;
 
 // 两个日期间的间隔天数
 - (NSInteger)daySpanWithDate:(NSDate *)date;
 + (NSInteger)daySpanFromDate:(NSDate *)firstDate toDate:(NSDate *)secondDate;
-
-- (NSString *)dayString;
 
 @end
 

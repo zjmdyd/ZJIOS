@@ -1,5 +1,5 @@
 //
-//  ZJNSDataViewController.h
+//  ZJTestDataViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2021/7/20.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJNSDataViewController : ZJViewController
+@interface ZJTestDataViewController : ZJViewController
 
 @end
 

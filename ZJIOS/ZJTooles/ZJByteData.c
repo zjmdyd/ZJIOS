@@ -18,3 +18,18 @@ extern uint16_t bitReverse(uint16_t us_DataIn)
     
     return (us_Data);
 }
+
+/*
+ 小端模式：是指数据的低字节保存在内存的低地址中，而数据的高字节保存在内存的高地址中。
+ 大端模式：是指低子节数据保存在内存的高地址中，而数据的高字节保存在内存的低地址中。
+ */
+bool isBigEndian() {
+    short int a = 0x1122;       // 十进制为4386，其中11称为高子节(即15~8位)。
+    char b = ((char *)&a)[0];   // 取变量a的低子节(即7~0位)
+    printf("b = %x\n", b);      // 输出22代表编译器为小端模式
+    if (b == 0x22) {
+        return false;
+    }
+    
+    return true;
+}
