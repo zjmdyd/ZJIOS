@@ -1,24 +1,22 @@
 //
-//  ZJDictionaryNullViewController.m
+//  ZJTestDictionaryViewController.m
 //  ZJIOS
 //
 //  Created by Zengjian on 2021/6/17.
 //
 
-#import "ZJDictionaryNullViewController.h"
+#import "ZJTestDictionaryViewController.h"
 
-@interface ZJDictionaryNullViewController ()
+@interface ZJTestDictionaryViewController ()
 
 @end
 
-@implementation ZJDictionaryNullViewController
+@implementation ZJTestDictionaryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSMutableDictionary *dic = @{}.mutableCopy;
-    [dic setObject:[NSNull null] forKey:@"num"];
-    NSLog(@"%@", dic);
+
+    [self test0];
 }
 
 /*
@@ -26,6 +24,11 @@
      num = "<null>";
  }
  */
+- (void)test0 {
+    NSMutableDictionary *dic = @{}.mutableCopy;
+    [dic setObject:[NSNull null] forKey:@"num"];
+    NSLog(@"%@", dic);
+}
 
 /*
 #pragma mark - Navigation

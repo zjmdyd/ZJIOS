@@ -1,18 +1,18 @@
 //
-//  ZJMutableAryViewController.m
+//  ZJTestMutableAryViewController.m
 //  ZJIOS
 //
 //  Created by Zengjian on 2021/7/2.
 //
 
-#import "ZJMutableAryViewController.h"
+#import "ZJTestMutableAryViewController.h"
 #import "NSArray+ZJArray.h"
 
-@interface ZJMutableAryViewController ()
+@interface ZJTestMutableAryViewController ()
 
 @end
 
-@implementation ZJMutableAryViewController
+@implementation ZJTestMutableAryViewController
 
 /*
  NSMutableArray *array = [NSMutableArray arrayWithArray:self.objects];
@@ -24,14 +24,13 @@
     [super viewDidLoad];
     
     [self test0];
-//    [self test1];
 }
 
 - (void)test0 {
     NSArray *ary = [NSArray multiArrayWithPrototype:@[@[@"", @""], @[@""]] value:@"1"];
     NSLog(@"ary = %@, %@", ary, ary.class);
     for (NSArray *sAry in ary) {
-        NSLog(@"sAry = %@, %@", sAry, sAry.class);
+        NSLog(@"sAry = %@, %@", sAry, sAry.class);  // __NSArrayM
     }
 }
 

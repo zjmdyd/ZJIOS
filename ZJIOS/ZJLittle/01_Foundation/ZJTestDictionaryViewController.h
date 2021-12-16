@@ -1,5 +1,5 @@
 //
-//  ZJDictionaryNullViewController.h
+//  ZJTestDictionaryViewController.h
 //  ZJIOS
 //
 //  Created by Zengjian on 2021/6/17.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJDictionaryNullViewController : ZJViewController
+@interface ZJTestDictionaryViewController : ZJViewController
 
 @end
 

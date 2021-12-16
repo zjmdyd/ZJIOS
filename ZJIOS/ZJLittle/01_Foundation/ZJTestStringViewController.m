@@ -20,6 +20,23 @@
     [self test0];
 }
 
+- (void)test1 {
+    NSArray *punctuations = @[@",", @".", @"!", @"?", @":"];
+    
+    NSString *str = @":";
+    NSLog(@"字符串 = %@, 地址 = %p", str, str);
+    
+    for (NSString *str in punctuations) {
+        NSLog(@"str = %@--%p", str, str);
+    }
+    
+    if ([punctuations containsObject:@":"]) {
+        NSLog(@"字符串包含成立");
+    }else {
+        NSLog(@"字符串包含不成立");
+    }
+}
+
 - (void)test0 {
     NSString *str = @"abcdef";
     NSLog(@"invertString = %@", [str invertString]);
