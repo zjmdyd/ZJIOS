@@ -8,7 +8,6 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 #import "ZJMainTabBarViewController.h"
-#import "ZJCopyStongViewController.h"
 
 @interface SceneDelegate ()
 

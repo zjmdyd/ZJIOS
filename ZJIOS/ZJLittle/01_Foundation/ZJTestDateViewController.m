@@ -20,16 +20,15 @@
     [self test5];
 }
 
-// 系统日期比较不能精确到小时
 - (void)test5 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-12-11 19:10:00" withFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date2 = [NSDate dateFromString:@"2021-12-11 19:10:00" withFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date1 = [NSDate dateFromString:@"2021-09-09 09:09:09" withStyle:ZJDateFormatMediumStyle];
+    NSDate *date2 = [NSDate dateFromString:@"2021-12-11 19:10:09" withFormat:@"yyyy/MM/dd HH:mm:ss"];
     BOOL isSame =  [date1 isEqualToDate:date2];
-    NSLog(@"isSame = %@, %@", @(isSame), @([date1 compare:date2]));
+    NSLog(@"isSame = %@, %@-->%@", @(isSame), @([date1 compare:date2]), [date1 dateToStringWithStyle:ZJDateFormatShortStyle]);
 }
 
 - (void)test4 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 19:00:00" withFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 19:00:00" withStyle:ZJDateFormatFullStyle];
     NSDate *date2 = [NSDate date];
     NSInteger day = [NSDate daySpanFromDate:date1 toDate:date2];
     NSLog(@"day = %@", @(day));
@@ -43,8 +42,8 @@
  2021-12-13 17:50:27.722679+0800 ZJIOS[22932:292158] str = 2021-12-13
  */
 - (void)test3 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 20:00:00" withFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *str = [[NSDate date] dateToStringWithFormat:@"yyyy-MM-dd"];
+    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
+    NSString *str;// = [[NSDate date] dateToStringWithFormat:@"yyyy-MM-dd"];
     NSLog(@"date1 = %@", date1);
     NSLog(@"str = %@", str);
 }
@@ -53,7 +52,7 @@
  - (NSDateComponents *)components:(NSCalendarUnit)unitFlags fromDate:(NSDate *)startingDate toDate:(NSDate *)resultDate options:(NSCalendarOptions)opts;可能为负数
  */
 - (void)test2 {
-    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
     NSLog(@"%@", @([date isYesterday]));
 }
 
@@ -97,5 +96,48 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+/*
+ [dateStringFormatter setDateFormat:@"y"]; // 2017
+ [dateStringFormatter setDateFormat:@"yy"]; // 17
+ [dateStringFormatter setDateFormat:@"yyy"]; // 2017
+ [dateStringFormatter setDateFormat:@"yyyy"]; // 2017
+
+ [dateStringFormatter setDateFormat:@"M"]; // 8
+ [dateStringFormatter setDateFormat:@"MM"]; // 08
+ [dateStringFormatter setDateFormat:@"MMM"]; // 8月
+ [dateStringFormatter setDateFormat:@"MMMM"]; // 八月
+
+ [dateStringFormatter setDateFormat:@"d"]; // 3
+ [dateStringFormatter setDateFormat:@"dd"]; // 03
+ [dateStringFormatter setDateFormat:@"D"]; // 215,一年中的第几天
+
+ [dateStringFormatter setDateFormat:@"h"]; // 4
+ [dateStringFormatter setDateFormat:@"hh"]; // 04
+ [dateStringFormatter setDateFormat:@"H"]; // 16 24小时制
+ [dateStringFormatter setDateFormat:@"HH"]; // 16
+
+ [dateStringFormatter setDateFormat:@"m"]; // 28
+ [dateStringFormatter setDateFormat:@"mm"]; // 28
+ [dateStringFormatter setDateFormat:@"s"]; // 57
+ [dateStringFormatter setDateFormat:@"ss"]; // 04
+
+ [dateStringFormatter setDateFormat:@"E"]; // 周四
+ [dateStringFormatter setDateFormat:@"EEEE"]; // 星期四
+ [dateStringFormatter setDateFormat:@"EEEEE"]; // 四
+ [dateStringFormatter setDateFormat:@"e"]; // 5 (显示的是一周的第几天（weekday），1为周日。)
+ [dateStringFormatter setDateFormat:@"ee"]; // 05
+ [dateStringFormatter setDateFormat:@"eee"]; // 周四
+ [dateStringFormatter setDateFormat:@"eeee"]; // 星期四
+ [dateStringFormatter setDateFormat:@"eeeee"]; // 四
+
+ [dateStringFormatter setDateFormat:@"z"]; // GMT+8
+ [dateStringFormatter setDateFormat:@"zzzz"]; // 中国标准时间
+
+ [dateStringFormatter setDateFormat:@"ah"]; // 下午5
+ [dateStringFormatter setDateFormat:@"aH"]; // 下午17
+ [dateStringFormatter setDateFormat:@"am"]; // 下午53
+ [dateStringFormatter setDateFormat:@"as"]; // 下午52
+ */
 
 @end

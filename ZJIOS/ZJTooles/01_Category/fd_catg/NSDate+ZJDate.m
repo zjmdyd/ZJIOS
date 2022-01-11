@@ -32,35 +32,66 @@
 }
 
 // 字符串转Date
++ (NSDate *)dateFromString:(NSString *)string withStyle:(ZJDateFormatStyle)style {
+    ZJDateFormatter *fmt = [self baseFormatterWithStyle:style];
+
+    return [fmt dateFromString:string];
+}
+
 + (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format {
-    NSDateFormatter *fmt = [self baseFormatterWithString:format];
+    ZJDateFormatter *fmt = [self baseFormatterWithString:format];
 
     return [fmt dateFromString:string];
 }
 
 // Date转字符串
+- (NSString *)dateToStringWithStyle:(ZJDateFormatStyle)style {
+    ZJDateFormatter *fmt = [NSDate baseFormatterWithStyle:style];
+
+    return [fmt stringFromDate:self];
+}
+
 - (NSString *)dateToStringWithFormat:(NSString *)format {
-    NSDateFormatter *fmt = [NSDate baseFormatterWithString:format];
+    ZJDateFormatter *fmt = [NSDate baseFormatterWithString:format];
 
     return [fmt stringFromDate:self];
 }
 
 // 时间戳-->Date-->转字符串
++ (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withStyle:(ZJDateFormatStyle)style {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    
+    return [date dateToStringWithStyle:style];
+}
+
 + (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withFormat:(NSString *)format {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     
     return [date dateToStringWithFormat:format];
 }
 
-+ (NSDateFormatter *)baseFormatterWithString:(NSString *)format {
-    static NSDateFormatter *fmt = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        fmt = [[NSDateFormatter alloc] init];
-    });
-    fmt.locale = [NSLocale autoupdatingCurrentLocale];
++ (ZJDateFormatter *)baseFormatterWithStyle:(ZJDateFormatStyle)style {
+    ZJDateFormatter *fmt = [NSDate baseFormatter];
+    fmt.dateFormat = [fmt dateFormatStringWithStyle:style];
+
+    return fmt;
+}
+
++ (ZJDateFormatter *)baseFormatterWithString:(NSString *)format {
+    ZJDateFormatter *fmt = [NSDate baseFormatter];
     fmt.dateFormat = format;
 
+    return fmt;
+}
+
++ (ZJDateFormatter *)baseFormatter {
+    static ZJDateFormatter *fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[ZJDateFormatter alloc] init];
+    });
+    fmt.locale = [NSLocale autoupdatingCurrentLocale];
+    
     return fmt;
 }
 

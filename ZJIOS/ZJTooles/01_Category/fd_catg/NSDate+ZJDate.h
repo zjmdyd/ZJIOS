@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZJDateFormatter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,12 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSTimeInterval)timestampSpanWithOther:(NSDate *)date;
 
 // 字符串转Date
++ (NSDate *)dateFromString:(NSString *)string withStyle:(ZJDateFormatStyle)style;
 + (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format;
 
 // Date转字符串
+- (NSString *)dateToStringWithStyle:(ZJDateFormatStyle)style;
 - (NSString *)dateToStringWithFormat:(NSString *)format;
 
 // 时间戳转字符串
++ (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withStyle:(ZJDateFormatStyle)Style;
 + (NSString *)timeIntervalToDateString:(NSTimeInterval)timeInterval withFormat:(NSString *)format;
 
 #pragma mark - 年龄
