@@ -16,10 +16,10 @@
 - (NSInteger)validValueWithRange:(NSRange)range defaultValue:(NSInteger)defaultValue {
     if ([self isKindOfClass:[NSNumber class]]) {
         NSInteger value = self.integerValue;
-        if (value < range.location || value > range.location + range.length) {
-            return defaultValue;
-        }else {
+        if (NSLocationInRange(value, range)) {
             return value;
+        }else {
+            return defaultValue;
         }
     }
     

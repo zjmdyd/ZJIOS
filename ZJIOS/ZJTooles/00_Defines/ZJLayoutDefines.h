@@ -20,6 +20,9 @@
 
 #ifndef kScreenW
 #define kScreenW    ([UIScreen mainScreen].bounds.size.width)
+#endif
+
+#ifndef kScreenH
 #define kScreenH    ([UIScreen mainScreen].bounds.size.height)
 #endif
 

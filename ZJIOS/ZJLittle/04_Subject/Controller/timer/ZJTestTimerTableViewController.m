@@ -1,33 +1,29 @@
 //
-//  ZJCtrlTableViewController.m
+//  ZJTestTimerTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2021/11/17.
+//  Created by issuser on 2022/1/25.
 //
 
-#import "ZJCtrlTableViewController.h"
+#import "ZJTestTimerTableViewController.h"
 #import "UIViewController+ZJViewController.h"
 
-@interface ZJCtrlTableViewController ()
+@interface ZJTestTimerTableViewController ()
 
 @end
 
-@implementation ZJCtrlTableViewController
+@implementation ZJTestTimerTableViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initAry];
     [self initSetting];
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertTableViewController"];
+    self.cellTitles = @[@"ZJTestTimerViewController", @"ZJTestTimerBlockViewController", @"ZJTestScrollTimerTableViewController", @"ZJTestGCDTimerTableViewController"];
 }
 
 - (void)initSetting {
@@ -55,9 +51,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName];
 }
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

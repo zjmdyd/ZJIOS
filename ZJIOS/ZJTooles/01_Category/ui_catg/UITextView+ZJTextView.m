@@ -105,7 +105,6 @@
     [self updatePlaceholderLabel];
 }
 
-
 #pragma mark `placeholderColor`
 
 - (UIColor *)placeholderColor {
@@ -164,6 +163,7 @@
     CGFloat height = [self.placeholderLabel sizeThatFits:CGSizeMake(width, 0)].height;
     self.placeholderLabel.frame = CGRectMake(x, y, width, height);
 }
+
 - (BOOL)isChineseLanguage {
     NSString *str = [self textInputMode].primaryLanguage;
     return [str hasPrefix:@"zh-"];

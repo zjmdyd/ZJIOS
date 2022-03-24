@@ -20,87 +20,137 @@
     [self test3];
 }
 
-- (void)test3 {
-    NSMutableArray *arr0 = [NSMutableArray array];
-    
-    [arr0 addObject:@2];
-    [arr0 addObject:@1];
-    [arr0 addObject:@5];
-    [arr0 addObject:@3];
-    [arr0 addObject:@4];
-    
-    //此方法是直接对arr排序，若要生成新数组排序则调用sortedArrayUsingComparator:
-    //若明确知道数组中元素的类型，也可以直接将id改为某确定类型
-    [arr0 sortUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2) {
-        //此处的规则含义为：若前一元素比后一元素大，则返回降序（即后一元素在前，为从小到大排列）
-        if ([obj1 integerValue] > [obj2 integerValue])
-        {
-            return NSOrderedDescending;
-        }
-        else
-        {
-            return NSOrderedAscending;
-        }
-    }];
-    NSLog(@"arr0 = %@", arr0);  // 排序结果为 5，4，3，2，1
-//    NSLog(@"arr1 = %@", arr1);
-}
-
-- (void)test2 {
-    NSMutableArray *arr0 = [NSMutableArray array];
-    
-    [arr0 addObject:@2];
-    [arr0 addObject:@1];
-    [arr0 addObject:@5];
-    [arr0 addObject:@3];
-    [arr0 addObject:@4];
-    
-    //此方法是直接对arr排序，若要生成新数组排序则调用sortedArrayUsingComparator:
-    //若明确知道数组中元素的类型，也可以直接将id改为某确定类型
-    [arr0 sortUsingComparator:^NSComparisonResult(id _Nonnull obj1, id _Nonnull obj2) {
-        //此处的规则含义为：若前一元素比后一元素小，则返回降序（即后一元素在前，为从大到小排列）
-        if ([obj1 integerValue] < [obj2 integerValue])
-        {
-            return NSOrderedDescending;
-        }
-        else
-        {
-            return NSOrderedAscending;
-        }
-    }];
-    NSLog(@"arr0 = %@", arr0);  // 排序结果为 5，4，3，2，1
-//    NSLog(@"arr1 = %@", arr1);
-}
-
-//- (void)test2 {
-//    NSRange range = NSMakeRange(1, 3);
-//    NSArray *ary = @[@0, @1, @2, @3, @4, @5];
-//    NSArray *sAry = [ary subarrayWithRange:range];
-//    NSLog(@"sAry = %@", sAry);
-//
-//    NSString *str = [ary joinToStringWithSeparateString:@","];
-//    NSLog(@"jAry = %@", str);
-//}
+/*
+ 2022-01-24 17:25:00.635343+0800 ZJIOS[17073:571111] 3----2
+ 2022-01-24 17:25:00.635502+0800 ZJIOS[17073:571111] 4----8
+ 2022-01-24 17:25:00.635621+0800 ZJIOS[17073:571111] 4----7
+ 2022-01-24 17:25:00.635758+0800 ZJIOS[17073:571111] 8----7
+ 2022-01-24 17:25:00.635884+0800 ZJIOS[17073:571111] 3----8
+ 2022-01-24 17:25:00.636037+0800 ZJIOS[17073:571111] 3----7
+ 2022-01-24 17:25:00.636137+0800 ZJIOS[17073:571111] 3----4
+ 2022-01-24 17:25:00.636356+0800 ZJIOS[17073:571111] ary1 = (
+     8,
+     7,
+     4,
+     3,
+     2
+ ), 0x6000005461e0, __NSArrayI_Transfer
+ */
 
 /*
- 3, 2 --> 2, 3
- 4, 8 --> 4, 8
- 8, 7 --> 7, 8
  
- 2, 3,     4,       7, 8,
+     3, 2, 4, 8, 7
+ 
+  00) 3, 2  4, 8, 7   3--2
+  01) 3, 2, 4, 8, 7
+  
+  10) 3, 2, 4, 8, 7   4--8
+  11) 3, 2, 8, 4, 7
+  
+  20) 3, 2, 8, 4, 7   4--7
+  21) 3, 2, 8, 7, 4
+  
+  30) 3, 2, 8, 7, 4   8--7
+  31) 3, 2, 8, 7, 4
+  
+  40) 3, 2, 8, 7, 4   3--8
+  41) 8, 3, 2, 7, 4
+  
+  50) 8, 3, 2, 7, 4   3--7
+  51) 8, 7, 3, 2, 4
+ 
+  50) 8, 7, 3, 2, 4   3--4
+  51) 8, 7, 4, 3, 2
+  */
+
+// 降序排列
+- (void)test3 {
+    NSArray *ary0 = @[@3, @2, @4, @8, @7];
+    NSArray *ary1 = [ary0 sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSLog(@"%@----%@", obj1, obj2);
+        if ([obj1 floatValue] < [obj2 floatValue]) {
+            return NSOrderedDescending; // 交换obj1, obj2
+        }
+        return NSOrderedAscending;      // 不交换obbj1, obj2
+    }];
+    NSLog(@"ary1 = %@, %p, %@", ary1, ary1, ary1.class);
+}
+
+/*
+ 2022-01-21 17:20:12.742871+0800 ZJIOS[10649:317207] ary0 = (
+     3,
+     2,
+     4,
+     8,
+     7
+ ), 0x6000022bc480, __NSArrayI
+ 2022-01-21 17:20:12.743096+0800 ZJIOS[10649:317207] 3----2
+ 2022-01-21 17:20:12.743224+0800 ZJIOS[10649:317207] 4----8
+ 2022-01-21 17:20:12.743305+0800 ZJIOS[10649:317207] 8----7
+ 2022-01-21 17:20:12.743404+0800 ZJIOS[10649:317207] 4----7
+ 2022-01-21 17:20:12.743566+0800 ZJIOS[10649:317207] 2----4
+ 2022-01-21 17:20:12.743672+0800 ZJIOS[10649:317207] 3----4
+ 2022-01-21 17:20:12.743868+0800 ZJIOS[10649:317207] ary0 = (
+     3,
+     2,
+     4,
+     8,
+     7
+ ), 0x6000022bc480, __NSArrayI
+ 2022-01-21 17:20:12.744026+0800 ZJIOS[10649:317207] ary1 = (
+     2,
+     3,
+     4,
+     7,
+     8
+ ), 0x6000037bc300, __NSArrayI_Transfer
  */
-- (void)test1 {
+
+/*
+    3, 2, 4, 8, 7
+ 
+ 00) 3, 2  4, 8, 7   3--2
+ 01) 2, 3, 4, 8, 7
+ 
+ 10) 2, 3, 4, 8, 7   4--8
+ 11) 2, 3, 4, 8, 7
+ 
+ 20) 2, 3, 4, 8, 7   8--7
+ 21) 2, 3, 4, 7, 8
+ 
+ 30) 2, 3, 4, 7, 8   4--7
+ 31) 2, 3, 4, 7, 8
+ 
+ 40) 2, 3, 4, 7, 8   2--4
+ 41) 2, 3, 4, 7, 8
+ 
+ 50) 2, 3, 4, 7, 8   3--4
+ 51) 2, 3, 4, 7, 8
+ */
+//升序排列
+- (void)test2 {
     NSArray *ary0 = @[@3, @2, @4, @8, @7];
     NSLog(@"ary0 = %@, %p, %@", ary0, ary0, ary0.class);
     NSArray *ary1 = [ary0 sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         NSLog(@"%@----%@", obj1, obj2);
         if ([obj1 floatValue] < [obj2 floatValue]) {
-            return NSOrderedAscending;
+            return NSOrderedAscending;  // 不交换obj1, obj2
         }
-        return NSOrderedDescending;
+        return NSOrderedDescending;     // 交换obbj1, obj2
     }];
     NSLog(@"ary0 = %@, %p, %@", ary0, ary0, ary0.class);
     NSLog(@"ary1 = %@, %p, %@", ary1, ary1, ary1.class);
+}
+
+/*
+ sortedArrayUsingSelector默认升序排列
+ */
+- (void)test1 {
+    NSArray *ary0 = @[@3, @2, @4, @8, @7];
+    NSArray *ary1 = [ary0 sortedArrayUsingSelector:@selector(compare:)];
+    NSLog(@"ary1 = %@", ary1);
+    NSNumber *num;
+    [num compare:@1];
 }
 
 - (void)test0 {

@@ -1,5 +1,5 @@
 //
-//  ZJTimerViewController.h
+//  ZJTestTimerViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2021/9/6.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTimerViewController : ZJViewController
+@interface ZJTestTimerViewController : ZJViewController
 
 @end
 

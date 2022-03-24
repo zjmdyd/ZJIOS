@@ -11,14 +11,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (ZJLabel)
 
+// 宽度自适应
++ (CGSize)fitSizeWithText:(NSString *)text font:(UIFont *)font;
+// 高度自适应
++ (CGSize)fitSizeWithWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font;
+
 /**
  *  根据文本内容适配Label高度
  */
-- (CGSize)fitSizeWithWidth:(CGFloat)width;
-- (CGSize)fitSizeWithHeight:(CGFloat)height;
 + (CGSize)fitSizeWithWidth:(CGFloat)width text:(id)text;
 + (CGSize)fitSizeWithHeight:(CGFloat)height text:(id)text;
-- (void)resizeHeight;
 
 /**
  斜体

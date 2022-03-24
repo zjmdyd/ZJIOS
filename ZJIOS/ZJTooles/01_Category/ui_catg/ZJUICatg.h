@@ -8,11 +8,11 @@
 #ifndef ZJUICatg_h
 #define ZJUICatg_h
 
+#import "UIColor+ZJColor.h"
 #import "CIImage+ZJCIImage.h"
-#import "UIApplication+ZJApplication.h"
+#import "ZJUIAppllicationCatgHeader.h"
 #import "UIBarButtonItem+ZJBarButtonItem.h"
 #import "UICollectionView+ZJCollectionView.h"
-#import "UIColor+ZJColor.h"
 #import "UIDevice+ZJDevice.h"
 #import "UIGestureRecognizer+ZJGestureRecognizer.h"
 #import "UIImage+ZJImage.h"

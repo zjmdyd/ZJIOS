@@ -6,7 +6,6 @@
 //
 
 #import "ZJSubjectTableViewController.h"
-#import "ZJViewController.h"
 #import "UIViewController+ZJViewController.h"
 
 @interface ZJSubjectTableViewController ()
@@ -23,18 +22,17 @@
 }
 
 - (void)initAry {
-    self.titles = @[@"ZJTestMethodSwizzlingViewController"];
-//    @[@"ZJRuntimeViewController", @"ZJBlockViewController", @"ZJTestSuperViewController", @"ZJTestServerViewController"];
+    self.cellTitles = @[@"ZJTestTimerTableViewController"];
 }
 
 - (void)initSetting {
-    //
+    
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.titles.count;
+    return self.cellTitles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -42,7 +40,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
-    cell.textLabel.text = self.titles[indexPath.row];
+    cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
@@ -51,7 +49,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *vcName = self.titles[indexPath.row];
+    NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName];
 }
 

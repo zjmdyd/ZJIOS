@@ -16,17 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self initAry];
     [self initSetting];
 }
 
 - (void)initAry {
-    self.titles = @[
+    self.cellTitles = @[
         @"ZJTestAryViewController", @"ZJTestMutableAryViewController", @"ZJTestDataViewController",
-        @"ZJTestDictionaryViewController", @"ZJTestNSRangeViewController", @"ZJTestStringViewController",
-        @"ZJTestCopyStrongViewController", @"ZJTestCopyMutableCopyViewController", @"ZJTestCharacterSetViewController",
-        @"ZJTestDocumentViewController", @"ZJNScannerViewController", @"ZJTestDateViewController"
+        @"ZJTestDictionaryViewController", @"ZJTestDateViewController", @"ZJTestNSRangeViewController",
+        @"ZJTestStringViewController", @"ZJTestCopyStrongViewController", @"ZJTestCopyMutableCopyViewController",
+        @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController", @"ZJTestDocumentViewController",
+        @"ZJTestNSLogViewController",  
     ];
 }
 
@@ -37,7 +38,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.titles.count;
+    return self.cellTitles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -45,7 +46,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
-    cell.textLabel.text = self.titles[indexPath.row];
+    cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -55,7 +56,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *vcName = self.titles[indexPath.row];
+    NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName];
 }
 

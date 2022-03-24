@@ -1,5 +1,5 @@
 //
-//  ZJNScannerViewController.h
+//  ZJTestScannerViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2021/8/16.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJNScannerViewController : ZJViewController
+@interface ZJTestScannerViewController : ZJViewController
 
 @end
 

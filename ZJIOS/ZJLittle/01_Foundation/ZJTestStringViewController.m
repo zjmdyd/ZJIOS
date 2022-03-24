@@ -23,16 +23,15 @@
 /*
  2022-01-11 16:07:21.029427+0800 ZJIOS[54224:1342679] str1: 0x10f43bf98, hello
  2022-01-11 16:07:21.029668+0800 ZJIOS[54224:1342679] str2: 0x6000000cf300, hello+111
+ 
+ ***stringByAppendingString会生成一个全新的变量
  */
-- (void)test2 {
+- (void)test3 {
     NSString *str1 = @"hello";
     NSString *str2 = [str1 stringByAppendingString:@"+111"];
     NSLog(@"str1: %p, %@", str1, str1);
     NSLog(@"str2: %p, %@", str2, str2);
 }
-/*
- stringByAppendingString会生成一个全新的变量
- */
 
 /*
  继承关系:
@@ -46,12 +45,13 @@
  */
 
 /*
- 2022-01-10 16:48:48.912159+0800 ZJIOS[41845:1028084] haha, 0x1097cfdb8
- 2022-01-10 16:48:48.912383+0800 ZJIOS[41845:1028084] haha, 0x1097cfdb8
- 2022-01-10 16:48:48.912550+0800 ZJIOS[41845:1028084] haha, 0x1097cfdb8
- 2022-01-10 16:48:48.912667+0800 ZJIOS[41845:1028084] haha, 0x95b0ed58e5003fb5
+ 2022-01-18 16:50:03.625951+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString
+ 2022-01-18 16:50:03.626174+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString
+ 2022-01-18 16:50:03.626259+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString
+ 2022-01-18 16:50:03.626363+0800 ZJIOS[3734:113728] haha, 0x8c40371903ebe94d, NSTaggedPointerString
+ 2022-01-18 16:50:03.626475+0800 ZJIOS[3734:113728] haha, 0x60000173adc0, __NSCFString
  */
-- (void)test1 {
+- (void)test2 {
     static NSString *a = @"haha";
     NSString *b = @"haha";
     NSString *c = @"haha";
@@ -68,10 +68,29 @@
  2022-01-10 16:39:56.361375+0800 ZJIOS[41584:1018052] invertString = fedcba
  2022-01-10 16:39:56.361619+0800 ZJIOS[41584:1018052] invertStringWithSegmentLenth = defabc
  */
-- (void)test0 {
+- (void)test1 {
     NSString *str = @"abcdef";
     NSLog(@"invertString = %@", [str invertString]);
     NSLog(@"invertStringWithSegmentLenth = %@", [str invertStringWithSegmentLenth:3]);
+}
+
+/*
+ 分割:空字符串会占用数组元素
+ -->(
+     "",
+     aa
+ )
+ -->(
+     "",
+     "",
+     aa
+ )
+ */
+- (void)test0 {
+    NSString *string1 = @"1aa";
+    NSString *string2 = @"11aa";
+    NSLog(@"-->%@", [string1 componentsSeparatedByString:@"1"]);
+    NSLog(@"-->%@", [string2 componentsSeparatedByString:@"1"]);
 }
 
 /*

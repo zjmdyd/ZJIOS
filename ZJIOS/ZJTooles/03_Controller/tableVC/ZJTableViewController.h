@@ -13,9 +13,8 @@ static NSString *const SystemTableViewCell = @"UITableViewCell";
 
 @interface ZJTableViewController : UITableViewController
 
-/// cellTitles当title是多维可变数组时会用到
-@property (nonatomic, strong) NSArray *icons, *titles, *values, *vcNames, *cellTitles, *sectionTitles;
-@property (nonatomic, strong) NSMutableArray *mutableIcons, *mutableTitles, *mutableValues, *mutableVCNames, *mutableCellTitles, *mutableSectionTitles;
+@property (nonatomic, strong) NSArray *icons, *values, *vcNames, *cellTitles, *sectionTitles;
+@property (nonatomic, strong) NSMutableArray *mutableIcons, *mutableValues, *mutableVCNames, *mutableCellTitles, *mutableSectionTitles;
 
 @end
 

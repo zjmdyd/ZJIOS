@@ -1,43 +1,54 @@
 //
-//  ZJCtrlTableViewController.m
+//  ZJTestColorTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2021/11/17.
+//  Created by issuser on 2022/2/11.
 //
 
-#import "ZJCtrlTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestColorTableViewController.h"
+#import "UIColor+ZJColor.h"
+#import "ZJLayoutDefines.h"
 
-@interface ZJCtrlTableViewController ()
+@interface ZJTestColorTableViewController ()
+
+@property (nonatomic, strong) UIView *colorView;
 
 @end
 
-@implementation ZJCtrlTableViewController
+@implementation ZJTestColorTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self initAry];
     [self initSetting];
-}
-
-- (void)initAry {
-    self.cellTitles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertTableViewController"];
+    [self initAry];
 }
 
 - (void)initSetting {
-    
+    self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
+    self.colorView.hidden = YES;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(0, 0, 100, 50);
+    btn.center = self.colorView.center;
+    [btn setTitle:@"关闭" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.colorView addSubview:btn];
+    [KeyWindow addSubview:self.colorView];
+}
+
+- (void)btnEvent:(UIButton *)sender {
+    self.colorView.hidden = YES;
+}
+
+- (void)initAry {
+    self.cellTitles = @[@"maskViewColor", @"maskViewAlphaColor"];
+    self.values = @[[UIColor maskViewColor], [UIColor maskViewAlphaColor]];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
+    return self.values.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,9 +66,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    
+    self.colorView.backgroundColor = self.values[indexPath.row];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.colorView.hidden = NO;
+    }];
 }
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

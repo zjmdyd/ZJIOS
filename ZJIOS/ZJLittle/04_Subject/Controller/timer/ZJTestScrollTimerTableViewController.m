@@ -1,43 +1,64 @@
 //
-//  ZJCtrlTableViewController.m
+//  ZJTestScrollTimerTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2021/11/17.
+//  Created by issuser on 2022/1/26.
 //
 
-#import "ZJCtrlTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestScrollTimerTableViewController.h"
+#import "NSTimer+ZJBlockTimer.h"
 
-@interface ZJCtrlTableViewController ()
+@interface ZJTestScrollTimerTableViewController ()
+
+@property (nonatomic, weak) NSTimer *timer;
 
 @end
 
-@implementation ZJCtrlTableViewController
+@implementation ZJTestScrollTimerTableViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self initAry];
-    [self initSetting];
+    [self test2];
 }
 
-- (void)initAry {
-    self.cellTitles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertTableViewController"];
+/*
+ 设置成UITrackingRunLoopMode时,timer只会在滑动scrollView时触发
+ */
+- (void)test3 {
+    self.timer = [NSTimer zj_timerWithTimeInterval:2 repeats:YES addToRunLoopWithMode:UITrackingRunLoopMode block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"执行timer的方法:%@", timer);
+        NSLog(@"currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
+    }];
 }
 
-- (void)initSetting {
-    
+/*
+ 解决timer不准确: 设置成NSRunLoopCommonModes
+ 滑动scrollView是在UITrackingRunLoopMode, 设置成NSRunLoopCommonModes时,不会出现timer暂停现象
+ */
+- (void)test2 {
+    self.timer = [NSTimer zj_timerWithTimeInterval:2 repeats:YES addToRunLoopWithMode:NSRunLoopCommonModes block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"执行timer的方法:%@", timer);
+        NSLog(@"currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
+    }];
+}
+
+/*
+ timer不准确: NSTimer 的runloop类型是NSDefaultRunloopMode 主线程中， 界面的刷新也在主线程中，
+ UIScrollview滑动的过程中是在UITrackingRunLoopMode中，当我们在手指滑动过程中，系统会将NSDefaultRunloopMode 更改为NSTrackingRunloopMode，所以会出现NSTimer短暂暂停的现象
+ */
+- (void)test1 {
+    self.timer = [NSTimer zj_scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"执行timer的方法:%@", timer);
+        NSLog(@"currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
+    }];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
+    return 10000;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -45,9 +66,9 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    cell.textLabel.text = [NSString stringWithFormat:@"第%zd行", indexPath.row];
+//    NSLog(@"UITableViewCell__currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
+
     return cell;
 }
 
@@ -55,9 +76,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    
 }
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+    [self.timer invalidate];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -16,7 +16,7 @@
         [sw addTarget:target action:s forControlEvents:UIControlEventValueChanged];
     }
 #ifdef MainColor
-//    sw.onTintColor = [UIColor mainColor];
+    sw.onTintColor = MainColor;
 #endif
     return sw;
 }
@@ -27,8 +27,8 @@
     btn.layer.cornerRadius = 8;
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    SEL s = NSSelectorFromString(@"buttonEvent:");
     if (target) {
+        SEL s = NSSelectorFromString(@"buttonEvent:");
         [btn addTarget:target action:s forControlEvents:UIControlEventValueChanged];
     }
     

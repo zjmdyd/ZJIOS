@@ -9,43 +9,23 @@
 
 @implementation UILabel (ZJLabel)
 
-- (UILabel *)accessoryViewWithText:(id)text bgColor:(UIColor *)color frame:(CGRect)frame {
-    return [self accessoryViewWithText:text bgColor:color frame:frame needCornerRadius:NO];
+// 宽度自适应
++ (CGSize)fitSizeWithText:(NSString *)text font:(UIFont *)font {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MAXFLOAT, 0)];
+    label.text = text;
+    label.font = font;
+    [label sizeToFit];
+    return label.frame.size;
 }
 
-- (UILabel *)accessoryViewWithText:(id)text bgColor:(UIColor *)color frame:(CGRect)frame needCornerRadius:(BOOL)need {
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+// 高度自适应
++ (CGSize)fitSizeWithWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+    label.text = text;
+    label.font = font;
     label.numberOfLines = 0;
-    if ([text isKindOfClass:[NSAttributedString class]]) {
-        label.attributedText = text;
-    }else {
-        label.text = text;
-        label.textColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
-    label.backgroundColor = color;
-    
-    if (need) {
-        label.layer.cornerRadius = 8;
-        label.layer.masksToBounds = YES;
-    }
-    
-    return label;
-}
-
-- (CGSize)fitSizeWithWidth:(CGFloat)width {
-    self.numberOfLines = 0;
-    CGSize size = [self sizeThatFits:CGSizeMake(width, MAXFLOAT)];
-    
-    return size;
-}
-
-- (CGSize)fitSizeWithHeight:(CGFloat)height {
-    self.numberOfLines = 0;
-    CGSize size = [self sizeThatFits:CGSizeMake(MAXFLOAT, height)];
-    
-    return size;
+    [label sizeToFit];
+    return label.frame.size;
 }
 
 + (CGSize)fitSizeWithWidth:(CGFloat)width text:(id)text {
@@ -68,16 +48,10 @@
     }else {
         label.text = text;
     }
+    label.numberOfLines = 0;
     CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, height)];
 
     return size;
-}
-
-- (void)resizeHeight {
-    CGSize size = [self fitSizeWithWidth:self.bounds.size.width];
-    CGRect newframe = self.frame;
-    newframe.size.height = size.height;
-    self.frame = newframe;
 }
 
 - (void)italicFont {
