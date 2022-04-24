@@ -19,7 +19,7 @@
         icon = [UIImage imageNamed:path];
     }
     if (icon == nil) {
-        if (placehold.length == 0) {
+        if ([placehold isKindOfClass:[NSString class]] && placehold.length == 0) {
             return nil;
         }
         icon = [UIImage imageNamed:placehold];
@@ -140,6 +140,7 @@ void ProviderReleaseData (void *info, const void *data, size_t size) {
     [logo drawInRect:logoFrame];
     UIImage *kk = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return kk;
 }
 

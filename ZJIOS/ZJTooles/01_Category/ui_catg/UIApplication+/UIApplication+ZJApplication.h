@@ -28,7 +28,6 @@ typedef NS_ENUM(NSInteger, AppInfoType) {
 + (UIViewController *)zj_getCurrentViewController;
 
 
-
 #pragma mark - App info
 
 + (NSString *)appInfoWithType:(AppInfoType)type;

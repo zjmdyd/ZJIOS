@@ -25,6 +25,15 @@
     [self.navigationController popToViewController:arys[index] animated:YES];
 }
 
+- (void)popToVCWithName:(NSString *)name {
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:NSClassFromString(name)]) {
+            [self.navigationController popToViewController:vc animated:YES];
+            break;
+        }
+    }
+}
+
 - (void)showVCWithName:(NSString *)name {
     [self showVCWithName:name title:@"" style:UITableViewStyleGrouped hidesBottom:YES];
 }
@@ -89,15 +98,6 @@
     config.style = style;
     config.hiddenBottom = hidden;
     return [self createVCWithConfig:config];
-}
-
-- (void)popToVCWithName:(NSString *)name {
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:NSClassFromString(name)]) {
-            [self.navigationController popToViewController:vc animated:YES];
-            break;
-        }
-    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

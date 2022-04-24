@@ -27,6 +27,7 @@
 - (void)initSetting {
     self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
     self.colorView.hidden = YES;
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame = CGRectMake(0, 0, 100, 50);
     btn.center = self.colorView.center;
@@ -71,6 +72,11 @@
     [UIView animateWithDuration:0.25 animations:^{
         self.colorView.hidden = NO;
     }];
+}
+
+// 会执行
+- (void)dealloc {
+    NSLog(@"%s", __func__);
 }
 
 /*

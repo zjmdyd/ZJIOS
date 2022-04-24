@@ -6,7 +6,9 @@
 //
 
 #import "ZJTestSearchBarViewController.h"
+#import "ZJLayoutDefines.h"
 #import "UISearchBar+ZJSearchBar.h"
+#import "UIView+ZJView.h"
 
 @interface ZJTestSearchBarViewController ()
 
@@ -17,11 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 100, 300, 100)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 100, kScreenW, 100)];
     searchBar.prompt = @"提示";
     searchBar.placeholder = @"请输入";
     searchBar.showsCancelButton = YES;
+    [searchBar setCancelBtnTitleColor:[UIColor redColor]];
     [self.view addSubview:searchBar];
+//    [searchBar logSubViews];
 }
 
 /*

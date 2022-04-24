@@ -44,7 +44,6 @@
     }
 }
 
-//
 + (void)openURLWithURLString:(NSString * _Nonnull )urlString completionHandler:(void (^)(BOOL success))completion {
     NSURL *url = [NSURL URLWithString:urlString];
     if (@available(iOS 10.0, *)) {
