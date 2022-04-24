@@ -13,7 +13,7 @@
     self = [super init];
     if (self) {
         self.hiddenBottom = YES;
-        self.isGroup = YES;
+        self.style = UITableViewStyleGrouped;
     }
     return self;
 }

@@ -26,17 +26,17 @@
 }
 
 - (void)showVCWithName:(NSString *)name {
-    [self showVCWithName:name title:@"" isGroup:YES hidesBottom:YES];
+    [self showVCWithName:name title:@"" style:UITableViewStyleGrouped hidesBottom:YES];
 }
 
 - (void)showVCWithName:(NSString *)name title:(NSString *)title {
-    [self showVCWithName:name title:title isGroup:YES hidesBottom:YES];
+    [self showVCWithName:name title:title style:UITableViewStyleGrouped hidesBottom:YES];
 }
 
-- (void)showVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden {
+- (void)showVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden {
     ZJCtrlConfig *config = [ZJCtrlConfig new];
     config.vcName = name;
-    config.isGroup = isGroup;
+    config.style = style;
     config.hiddenBottom = hidden;
     [self showVCWithConfig:config];
 }
@@ -53,24 +53,22 @@
     if ([vcName isKindOfClass:[NSString class]] && vcName.length) {
         UIViewController *vc = [NSClassFromString(vcName) alloc];
         if ([vc isKindOfClass:[UITableViewController class]]) {
-            if (@available(iOS 13.0, *)) {
-                vc = [(UITableViewController *)vc initWithStyle:ctrlConfig.isGroup ? UITableViewStyleInsetGrouped : UITableViewStylePlain];
-            } else {
-                vc = [(UITableViewController *)vc initWithStyle:ctrlConfig.isGroup ? UITableViewStyleGrouped : UITableViewStylePlain];
-            }
+            vc = [(UITableViewController *)vc initWithStyle:ctrlConfig.style];
         }else {
             vc = [vc init];
         }
+        
         NSString *title = ctrlConfig.title;
         if ([title isKindOfClass:[NSString class]] && title.length) {
             vc.title = title;
         }
+        
         UIColor *color = ctrlConfig.vcBackgroundColor;
         if ([color isKindOfClass:[UIColor class]]) {
             vc.view.backgroundColor = color;
         }
-        
         vc.hidesBottomBarWhenPushed = ctrlConfig.hiddenBottom;
+        
         return vc;
     }
     
@@ -78,17 +76,17 @@
 }
 
 + (UIViewController *)createVCWithName:(NSString *)name {
-    return [self createVCWithName:name title:@"" isGroup:YES hidesBottom:YES];
+    return [self createVCWithName:name title:@"" style:UITableViewStyleGrouped hidesBottom:YES];
 }
 
 + (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title {
-    return [self createVCWithName:name title:title isGroup:YES hidesBottom:YES];
+    return [self createVCWithName:name title:title style:UITableViewStyleGrouped hidesBottom:YES];
 }
 
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden {
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden {
     ZJCtrlConfig *config = [ZJCtrlConfig new];
     config.vcName = name;
-    config.isGroup = isGroup;
+    config.style = style;
     config.hiddenBottom = hidden;
     return [self createVCWithConfig:config];
 }

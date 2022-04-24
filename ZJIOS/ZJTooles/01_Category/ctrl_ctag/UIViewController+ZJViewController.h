@@ -25,14 +25,14 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 
 - (void)showVCWithName:(NSString *)name;
 - (void)showVCWithName:(NSString *)name title:(NSString *)title;
-- (void)showVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden;
+- (void)showVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden;
 
 /**
  *  根据控制器名字创建控制器
  */
 + (UIViewController *)createVCWithName:(NSString *)name;
 + (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title;
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title isGroup:(BOOL)isGroup hidesBottom:(BOOL)hidden;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden;
 
 #pragma mark - UIBarButtonItem
 

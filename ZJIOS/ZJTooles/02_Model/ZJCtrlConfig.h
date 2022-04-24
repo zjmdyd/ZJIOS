@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *vcName;
 @property (nonatomic, assign) BOOL hiddenBottom;
-@property (nonatomic, assign) BOOL isGroup;
+@property (nonatomic, assign) UITableViewStyle style;
 @property (nonatomic, strong) UIColor *vcBackgroundColor;
 
 @end

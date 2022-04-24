@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D88BB96F272775C24C25093 /* Pods_ZJIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */; };
+		2B10FF905631B4A23F8F57B2 /* Pods_ZJIOS_ZJIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016F98A08412B2EB198294DF /* Pods_ZJIOS_ZJIOSUITests.framework */; };
 		382EE8CD26750B04008AB02C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CC26750B04008AB02C /* AppDelegate.m */; };
 		382EE8D026750B04008AB02C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CF26750B04008AB02C /* SceneDelegate.m */; };
 		382EE8D926750B04008AB02C /* ZJIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8D726750B04008AB02C /* ZJIOS.xcdatamodeld */; };
@@ -138,6 +140,9 @@
 		65F7C6D52692EB8300121EBD /* UIApplication+ZJApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6D42692EB8300121EBD /* UIApplication+ZJApplication.m */; };
 		65F7C6D82692EC7000121EBD /* UIDevice+ZJDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6D72692EC7000121EBD /* UIDevice+ZJDevice.m */; };
 		65F7C6DB2692F40B00121EBD /* NSObject+ZJObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6DA2692F40B00121EBD /* NSObject+ZJObject.m */; };
+		65FA5F9C28043B4400D6C61A /* XHPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA5F9A28043B4400D6C61A /* XHPageControl.m */; };
+		65FA5F9F28043CDC00D6C61A /* ZJTestPageCtrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA5F9E28043CDC00D6C61A /* ZJTestPageCtrlViewController.m */; };
+		DAD618BFDF59CC92D892DFF0 /* Pods_ZJIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D2543F0682D2A6B42DA3DC /* Pods_ZJIOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +163,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		016F98A08412B2EB198294DF /* Pods_ZJIOS_ZJIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOS_ZJIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		382EE8C826750B04008AB02C /* ZJIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382EE8CB26750B04008AB02C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		382EE8CC26750B04008AB02C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -262,6 +268,9 @@
 		38EBE1482675BB8900E090D9 /* ZJSubjectTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJSubjectTableViewController.m; sourceTree = "<group>"; };
 		38EBE18C2675BE0200E090D9 /* ZJTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTableViewController.h; sourceTree = "<group>"; };
 		38EBE18D2675BE0200E090D9 /* ZJTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTableViewController.m; sourceTree = "<group>"; };
+		39D2543F0682D2A6B42DA3DC /* Pods_ZJIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.release.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.release.xcconfig"; sourceTree = "<group>"; };
+		4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6502DC7726EB5FF900D597BC /* ZJPageSizeObjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPageSizeObjectInfo.m; sourceTree = "<group>"; };
 		6502DC7826EB5FF900D597BC /* ZJMentionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMentionObject.h; sourceTree = "<group>"; };
 		6502DC7926EB5FF900D597BC /* ZJAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAlertAction.h; sourceTree = "<group>"; };
@@ -418,6 +427,15 @@
 		65F7C6D72692EC7000121EBD /* UIDevice+ZJDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+ZJDevice.m"; sourceTree = "<group>"; };
 		65F7C6D92692F40B00121EBD /* NSObject+ZJObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZJObject.h"; sourceTree = "<group>"; };
 		65F7C6DA2692F40B00121EBD /* NSObject+ZJObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZJObject.m"; sourceTree = "<group>"; };
+		65FA5F9A28043B4400D6C61A /* XHPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPageControl.m; sourceTree = "<group>"; };
+		65FA5F9B28043B4400D6C61A /* XHPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPageControl.h; sourceTree = "<group>"; };
+		65FA5F9D28043CDC00D6C61A /* ZJTestPageCtrlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestPageCtrlViewController.h; sourceTree = "<group>"; };
+		65FA5F9E28043CDC00D6C61A /* ZJTestPageCtrlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestPageCtrlViewController.m; sourceTree = "<group>"; };
+		7D5B11AAB902812A6B9388AA /* Pods-ZJIOS-ZJIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS-ZJIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-ZJIOS-ZJIOSUITests/Pods-ZJIOS-ZJIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B3278A924BC55623BC2C0084 /* Pods-ZJIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C311B914E0CBBDCD21DDBB27 /* Pods-ZJIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOSTests.release.xcconfig"; path = "Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		EB8BF3BCACD123B9C798D25B /* Pods-ZJIOS-ZJIOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS-ZJIOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOS-ZJIOSUITests/Pods-ZJIOS-ZJIOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +443,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D88BB96F272775C24C25093 /* Pods_ZJIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +451,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAD618BFDF59CC92D892DFF0 /* Pods_ZJIOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +459,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B10FF905631B4A23F8F57B2 /* Pods_ZJIOS_ZJIOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +473,8 @@
 				382EE8E926750B05008AB02C /* ZJIOSTests */,
 				382EE8F426750B05008AB02C /* ZJIOSUITests */,
 				382EE8C926750B04008AB02C /* Products */,
+				48C53D443FAF6198397B0741 /* Pods */,
+				71B5735D91BA7E857506CE7A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -552,6 +575,9 @@
 				652B58F127BA5CE200745D11 /* ZJTestSearchBarViewController.m */,
 				652B58F327BA631700745D11 /* ZJTestLabelViewController.h */,
 				652B58F427BA631700745D11 /* ZJTestLabelViewController.m */,
+				65FA5F9928043B4400D6C61A /* XHPageControl */,
+				65FA5F9D28043CDC00D6C61A /* ZJTestPageCtrlViewController.h */,
+				65FA5F9E28043CDC00D6C61A /* ZJTestPageCtrlViewController.m */,
 				65ABF0CF26D7A48300A08267 /* ZJTestNibViewController.h */,
 				65ABF0D026D7A48300A08267 /* ZJTestNibViewController.m */,
 				65ABF0D126D7A48300A08267 /* ZJTestNibViewController.xib */,
@@ -795,6 +821,19 @@
 			path = tableVC;
 			sourceTree = "<group>";
 		};
+		48C53D443FAF6198397B0741 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */,
+				4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */,
+				EB8BF3BCACD123B9C798D25B /* Pods-ZJIOS-ZJIOSUITests.debug.xcconfig */,
+				7D5B11AAB902812A6B9388AA /* Pods-ZJIOS-ZJIOSUITests.release.xcconfig */,
+				B3278A924BC55623BC2C0084 /* Pods-ZJIOSTests.debug.xcconfig */,
+				C311B914E0CBBDCD21DDBB27 /* Pods-ZJIOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6516024F26940956003B652F /* ctrl_ctag */ = {
 			isa = PBXGroup;
 			children = (
@@ -877,6 +916,15 @@
 			path = 03_Controller;
 			sourceTree = "<group>";
 		};
+		65FA5F9928043B4400D6C61A /* XHPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				65FA5F9B28043B4400D6C61A /* XHPageControl.h */,
+				65FA5F9A28043B4400D6C61A /* XHPageControl.m */,
+			);
+			path = XHPageControl;
+			sourceTree = "<group>";
+		};
 		65FAF649279EAE4800183053 /* rest */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,6 +959,16 @@
 			path = rest;
 			sourceTree = "<group>";
 		};
+		71B5735D91BA7E857506CE7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */,
+				016F98A08412B2EB198294DF /* Pods_ZJIOS_ZJIOSUITests.framework */,
+				39D2543F0682D2A6B42DA3DC /* Pods_ZJIOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -918,6 +976,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382EE8FA26750B05008AB02C /* Build configuration list for PBXNativeTarget "ZJIOS" */;
 			buildPhases = (
+				9108AAC8AF5388DFC78A35CE /* [CP] Check Pods Manifest.lock */,
 				382EE8C426750B04008AB02C /* Sources */,
 				382EE8C526750B04008AB02C /* Frameworks */,
 				382EE8C626750B04008AB02C /* Resources */,
@@ -935,6 +994,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382EE8FD26750B05008AB02C /* Build configuration list for PBXNativeTarget "ZJIOSTests" */;
 			buildPhases = (
+				02FD4E71754344DCF2CE08E0 /* [CP] Check Pods Manifest.lock */,
 				382EE8E226750B05008AB02C /* Sources */,
 				382EE8E326750B05008AB02C /* Frameworks */,
 				382EE8E426750B05008AB02C /* Resources */,
@@ -953,6 +1013,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382EE90026750B05008AB02C /* Build configuration list for PBXNativeTarget "ZJIOSUITests" */;
 			buildPhases = (
+				EB4D0EA224B79B442282DC2C /* [CP] Check Pods Manifest.lock */,
 				382EE8ED26750B05008AB02C /* Sources */,
 				382EE8EE26750B05008AB02C /* Frameworks */,
 				382EE8EF26750B05008AB02C /* Resources */,
@@ -1057,6 +1118,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		02FD4E71754344DCF2CE08E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZJIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9108AAC8AF5388DFC78A35CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZJIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB4D0EA224B79B442282DC2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZJIOS-ZJIOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		382EE8C426750B04008AB02C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1064,6 +1194,7 @@
 			files = (
 				6590A437274BA52400BDB826 /* Son.m in Sources */,
 				6597C21627450A24003161AB /* ZJCtrlTableViewController.m in Sources */,
+				65FA5F9F28043CDC00D6C61A /* ZJTestPageCtrlViewController.m in Sources */,
 				6590A42F274B8C2400BDB826 /* Father.m in Sources */,
 				652B58F227BA5CE200745D11 /* ZJTestSearchBarViewController.m in Sources */,
 				658FC467279FECC100A7FE1D /* ZJTestTimerBlockViewController.m in Sources */,
@@ -1145,6 +1276,7 @@
 				38D13DAE267F53E200BCAC42 /* NSObject+HookClass.m in Sources */,
 				38EBE0CA2675B43100E090D9 /* ZJByteData.c in Sources */,
 				65A5E58D2779B68E00F67CFF /* ZJDateFormatter.m in Sources */,
+				65FA5F9C28043B4400D6C61A /* XHPageControl.m in Sources */,
 				38A1F0B8267B47CA00A4D044 /* ZJAnimal.m in Sources */,
 				656D224C2754D09300095B71 /* ZJTestCharacterSetViewController.m in Sources */,
 				65F7C6AA2692E74600121EBD /* UILabel+ZJLabel.m in Sources */,
@@ -1328,6 +1460,7 @@
 		};
 		382EE8FB26750B05008AB02C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1350,6 +1483,7 @@
 		};
 		382EE8FC26750B05008AB02C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1371,6 +1505,7 @@
 		};
 		382EE8FE26750B05008AB02C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3278A924BC55623BC2C0084 /* Pods-ZJIOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1391,6 +1526,7 @@
 		};
 		382EE8FF26750B05008AB02C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C311B914E0CBBDCD21DDBB27 /* Pods-ZJIOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1411,6 +1547,7 @@
 		};
 		382EE90126750B05008AB02C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB8BF3BCACD123B9C798D25B /* Pods-ZJIOS-ZJIOSUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X69A28X2L6;
@@ -1429,6 +1566,7 @@
 		};
 		382EE90226750B05008AB02C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D5B11AAB902812A6B9388AA /* Pods-ZJIOS-ZJIOSUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X69A28X2L6;

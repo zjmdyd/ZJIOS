@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTestLabelViewController"];
+    self.cellTitles = @[@"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTestLabelViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController"];
 }
 
 #pragma mark - UITableViewDataSource

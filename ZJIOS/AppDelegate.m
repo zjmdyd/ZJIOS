@@ -16,7 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    NSArray *fonts = [UIFont familyNames];
+    NSLog(@"fonts = %@", fonts);
     return YES;
 }
 
