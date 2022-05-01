@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJViewController : UIViewController
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 NS_ASSUME_NONNULL_END

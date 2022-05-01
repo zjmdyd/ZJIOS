@@ -23,7 +23,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestTimerViewController", @"ZJTestTimerBlockViewController", @"ZJTestScrollTimerTableViewController", @"ZJTestGCDTimerTableViewController"];
+    self.cellTitles = @[@"ZJTestTimerViewController", @"ZJManualReleaseTimerViewController", @"ZJTestBlockTimerViewController", @"ZJTestScrollTimerTableViewController", @"ZJTestGCDTimerTableViewController"];
 }
 
 - (void)initSetting {

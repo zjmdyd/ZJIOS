@@ -17,6 +17,8 @@ static NSString *const SystemNormalTableViewCell = @"ZJNormalTableViewCell";
 @property (nonatomic, strong) NSArray *icons, *values, *vcNames, *cellTitles, *sectionTitles;
 @property (nonatomic, strong) NSMutableArray *mutableIcons, *mutableValues, *mutableVCNames, *mutableCellTitles, *mutableSectionTitles;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 NS_ASSUME_NONNULL_END

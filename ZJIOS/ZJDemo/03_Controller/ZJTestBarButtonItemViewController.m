@@ -34,12 +34,15 @@
     [self.view addSubview:btn];
 }
 
+/*
+ 与系统创建两个item一样的效果
+ */
 - (void)btnEvent:(UIButton *)sender {
     static int time = 0;
-    if (time == 0) {
+    if (time == 0) {    // 自定义
         self.navigationItem.rightBarButtonItems = nil;
         self.navigationItem.rightBarButtonItem = [self barButtonItemWithCustomViewWithImageNames:@[@"ic_more", @"ic_setting"]];
-    }else {
+    }else {             // 系统
         self.navigationItem.rightBarButtonItem = nil;
         self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"ic_more", @"ic_setting"]];
     }

@@ -10,7 +10,7 @@
 
 @interface ZJTestScrollTimerTableViewController ()
 
-@property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic, assign) NSInteger index;
 
 @end
 
@@ -20,15 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test2];
+    [self test3];
 }
 
 /*
- 设置成UITrackingRunLoopMode时,timer只会在滑动scrollView时触发
+ timer不准确: NSTimer 的runloop类型是NSDefaultRunloopMode 主线程中， 界面的刷新也在主线程中，
+ UIScrollview滑动的过程中是在UITrackingRunLoopMode中，当我们在手指滑动过程中，系统会将NSDefaultRunloopMode 更改为NSTrackingRunloopMode，所以会出现NSTimer短暂暂停的现象
  */
-- (void)test3 {
-    self.timer = [NSTimer zj_timerWithTimeInterval:2 repeats:YES addToRunLoopWithMode:UITrackingRunLoopMode block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"执行timer的方法:%@", timer);
+- (void)test1 {
+    __weak typeof(self) weak_self = self;
+    self.timer = [NSTimer zj_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        weak_self.index++;
+        NSLog(@"执行timer的方法:%@, index = %zd", timer, weak_self.index);
         NSLog(@"currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
     }];
 }
@@ -38,19 +41,23 @@
  滑动scrollView是在UITrackingRunLoopMode, 设置成NSRunLoopCommonModes时,不会出现timer暂停现象
  */
 - (void)test2 {
-    self.timer = [NSTimer zj_timerWithTimeInterval:2 repeats:YES addToRunLoopWithMode:NSRunLoopCommonModes block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"执行timer的方法:%@", timer);
+    __weak typeof(self) weak_self = self;
+    self.timer = [NSTimer zj_timerWithTimeInterval:1 repeats:YES addToRunLoopWithMode:NSRunLoopCommonModes block:^(NSTimer * _Nonnull timer) {
+        weak_self.index++;
+        NSLog(@"执行timer的方法:%@, index = %zd", timer, weak_self.index);
         NSLog(@"currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
     }];
 }
 
 /*
- timer不准确: NSTimer 的runloop类型是NSDefaultRunloopMode 主线程中， 界面的刷新也在主线程中，
- UIScrollview滑动的过程中是在UITrackingRunLoopMode中，当我们在手指滑动过程中，系统会将NSDefaultRunloopMode 更改为NSTrackingRunloopMode，所以会出现NSTimer短暂暂停的现象
+ 设置成UITrackingRunLoopMode时,timer只会在滑动scrollView时触发,其他模式下不触发
+ 此种情形可以用来记录滑动列表的时间
  */
-- (void)test1 {
-    self.timer = [NSTimer zj_scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"执行timer的方法:%@", timer);
+- (void)test3 {
+    __weak typeof(self) weak_self = self;
+    self.timer = [NSTimer zj_timerWithTimeInterval:1 repeats:YES addToRunLoopWithMode:UITrackingRunLoopMode block:^(NSTimer * _Nonnull timer) {
+        weak_self.index++;
+        NSLog(@"执行timer的方法:%@, index = %zd", timer, weak_self.index);
         NSLog(@"currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
     }];
 }
@@ -58,7 +65,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10000;
+    return 100000;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,7 +74,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"第%zd行", indexPath.row];
-//    NSLog(@"UITableViewCell__currentMode = %@", [NSRunLoop currentRunLoop].currentMode);
 
     return cell;
 }
@@ -77,11 +83,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-}
-
-- (void)dealloc {
-    NSLog(@"%s", __func__);
-    [self.timer invalidate];
 }
 
 /*

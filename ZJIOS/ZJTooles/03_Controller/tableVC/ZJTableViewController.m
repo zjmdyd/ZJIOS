@@ -33,6 +33,13 @@
 }
 */
 
+- (void)dealloc {
+    NSLog(@"%s, currentVC = %@", __func__, self.class);
+    if (self.timer) {
+        [self.timer invalidate];
+    }
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
