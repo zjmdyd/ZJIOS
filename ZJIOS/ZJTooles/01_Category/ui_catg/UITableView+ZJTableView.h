@@ -9,9 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString *const SystemTableViewCell = @"UITableViewCell";
-static NSString *const SystemNormalTableViewCell = @"ZJNormalTableViewCell";
-
 @interface UITableView (ZJTableView)
 
 + (UISwitch *)accessorySwitchWithTarget:(id)target;

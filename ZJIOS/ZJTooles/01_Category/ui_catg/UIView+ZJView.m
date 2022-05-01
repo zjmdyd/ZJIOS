@@ -40,19 +40,27 @@
     return nil;
 }
 
+- (NSString *)stringWithCount:(int)count {
+    NSMutableString *str = [[NSMutableString alloc] init];
+    for (int i = 0; i < count; i++) {
+        [str appendString:@"-"];
+    }
+    
+    return str;
+}
+
 - (UIView *)fetchSubViewWithClassName:(NSString *)className {
     for (UIView *view in self.subviews) {
-        NSLog(@"view = %@", view);
-        NSLog(@"subViews = %@", view.subviews);
         if ([view isKindOfClass:NSClassFromString(className)]) {
-            NSLog(@"找到subView:%@", view);
             return view;
         }else {
-            [view fetchSubViewWithClassName:className];
+            UIView *backView = [view fetchSubViewWithClassName:className];
+            if ([backView isKindOfClass:NSClassFromString(className)]) {
+                return backView;
+            }
         }
     }
-    NSLog(@"返回:%@", self.class);
-
+    
     return nil;
 }
 
@@ -61,7 +69,10 @@
         if ([self.superview isKindOfClass:NSClassFromString(className)]) {
             return self.superview;
         }else {
-            return [self.superview fetchSuperViewWithClassName:className];
+            UIView *backView = [self.superview fetchSuperViewWithClassName:className];
+            if ([backView isKindOfClass:NSClassFromString(className)]) {
+                return backView;
+            }
         }
     }
     

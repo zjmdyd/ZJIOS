@@ -14,7 +14,7 @@
 
 // 白色
 #ifndef DefaultViewBackgroundColor
-#define DefaultViewBackgroundColor [UIColor colorWithRed:(255/255.0f) green:(255/255.0f) blue:(255/255.0f) alpha:1.0]
+#define DefaultViewBackgroundColor [UIColor whiteColor]
 #endif
 
 #endif /* AppConfigHeader_h */

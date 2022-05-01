@@ -22,7 +22,7 @@
 }
 
 - (void)initSetting {
-    self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"more", @"setting"]];
+    self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"ic_more", @"ic_setting"]];
 }
 
 - (void)test {
@@ -38,10 +38,10 @@
     static int time = 0;
     if (time == 0) {
         self.navigationItem.rightBarButtonItems = nil;
-        self.navigationItem.rightBarButtonItem = [self barButtonItemWithCustomViewWithImageNames:@[@"more", @"setting"]];
+        self.navigationItem.rightBarButtonItem = [self barButtonItemWithCustomViewWithImageNames:@[@"ic_more", @"ic_setting"]];
     }else {
         self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"more", @"setting"]];
+        self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"ic_more", @"ic_setting"]];
     }
     time++;
     time %= 2;

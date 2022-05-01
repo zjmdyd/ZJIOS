@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UISearchBar (ZJSearchBar)
 
 - (void)setCancelBtnTitleColor:(UIColor *)color;
+- (void)setCancelBtnTitle:(NSString *)title;
 
 @end
 

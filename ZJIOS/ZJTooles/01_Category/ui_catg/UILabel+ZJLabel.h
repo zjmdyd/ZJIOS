@@ -11,16 +11,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (ZJLabel)
 
-// 宽度自适应
-+ (CGSize)fitSizeWithText:(NSString *)text font:(UIFont *)font;
-// 高度自适应
-+ (CGSize)fitSizeWithWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font;
+#pragma mark 高度自适应
 
-/**
- *  根据文本内容适配Label高度
- */
+// 给定宽度
++ (CGSize)fitSizeWithWidth:(CGFloat)width text:(NSString *)text font:(UIFont *)font;
 + (CGSize)fitSizeWithWidth:(CGFloat)width text:(id)text;
-+ (CGSize)fitSizeWithHeight:(CGFloat)height text:(id)text;
+
+#pragma mark 宽度自适应
+
+// 匹配文字最大宽度，高度设置不起作用
++ (CGSize)fitSizeWithText:(NSString *)text font:(UIFont *)font;
++ (CGSize)fitSizeWithText:(id)text;
+
+// 根据设置的宽高匹配最适合的size, 优先匹配宽度
+- (void)fitSizeWithFont:(UIFont *)font;
 
 /**
  斜体

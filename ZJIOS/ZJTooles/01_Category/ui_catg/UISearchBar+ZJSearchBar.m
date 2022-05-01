@@ -26,10 +26,7 @@
 - (void)setCancelBtnTitleColor:(UIColor *)color {
     UIView *subView = [self fetchSubViewWithClassName:NavigationButton];
     if (subView) {
-        NSLog(@"匹配到subView:%@", subView);
-        [((UIButton *)subView) setTintColor:color];
-    }else {
-        NSLog(@"未匹配到subView:%@", subView);
+        [((UIButton *)subView) setTitleColor:color forState:UIControlStateNormal];
     }
 }
 

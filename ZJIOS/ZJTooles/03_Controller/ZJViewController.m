@@ -21,7 +21,9 @@
 }
 
 - (void)initSuperSetting {
+#ifdef DefaultViewBackgroundColor
     self.view.backgroundColor = DefaultViewBackgroundColor;
+#endif
 }
 
 /*

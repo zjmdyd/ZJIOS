@@ -7,13 +7,20 @@
 
 #import "UITableView+ZJTableView.h"
 
+#define kSwitchEvent @"switchEvent:"
+#define kSwitchAction NSSelectorFromString(kSwitchEvent)
+
+#define kButtonEvent @"buttonEvent:"
+#define kButtonAction NSSelectorFromString(kButtonEvent)
+
 @implementation UITableView (ZJTableView)
 
 + (UISwitch *)accessorySwitchWithTarget:(id)target {
     UISwitch *sw = [[UISwitch alloc] init];
-    SEL s = NSSelectorFromString(@"switchEvent:");
+    BOOL resp =  [target respondsToSelector:kSwitchAction];
+    NSLog(@"resp = %d", resp);
     if (target) {
-        [sw addTarget:target action:s forControlEvents:UIControlEventValueChanged];
+        [sw addTarget:target action:kSwitchAction forControlEvents:UIControlEventValueChanged];
     }
 #ifdef MainColor
     sw.onTintColor = MainColor;
@@ -28,8 +35,7 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     if (target) {
-        SEL s = NSSelectorFromString(@"buttonEvent:");
-        [btn addTarget:target action:s forControlEvents:UIControlEventValueChanged];
+        [btn addTarget:target action:kButtonAction forControlEvents:UIControlEventValueChanged];
     }
     
     return btn;

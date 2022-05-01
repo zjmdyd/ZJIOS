@@ -24,8 +24,14 @@
     searchBar.placeholder = @"请输入";
     searchBar.showsCancelButton = YES;
     [searchBar setCancelBtnTitleColor:[UIColor redColor]];
+//    [searchBar setCancelBtnTitle:@"取消"];
     [self.view addSubview:searchBar];
-//    [searchBar logSubViews];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
 }
 
 /*
