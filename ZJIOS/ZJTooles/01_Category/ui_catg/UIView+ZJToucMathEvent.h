@@ -11,27 +11,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 第几象限
 typedef NS_ENUM(NSInteger, QuadrantTouchType) {
-    QuadrantTouchTypeOfFirst,
-    QuadrantTouchTypeOfSecond,
-    QuadrantTouchTypeOfThird,
-    QuadrantTouchTypeOfFourth,
-    QuadrantTouchTypeOfNone,
+    QuadrantTouchTypeFirst,
+    QuadrantTouchTypeSecond,
+    QuadrantTouchTypeThird,
+    QuadrantTouchTypeFourth,
+    QuadrantTouchTypeNone,
 };
 
 /*
  环形区域分隔的份数:2等分/4等分
  */
 typedef NS_ENUM(NSInteger, AnnularSeparateType) {
-    AnnularSeparateTypeOfHalf,
-    AnnularSeparateTypeOfQuarter,
+    AnnularSeparateTypeHalf,
+    AnnularSeparateTypeQuarter,
 };
 
 typedef NS_ENUM(NSInteger, MoveDirection) {
-    MoveDirectionOfNoMove,
-    MoveDirectionOfUp,
-    MoveDirectionOfDown,
-    MoveDirectionOfLeft,
-    MoveDirectionOfRight,
+    MoveDirectionNoMove,
+    MoveDirectionUp,
+    MoveDirectionDown,
+    MoveDirectionLeft,
+    MoveDirectionRight,
 };
 
 @interface UIView (ZJToucMathEvent)

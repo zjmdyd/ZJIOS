@@ -21,7 +21,7 @@
 
 //源码文件中的行号
 - (void)test0 {
-    NSLog(@"%d", __LINE__);
+    NSLog(@"%d", __LINE__); // 24
 }
 
 //当前源代码文件全路径 －－>宏在预编译时会替换成当前的源文件名
@@ -47,13 +47,15 @@
  */
 - (void)test3 {
     NSInteger i = 1;
-    NSLog(@"%zd", i);
+    NSLog(@"i= %zd", i);
+    
     size_t s = 10;
     NSLog(@"s = %zd", s);
     
-    ssize_t t = -10;  //
+    ssize_t t = -10;
     NSLog(@"t = %zd", t);
 }
+
 
 /*
 #pragma mark - Navigation

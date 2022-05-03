@@ -14,9 +14,9 @@
 + (void)systemServiceWithPhone:(NSString *)phone type:(SystemServiceType)type {
     if (phone.length) {
         NSString *str;
-        if (type == SystemServiceTypeOfPone) {                  // 电话
+        if (type == SystemServiceTypePhone) {                   // 电话
             str = [NSString stringWithFormat:@"tel:%@", phone];
-        }else if (type == SystemServiceTypeOfMessage) {         // 信息
+        }else if (type == SystemServiceTypeMessage) {           // 信息
             str = [NSString stringWithFormat:@"sms:%@", phone];
         }
         

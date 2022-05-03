@@ -112,7 +112,7 @@
 }
 
 + (BOOL)isComVersion {
-    return [[self appInfoWithType:AppInfoTypeOfBundleIdentifier] hasPrefix:@"com"];
+    return [[self appInfoWithType:AppInfoTypeBundleIdentifier] hasPrefix:@"com"];
 }
 
 #pragma mark - 判断是否安装某APP

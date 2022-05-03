@@ -14,25 +14,25 @@
     CGFloat x = point.x, y = point.y;
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
-    if (type == AnnularSeparateTypeOfQuarter) {
+    if (type == AnnularSeparateTypeQuarter) {
         if (x > width/2 && y < height/2) {
-            return QuadrantTouchTypeOfFirst;
+            return QuadrantTouchTypeFirst;
         }else if (x < width/2 && y < height/2) {
-            return QuadrantTouchTypeOfSecond;
+            return QuadrantTouchTypeSecond;
         }else if (x < width/2 && y > height/2) {
-            return QuadrantTouchTypeOfThird;
+            return QuadrantTouchTypeThird;
         }else if (x > width/2 && y > height/2) {
-            return QuadrantTouchTypeOfFourth;
+            return QuadrantTouchTypeFourth;
         }else {
-            return QuadrantTouchTypeOfNone;
+            return QuadrantTouchTypeNone;
         }
     }else {
         if (y < width/2) {
-            return QuadrantTouchTypeOfFirst;
+            return QuadrantTouchTypeFirst;
         }else if(y > width/2 && y < width){
-            return QuadrantTouchTypeOfSecond;
+            return QuadrantTouchTypeSecond;
         }else {
-            return QuadrantTouchTypeOfNone;
+            return QuadrantTouchTypeNone;
         }
     }
 }
@@ -53,21 +53,21 @@
     CGFloat dy = startPoint.y - endPoint.y;    // 因为y值是向下增长的
     CGFloat dx = endPoint.x - startPoint.x;
     
-    MoveDirection result = MoveDirectionOfNoMove;
+    MoveDirection result = MoveDirectionNoMove;
     if (MAX(fabs(dy), fabs(dx)) < 5) {  // 设置有效滑动距离
-        return MoveDirectionOfNoMove;
+        return MoveDirectionNoMove;
     }
 
     CGFloat angle = [self getAngle:dx dy:dy];
     if (angle >= -45 && angle < 45) {
-        result = MoveDirectionOfRight;
+        result = MoveDirectionRight;
     } else if (angle >= 45 && angle < 135) {
-        result = MoveDirectionOfUp;
+        result = MoveDirectionUp;
     } else if (angle >= -135 && angle < -45) {
-        result = MoveDirectionOfDown;
+        result = MoveDirectionDown;
     }
     else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
-        result = MoveDirectionOfLeft;
+        result = MoveDirectionLeft;
     }
     
     return result;

@@ -10,11 +10,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, AppInfoType) {
-    AppInfoTypeOfDisplayName,
-    AppInfoTypeOfBundleName,
-    AppInfoTypeOfVersion,
-    AppInfoTypeOfBundleVersion,
-    AppInfoTypeOfBundleIdentifier
+    AppInfoTypeDisplayName,
+    AppInfoTypeBundleName,
+    AppInfoTypeVersion,
+    AppInfoTypeBundleVersion,
+    AppInfoTypeBundleIdentifier
 };
 
 @interface UIApplication (ZJApplication)

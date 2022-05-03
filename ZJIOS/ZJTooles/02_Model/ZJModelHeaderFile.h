@@ -14,8 +14,7 @@
 #import "ZJAlertObject.h"
 #import "ZJAlertSheetObj.h"
 #import "ZJCtrlConfig.h"
-#import "ZJTimerPoolManager.h"
-#import "ZJKeyboardManager.h"
+#import "ZJDocumentCofig.h"
 
 #endif /* ZJModelHeaderFile_h */
 

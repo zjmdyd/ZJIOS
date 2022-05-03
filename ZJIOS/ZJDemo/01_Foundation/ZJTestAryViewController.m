@@ -154,7 +154,7 @@
 }
 
 - (void)test0 {
-    NSLog(@"%@", [NSArray timeStringWithType:TimeStringTypeOf12Hour]);
+    NSLog(@"%@", [NSArray timeStringWithType:TimeStringType12Hour]);
 }
 
 /*

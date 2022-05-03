@@ -10,10 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, TimeStringType) {
-    TimeStringTypeOf12Hour,
-    TimeStringTypeOf24Hour,
-    TimeStringTypeOfMinute,
-    TimeStringTypeOfSecond,
+    TimeStringType12Hour,
+    TimeStringType24Hour,
+    TimeStringTypeMinute,
+    TimeStringTypeSecond,
 };
 
 @interface NSArray (ZJArray)

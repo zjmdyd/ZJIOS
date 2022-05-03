@@ -26,8 +26,7 @@
         @"ZJTestAryViewController", @"ZJTestMutableAryViewController", @"ZJTestDataViewController",
         @"ZJTestDictionaryViewController", @"ZJTestDateViewController", @"ZJTestNSRangeViewController",
         @"ZJTestStringViewController", @"ZJTestCopyStrongViewController", @"ZJTestCopyMutableCopyViewController",
-        @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController", @"ZJTestDocumentViewController",
-        @"ZJTestNSLogViewController",  
+        @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController", @"ZJTestNSLogViewController",  
     ];
 }
 
