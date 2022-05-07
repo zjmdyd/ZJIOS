@@ -24,7 +24,7 @@
 }
 
 - (void)writeToFileWithPathComponent:(NSString *)name needEncodeFileName:(BOOL)need suffix:(nullable NSString *)suffix {
-    ZJDocumentCofig *config = [ZJDocumentCofig new];
+    ZJDocumentWriteCofig *config = [ZJDocumentWriteCofig new];
     config.fileName = name;;
     config.needEncodFileName = need;
     config.documentType = [config documentTypeWithSuffix:suffix];
@@ -32,29 +32,17 @@
     [self writeToFileWithDocumentConfig:config];
 }
 
-- (void)writeToFileWithDocumentConfig:(ZJDocumentCofig *)config {
-    NSData *data;
-    if (config.documentType == ZJDocumentTypeJson) {
-        if ([NSJSONSerialization isValidJSONObject:self]) {
-            data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
-        }
-    }else if (config.documentType == ZJDocumentTypeString) {
-        if ([self isKindOfClass:[NSString class]]) {
-            data = [((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding];
-        }
-    }else {
-        if ([self isKindOfClass:[NSData class]]) {
-            data = (NSData *)self;
-        }
-    }
-    if (!data) {
-        NSLog(@"数据类型与给定类型不匹配或不支持改数据类型"); return;
+- (void)writeToFileWithDocumentConfig:(ZJDocumentWriteCofig *)config {
+    config.originValue = self;
+    
+    if (!config.data) {
+        return;
     }
 
     NSLog(@"writePath = %@", config.filePath);
     
     NSError *error;
-    [data writeToFile:config.filePath options:NSDataWritingAtomic error:&error];
+    [config.data writeToFile:config.filePath options:NSDataWritingAtomic error:&error];
     
     if (error) {
         NSLog(@"写入失败error:%@", error);
@@ -78,7 +66,7 @@
 }
 
 + (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need suffix:(nullable NSString *)suffix {
-    ZJDocumentCofig *config = [ZJDocumentCofig new];
+    ZJDocumentReadCofig *config = [ZJDocumentReadCofig new];
     config.fileName = name;;
     config.needEncodFileName = need;
     config.documentType = [config documentTypeWithSuffix:suffix];
@@ -86,31 +74,8 @@
     return [self readFileWithDocumentConfig:config];
 }
 
-+ (id)readFileWithDocumentConfig:(ZJDocumentCofig *)config {
-    NSString *path = config.filePath;
-    NSLog(@"readPath = %@", path);
-    
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    id value;
-    if (data) {
-        if (config.documentType == ZJDocumentTypeJson) {
-            NSError *error;
-            value = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            if (error) {
-                NSLog(@"读取序列化数据失败error:%@", error);
-            }else {
-                NSLog(@"读取序列化数据成功");
-            }
-        }else if (config.documentType == ZJDocumentTypeString) {
-            value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        }else {
-            value = data;
-        }
-    }else {
-        NSLog(@"读取文件数据失败");
-    }
-    
-    return value;
++ (id)readFileWithDocumentConfig:(ZJDocumentReadCofig *)config {
+    return config.readValue;
 }
 
 #pragma mark - 删除

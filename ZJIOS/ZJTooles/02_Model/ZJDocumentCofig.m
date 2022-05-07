@@ -13,13 +13,23 @@
 #endif
 
 #ifndef DocumentSuffixs
-#define DocumentSuffixs @[@".json", @".txt", @""]
+#define DocumentSuffixs @[@"", @".json", @".txt"]
 #endif
 
 @implementation ZJDocumentCofig
 
 @synthesize filePath = _filePath;
 @synthesize encodeFileName = _encodeFileName;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.documentType = ZJDocumentTypeData;
+    }
+    
+    return self;
+}
 
 - (NSString *)filePath {
     if (!_filePath) {
@@ -28,7 +38,7 @@
             name = self.encodeFileName;
         }
         NSString *path = [self.defaultBasePath stringByAppendingPathComponent:name];
-        if (self.documentType == ZJDocumentTypeJson || self.documentType == ZJDocumentTypeString) {
+        if (self.documentType == ZJDocumentTypeJson || self.documentType == ZJDocumentTypeFragment) {
             path = [path stringByAppendingString:DocumentSuffixs[self.documentType]];
         }
         _filePath = path;
@@ -63,7 +73,7 @@
         if ([suffix isEqualToString:@".json"] || [suffix isEqualToString:@"json"]) {
             type = ZJDocumentTypeJson;
         }else if ([suffix isEqualToString:@".txt"] || [suffix isEqualToString:@"txt"]) {
-            type = ZJDocumentTypeString;
+            type = ZJDocumentTypeFragment;
         }
     }
     

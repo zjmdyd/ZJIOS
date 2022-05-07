@@ -29,7 +29,7 @@
 }
 
 - (void)initSetting {
-    self.cellTitles = @[@[@"sandbox"], @[@"测试完整路径"], @[@"写入文件", @"删除文件", @"加密文件名写入", @"加密文件名删除"], @[@"序列化"]];
+    self.cellTitles = @[@[@"sandbox"], @[@"测试完整路径"], @[@"写入文件", @"删除文件", @"加密文件名写入", @"加密文件名删除"]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -72,8 +72,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSInteger indexOffset = indexPath.section > 2 ? 3 : 0;
-    NSString *selString = [NSString stringWithFormat:@"test%zd", indexPath.section + indexPath.row + indexOffset];
+    NSString *selString = [NSString stringWithFormat:@"test%zd", indexPath.section + indexPath.row];
     SEL sel = NSSelectorFromString(selString);
     
     if ([self respondsToSelector:sel]) {
@@ -170,39 +169,6 @@
 - (void)test5 {
     // 删除文件, 文件名加密
     [NSObject removeFileWithPathComponent:@"hello" needDeserialize:YES suffix:@".json"];
-}
-
-/*
- NSJSONReadingMutableContainers
- NSJSONReadingMutableLeaves
- NSJSONReadingAllowFragments
- */
-- (void)test6 {
-    NSDictionary *dic = @{@"hh_key" : @"haha\ngg"};
-    NSError *wError;
-
-    if ([NSJSONSerialization isValidJSONObject:dic]) {
-        NSLog(@"格式正确");
-    }else {
-        NSLog(@"格式错误");
-    }
-    NSData *value =  [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&wError];
-    
-    if (!wError) {
-        NSLog(@"序列化成功");
-    }else {
-        NSLog(@"序列化失败");
-    }
-    NSError *rError;
-
-    id result = [NSJSONSerialization JSONObjectWithData:value options:NSJSONReadingMutableContainers error:&rError];
-    if (!rError) {
-        NSLog(@"反序列化成功:result = %@, %@", result, [result class]);
-    }else {
-        NSLog(@"反序列化失败:result = %@, %@", result, [result class]);
-    }
-    
-    NSLog(@"data_isValidJSONObject = %d", [NSJSONSerialization isValidJSONObject:value]);   // data_isValidJSONObject = 0
 }
 
 /*

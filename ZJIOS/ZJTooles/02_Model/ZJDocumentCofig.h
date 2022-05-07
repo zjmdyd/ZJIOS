@@ -10,9 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, ZJDocumentType) {
-    ZJDocumentTypeJson,
-    ZJDocumentTypeString,
     ZJDocumentTypeData,
+    ZJDocumentTypeJson,
+    ZJDocumentTypeFragment,
 };
 
 @interface ZJDocumentCofig : NSObject
@@ -23,7 +23,10 @@ typedef NS_ENUM(NSInteger, ZJDocumentType) {
 
 @property (nonatomic, copy, readonly) NSString *encodeFileName;
 @property (nonatomic, copy, readonly) NSString *filePath;
+
 @property (nonatomic, copy) NSString *defaultBasePath;
+
+
 
 - (ZJDocumentType)documentTypeWithSuffix:(NSString *)suffix;
 

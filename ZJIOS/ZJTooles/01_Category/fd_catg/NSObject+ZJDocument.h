@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZJDocumentCofig.h"
+#import "ZJDocumentWriteCofig.h"
+#import "ZJDocumentReadCofig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)writeToFileWithPathComponent:(NSString *)name needEncodeFileName:(BOOL)need;
 - (void)writeToFileWithPathComponent:(NSString *)name needEncodeFileName:(BOOL)need suffix:(nullable NSString *)suffix;
 
-- (void)writeToFileWithDocumentConfig:(ZJDocumentCofig *)config;
+- (void)writeToFileWithDocumentConfig:(ZJDocumentWriteCofig *)config;
 
 #pragma mark - 读取
 
@@ -33,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need;
 + (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need suffix:(nullable NSString *)suffix;
 
-+ (id)readFileWithDocumentConfig:(ZJDocumentCofig *)config;
++ (id)readFileWithDocumentConfig:(ZJDocumentReadCofig *)config;
 
 #pragma mark - 删除
 
