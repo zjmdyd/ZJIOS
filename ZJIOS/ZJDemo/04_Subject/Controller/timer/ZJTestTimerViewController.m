@@ -57,7 +57,7 @@
             // 执行完invalid方法后timer才会被销毁，timer的block方法才不会再执行
             NSLog(@"kkkk"); // VC销毁后还是会继续执行
             if (weakSelf) {
-                [weakSelf timerEvent:nil];  // 不会执行，因为self已经被销毁
+                [weakSelf timerEvent:nil];  // 不会执行，因为self已经被销毁,执行else
             }else {
                 NSLog(@"self已经被销毁");    // 会执行，因为timer没有被销毁
             }

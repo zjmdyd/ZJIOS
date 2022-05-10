@@ -10,6 +10,8 @@
 
 @interface ZJTestBarButtonItemViewController ()
 
+@property (nonatomic, strong) UILabel *label;
+
 @end
 
 @implementation ZJTestBarButtonItemViewController
@@ -32,6 +34,12 @@
     [btn setTitle:@"点我" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, btn.frame.origin.y + 55, 250, 21)];
+    self.label.text = @"系统rightBarButtonItems";
+    self.label.textAlignment = NSTextAlignmentCenter;
+    self.label.center = CGPointMake(btn.center.x, self.label.center.y);
+    [self.view addSubview:self.label];
 }
 
 /*
@@ -42,9 +50,11 @@
     if (time == 0) {    // 自定义
         self.navigationItem.rightBarButtonItems = nil;
         self.navigationItem.rightBarButtonItem = [self barButtonItemWithCustomViewWithImageNames:@[@"ic_more", @"ic_setting"]];
+        self.label.text = @"customView_rightBarButtonItem";
     }else {             // 系统
         self.navigationItem.rightBarButtonItem = nil;
         self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"ic_more", @"ic_setting"]];
+        self.label.text = @"系统rightBarButtonItems";
     }
     time++;
     time %= 2;

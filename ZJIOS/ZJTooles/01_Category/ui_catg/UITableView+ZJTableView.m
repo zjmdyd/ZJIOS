@@ -18,8 +18,7 @@
 + (UISwitch *)accessorySwitchWithTarget:(id)target {
     UISwitch *sw = [[UISwitch alloc] init];
     BOOL resp =  [target respondsToSelector:kSwitchAction];
-    NSLog(@"resp = %d", resp);
-    if (target) {
+    if (target && resp) {
         [sw addTarget:target action:kSwitchAction forControlEvents:UIControlEventValueChanged];
     }
 #ifdef MainColor

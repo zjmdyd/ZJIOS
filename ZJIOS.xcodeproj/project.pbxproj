@@ -89,6 +89,7 @@
 		6587047026E6006D00669B5D /* ZJTestTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6587046F26E6006D00669B5D /* ZJTestTimerViewController.m */; };
 		6587E97A281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6587E979281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m */; };
 		658AE87026A0119A00688CC5 /* ZJTestBarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658AE86F26A0119A00688CC5 /* ZJTestBarButtonItemViewController.m */; };
+		658CA9AB2826468C002F0DDA /* UITextField+ZJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9AA2826468C002F0DDA /* UITextField+ZJTextField.m */; };
 		658FC463279FEAE800A7FE1D /* ZJTestTimerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC462279FEAE800A7FE1D /* ZJTestTimerTableViewController.m */; };
 		658FC467279FECC100A7FE1D /* ZJTestBlockTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC466279FECC100A7FE1D /* ZJTestBlockTimerViewController.m */; };
 		658FC46A279FF9C000A7FE1D /* NSTimer+ZJBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC469279FF9C000A7FE1D /* NSTimer+ZJBlockTimer.m */; };
@@ -338,6 +339,8 @@
 		6587E979281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJManualReleaseTimerViewController.m; sourceTree = "<group>"; };
 		658AE86E26A0119A00688CC5 /* ZJTestBarButtonItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestBarButtonItemViewController.h; sourceTree = "<group>"; };
 		658AE86F26A0119A00688CC5 /* ZJTestBarButtonItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestBarButtonItemViewController.m; sourceTree = "<group>"; };
+		658CA9A92826468C002F0DDA /* UITextField+ZJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+ZJTextField.h"; sourceTree = "<group>"; };
+		658CA9AA2826468C002F0DDA /* UITextField+ZJTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ZJTextField.m"; sourceTree = "<group>"; };
 		658FC461279FEAE800A7FE1D /* ZJTestTimerTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestTimerTableViewController.h; sourceTree = "<group>"; };
 		658FC462279FEAE800A7FE1D /* ZJTestTimerTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestTimerTableViewController.m; sourceTree = "<group>"; };
 		658FC465279FECC100A7FE1D /* ZJTestBlockTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestBlockTimerViewController.h; sourceTree = "<group>"; };
@@ -733,6 +736,8 @@
 				65F7C6A62692E74600121EBD /* UIViewExt.m */,
 				65F7C6882692E74500121EBD /* UITextView+ZJTextView.h */,
 				65F7C69D2692E74600121EBD /* UITextView+ZJTextView.m */,
+				658CA9A92826468C002F0DDA /* UITextField+ZJTextField.h */,
+				658CA9AA2826468C002F0DDA /* UITextField+ZJTextField.m */,
 				65F7C6922692E74600121EBD /* UIView+ZJView.h */,
 				65F7C68E2692E74500121EBD /* UIView+ZJView.m */,
 				65AAD40228153AD800A89F10 /* UIView+ZJToucMathEvent.h */,
@@ -1324,6 +1329,7 @@
 				65F7C6AD2692E74600121EBD /* UICollectionView+ZJCollectionView.m in Sources */,
 				6502DC8526EB5FF900D597BC /* ZJAlertObject.m in Sources */,
 				65D303AC28251F2E0063723F /* ZJDocumentWriteCofig.m in Sources */,
+				658CA9AB2826468C002F0DDA /* UITextField+ZJTextField.m in Sources */,
 				65F7C6B32692E74600121EBD /* UIBarButtonItem+ZJBarButtonItem.m in Sources */,
 				65F7C6B72692E74600121EBD /* UIViewExt.m in Sources */,
 				65939427281BF3A300D4872C /* ZJTestTableViewController.m in Sources */,
