@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)validHttpsPath;
 
 - (NSString *)separateWithCharacter:(NSString *)cha;
+- (NSString *)pureNumberString;
+- (NSString *)pureNumberStringContainedPoint:(BOOL)hasPoint;
 
 /**
  *  字符串翻转

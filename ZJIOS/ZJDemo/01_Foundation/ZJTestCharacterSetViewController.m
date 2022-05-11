@@ -113,6 +113,8 @@
     tf.center = self.view.center;
     tf.delegate = tf;
     tf.borderStyle = UITextBorderStyleRoundedRect;
+    tf.textType = ZJTextFieldTextTypeNumber;
+    tf.containedPoint = YES;
     [self.view addSubview:tf];
 }
 

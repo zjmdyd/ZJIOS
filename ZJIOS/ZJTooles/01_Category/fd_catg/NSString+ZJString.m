@@ -83,6 +83,24 @@
     return string;
 }
 
+- (NSString *)pureNumberString {
+    return [self pureNumberStringContainedPoint:NO];
+}
+
+- (NSString *)pureNumberStringContainedPoint:(BOOL)hasPoint {
+    NSString *matchNum;
+    if (hasPoint) {
+        matchNum = @"0123456789.";
+    }else {
+        matchNum = @"0123456789";
+    }
+    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:matchNum];
+    NSArray *filterStrs = [self componentsSeparatedByCharactersInSet:charSet.invertedSet];
+    NSString *str = [filterStrs componentsJoinedByString:@""];
+    NSLog(@"self = %@, str = %@", self, str);
+    return str;
+}
+
 /**
  翻转字符串: abcd-->dcba
  */

@@ -9,14 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, UITextFieldTextType) {
-    UITextFieldTextTypeDefault,
-    UITextFieldTextTypeNumber,  // 只能输入数字
+typedef NS_ENUM(NSInteger, ZJTextFieldTextType) {
+    ZJTextFieldTextTypeDefault,
+    ZJTextFieldTextTypeNumber,  // 只能输入数字
 };
 
 @interface UITextField (ZJTextField)<UITextFieldDelegate>
 
-@property (nonatomic, assign) UITextFieldTextType textType;
+@property (nonatomic, assign) BOOL containedPoint;
+@property (nonatomic, assign) ZJTextFieldTextType textType;
 
 @end
 
