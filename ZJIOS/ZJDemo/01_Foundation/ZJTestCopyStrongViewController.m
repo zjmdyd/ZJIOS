@@ -11,8 +11,9 @@
 
 @property (nonatomic, copy) NSString *str_copy;
 @property (nonatomic, strong) NSString *str_strong;
-@property (nonatomic, strong) NSMutableString *mustr_strong;
+
 @property (nonatomic, copy) NSMutableString *mustr_copy;
+@property (nonatomic, strong) NSMutableString *mustr_strong;
 
 @end
 
@@ -21,41 +22,67 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test3];
+    [self test0];
 }
 
 /*
- 2022-01-10 18:16:20.897188+0800 ZJIOS[43844:1094038] string源:      0x600002c7b390---__NSCFString---123456789000
- 2022-01-10 18:16:20.897446+0800 ZJIOS[43844:1094038] _str_copy:     0x6000022a5880---__NSCFString---123456789000
- 2022-01-10 18:16:20.897625+0800 ZJIOS[43844:1094038] _str_strong:   0x600002c7b390---__NSCFString---123456789000
- 2022-01-10 18:16:20.897792+0800 ZJIOS[43844:1094038] _mustr_copy:   0x6000022a6e60---__NSCFString---123456789000
- 2022-01-10 18:16:20.897971+0800 ZJIOS[43844:1094038] _mustr_strong: 0x600002c7b390---__NSCFString---123456789000
- 2022-01-10 18:16:20.898148+0800 ZJIOS[43844:1094038] -----------修改源------------
- 2022-01-10 18:16:20.898312+0800 ZJIOS[43844:1094038] string源:      0x600002c7b390---__NSCFString---123456789000qwertyuiosdfghj
- 2022-01-10 18:16:20.898425+0800 ZJIOS[43844:1094038] _str_copy:     0x6000022a5880---__NSCFString---123456789000
- 2022-01-10 18:16:20.898562+0800 ZJIOS[43844:1094038] _str_strong:   0x600002c7b390---__NSCFString---123456789000qwertyuiosdfghj
- 2022-01-10 18:16:20.898669+0800 ZJIOS[43844:1094038] _mustr_copy:   0x6000022a6e60---__NSCFString---123456789000
- 2022-01-10 18:16:20.898808+0800 ZJIOS[43844:1094038] _mustr_strong: 0x600002c7b390---__NSCFString---123456789000qwertyuiosdfghj
+ 源字符串为可变字符串
+ 修改源字符串，地址不会改变
+ 分别赋值给(copy/strong)的(字符串/可变字符串)变量
+ self.str_copy、self.mustr_copy 赋值之后重新生成了一块地址，是深复制。经过copy修饰过的可变字符串，变为不可变字符串
  */
-- (void)testMutabStr {
-    NSMutableString *string = [[NSMutableString alloc]initWithString:@"123456789000"];
+/*
+ 2022-05-12 17:19:02.054591+0800 ZJIOS[8817:321897] 源string:      0x6000039ed0b0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.054740+0800 ZJIOS[8817:321897] _str_copy:     0x6000039ecea0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.054833+0800 ZJIOS[8817:321897] _str_strong:   0x6000039ed0b0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.054914+0800 ZJIOS[8817:321897] _mustr_copy:   0x6000039ecba0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.055028+0800 ZJIOS[8817:321897] _mustr_strong: 0x6000039ed0b0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.055133+0800 ZJIOS[8817:321897] -----------修改源------------
+ 2022-05-12 17:19:02.055248+0800 ZJIOS[8817:321897] 源string:      0x6000039ed0b0---__NSCFString---呵呵哈哈哈或111
+ 2022-05-12 17:19:02.055341+0800 ZJIOS[8817:321897] _str_copy:     0x6000039ecea0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.055399+0800 ZJIOS[8817:321897] _str_strong:   0x6000039ed0b0---__NSCFString---呵呵哈哈哈或111
+ 2022-05-12 17:19:02.055452+0800 ZJIOS[8817:321897] _mustr_copy:   0x6000039ecba0---__NSCFString---呵呵哈哈哈或
+ 2022-05-12 17:19:02.055538+0800 ZJIOS[8817:321897] _mustr_strong: 0x6000039ed0b0---__NSCFString---呵呵哈哈哈或111
+ 
+ copy修饰的字符串(可变/不可变)会开辟一块新地址
+ strong修饰的字符串(可变/不可变)不会开辟新地址
+ */
+- (void)test0 {
+    NSMutableString *string = [[NSMutableString alloc] initWithString:@"呵呵哈哈哈或"];
     self.str_copy = string;
     self.str_strong = string;
+    
     self.mustr_strong = string;
     self.mustr_copy = string;
-    //    [mustr_copy appendString:@"qwertyuiosdfghj"] 会崩溃
-    NSLog(@"string源:      %p---%@---%@", string, string.class, string);
+    
+    NSLog(@"源string:      %p---%@---%@", string, string.class, string);
     [self printMethod];
+    [self printMethod2];
+    
     NSLog((@"-----------修改源------------"));
-    [string appendString:@"qwertyuiosdfghj"];
-    NSLog(@"string源:      %p---%@---%@", string, string.class, string);
+    [string appendString:@"111"];
+    NSLog(@"源string:      %p---%@---%@", string, string.class, string);
     [self printMethod];
+    [self printMethod2];
+//    [self.mustr_copy appendString:@"222"]; // 会崩溃
 }
-/*
- 可见对于可变的源字符串,修改内容时候，指针地址不会改变，为原地址。
- str_copy、self.mustr_copy 赋值之后重新生成了一块地址，是深复制。经过copy修饰过的可变字符串，变为不可变字符串
- */
 
+// 打印方法
+- (void)printMethod {
+    NSLog(@"_str_copy:     %p---%@---%@", _str_copy, _str_copy.class, _str_copy);
+    NSLog(@"_str_strong:   %p---%@---%@", _str_strong, _str_strong.class ,_str_strong);
+    
+    NSLog(@"_mustr_copy:   %p---%@---%@", _mustr_copy, _mustr_copy.class, _mustr_copy);
+    NSLog(@"_mustr_strong: %p---%@---%@", _mustr_strong, _mustr_strong.class, _mustr_strong);
+}
+
+- (void)printMethod2 {
+    NSLog(@"self.str_copy:      %p--%@--%@", self.str_copy, self.str_copy.class, self.str_copy);
+    NSLog(@"self.str_strong:    %p--%@--%@", self.str_strong, self.str_strong.class, self.str_strong);
+    
+    NSLog(@"self.mustr_copy:    %p--%@--%@", self.mustr_copy, self.mustr_copy.class, self.mustr_copy);
+    NSLog(@"self.mustr_strong:  %p--%@--%@", self.mustr_strong, self.mustr_strong.class, self.mustr_strong);
+}
 
 /*
  2022-01-10 18:25:42.674118+0800 ZJIOS[44058:1101200] string源:      0x600002a768e0---__NSCFString---123456789000
@@ -146,10 +173,7 @@
  2022-01-11 17:03:48.226993+0800 ZJIOS[55310:1383421] 0x600001c418a0--0x7fc7b2f2f220--__NSCFString--hello baby!
  2022-01-11 17:03:48.227078+0800 ZJIOS[55310:1383421] 0x600001264b10--0x7fc7b2f2f228--__NSCFString--hello baby!hello meimei
  */
-- (void)printMethod2 {
-    NSLog(@"%p--%p--%@--%@", self.str_copy, &_str_copy, self.str_copy.class, self.str_copy);
-    NSLog(@"%p--%p--%@--%@", self.str_strong, &_str_strong, self.str_strong.class, self.str_strong);
-}
+
 
 /*
  总结:
@@ -164,13 +188,8 @@
  1.copy 返回的是不可变对象（immutableObject）；如果用copy返回值调用mutable对象的方法就会crash。
  2.mutableCopy 返回的是可变对象（mutableObject）
  */
-// 打印方法
-- (void)printMethod {
-    NSLog(@"_str_copy:     %p---%@---%@", _str_copy, _str_copy.class, _str_copy);
-    NSLog(@"_str_strong:   %p---%@---%@", _str_strong, _str_strong.class ,_str_strong);
-    NSLog(@"_mustr_copy:   %p---%@---%@", _mustr_copy, _mustr_copy.class, _mustr_copy);
-    NSLog(@"_mustr_strong: %p---%@---%@", _mustr_strong, _mustr_strong.class, _mustr_strong);
-}
+
+
 
 /*
  #pragma mark - Navigation
