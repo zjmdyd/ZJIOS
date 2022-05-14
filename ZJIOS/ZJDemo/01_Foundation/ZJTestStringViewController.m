@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test1];
+    [self test0];
 }
 
 /*
@@ -30,6 +30,18 @@
 // 2022-05-12 18:24:45.931228+0800 ZJIOS[10209:377440] NSTaggedPointerString->NSString->NSObject->(null):0xe53eb7a9d7f35e53
 // 2022-05-12 18:24:45.931323+0800 ZJIOS[10209:377440] __NSCFString->NSMutableString->NSString->NSObject:0x600003ab0680
 
+/*
+ CFShowStr((CFStringRef)str2);
+ 
+ Length 36
+ IsEightBit 1
+ HasLengthByte 1
+ HasNullByte 1
+ InlineContents 1
+ Allocator SystemDefault
+ Mutable 0
+ Contents 0x600003141290
+ */
 - (void)test0 {
     NSString *str0 = @"a";
     NSLog(@"%@->%@->%@->%@:%p", [str0 class], [[str0 class] superclass], [[[str0 class] superclass] superclass] ,[[[[str0 class] superclass] superclass] superclass], str0);
@@ -91,6 +103,9 @@
  字符串较短的class,系统会对其进行比较特殊的内存管理,NSObject字符串比较短,直接存储在栈区,类型为NSTaggedPointerString,不论你NSStringFromClass多少次,得到的都是同一个内存地址的string;但对于较长的class,则为__NSCFString类型,而NSCFString存储在堆区,每次NSStringFromClass都会得到不同内存地址的string
  
  __NSCFConstantString类型的字符串,存储在数据区,即使当前控制器被dealloc释放了,存在于这个控制器的该字符串所在内存仍然不会被销毁.通过快捷方式创建的字符串,无论字符串多长或多短,都是__NSCFConstantString类型,存储在数据区.
+ */
+/*
+ NSString是一个类簇，也就是说NSString只是一个公共接口，实际实现的类是不同的
  */
 
 /*

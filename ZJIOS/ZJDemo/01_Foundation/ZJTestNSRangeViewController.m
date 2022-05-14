@@ -20,18 +20,13 @@
     [self test2];
 }
 
-/*
- [6,7,8,9,10]
- 
- 2022-01-20 18:18:43.132555+0800 ZJIOS[19345:632376] num = 10
- */
-- (void)test2 {
-    NSNumber *num = @10;
-    NSInteger validValue = [num validValueWithRange:NSMakeRange(6, 5)];
-    NSLog(@"num = %ld", (long)validValue);
+//2021-12-07 16:25:26.509359+0800 ZJIOS[18390:165713] str1 = def, str2 = abc
+- (void)test0 {
+    NSString *str = @"abcdefg";
+    NSString *str1 = [str substringWithRange:NSMakeRange(3, 3)];
+    NSString *str2 = [str substringWithRange:NSMakeRange(0, 3)];
     
-    BOOL is_loc =  NSLocationInRange(0, NSMakeRange(0, 3));  // [0, 1, 2]
-    NSLog(@"is_loc = %d", is_loc);
+    NSLog(@"str1 = %@, str2 = %@", str1, str2);
 }
 
 /*
@@ -44,13 +39,19 @@
     NSLog(@"str3 = %@, str4 = %@", str3, str4);
 }
 
-//2021-12-07 16:25:26.509359+0800 ZJIOS[18390:165713] str1 = def, str2 = abc
-- (void)test0 {
-    NSString *str = @"abcdefg";
-    NSString *str1 = [str substringWithRange:NSMakeRange(3, 3)];
-    NSString *str2 = [str substringWithRange:NSMakeRange(0, 3)];
+/*
+ [6,7,8,9,10]
+ 
+ 2022-05-14 23:49:42.195586+0800 ZJIOS[8503:287062] num = 10
+ 2022-05-14 23:49:42.195737+0800 ZJIOS[8503:287062] is_loc = 1
+ */
+- (void)test2 {
+    NSNumber *num = @10;
+    NSInteger validValue = [num validValueWithRange:NSMakeRange(6, 5)];
+    NSLog(@"num = %ld", (long)validValue);
     
-    NSLog(@"str1 = %@, str2 = %@", str1, str2);
+    BOOL is_loc =  NSLocationInRange(0, NSMakeRange(0, 3));  // [0, 1, 2]
+    NSLog(@"is_loc = %d", is_loc);
 }
 
 /*

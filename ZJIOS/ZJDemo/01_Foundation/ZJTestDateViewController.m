@@ -17,48 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self test5];
-}
-
-- (void)test5 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-09-09 09:09:09" withStyle:ZJDateFormatMediumStyle];
-    NSDate *date2 = [NSDate dateFromString:@"2021-12-11 19:10:09" withFormat:@"yyyy/MM/dd HH:mm:ss"];
-    BOOL isSame =  [date1 isEqualToDate:date2];
-    NSLog(@"isSame = %@, %@-->%@", @(isSame), @([date1 compare:date2]), [date1 dateToStringWithStyle:ZJDateFormatShortStyle]);
-}
-
-- (void)test4 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 19:00:00" withStyle:ZJDateFormatFullStyle];
-    NSDate *date2 = [NSDate date];
-    NSInteger day = [NSDate daySpanFromDate:date1 toDate:date2];
-    NSLog(@"day = %@", @(day));
-}
-
-/*
- 不改变NSDateFormatter
- 2021-12-13 17:50:27.719384+0800 ZJIOS[22932:292158] fmt1 = <NSDateFormatter: 0x6000035d93b0>
- 2021-12-13 17:50:27.722130+0800 ZJIOS[22932:292158] fmt2 = <NSDateFormatter: 0x6000035d93b0>
- 2021-12-13 17:50:27.722594+0800 ZJIOS[22932:292158] date1 = Fri Dec 10 20:00:00 2021
- 2021-12-13 17:50:27.722679+0800 ZJIOS[22932:292158] str = 2021-12-13
- */
-- (void)test3 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
-    NSString *str;// = [[NSDate date] dateToStringWithFormat:@"yyyy-MM-dd"];
-    NSLog(@"date1 = %@", date1);
-    NSLog(@"str = %@", str);
-}
-
-/*
- - (NSDateComponents *)components:(NSCalendarUnit)unitFlags fromDate:(NSDate *)startingDate toDate:(NSDate *)resultDate options:(NSCalendarOptions)opts;可能为负数
- */
-- (void)test2 {
-    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
-    NSLog(@"%@", @([date isYesterday]));
-}
-
-- (void)test1 {
-    NSDate *date = [NSDate date];
-    NSLog(@"%@", @(date.timeIntervalSince1970));
+    [self test3];
 }
 
 // 周:(1, 2, 3, 4, 5, 6, 7)
@@ -87,6 +46,56 @@
     NSLog(@"%ld", (long)cmps.yearForWeekOfYear);
     NSLog(@"%ld", (long)cmps.timeZone);
 }
+
+- (void)test1 {
+    NSDate *date = [NSDate date];
+    NSLog(@"%@", @(date.timeIntervalSince1970));
+}
+
+/*
+ - (NSDateComponents *)components:(NSCalendarUnit)unitFlags fromDate:(NSDate *)startingDate toDate:(NSDate *)resultDate options:(NSCalendarOptions)opts;可能为负数
+ */
+- (void)test2 {
+    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
+    NSLog(@"%@", @([date isYesterday]));
+}
+
+/*
+ 两个方法中的ZJDateFormatter为同一个
+ 2021-12-13 17:50:27.719384+0800 ZJIOS[22932:292158] fmt1 = <NSDateFormatter: 0x6000035d93b0>
+ 2021-12-13 17:50:27.722130+0800 ZJIOS[22932:292158] fmt2 = <NSDateFormatter: 0x6000035d93b0>
+ 2021-12-13 17:50:27.722594+0800 ZJIOS[22932:292158] date1 = Fri Dec 10 20:00:00 2021
+ 2021-12-13 17:50:27.722679+0800 ZJIOS[22932:292158] str = 2021-12-13
+ */
+- (void)test3 {
+    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
+    NSString *str = [[NSDate date] dateToStringWithFormat:@"yyyy-MM-dd"];
+    NSLog(@"date1 = %@", date1);
+    NSLog(@"str = %@", str);
+}
+
+/*
+ 2022-05-15 00:14:04.509782+0800 ZJIOS[9286:314978] data1 = 2022-05-09 00:07:00
+ 2022-05-15 00:14:04.510009+0800 ZJIOS[9286:314978] date2 = 2022-05-15 00:14:04
+ 2022-05-15 00:14:04.510107+0800 ZJIOS[9286:314978] daySpan = 6
+ */
+- (void)test4 {
+    NSDate *date1 = [NSDate dateFromString:@"2022-05-09 00:07:00" withStyle:ZJDateFormatFullStyle];
+    NSDate *date2 = [NSDate date];
+    NSInteger daySpan = [NSDate daySpanFromDate:date1 toDate:date2];
+    NSLog(@"data1 = %@", [date1 dateToStringWithStyle:ZJDateFormatFullStyle]);
+    NSLog(@"date2 = %@", [date2 dateToStringWithStyle:ZJDateFormatFullStyle]);
+    NSLog(@"daySpan = %@", @(daySpan));
+}
+
+// 2022-05-14 23:54:17.798745+0800 ZJIOS[8645:291401] isSame = 0, (date1 compare:date2):-1, ZJDateFormatShortStyle:2021-9-9 9:9:9
+- (void)test5 {
+    NSDate *date1 = [NSDate dateFromString:@"2021-09-09 09:09:09" withStyle:ZJDateFormatMediumStyle];
+    NSDate *date2 = [NSDate dateFromString:@"2021-12-11 19:10:09" withFormat:@"yyyy/MM/dd HH:mm:ss"];
+    BOOL isSame =  [date1 isEqualToDate:date2];
+    NSLog(@"isSame = %@, (date1 compare:date2):%@, ZJDateFormatShortStyle:%@", @(isSame), @([date1 compare:date2]), [date1 dateToStringWithStyle:ZJDateFormatShortStyle]);
+}
+
 /*
 #pragma mark - Navigation
 

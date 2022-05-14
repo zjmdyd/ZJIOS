@@ -23,10 +23,11 @@
 
 - (void)initAry {
     self.cellTitles = @[
-        @"ZJTestAryViewController", @"ZJTestMutableAryViewController", @"ZJTestDataViewController",
-        @"ZJTestDictionaryViewController", @"ZJTestDateViewController", @"ZJTestNSRangeViewController",
-        @"ZJTestStringViewController", @"ZJTestCopyStrongViewController", @"ZJTestCopyMutableCopyViewController",
-        @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController", @"ZJTestNSLogViewController",  
+        @"ZJTestAryViewController", @"ZJTestArySortedViewController", @"ZJTestStringViewController",
+        @"ZJTestCopyStrongPopertyViewController", @"ZJTestCopyMutableCopyMethodViewController", @"ZJTestMutableAryViewController",
+        @"ZJTestDataViewController", @"ZJTestDictionaryViewController", @"ZJTestDateViewController",
+        @"ZJTestNSRangeViewController", @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController",
+        @"ZJTestNSLogViewController",
     ];
 }
 

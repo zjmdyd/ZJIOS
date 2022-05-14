@@ -1,5 +1,5 @@
 //
-//  ZJTestCopyStrongViewController.h
+//  ZJTestCopyStrongPopertyViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2022/1/10.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestCopyStrongViewController : ZJViewController
+@interface ZJTestCopyStrongPopertyViewController : ZJViewController
 
 @end
 

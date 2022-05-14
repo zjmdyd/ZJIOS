@@ -1,5 +1,5 @@
 //
-//  ZJTestCopyMutableCopyViewController.h
+//  ZJTestCopyMutableCopyMethodViewController.h
 //  ZJIOS
 //
 //  Created by Zengjian on 2021/6/16.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestCopyMutableCopyViewController : ZJViewController
+@interface ZJTestCopyMutableCopyMethodViewController : ZJViewController
 
 @end
 

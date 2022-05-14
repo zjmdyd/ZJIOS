@@ -177,11 +177,16 @@
     return [NSDate daySpanFromDate:self toDate:date];
 }
 
+/*
+ NSUInteger unitFlags = NSCalendarUnitDay;
+ NSUInteger unitFlags = NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+ 两者效果一样
+ */
 + (NSInteger)daySpanFromDate:(NSDate *)firstDate toDate:(NSDate *)secondDate {
-    NSCalendar *clendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    NSDateComponents *cmps = [clendar components:unitFlags fromDate:firstDate toDate:secondDate options:0];
-    NSInteger diffDay = [cmps day];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSUInteger unitFlags = NSCalendarUnitDay;
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:firstDate toDate:secondDate options:NSCalendarWrapComponents];
+    NSInteger diffDay = [comps day];
     
     return diffDay;
 }
