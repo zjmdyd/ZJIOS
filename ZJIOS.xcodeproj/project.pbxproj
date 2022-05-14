@@ -70,6 +70,9 @@
 		6502DC8626EB5FF900D597BC /* ZJAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6502DC7F26EB5FF900D597BC /* ZJAlertAction.m */; };
 		6502DC8726EB5FF900D597BC /* ZJTextInputConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6502DC8026EB5FF900D597BC /* ZJTextInputConfig.m */; };
 		6504AF5F282FF881005E1275 /* ZJTestArySortedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6504AF5E282FF881005E1275 /* ZJTestArySortedViewController.m */; };
+		6504AF622830104D005E1275 /* sorted.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF602830104D005E1275 /* sorted.rtf */; };
+		6504AF632830104D005E1275 /* sortedArrayUsingComparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF612830104D005E1275 /* sortedArrayUsingComparator.png */; };
+		6504AF6528301098005E1275 /* NSTaggedPointerString.docx in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF6428301098005E1275 /* NSTaggedPointerString.docx */; };
 		650F3F172823A8D80029F7A5 /* ZJTestJsonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */; };
 		6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025126940991003B652F /* UINavigationController+ZJNaviController.m */; };
 		6516025826942C97003B652F /* UIViewController+ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025726942C97003B652F /* UIViewController+ZJViewController.m */; };
@@ -299,6 +302,9 @@
 		6502DC8226EB5FF900D597BC /* ZJTextInputConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJTextInputConfig.h; sourceTree = "<group>"; };
 		6504AF5D282FF881005E1275 /* ZJTestArySortedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestArySortedViewController.h; sourceTree = "<group>"; };
 		6504AF5E282FF881005E1275 /* ZJTestArySortedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestArySortedViewController.m; sourceTree = "<group>"; };
+		6504AF602830104D005E1275 /* sorted.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = sorted.rtf; sourceTree = "<group>"; };
+		6504AF612830104D005E1275 /* sortedArrayUsingComparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sortedArrayUsingComparator.png; sourceTree = "<group>"; };
+		6504AF6428301098005E1275 /* NSTaggedPointerString.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = NSTaggedPointerString.docx; sourceTree = "<group>"; };
 		650F3F152823A8D80029F7A5 /* ZJTestJsonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestJsonTableViewController.h; sourceTree = "<group>"; };
 		650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestJsonTableViewController.m; sourceTree = "<group>"; };
 		6516025026940991003B652F /* UINavigationController+ZJNaviController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZJNaviController.h"; sourceTree = "<group>"; };
@@ -925,6 +931,9 @@
 		657D57BB281F7A20008B1964 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				6504AF6428301098005E1275 /* NSTaggedPointerString.docx */,
+				6504AF602830104D005E1275 /* sorted.rtf */,
+				6504AF612830104D005E1275 /* sortedArrayUsingComparator.png */,
 				654ABAC2277C47260048F7A8 /* zjFoundation.md */,
 				654ABACA277C60B40048F7A8 /* other.md */,
 			);
@@ -1192,6 +1201,7 @@
 				38D13DB0267F8D4000BCAC42 /* block-struct.jpeg in Resources */,
 				384FE19B268DDB5F00E568AF /* ZJTestServerViewController.xib in Resources */,
 				38A1F0CD267B949600A4D044 /* MVC.gif in Resources */,
+				6504AF632830104D005E1275 /* sortedArrayUsingComparator.png in Resources */,
 				3883B9BC268EBE9800236663 /* userHelp.html in Resources */,
 				38A1F09C267993D200A4D044 /* runloop.png in Resources */,
 				38A1F0AE267A5E8D00A4D044 /* 野指针调试.jpeg in Resources */,
@@ -1206,9 +1216,11 @@
 				38A1F095267901E600A4D044 /* runtime_class.png in Resources */,
 				38A1F0A52679A8AD00A4D044 /* MVP.png in Resources */,
 				38A1F09726790A6800A4D044 /* metaClass.png in Resources */,
+				6504AF6528301098005E1275 /* NSTaggedPointerString.docx in Resources */,
 				38D13DC52680C00E00BCAC42 /* 内存五大区.png in Resources */,
 				38D13DC32680C00E00BCAC42 /* block_bref_2.png in Resources */,
 				382EE8DB26750B04008AB02C /* Assets.xcassets in Resources */,
+				6504AF622830104D005E1275 /* sorted.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
