@@ -7,6 +7,7 @@
 
 #import "ZJRuntimeViewController.h"
 #include <objc/runtime.h>
+#import "NSObject+ZJRuntime.h"
 #import "Person.h"
 
 @interface ZJRuntimeViewController (){
@@ -19,8 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+
+    [self test0];
+}
+
+- (void)test0 {
+    NSLog(@"%@", [self.view nextResponderWithTargetClassName:@"ZJRuntimeViewController"]);
+}
+
+- (void)test1 {
     NSObject *obj = [NSObject new];     // 实例对象
     Class objClass = [NSObject class];  // 类对象
     Class metaClass = object_getClass([NSObject class]);    // 元类对象

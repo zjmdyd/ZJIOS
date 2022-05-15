@@ -27,13 +27,13 @@
     [self jsonToModel:obj withSpecifyKeys:nil];
 }
 
-- (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)spKeys {
+- (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)specifyKeys {
     NSDictionary *dic = [self noNullDic];
     
     NSArray *properties = [obj objectProperties];
     for (NSString *key in dic.allKeys) {
-        if (spKeys && ![spKeys containsObject:key]) {
-            continue;
+        if (specifyKeys && ![specifyKeys containsObject:key]) {
+            continue;   // 不在特定赋值key之内的key要淘汰
         }
         NSString *key0 = [key checkSysConflictKey];
         if ([properties containsObject:key0]) {
@@ -74,7 +74,7 @@
         }
     }
     
-    return str.mutableCopy;
+    return str.copy;
 }
 
 @end

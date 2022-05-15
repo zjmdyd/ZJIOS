@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary *)noNullDic;
 - (void)jsonToModel:(id)obj;
 
-/// dic->model
-/// @param obj 目标model
-/// @param keys 给特定属性赋值的keys
-- (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)keys;
+// dic->model
+// @param obj 目标model
+// @param keys 给特定属性赋值的keys
+- (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)specifyKeys;
 
 - (BOOL)containsKey:(NSString *)key;
 - (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive;

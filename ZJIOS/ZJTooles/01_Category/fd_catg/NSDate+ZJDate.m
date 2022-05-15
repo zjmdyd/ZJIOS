@@ -99,16 +99,16 @@
 
 - (NSInteger)age {
     // 出生日期转换 年月日
-    NSDateComponents *comp1 = [self basicComponents];
-    NSInteger brithYear  = [comp1 year];
-    NSInteger brithMonth = [comp1 month];
-    NSInteger brithDay   = [comp1 day];
+    NSDateComponents *comps1 = [self basicComponents];
+    NSInteger brithYear  = [comps1 year];
+    NSInteger brithMonth = [comps1 month];
+    NSInteger brithDay   = [comps1 day];
     
     // 获取系统当前 年月日
-    NSDateComponents *comp2 = [[NSDate date] basicComponents];
-    NSInteger currentYear  = [comp2 year];
-    NSInteger currentMonth = [comp2 month];
-    NSInteger currentDay   = [comp2 day];
+    NSDateComponents *comps2 = [[NSDate date] basicComponents];
+    NSInteger currentYear  = [comps2 year];
+    NSInteger currentMonth = [comps2 month];
+    NSInteger currentDay   = [comps2 day];
     
     // 计算年龄
     NSInteger iAge = currentYear - brithYear - 1;
@@ -130,20 +130,39 @@
     NSUInteger unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     
     //1.获得当前时间的 年月日
-    NSDateComponents *cmp1 = [calendar components:unit fromDate:[NSDate date]];
+    NSDateComponents *comps1 = [calendar components:unit fromDate:[NSDate date]];
     
     //2.获得self
-    NSDateComponents *cmp2 = [calendar components:unit fromDate:self];
+    NSDateComponents *comps2 = [calendar components:unit fromDate:self];
     
-    return (cmp1.year == cmp2.year) && (cmp1.month == cmp2.month) && (cmp1.day == cmp2.day);
+    return (comps1.year == comps2.year) && (comps1.month == comps2.month) && (comps1.day == comps2.day);
 }
 
-//是否为昨天
+// 是否为昨天
 - (BOOL)isYesterday {
-    //获得nowDate和selfDate的差距
+    NSInteger diff = [self dayDiffWithDate:[NSDate date]];
+    
+    return diff == -1;
+}
+
+- (NSInteger)dayDiffWithDate:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:self toDate:[NSDate date] options:0];
-    return cmps.day == 1;
+    NSUInteger unit = NSCalendarUnitDay;
+
+    NSDateComponents *comps1 = [calendar components:unit fromDate:self];
+    NSDateComponents *comps2 = [calendar components:unit fromDate:date];
+    
+    NSLog(@"cmp1 = %zd", comps1.day);
+    NSLog(@"cmp2 = %zd", comps2.day);
+    
+    return comps1.day - comps2.day;
+}
+
+// 是否为昨天
+- (BOOL)isTomorrow {
+    NSInteger diff = [self dayDiffWithDate:[NSDate date]];
+    
+    return diff == 1;
 }
 
 // 判断两个日期是否在同一周
@@ -152,12 +171,12 @@
     NSUInteger unit = NSCalendarUnitYear | NSCalendarUnitWeekOfYear;
     
     // 1.获得指定日期时间的components
-    NSDateComponents *cmp1 = [calendar components:unit fromDate:date];
+    NSDateComponents *comps1 = [calendar components:unit fromDate:date];
     
     // 2.获得self的components
-    NSDateComponents *cmp2 = [calendar components:unit fromDate:self];
+    NSDateComponents *comps2 = [calendar components:unit fromDate:self];
     
-    return (cmp1.year == cmp2.year) && (cmp1.weekOfYear == cmp2.weekOfYear);
+    return (comps1.year == comps2.year) && (comps1.weekOfYear == comps2.weekOfYear);
 }
 
 // 根据日期求星期几

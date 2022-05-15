@@ -137,8 +137,8 @@
 }
 
 - (void)test2 {
-    NSArray *strs = @[@"helloWorld"];
-//    NSString *strs = @"helloWorld";
+//    NSArray *strs = @[@"helloWorld"];
+    NSString *strs = @"helloWorld";
     
     // 写入文件
     [strs writeToFileWithPathComponent:@"hello" suffix:@".json"];

@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self test3];
+    [self test6];
 }
 
 // 周:(1, 2, 3, 4, 5, 6, 7)
@@ -48,15 +48,18 @@
 }
 
 - (void)test1 {
-    NSDate *date = [NSDate date];
-    NSLog(@"%@", @(date.timeIntervalSince1970));
+    NSDate *date1 = [NSDate dateFromString:@"2022-05-14 09:00:00" withStyle:ZJDateFormatStyleFull];
+    NSLog(@"isYesterday = %d", [date1 isYesterday]);
+    
+    NSDate *date2 = [NSDate dateFromString:@"2022-05-16 09:00:00" withStyle:ZJDateFormatStyleFull];
+    NSLog(@"isTomorrow = %d", [date2 isTomorrow]);
 }
 
 /*
  - (NSDateComponents *)components:(NSCalendarUnit)unitFlags fromDate:(NSDate *)startingDate toDate:(NSDate *)resultDate options:(NSCalendarOptions)opts;可能为负数
  */
 - (void)test2 {
-    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
+    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatStyleFull];
     NSLog(@"%@", @([date isYesterday]));
 }
 
@@ -68,7 +71,7 @@
  2021-12-13 17:50:27.722679+0800 ZJIOS[22932:292158] str = 2021-12-13
  */
 - (void)test3 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatFullStyle];
+    NSDate *date1 = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatStyleFull];
     NSString *str = [[NSDate date] dateToStringWithFormat:@"yyyy-MM-dd"];
     NSLog(@"date1 = %@", date1);
     NSLog(@"str = %@", str);
@@ -80,20 +83,43 @@
  2022-05-15 00:14:04.510107+0800 ZJIOS[9286:314978] daySpan = 6
  */
 - (void)test4 {
-    NSDate *date1 = [NSDate dateFromString:@"2022-05-09 00:07:00" withStyle:ZJDateFormatFullStyle];
+    NSDate *date1 = [NSDate dateFromString:@"2022-05-09 00:07:00" withStyle:ZJDateFormatStyleFull];
     NSDate *date2 = [NSDate date];
     NSInteger daySpan = [NSDate daySpanFromDate:date1 toDate:date2];
-    NSLog(@"data1 = %@", [date1 dateToStringWithStyle:ZJDateFormatFullStyle]);
-    NSLog(@"date2 = %@", [date2 dateToStringWithStyle:ZJDateFormatFullStyle]);
+    NSLog(@"data1 = %@", [date1 dateToStringWithStyle:ZJDateFormatStyleFull]);
+    NSLog(@"date2 = %@", [date2 dateToStringWithStyle:ZJDateFormatStyleFull]);
     NSLog(@"daySpan = %@", @(daySpan));
 }
 
-// 2022-05-14 23:54:17.798745+0800 ZJIOS[8645:291401] isSame = 0, (date1 compare:date2):-1, ZJDateFormatShortStyle:2021-9-9 9:9:9
+// 2022-05-14 23:54:17.798745+0800 ZJIOS[8645:291401] isSame = 0, (date1 compare:date2):-1, ZJDateFormatStyleShort:2021-9-9 9:9:9
 - (void)test5 {
-    NSDate *date1 = [NSDate dateFromString:@"2021-09-09 09:09:09" withStyle:ZJDateFormatMediumStyle];
+    NSDate *date1 = [NSDate dateFromString:@"2021-09-09 09:09:09" withStyle:ZJDateFormatStyleMedium];
     NSDate *date2 = [NSDate dateFromString:@"2021-12-11 19:10:09" withFormat:@"yyyy/MM/dd HH:mm:ss"];
     BOOL isSame =  [date1 isEqualToDate:date2];
-    NSLog(@"isSame = %@, (date1 compare:date2):%@, ZJDateFormatShortStyle:%@", @(isSame), @([date1 compare:date2]), [date1 dateToStringWithStyle:ZJDateFormatShortStyle]);
+    NSLog(@"isSame = %@, (date1 compare:date2):%@, ZJDateFormatStyleShort:%@", @(isSame), @([date1 compare:date2]), [date1 dateToStringWithStyle:ZJDateFormatStyleShort]);
+}
+/*
+ 2022-05-15 11:24:29.210176+0800 ZJIOS[5107:141091] str1 = 2022-05-14 13:00:09
+ 2022-05-15 11:24:29.210381+0800 ZJIOS[5107:141091] str2 = 2022-5-14 13:00:09
+ 2022-05-15 11:24:29.210517+0800 ZJIOS[5107:141091] str3 = 2022-5-14 13:0:9
+ 2022-05-15 11:24:29.210624+0800 ZJIOS[5107:141091] str4 = 2022-05-14 01:00:09
+ 2022-05-15 11:24:29.210745+0800 ZJIOS[5107:141091] str5 = 2022-5-14 01:00:09
+ 2022-05-15 11:24:29.210862+0800 ZJIOS[5107:141091] str6 = 2022-5-14 1:0:9
+ */
+- (void)test6 {
+    NSDate *date = [NSDate dateFromString:@"2022-05-14 13:00:09" withStyle:ZJDateFormatStyleFull];
+    NSString *str1 = [date dateToStringWithStyle:ZJDateFormatStyleFull];
+    NSString *str2 = [date dateToStringWithStyle:ZJDateFormatStyleMedium];
+    NSString *str3 = [date dateToStringWithStyle:ZJDateFormatStyleShort];
+    NSString *str4 = [date dateToStringWithStyle:ZJDateFormatStyleFull_12Hours];
+    NSString *str5 = [date dateToStringWithStyle:ZJDateFormatStyleMedium_12Hours];
+    NSString *str6 = [date dateToStringWithStyle:ZJDateFormatStyleShort_12Hours];
+    NSLog(@"str1 = %@", str1);
+    NSLog(@"str2 = %@", str2);
+    NSLog(@"str3 = %@", str3);
+    NSLog(@"str4 = %@", str4);
+    NSLog(@"str5 = %@", str5);
+    NSLog(@"str6 = %@", str6);
 }
 
 /*

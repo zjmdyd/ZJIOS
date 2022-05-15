@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestUnsignedDataViewController", @"ZJTestTimerTableViewController", @"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController"];
+    self.cellTitles = @[@"ZJTestUnsignedDataViewController", @"ZJTestTimerTableViewController", @"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController", @"ZJRuntimeViewController"];
 }
 
 - (void)initSetting {

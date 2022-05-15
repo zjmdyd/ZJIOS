@@ -10,9 +10,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, ZJDateFormatStyle) {
-    ZJDateFormatFullStyle,       // yyyy-MM-dd HH:mm:ss
-    ZJDateFormatMediumStyle,     // yyyy-M-d HH:mm:ss
-    ZJDateFormatShortStyle,      // yyyy-M-d H:m:s
+    ZJDateFormatStyleFull,              // yyyy-MM-dd HH:mm:ss
+    ZJDateFormatStyleMedium,            // yyyy-M-d HH:mm:ss
+    ZJDateFormatStyleShort,             // yyyy-M-d H:m:s
+    ZJDateFormatStyleFull_12Hours,      // yyyy-MM-dd hh:mm:ss
+    ZJDateFormatStyleMedium_12Hours,    // yyyy-M-d hh:mm:ss
+    ZJDateFormatStyleShort_12Hours,     // yyyy-M-d h:m:s
 };
 
 @interface ZJDateFormatter : NSDateFormatter

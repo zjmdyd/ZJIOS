@@ -17,8 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test0];
+    [self test1];
 }
+
 /*
  2022-05-14 22:44:41.740172+0800 ZJIOS[6928:229514] (
      00,
@@ -37,6 +38,12 @@
  */
 - (void)test0 {
     NSLog(@"%@", [NSArray timeStringWithType:TimeStringType12Hour]);
+}
+
+- (void)test1 {
+    NSArray *ary = @[@"1", @"2", @"3", @"4"];
+    NSLog(@"%@", [ary joinToStringWithSeparateString:@"/"]);
+    NSLog(@"%@", [ary joinToStringWithSeparateString:@"/" range:NSMakeRange(1, 2)]);
 }
 
 /*

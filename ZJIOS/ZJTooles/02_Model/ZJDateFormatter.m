@@ -18,7 +18,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.formatStyles = @[@"yyyy-MM-dd HH:mm:ss", @"yyyy-M-d HH:mm:ss", @"yyyy-M-d H:m:s"];
+        self.formatStyles = @[@"yyyy-MM-dd HH:mm:ss", @"yyyy-M-d HH:mm:ss", @"yyyy-M-d H:m:s", @"yyyy-MM-dd hh:mm:ss", @"yyyy-M-d hh:mm:ss", @"yyyy-M-d h:m:s"];
     }
     
     return self;

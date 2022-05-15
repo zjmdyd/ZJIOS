@@ -1045,6 +1045,8 @@
 		65FAF649279EAE4800183053 /* rest */ = {
 			isa = PBXGroup;
 			children = (
+				38A1F0912678F54300A4D044 /* ZJRuntimeViewController.h */,
+				38A1F0922678F54300A4D044 /* ZJRuntimeViewController.m */,
 				3883B9B8268EBE2800236663 /* ZJWebViewController.h */,
 				3883B9B9268EBE2800236663 /* ZJWebViewController.m */,
 				6590A42A274B83C700BDB826 /* ZJTestMethodSwizzlingViewController.h */,
@@ -1057,8 +1059,6 @@
 				38D13DB2268084F300BCAC42 /* ZJPointerAryViewController.m */,
 				38A1F09826798FE700A4D044 /* ZJRunLoopViewController.h */,
 				38A1F09926798FE700A4D044 /* ZJRunLoopViewController.m */,
-				38A1F0912678F54300A4D044 /* ZJRuntimeViewController.h */,
-				38A1F0922678F54300A4D044 /* ZJRuntimeViewController.m */,
 				38A1F09D2679A6A500A4D044 /* ZJMVCViewController.h */,
 				38A1F09E2679A6A500A4D044 /* ZJMVCViewController.m */,
 				38A1F0B0267A610500A4D044 /* ZJMemAnalyzeViewController.h */,

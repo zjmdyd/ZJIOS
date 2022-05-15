@@ -41,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)isToday;
 - (BOOL)isYesterday;
+- (BOOL)isTomorrow;
 
 // 判断两个日期是否在同一周
 - (BOOL)isSameWeekWithDate:(NSDate *)date;

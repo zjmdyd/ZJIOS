@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test0];
+    [self test5];
 }
 
 /*
@@ -128,7 +128,6 @@
     NSLog(@"%@, %p, %@", e, e, e.class);
 }
 
-
 /*
  2022-01-11 16:07:21.029427+0800 ZJIOS[54224:1342679] str1: 0x10f43bf98, hello
  2022-01-11 16:07:21.029668+0800 ZJIOS[54224:1342679] str2: 0x6000000cf300, hello+111
@@ -140,6 +139,17 @@
     NSString *str2 = [str1 stringByAppendingString:@"+111"];
     NSLog(@"str1: %p, %@", str1, str1);
     NSLog(@"str2: %p, %@", str2, str2);
+}
+
+/*
+ 2022-05-15 16:56:22.052346+0800 ZJIOS[7308:213976] dic = (null)
+ 非标准json格式会转换失败
+ */
+
+- (void)test5 {
+    NSString *str = @"hello";
+    NSDictionary *dic = [str stringToJson];
+    NSLog(@"dic = %@", dic);
 }
 
 /*

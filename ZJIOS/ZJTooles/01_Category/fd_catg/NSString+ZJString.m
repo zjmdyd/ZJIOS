@@ -29,6 +29,7 @@
     if (self == nil) return nil;
     
     NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSError *error;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                         options:NSJSONReadingMutableContainers
@@ -37,6 +38,7 @@
         NSLog(@"json转化失败：%@", error);
         return nil;
     }
+    
     return dic;
 }
 
