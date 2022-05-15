@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController"];
+    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -32,18 +32,30 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
+    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
+        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    NSLog(@"label1 = %@, font1 = %@", cell.textLabel, cell.textLabel.font);
+    NSLog(@"label2 = %@, font2 = %@", cell.detailTextLabel, cell.detailTextLabel.font);
     
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
+/*
+ 2022-05-15 17:50:10.589440+0800 ZJIOS[8933:266085] font1 = <UICTFont: 0x7fd4eb60ba10> font-family: "UICTFontTextStyleBody"; font-weight: normal; font-style: normal; font-size: 17.00pt
+ // default
+ 2022-05-15 17:50:10.589726+0800 ZJIOS[8933:266085] font2 = <UICTFont: 0x7fd4eb413cb0> font-family: "UICTFontTextStyleCaption1"; font-weight: normal; font-style: normal; font-size: 12.00pt
+ // system
+ 2022-05-15 18:27:46.931491+0800 ZJIOS[9962:301959] label2 = <UITableViewLabel: 0x7fdb6740c900; frame = (0 0; 0 0); text = '哈哈哈'; userInteractionEnabled = NO; layer = <_UILabelLayer: 0x600001dba670>>, font2 = <UICTFont: 0x7fdb6700a870> font-family: ".SFUI-Regular"; font-weight: normal; font-style: normal; font-size: 12.00pt
+
+
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName];

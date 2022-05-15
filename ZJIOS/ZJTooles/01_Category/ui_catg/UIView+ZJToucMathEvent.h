@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 第几象限
 typedef NS_ENUM(NSInteger, QuadrantTouchType) {
-    QuadrantTouchTypeFirst,
+    QuadrantTouchTypeFirst = 1,
     QuadrantTouchTypeSecond,
     QuadrantTouchTypeThird,
     QuadrantTouchTypeFourth,
@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, MoveDirection) {
 
 @interface UIView (ZJToucMathEvent)
 
+// 判断点在第几象限
 - (QuadrantTouchType)quadrantOfTouchPoint:(CGPoint)point separateType:(AnnularSeparateType)type;
 
 /*

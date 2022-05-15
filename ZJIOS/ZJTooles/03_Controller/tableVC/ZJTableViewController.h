@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJBaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString *const SystemTableViewCell = @"UITableViewCell";
-static NSString *const SystemNormalTableViewCell = @"ZJNormalTableViewCell";
+static NSString *const SystemNormalTableViewCell = @"ZJBaseTableViewCell";
 
 @interface ZJTableViewController : UITableViewController
 

@@ -31,6 +31,10 @@
 #define DefaultCellHeight 44
 #endif
 
+#ifndef DefaultSubTitleCellHeight
+#define DefaultSubTitleCellHeight 58
+#endif
+
 #ifndef DefaultIconCellRowHeight
 #define DefaultIconCellRowHeight 80
 #endif

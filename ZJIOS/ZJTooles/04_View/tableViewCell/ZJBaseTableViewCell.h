@@ -1,5 +1,5 @@
 //
-//  ZJNormalTableViewCell.h
+//  ZJBaseTableViewCell.h
 //  ZJTest
 //
 //  Created by ZJ on 2019/4/4.
@@ -10,12 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJNormalTableViewCell : UITableViewCell
+@interface ZJBaseTableViewCell : UITableViewCell
 
-/**
+/*
  同步系统字体，默认为NO
  */
-@property (nonatomic, assign) BOOL keepDefaultFont;
+@property (nonatomic, assign) BOOL keepSystemDefaultFont;
 @property (nonatomic, assign) CGFloat iconCornerRadius;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
