@@ -75,6 +75,8 @@
 		6504AF6528301098005E1275 /* NSTaggedPointerString.docx in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF6428301098005E1275 /* NSTaggedPointerString.docx */; };
 		650808382830FA6B0010D447 /* ZJTouchMathEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650808372830FA6B0010D447 /* ZJTouchMathEventViewController.m */; };
 		65080867283100C60010D447 /* ZJBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65080857283100C60010D447 /* ZJBaseTableViewCell.m */; };
+		6508086C283110C80010D447 /* ZJTestCALayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508086B283110C80010D447 /* ZJTestCALayerTableViewController.m */; };
+		6508086F2831129A0010D447 /* ZJTestLayerBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508086E2831129A0010D447 /* ZJTestLayerBorderViewController.m */; };
 		650F3F172823A8D80029F7A5 /* ZJTestJsonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */; };
 		6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025126940991003B652F /* UINavigationController+ZJNaviController.m */; };
 		6516025826942C97003B652F /* UIViewController+ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025726942C97003B652F /* UIViewController+ZJViewController.m */; };
@@ -312,6 +314,10 @@
 		65080857283100C60010D447 /* ZJBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJBaseTableViewCell.m; sourceTree = "<group>"; };
 		65080859283100C60010D447 /* ZJBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBaseTableViewCell.h; sourceTree = "<group>"; };
 		65080869283101980010D447 /* ZJViewHeaderFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJViewHeaderFiles.h; sourceTree = "<group>"; };
+		6508086A283110C80010D447 /* ZJTestCALayerTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCALayerTableViewController.h; sourceTree = "<group>"; };
+		6508086B283110C80010D447 /* ZJTestCALayerTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCALayerTableViewController.m; sourceTree = "<group>"; };
+		6508086D2831129A0010D447 /* ZJTestLayerBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestLayerBorderViewController.h; sourceTree = "<group>"; };
+		6508086E2831129A0010D447 /* ZJTestLayerBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestLayerBorderViewController.m; sourceTree = "<group>"; };
 		650F3F152823A8D80029F7A5 /* ZJTestJsonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestJsonTableViewController.h; sourceTree = "<group>"; };
 		650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestJsonTableViewController.m; sourceTree = "<group>"; };
 		6516025026940991003B652F /* UINavigationController+ZJNaviController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZJNaviController.h"; sourceTree = "<group>"; };
@@ -855,6 +861,10 @@
 				650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */,
 				657D57C3281F921D008B1964 /* ZJTestSandboxViewController.h */,
 				657D57C4281F921D008B1964 /* ZJTestSandboxViewController.m */,
+				6508086A283110C80010D447 /* ZJTestCALayerTableViewController.h */,
+				6508086B283110C80010D447 /* ZJTestCALayerTableViewController.m */,
+				6508086D2831129A0010D447 /* ZJTestLayerBorderViewController.h */,
+				6508086E2831129A0010D447 /* ZJTestLayerBorderViewController.m */,
 				658FC464279FEC8800A7FE1D /* timer */,
 				65FAF649279EAE4800183053 /* rest */,
 			);
@@ -1336,6 +1346,7 @@
 			files = (
 				6590A437274BA52400BDB826 /* Son.m in Sources */,
 				6597C21627450A24003161AB /* ZJCtrlTableViewController.m in Sources */,
+				6508086F2831129A0010D447 /* ZJTestLayerBorderViewController.m in Sources */,
 				65FA5F9F28043CDC00D6C61A /* ZJTestPageCtrlViewController.m in Sources */,
 				650808382830FA6B0010D447 /* ZJTouchMathEventViewController.m in Sources */,
 				6590A42F274B8C2400BDB826 /* Father.m in Sources */,
@@ -1346,6 +1357,7 @@
 				6585A8CC26CA9A7A00306DD8 /* ZJTestScannerViewController.m in Sources */,
 				6502DC8626EB5FF900D597BC /* ZJAlertAction.m in Sources */,
 				38A1F0BC267B538D00A4D044 /* NSTimer+ZJBlockTimer.m in Sources */,
+				6508086C283110C80010D447 /* ZJTestCALayerTableViewController.m in Sources */,
 				6574BD3026A66F5E00FA5920 /* ZJTestDataViewController.m in Sources */,
 				65AAD40428153AD900A89F10 /* UIView+ZJToucMathEvent.m in Sources */,
 				659492142711736300FDD87D /* UIApplication+Network.m in Sources */,

@@ -1,18 +1,18 @@
 //
-//  ZJSubjectTableViewController.m
+//  ZJTestCALayerTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2021/6/13.
+//  Created by issuser on 2022/5/15.
 //
 
-#import "ZJSubjectTableViewController.h"
+#import "ZJTestCALayerTableViewController.h"
 #import "UIViewController+ZJViewController.h"
 
-@interface ZJSubjectTableViewController ()
+@interface ZJTestCALayerTableViewController ()
 
 @end
 
-@implementation ZJSubjectTableViewController
+@implementation ZJTestCALayerTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestUnsignedDataViewController", @"ZJTestTimerTableViewController", @"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController", @"ZJTestCALayerTableViewController"];
+    self.cellTitles = @[@"ZJTestLayerBorderViewController"];
 }
 
 - (void)initSetting {
@@ -42,13 +42,14 @@
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName];
 }
