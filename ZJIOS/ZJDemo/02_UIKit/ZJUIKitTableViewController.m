@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController"];
+    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController", @"ZJTestBezierPathViewController"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -39,8 +39,8 @@
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    NSLog(@"label1 = %@, font1 = %@", cell.textLabel, cell.textLabel.font);
-    NSLog(@"label2 = %@, font2 = %@", cell.detailTextLabel, cell.detailTextLabel.font);
+//    NSLog(@"label1 = %@, font1 = %@", cell.textLabel, cell.textLabel.font);
+//    NSLog(@"label2 = %@, font2 = %@", cell.detailTextLabel, cell.detailTextLabel.font);
     
     return cell;
 }

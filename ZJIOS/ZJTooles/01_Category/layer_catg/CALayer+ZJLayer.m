@@ -6,6 +6,7 @@
 //
 
 #import "CALayer+ZJLayer.h"
+#import "UIBezierPath+ZJBezierPath.h"
 
 @implementation CALayer (ZJLayer)
 
@@ -43,66 +44,81 @@
     self.mask = maskLayer;
 }
 
-- (CAShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType {
-    return [self addDashBorderForColor:color borderWidth:borderWidth borderType:borderType needDash:NO xPosion:0 yPosition:0];
+- (ZJShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType {
+    return [self addBorderForColor:color borderWidth:borderWidth borderType:borderType posion_value_1:-1 posion_value_2:-1 needDash:NO];
 }
 
-- (CAShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType {
-    return [self addDashBorderForColor:color borderWidth:borderWidth borderType:borderType needDash:YES xPosion:0 yPosition:0];
+- (ZJShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType posion_value_1:(CGFloat)p_value_1 posion_value_2:(CGFloat)p_value_2 {
+    return [self addBorderForColor:color borderWidth:borderWidth borderType:borderType posion_value_1:p_value_1 posion_value_2:p_value_2 needDash:NO];
 }
 
-- (CAShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType xPosion:(CGFloat)x yPosition:(CGFloat)y {
-    return [self addDashBorderForColor:color borderWidth:borderWidth borderType:borderType needDash:YES xPosion:x yPosition:y];
+- (ZJShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType {
+    return [self addBorderForColor:color borderWidth:borderWidth borderType:borderType posion_value_1:-1 posion_value_2:-1 needDash:YES];
 }
 
-- (CAShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType needDash:(BOOL)need xPosion:(CGFloat)x yPosition:(CGFloat)y {
+- (ZJShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType posion_value_1:(CGFloat)p_value_1 posion_value_2:(CGFloat)p_value_2 {
+    return [self addBorderForColor:color borderWidth:borderWidth borderType:borderType posion_value_1:p_value_1 posion_value_2:p_value_2 needDash:YES];
+}
+
+- (ZJShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType posion_value_1:(CGFloat)p_value_1 posion_value_2:(CGFloat)p_value_2 needDash:(BOOL)need {
+    ZJShapeLayer *layer;
+
     if (borderType == UIBorderSideTypeAll) {
-        self.borderWidth = borderWidth;
-        self.borderColor = color.CGColor;
-    }
-    CGFloat originX = x > 0 ? x : self.frame.size.width;
-    CGFloat originY = y > 0 ? y : self.frame.size.height;
-    CAShapeLayer *layer;
+        UIBezierPath *bezierPath = [UIBezierPath pathWithBorderRectSize:self.frame.size];
+        layer = [self shapeLayerWithPath:bezierPath color:color borderWidth:borderWidth needDash:need lineDashPattern:@[@5, @5]];
+    }else {
+        CGFloat s_width = self.frame.size.width;
+        CGFloat s_height = self.frame.size.height;
         
-    // 左侧
-    if (borderType & UIBorderSideTypeLeft) {
-         // 左侧线路径
-        layer = [self shapeLayerFromPoint:CGPointMake(0.0f, 0.f) toPoint:CGPointMake(0.0f, originY) color:color borderWidth:borderWidth needDash:need];
+        CGFloat vertical_p_value_1 = p_value_1 > 0 ? p_value_1 : 0;
+        CGFloat vertical_p_value_2 = p_value_2 > 0 ? p_value_2 : s_height;
+        
+        CGFloat horizontal_ps1 = p_value_1 > 0 ? p_value_1 : 0;
+        CGFloat horizontal_ps2 = p_value_2 > 0 ? p_value_2 : s_width;
+
+        CGPoint startPoint = CGPointZero, endPoint = CGPointZero;
+        
+        CGFloat fixed_value;
+        if ((borderType & UIBorderSideTypeLeft) || (borderType & UIBorderSideTypeRight)) {
+            if (borderType & UIBorderSideTypeLeft) {    // 左侧线路径
+                fixed_value = 0.0f;
+            }else {                                     // 右侧线路径
+                fixed_value = s_width;
+            }
+            startPoint = CGPointMake(fixed_value, vertical_p_value_1);
+            endPoint = CGPointMake(fixed_value, vertical_p_value_2);
+        }else {
+            if (borderType & UIBorderSideTypeTop) {     // top线路径
+                fixed_value = 0.0f;
+            }else {                                     // bottom线路
+                fixed_value = s_height;
+            }
+            startPoint = CGPointMake(horizontal_ps1, fixed_value);
+            endPoint = CGPointMake(horizontal_ps2, fixed_value);
+        }
+        
+        layer = [self shapeLayerFromPoint:startPoint toPoint:endPoint color:color borderWidth:borderWidth needDash:need];
     }
-    
-    // 右侧
-    if (borderType & UIBorderSideTypeRight) {
-        // 右侧线路径
-        layer = [self shapeLayerFromPoint:CGPointMake(originX, 0.0f) toPoint:CGPointMake(originX, originY) color:color borderWidth:borderWidth needDash:need];
-    }
-    
-    // top
-    if (borderType & UIBorderSideTypeTop) {
-        // top线路径
-        layer = [self shapeLayerFromPoint:CGPointMake(0.0f, 0.0f) toPoint:CGPointMake(originX, 0.0f) color:color borderWidth:borderWidth needDash:need];
-    }
-    
-    // bottom
-    if (borderType & UIBorderSideTypeBottom) {
-        // bottom线路径
-        layer = [self shapeLayerFromPoint:CGPointMake(0.0f, originY) toPoint:CGPointMake(originX, originY) color:color borderWidth:borderWidth needDash:need];
-    }
+    layer.borderType = borderType;
+    NSLog(@"添加layer前的sublayers:%@", self.sublayers);
     [self addSublayer:layer];
+    NSLog(@"添加layer后的sublayers:%@", self.sublayers);
     
     return layer;
 }
 
-- (CAShapeLayer *)shapeLayerFromPoint:(CGPoint)p0 toPoint:(CGPoint)p1 color:(UIColor *)color borderWidth:(CGFloat)borderWidth needDash:(BOOL)needDash {
+- (ZJShapeLayer *)shapeLayerFromPoint:(CGPoint)p0 toPoint:(CGPoint)p1 color:(UIColor *)color borderWidth:(CGFloat)borderWidth needDash:(BOOL)needDash {
     return [self shapeLayerFromPoint:p0 toPoint:p1 color:color borderWidth:borderWidth needDash:needDash lineDashPattern:@[@5, @5]];
 }
 
-- (CAShapeLayer *)shapeLayerFromPoint:(CGPoint)p0 toPoint:(CGPoint)p1 color:(UIColor *)color borderWidth:(CGFloat)borderWidth needDash:(BOOL)needDash lineDashPattern:(NSArray<NSNumber *> *)pattern{
-    // 线的路径
-    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-    [bezierPath moveToPoint:p0];
-    [bezierPath addLineToPoint:p1];
+- (ZJShapeLayer *)shapeLayerFromPoint:(CGPoint)p0 toPoint:(CGPoint)p1 color:(UIColor *)color borderWidth:(CGFloat)borderWidth needDash:(BOOL)needDash lineDashPattern:(NSArray<NSNumber *> *)pattern {
+    UIBezierPath *path = [UIBezierPath pathWithPoint:p0 toPoint:p1];
     
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    return [self shapeLayerWithPath:path color:color borderWidth:borderWidth needDash:needDash lineDashPattern:pattern];
+}
+
+- (ZJShapeLayer *)shapeLayerWithPath:(UIBezierPath *)bezierPath color:(UIColor *)color borderWidth:(CGFloat)borderWidth needDash:(BOOL)needDash lineDashPattern:(NSArray<NSNumber *> *)pattern{
+    ZJShapeLayer *shapeLayer = [ZJShapeLayer layer];
     shapeLayer.strokeColor = color.CGColor;
     shapeLayer.fillColor  = [UIColor clearColor].CGColor;
     shapeLayer.path = bezierPath.CGPath;    // 添加路径
@@ -112,6 +128,19 @@
     shapeLayer.lineWidth = borderWidth;     // 线宽度
     
     return shapeLayer;
+}
+
+- (void)removeBorderWithType:(UIBorderSideType)borderType {
+    NSLog(@"移除前sublayers = %@", self.sublayers);
+    for (CALayer *obj in self.sublayers) {
+        if ([obj isKindOfClass:[ZJShapeLayer class]]) {
+            if (((ZJShapeLayer *)obj).borderType == borderType) {
+                [obj removeFromSuperlayer];
+                NSLog(@"移除后sublayers = %@", self.sublayers);
+                break;
+            }
+        }
+    }
 }
 
 @end

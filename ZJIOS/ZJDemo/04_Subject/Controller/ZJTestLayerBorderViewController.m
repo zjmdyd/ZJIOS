@@ -39,28 +39,48 @@
     for (int i = 0; i < self.titles.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.frame = CGRectMake(span*(i+1) + btnWidth*i, self.borderView.bottom + 16, btnWidth, 30);
-        btn.backgroundColor = [UIColor greenColor];
         btn.tag = i;
+        btn.backgroundColor = [UIColor greenColor];
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
+        
+        UIButton *rmBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        rmBtn.frame = btn.frame;
+        rmBtn.top += 60;
+        rmBtn.tag = 100 + i;
+        rmBtn.backgroundColor = [UIColor redColor];
+        [rmBtn setTitle:@"移除" forState:UIControlStateNormal];
+        [rmBtn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self.view addSubview:rmBtn];
     }
 }
 
 - (void)btnEvent:(UIButton *)sender {
     UIBorderSideType type;
-    if (sender.tag == 0) {
+    if (sender.tag%100 == 0) {
         type = UIBorderSideTypeTop;
-    }else if (sender.tag == 1) {
+    }else if (sender.tag%100 == 1) {
         type = UIBorderSideTypeBottom;
-    }else if (sender.tag == 2) {
+    }else if (sender.tag%100 == 2) {
         type = UIBorderSideTypeLeft;
-    }else if (sender.tag == 3) {
+    }else if (sender.tag%100 == 3) {
         type = UIBorderSideTypeRight;
     }else {
         type = UIBorderSideTypeAll;
     }
-    [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type];
+    if (sender.tag >= 100) {
+        [self.borderView.layer removeBorderWithType:type];
+    }else {
+//        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type];
+//        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type posion_value_1:50 posion_value_2:150];
+
+//        [self.borderView.layer addDashBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type];
+//        [self.borderView.layer addDashBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type posion_value_1:50 posion_value_2:150];
+
+        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type posion_value_1:50 posion_value_2:150 needDash:NO];
+    }
 }
 
 /*

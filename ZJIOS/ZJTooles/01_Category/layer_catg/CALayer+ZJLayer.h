@@ -7,6 +7,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import "ZJShapeLayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,17 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)addMaskLayerAtRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii;
 
-typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
-    UIBorderSideTypeAll  = 0,
-    UIBorderSideTypeTop = 1 << 0,
-    UIBorderSideTypeBottom = 1 << 1,
-    UIBorderSideTypeLeft = 1 << 2,
-    UIBorderSideTypeRight = 1 << 3,
-};
+- (ZJShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType;
+- (ZJShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType posion_value_1:(CGFloat)p_value_1 posion_value_2:(CGFloat)p_value_2;
 
-- (CAShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType;
-- (CAShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType;
-- (CAShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType needDash:(BOOL)need xPosion:(CGFloat)x yPosition:(CGFloat)y;
+- (ZJShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType;
+- (ZJShapeLayer *)addDashBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType posion_value_1:(CGFloat)p_value_1 posion_value_2:(CGFloat)p_value_2;
+
+- (ZJShapeLayer *)addBorderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth borderType:(UIBorderSideType)borderType posion_value_1:(CGFloat)p_value_1 posion_value_2:(CGFloat)p_value_2 needDash:(BOOL)need;
+
+- (void)removeBorderWithType:(UIBorderSideType)borderType;
 
 @end
 

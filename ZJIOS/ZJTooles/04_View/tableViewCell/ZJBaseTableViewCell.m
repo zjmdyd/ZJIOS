@@ -12,7 +12,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    NSLog(@"%s", __func__);
+//    NSLog(@"%s", __func__);
     
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
