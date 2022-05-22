@@ -19,10 +19,12 @@
     [super viewDidLoad];
     
     [self initAry];
+    
+
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController", @"ZJTestBezierPathViewController"];
+    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestNavigationBarTableViewController", @"ZJTestStatusBarTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController", @"ZJTestBezierPathViewController"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -58,8 +60,35 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    [self showVCWithName:vcName title:vcName];
 }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSLog(@"%s", __func__);
+    
+    self.title = @"self-Title";
+    NSLog(@"topItem0 = %@", self.navigationController.navigationBar.topItem);
+    self.navigationController.navigationBar.topItem.title = @"UIKit-Title";
+    NSLog(@"topItem1 = %@", self.navigationController.navigationBar.topItem);
+}
+
+/*
+ 从子VC返回，viewWillAppear和viewDidAppear方法中获取到的topItem会发生变化,所以要修改title要在viewDidAppear方法中修改
+ */
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"%s", __func__);
+    
+    self.title = @"self-Title";
+    NSLog(@"topItem0 = %@", self.navigationController.navigationBar.topItem);
+    self.navigationController.navigationBar.topItem.title = @"UIKit-Title";
+    NSLog(@"topItem1 = %@", self.navigationController.navigationBar.topItem);
+}
+
 
 /*
  // Override to support conditional editing of the table view.

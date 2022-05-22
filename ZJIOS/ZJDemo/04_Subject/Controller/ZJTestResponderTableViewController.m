@@ -1,57 +1,49 @@
 //
-//  ZJSubjectTableViewController.m
+//  ZJTestResponderTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2021/6/13.
+//  Created by issuser on 2022/5/17.
 //
 
-#import "ZJSubjectTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestResponderTableViewController.h"
 
-@interface ZJSubjectTableViewController ()
+@interface ZJTestResponderTableViewController ()
 
 @end
 
-@implementation ZJSubjectTableViewController
+@implementation ZJTestResponderTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initAry];
-    [self initSetting];
-}
-
-- (void)initAry {
-    self.cellTitles = @[@"ZJTestUnsignedDataViewController", @"ZJTestTimerTableViewController", @"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController", @"ZJTestCALayerTableViewController"];
-}
-
-- (void)initSetting {
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return 0;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
 
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
-    if (!cell) {
-        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
-    }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
     return cell;
 }
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName title:vcName];
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

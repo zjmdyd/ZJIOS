@@ -100,10 +100,24 @@
 
 #pragma mark - App info
 
-+ (NSString *)appInfoWithType:(AppInfoType)type {
-    NSArray *key = @[@"CFBundleDisplayName", @"CFBundleName", @"CFBundleShortVersionString", @"CFBundleVersion", @"CFBundleIdentifier"];
++ (NSString *)appStringInfoWithType:(AppStringInfoType)type {
+    NSArray *keys = @[@"CFBundleDisplayName", @"CFBundleName", @"CFBundleShortVersionString", @"CFBundleVersion", @"CFBundleIdentifier"];
     NSDictionary *infoDictionary = [self appInfoDic];
-    return [infoDictionary objectForKey:key[type]];
+    NSString *value = [infoDictionary objectForKey:keys[type]];
+    NSLog(@"value = %@, class = %@", value, [value class]);
+    return value;
+}
+
++ (BOOL)appBoolInfoWithType:(AppBoolInfoType)type {
+    NSArray *keys = @[@"UIViewControllerBasedStatusBarAppearance"];
+    NSDictionary *infoDictionary = [self appInfoDic];
+    id value = [infoDictionary objectForKey:keys[type]];
+    NSLog(@"value = %@, class = %@", value, [value class]);
+    if ([value isKindOfClass:[NSNumber class]]) {
+        return [value boolValue];
+    }else {
+        return NO;
+    }
 }
 
 + (NSDictionary *)appInfoDic {
@@ -112,7 +126,7 @@
 }
 
 + (BOOL)isComVersion {
-    return [[self appInfoWithType:AppInfoTypeBundleIdentifier] hasPrefix:@"com"];
+    return [[self appStringInfoWithType:AppStringInfoTypeBundleIdentifier] hasPrefix:@"com"];
 }
 
 #pragma mark - 判断是否安装某APP

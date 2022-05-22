@@ -27,12 +27,12 @@
         @"ZJTestCopyStrongPopertyViewController", @"ZJTestCopyMutableCopyMethodViewController", @"ZJTestMutableAryViewController",
         @"ZJTestDataViewController", @"ZJTestDictionaryViewController", @"ZJTestDateViewController",
         @"ZJTestNSRangeViewController", @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController",
-        @"ZJTestNSLogViewController",
+        @"ZJTestNSLogViewController", @"ZJTestNSURLViewController"
     ];
 }
 
 - (void)initSetting {
-    
+
 }
 
 #pragma mark - UITableViewDataSource
@@ -57,7 +57,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    [self showVCWithName:vcName title:vcName];
 }
 
 /*

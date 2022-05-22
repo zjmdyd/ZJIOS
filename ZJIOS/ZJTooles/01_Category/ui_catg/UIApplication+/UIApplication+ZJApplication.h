@@ -9,12 +9,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, AppInfoType) {
-    AppInfoTypeDisplayName,
-    AppInfoTypeBundleName,
-    AppInfoTypeVersion,
-    AppInfoTypeBundleVersion,
-    AppInfoTypeBundleIdentifier
+typedef NS_ENUM(NSInteger, AppStringInfoType) {
+    AppStringInfoTypeDisplayName,
+    AppStringInfoTypeBundleName,
+    AppStringInfoTypeVersion,
+    AppStringInfoTypeBundleVersion,
+    AppStringInfoTypeBundleIdentifier,
+    AppStringInfoTypeBasedStatusBarAppearance
+};
+
+typedef NS_ENUM(NSInteger, AppBoolInfoType) {
+    AppBoolInfoTypeBasedStatusBarAppearance
 };
 
 @interface UIApplication (ZJApplication)
@@ -30,7 +35,8 @@ typedef NS_ENUM(NSInteger, AppInfoType) {
 
 #pragma mark - App info
 
-+ (NSString *)appInfoWithType:(AppInfoType)type;
++ (NSString *)appStringInfoWithType:(AppStringInfoType)type;
++ (BOOL)appBoolInfoWithType:(AppBoolInfoType)type;
 
 /**
  是否是企业版

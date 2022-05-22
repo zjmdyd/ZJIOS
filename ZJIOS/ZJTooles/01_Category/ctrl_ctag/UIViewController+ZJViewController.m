@@ -47,6 +47,7 @@
     config.vcName = name;
     config.style = style;
     config.hiddenBottom = hidden;
+    config.title = title;
     [self showVCWithConfig:config];
 }
 
@@ -85,18 +86,23 @@
 }
 
 + (UIViewController *)createVCWithName:(NSString *)name {
-    return [self createVCWithName:name title:@"" style:UITableViewStyleGrouped hidesBottom:YES];
+    return [self createVCWithName:name title:@"" hidesBottom:YES style:UITableViewStyleGrouped];
 }
 
 + (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title {
-    return [self createVCWithName:name title:title style:UITableViewStyleGrouped hidesBottom:YES];
+    return [self createVCWithName:name title:title hidesBottom:YES style:UITableViewStyleGrouped];
 }
 
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden {
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden {
+    return [self createVCWithName:name title:title hidesBottom:hidden style:UITableViewStyleGrouped];
+}
+
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden style:(UITableViewStyle)style {
     ZJCtrlConfig *config = [ZJCtrlConfig new];
     config.vcName = name;
     config.style = style;
     config.hiddenBottom = hidden;
+    config.title = title;
     return [self createVCWithConfig:config];
 }
 

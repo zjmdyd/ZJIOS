@@ -8,6 +8,7 @@
 #import "ZJMainTabBarViewController.h"
 #import "UIViewController+ZJViewController.h"
 #import "AppConfigHeader.h"
+#import "ZJNavigationController.h"
 
 @interface ZJMainTabBarViewController ()
 
@@ -34,35 +35,42 @@
     
     NSMutableArray *ary = [NSMutableArray array];
     for (int i = 0; i < vcNames.count; i++) {
-        UIViewController *vc = [UIViewController createVCWithName:vcNames[i]];
-        vc.hidesBottomBarWhenPushed = NO;
-        if ([vc isKindOfClass:[UIViewController class]]) {
-            vc.title = titles[i];
+        UIViewController *vc = [UIViewController createVCWithName:vcNames[i] title:titles[i] hidesBottom:NO];
+        ZJNavigationController *navi = [[ZJNavigationController alloc] initWithRootViewController:vc];
+        navi.navigationBar.translucent = YES;
+//                navi.navigationBarBgColor = [UIColor mainColor];
+        //        navi.navigationBarTintColor = [UIColor whiteColor];
+        if (images.count == vcNames.count) {
+            vc.tabBarItem.image = [[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         }
-        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-//        navi.navigationBarBgColor = [UIColor mainColor];
-//        navi.navigationBarTintColor = [UIColor whiteColor];
-        if (images.count) {
-            navi.tabBarItem.image = [[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        if (selectImages.count == vcNames.count) {
+            vc.tabBarItem.selectedImage = [[UIImage imageNamed:selectImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         }
-        if (selectImages.count) {
-            navi.tabBarItem.selectedImage = [[UIImage imageNamed:selectImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        if (@available(iOS 10.0, *)) {
+            self.tabBar.tintColor = MainColor;
+            self.tabBar.unselectedItemTintColor = [UIColor grayColor];
+        } else {
+            [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : MainColor} forState:UIControlStateSelected];
+            [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor groupTableViewBackgroundColor]} forState:UIControlStateNormal];
         }
-        [navi.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : MainColor} forState:UIControlStateSelected];
         [ary addObject:navi];
     }
-    self.tabBar.translucent = NO;
+//        self.tabBar.translucent = NO;
+    
+    // tabBarItem: you should not access this property if you are not using a tab bar controller to display the view controller
     self.viewControllers = ary;
+    NSLog(@"tabBar.items = %@", self.tabBar.items);
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

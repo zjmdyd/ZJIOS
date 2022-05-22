@@ -83,10 +83,6 @@
     }
 }
 
-- (void)switchEvent:(UISwitch *)sender {
-    
-}
-
 /*
  Documents: 这个目录存放用户数据。存放用户可以管理的文件；iTunes备份和恢复的时候会包括此目录。
  Library: 主要使用它的子文件夹,我们熟悉的NSUserDefaults就存在于它的子目录中。

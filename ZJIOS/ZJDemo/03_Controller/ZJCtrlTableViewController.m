@@ -56,7 +56,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    [self showVCWithName:vcName title:vcName];
 }
 
 /*

@@ -44,13 +44,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationBarTranslucent = NO;
-    self.needChangeExtendedLayout = YES;
-    self.hiddenBottomBarWhenPushed = YES;
-    self.hiddenBackBarButtonItemTitle = YES;
-    self.navigationBar.shadowImage = [UIImage new];
+//    self.navigationBarTranslucent = NO;
+//    self.needChangeExtendedLayout = YES;
+//    self.hiddenBottomBarWhenPushed = YES;
+//    self.hiddenBackBarButtonItemTitle = YES;
+//    self.navigationBar.shadowImage = [UIImage new];
 
-    self.delegate = self;
+//    self.delegate = self;
 }
 
 - (void)setNavigationBarBgColor:(UIColor *)navigationBarBgColor {
@@ -83,51 +83,38 @@
     [self.navigationBar setBackgroundImage:_navigationBarBgImage forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if (self.hiddenBottomBarWhenPushed) {
-        viewController.hidesBottomBarWhenPushed = YES;
-    }
-    [super pushViewController:viewController animated:animated];
-}
-
-/**
+/*
  *  此方法会在viewDidLoad之后调用
  */
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if (self.needChangeExtendedLayout) {
-        if([viewController respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
-            viewController.edgesForExtendedLayout = UIRectEdgeNone;
-        }
-    }else {
-        if([viewController respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
-            viewController.edgesForExtendedLayout = UIRectEdgeAll;
-        }
-    }
-    if (!self.hiddenBackBarButtonItemTitle) return;
-    
-    NSArray *viewControllerArray = self.viewControllers;
-    
-    long previousViewControllerIndex = [viewControllerArray indexOfObject:viewController] - 1;
-    UIViewController *previous;
-    
-    if (previousViewControllerIndex >= 0) {
-        previous = [viewControllerArray objectAtIndex:previousViewControllerIndex];
-        previous.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]
-                                                     initWithTitle:@""
-                                                     style:UIBarButtonItemStylePlain
-                                                     target:self
-                                                     action:nil];
-    }
+//    if (self.needChangeExtendedLayout) {
+//        if([viewController respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+//            viewController.edgesForExtendedLayout = UIRectEdgeNone;
+//        }
+//    }else {
+//        if([viewController respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+//            viewController.edgesForExtendedLayout = UIRectEdgeAll;
+//        }
+//    }
+//    if (!self.hiddenBackBarButtonItemTitle) return;
+//
+//    NSArray *viewControllerArray = self.viewControllers;
+//
+//    long previousViewControllerIndex = [viewControllerArray indexOfObject:viewController] - 1;
+//    UIViewController *previous;
+//
+//    if (previousViewControllerIndex >= 0) {
+//        previous = [viewControllerArray objectAtIndex:previousViewControllerIndex];
+//        previous.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]
+//                                                     initWithTitle:@""
+//                                                     style:UIBarButtonItemStylePlain
+//                                                     target:self
+//                                                     action:nil];
+//    }
 }
 
 #pragma mark - getter
 
-- (UIColor *)navigationBarShadowColor {
-    if (!_navigationBarShadowColor) {
-        _navigationBarShadowColor = [UIColor groupTableViewBackgroundColor];
-    }
-    
-    return _navigationBarShadowColor;
-}
+//
 
 @end

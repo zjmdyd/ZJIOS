@@ -16,6 +16,7 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 
 @interface UIViewController (ZJViewController)
 
+// index:0代表自己,1代表superVC
 - (UIViewController *)preControllerWithIndex:(NSUInteger)index;
 
 - (void)popToVCWithIndex:(NSUInteger)index;
@@ -32,7 +33,8 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
  */
 + (UIViewController *)createVCWithName:(NSString *)name;
 + (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title;
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden style:(UITableViewStyle)style;
 
 #pragma mark - UIBarButtonItem
 

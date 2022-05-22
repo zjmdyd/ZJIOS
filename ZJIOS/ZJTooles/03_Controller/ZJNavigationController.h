@@ -10,15 +10,11 @@
 
 @interface ZJNavigationController : UINavigationController <UINavigationControllerDelegate>
 
-/**
+/*
  *  导航栏是否半透明效果，默认为NO
  */
 @property (nonatomic, assign) BOOL navigationBarTranslucent;
 
-/**
- *  push VC时是否默认隐藏tabBar, 默认为YES
- */
-@property (nonatomic, assign) BOOL hiddenBottomBarWhenPushed;
 @property (nonatomic, assign) BOOL hiddenBackBarButtonItemTitle;
 @property (nonatomic, assign) BOOL needChangeExtendedLayout;    // 默认为YES
 
