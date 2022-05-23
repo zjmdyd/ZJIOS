@@ -37,7 +37,8 @@
     for (int i = 0; i < vcNames.count; i++) {
         UIViewController *vc = [UIViewController createVCWithName:vcNames[i] title:titles[i] hidesBottom:NO];
         ZJNavigationController *navi = [[ZJNavigationController alloc] initWithRootViewController:vc];
-        navi.navigationBar.translucent = YES;
+//        navi.navigationBar.backgroundColor = MainColor;
+        //        navi.navigationBar.translucent = YES;
 //                navi.navigationBarBgColor = [UIColor mainColor];
         //        navi.navigationBarTintColor = [UIColor whiteColor];
         if (images.count == vcNames.count) {
@@ -61,6 +62,7 @@
     // tabBarItem: you should not access this property if you are not using a tab bar controller to display the view controller
     self.viewControllers = ary;
     NSLog(@"tabBar.items = %@", self.tabBar.items);
+    self.selectedIndex = 1;
 }
 
 /*

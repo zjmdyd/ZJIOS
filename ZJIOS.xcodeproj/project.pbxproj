@@ -86,7 +86,7 @@
 		6531ED0527465790005BC5A3 /* ZJTestAlertTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6531ED0427465790005BC5A3 /* ZJTestAlertTableViewController.m */; };
 		654ABAC3277C47260048F7A8 /* zjFoundation.md in Resources */ = {isa = PBXBuildFile; fileRef = 654ABAC2277C47260048F7A8 /* zjFoundation.md */; };
 		656A4D422833476F006BEBDC /* ZJTestResponderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A4D412833476F006BEBDC /* ZJTestResponderTableViewController.m */; };
-		656A4D452833480C006BEBDC /* ZJTestNavigationBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A4D442833480C006BEBDC /* ZJTestNavigationBarTableViewController.m */; };
+		656A4D452833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A4D442833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m */; };
 		656A4D4B283377D4006BEBDC /* ZJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A4D49283377D4006BEBDC /* ZJNavigationController.m */; };
 		656D224C2754D09300095B71 /* ZJTestCharacterSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D224B2754D09300095B71 /* ZJTestCharacterSetViewController.m */; };
 		656E660B275F505500CFD5FC /* NSObject+ZJDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 656E660A275F505400CFD5FC /* NSObject+ZJDocument.m */; };
@@ -99,6 +99,7 @@
 		6585A8CC26CA9A7A00306DD8 /* ZJTestScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6585A8CB26CA9A7A00306DD8 /* ZJTestScannerViewController.m */; };
 		6587047026E6006D00669B5D /* ZJTestTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6587046F26E6006D00669B5D /* ZJTestTimerViewController.m */; };
 		6587E97A281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6587E979281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m */; };
+		65894A33283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65894A32283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.m */; };
 		658AE87026A0119A00688CC5 /* ZJTestBarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658AE86F26A0119A00688CC5 /* ZJTestBarButtonItemViewController.m */; };
 		658CA9AB2826468C002F0DDA /* UITextField+ZJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9AA2826468C002F0DDA /* UITextField+ZJTextField.m */; };
 		658FB044283228F1004CD08C /* ZJShapeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FB043283228F1004CD08C /* ZJShapeLayer.m */; };
@@ -348,8 +349,8 @@
 		65681785269E8B6600D5ACB9 /* ZJFuncDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJFuncDefine.h; sourceTree = "<group>"; };
 		656A4D402833476F006BEBDC /* ZJTestResponderTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestResponderTableViewController.h; sourceTree = "<group>"; };
 		656A4D412833476F006BEBDC /* ZJTestResponderTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestResponderTableViewController.m; sourceTree = "<group>"; };
-		656A4D432833480C006BEBDC /* ZJTestNavigationBarTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestNavigationBarTableViewController.h; sourceTree = "<group>"; };
-		656A4D442833480C006BEBDC /* ZJTestNavigationBarTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestNavigationBarTableViewController.m; sourceTree = "<group>"; };
+		656A4D432833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestNavigationBarItemsTableViewController.h; sourceTree = "<group>"; };
+		656A4D442833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestNavigationBarItemsTableViewController.m; sourceTree = "<group>"; };
 		656A4D47283377D3006BEBDC /* ZJNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJNavigationController.h; sourceTree = "<group>"; };
 		656A4D49283377D4006BEBDC /* ZJNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJNavigationController.m; sourceTree = "<group>"; };
 		656D224A2754D09300095B71 /* ZJTestCharacterSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCharacterSetViewController.h; sourceTree = "<group>"; };
@@ -374,6 +375,8 @@
 		6587046F26E6006D00669B5D /* ZJTestTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestTimerViewController.m; sourceTree = "<group>"; };
 		6587E978281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJManualReleaseTimerViewController.h; sourceTree = "<group>"; };
 		6587E979281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJManualReleaseTimerViewController.m; sourceTree = "<group>"; };
+		65894A31283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestNavigationSettingTableViewController.h; sourceTree = "<group>"; };
+		65894A32283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestNavigationSettingTableViewController.m; sourceTree = "<group>"; };
 		658AE86E26A0119A00688CC5 /* ZJTestBarButtonItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestBarButtonItemViewController.h; sourceTree = "<group>"; };
 		658AE86F26A0119A00688CC5 /* ZJTestBarButtonItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestBarButtonItemViewController.m; sourceTree = "<group>"; };
 		658CA9A92826468C002F0DDA /* UITextField+ZJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+ZJTextField.h"; sourceTree = "<group>"; };
@@ -666,8 +669,10 @@
 				65939426281BF3A300D4872C /* ZJTestTableViewController.m */,
 				659EB72527B66C8F0016D91D /* ZJTestColorTableViewController.h */,
 				659EB72627B66C8F0016D91D /* ZJTestColorTableViewController.m */,
-				656A4D432833480C006BEBDC /* ZJTestNavigationBarTableViewController.h */,
-				656A4D442833480C006BEBDC /* ZJTestNavigationBarTableViewController.m */,
+				656A4D432833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.h */,
+				656A4D442833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m */,
+				65894A31283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.h */,
+				65894A32283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.m */,
 				659E624B2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.h */,
 				659E624C2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.m */,
 				652B58F027BA5CE200745D11 /* ZJTestSearchBarViewController.h */,
@@ -1469,7 +1474,7 @@
 				6502DC8726EB5FF900D597BC /* ZJTextInputConfig.m in Sources */,
 				65ABCA9A274E2F1400377283 /* NSString+ZJTextEncode.m in Sources */,
 				6531ED0527465790005BC5A3 /* ZJTestAlertTableViewController.m in Sources */,
-				656A4D452833480C006BEBDC /* ZJTestNavigationBarTableViewController.m in Sources */,
+				656A4D452833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m in Sources */,
 				6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */,
 				65AB8CF4278C3117009322A1 /* ZJTestCopyStrongPopertyViewController.m in Sources */,
 				388B32E5267E554D0071F530 /* ZJFruit+ZJFruitCatgy.m in Sources */,
@@ -1509,6 +1514,7 @@
 				65ABCA97274E2D9F00377283 /* NSPredicate+ZJPredicate.m in Sources */,
 				38D13DAE267F53E200BCAC42 /* NSObject+HookClass.m in Sources */,
 				38EBE0CA2675B43100E090D9 /* ZJByteData.c in Sources */,
+				65894A33283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.m in Sources */,
 				65D303A9282513FF0063723F /* ZJTestWriteFileTableViewController.m in Sources */,
 				65A5E58D2779B68E00F67CFF /* ZJDateFormatter.m in Sources */,
 				65AAD3FA2814F86000A89F10 /* CALayer+ZJLayer.m in Sources */,

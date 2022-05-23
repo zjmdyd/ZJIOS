@@ -1,16 +1,16 @@
 //
-//  ZJTestNavigationBarTableViewController.m
+//  ZJTestNavigationBarItemsTableViewController.m
 //  ZJIOS
 //
 //  Created by issuser on 2022/5/17.
 //
 
-#import "ZJTestNavigationBarTableViewController.h"
+#import "ZJTestNavigationBarItemsTableViewController.h"
 #import "UIViewController+ZJViewController.h"
 #import "ZJScrollViewDefines.h"
 #import "UITableView+ZJTableView.h"
 
-@interface ZJTestNavigationBarTableViewController ()
+@interface ZJTestNavigationBarItemsTableViewController ()
 
 @property (nonatomic, assign) NSInteger selectBarStyleRow;
 @property (nonatomic, assign) BOOL animation;
@@ -20,7 +20,7 @@
 
 int zj_times;
 
-@implementation ZJTestNavigationBarTableViewController
+@implementation ZJTestNavigationBarItemsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -172,6 +172,15 @@ int zj_times;
  导航栏的title过长可能不会显示back的title(过长会挤压backItem的title)
  注: 如果UINavigationItem堆栈中只有一个UINavigationItem, 则不会展示返回按钮(就像首页不会显示返回按钮)
  */
+/*
+ 2022-05-23 15:07:00.409457+0800 ZJIOS[6971:212183] items = (
+     "<UINavigationItem: 0x7fb9e512b5d0> title='back1'",
+     "<UINavigationItem: 0x7fb9e5609c80> title='hh'"
+ )
+ 2022-05-23 15:07:00.409664+0800 ZJIOS[6971:212183] topItem = <UINavigationItem: 0x7fb9e5609c80> title='hh'
+ 2022-05-23 15:07:00.409830+0800 ZJIOS[6971:212183] backItem = <UINavigationItem: 0x7fb9e512b5d0> title='back1'
+ 2022-05-23 15:07:00.409996+0800 ZJIOS[6971:212183] self.navigationItem = <UINavigationItem: 0x7fb9e5609c80> title='hh', titleView = (null)
+ */
 - (void)test1 {
     NSLog(@"%s", __func__);
         
@@ -179,12 +188,10 @@ int zj_times;
     self.navigationController.navigationBar.topItem.title = @"hh";
     zj_times++;
     if (@available(iOS 11.0, *)) {
-//        backItem = <UINavigationItem: 0x7fe6e6f085c0> title='UIKit' backButtonTitle='back2'
-//        多了backButtonTitle属性是为了不影响返回父VC后的title显示,因为由test3()可知super.navigationIte与backItem是同一个item
-//        self.navigationController.navigationBar.backItem.backButtonTitle = [NSString stringWithFormat:@"back%d", zj_times];
-        self.navigationController.navigationBar.backItem.title = [NSString stringWithFormat:@"back%d", zj_times];
+//        多了backButtonTitle属性是为了不影响返回父VC后的title显示,因为由test3()可知backItem和super.navigationItem是同一个item
+        self.navigationController.navigationBar.backItem.backButtonTitle = [NSString stringWithFormat:@"back%d", zj_times];
     } else {
-        // 会影响父VC的title显示
+        // 会影响父VC的title显示,修改了backItem的title也会影响super.navigationItem的title
         self.navigationController.navigationBar.backItem.title = [NSString stringWithFormat:@"back%d", zj_times];
     }
     [self getItems];
@@ -195,10 +202,12 @@ int zj_times;
     //    The default value of this property is nil,注意backBarButtonItem和backItem不是一回事
     NSLog(@"self.navigationItem.backBarButtonItem = %@", self.navigationItem.backBarButtonItem);    // null
     NSLog(@"super.navigationItem.backBarButtonItem = %@", [self preControllerWithIndex:1].navigationItem.backBarButtonItem);    // null
-    //    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(test0)];
-    //    NSLog(@"self.navigationItem.backBarButtonItem = %@, %@", self.navigationItem.backBarButtonItem, self.navigationItem.backButtonTitle);
 }
 
+/*
+ 2022-05-23 15:05:45.260692+0800 ZJIOS[6971:212183] self.navigationItem = <UINavigationItem: 0x7fb9e5609c80> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
+ 2022-05-23 15:05:45.260859+0800 ZJIOS[6971:212183] super.navigationItem = <UINavigationItem: 0x7fb9e512b5d0> title='UIKit-Title', titleView = (null)
+ */
 - (void)test3 {
     UIViewController *superVC = [self preControllerWithIndex:1];
     
@@ -208,28 +217,29 @@ int zj_times;
 }
 
 /*
- 2022-05-22 11:12:45.263098+0800 ZJIOS[11402:317578] items = (
-     "<UINavigationItem: 0x7f992f314c00> title='UIKit'"
+ 2022-05-23 15:02:42.457809+0800 ZJIOS[6971:212183] items = (
+     "<UINavigationItem: 0x7fb9e512b5d0> title='UIKit-Title'"
  )
- 2022-05-22 11:12:45.263230+0800 ZJIOS[11402:317578] topItem = <UINavigationItem: 0x7f992f314c00> title='UIKit'
- 2022-05-22 11:12:45.263392+0800 ZJIOS[11402:317578] backItem = (null)
- 2022-05-22 11:12:45.263646+0800 ZJIOS[11402:317578] self.navigationItem = <UINavigationItem: 0x7f992f706c00> title='ZJTestNavigationBarTableViewController', titleView = (null)
+ 2022-05-23 15:02:42.457955+0800 ZJIOS[6971:212183] topItem = <UINavigationItem: 0x7fb9e512b5d0> title='UIKit-Title'
+ 2022-05-23 15:02:42.458059+0800 ZJIOS[6971:212183] backItem = (null)
+ 2022-05-23 15:02:42.458235+0800 ZJIOS[6971:212183] self.navigationItem = <UINavigationItem: 0x7fb9e5609c80> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
  */
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     NSLog(@"%s", __func__);
     [self getItems];
+    NSLog(@"self.tabBarItem = %@", self.tabBarItem);    // 与superVC的tabBarItem不是同一个
 }
 
 /*
- 2022-05-22 11:12:45.792663+0800 ZJIOS[11402:317578] items = (
-     "<UINavigationItem: 0x7f992f314c00> title='UIKit'",
-     "<UINavigationItem: 0x7f992f706c00> title='ZJTestNavigationBarTableViewController'"
+ 2022-05-23 15:02:43.059818+0800 ZJIOS[6971:212183] items = (
+     "<UINavigationItem: 0x7fb9e512b5d0> title='UIKit-Title'",
+     "<UINavigationItem: 0x7fb9e5609c80> title='ZJTestNavigationBarItemsTableViewController'"
  )
- 2022-05-22 11:12:45.792808+0800 ZJIOS[11402:317578] topItem = <UINavigationItem: 0x7f992f706c00> title='ZJTestNavigationBarTableViewController'
- 2022-05-22 11:12:45.792922+0800 ZJIOS[11402:317578] backItem = <UINavigationItem: 0x7f992f314c00> title='UIKit'
- 2022-05-22 11:12:45.793032+0800 ZJIOS[11402:317578] self.navigationItem = <UINavigationItem: 0x7f992f706c00> title='ZJTestNavigationBarTableViewController', titleView = (null)
+ 2022-05-23 15:02:43.059999+0800 ZJIOS[6971:212183] topItem = <UINavigationItem: 0x7fb9e5609c80> title='ZJTestNavigationBarItemsTableViewController'
+ 2022-05-23 15:02:43.060172+0800 ZJIOS[6971:212183] backItem = <UINavigationItem: 0x7fb9e512b5d0> title='UIKit-Title'
+ 2022-05-23 15:02:43.060309+0800 ZJIOS[6971:212183] self.navigationItem = <UINavigationItem: 0x7fb9e5609c80> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
  */
 /*
  viewWillAppear-->viewDidAppear,items发生了变化,topItem和backItem的指向发生了改变

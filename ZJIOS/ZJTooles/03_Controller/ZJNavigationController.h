@@ -10,6 +10,11 @@
 
 @interface ZJNavigationController : UINavigationController <UINavigationControllerDelegate>
 
+- (void)setNavigationBarBgImgColor:(UIColor *)navigationBarBgImgColor forBarMetrics:(UIBarMetrics)barMetrics;
+
+//@property (nonatomic, strong) UIColor *navigationBarBgImgColor;
+
+
 /*
  *  导航栏是否半透明效果，默认为NO
  */
