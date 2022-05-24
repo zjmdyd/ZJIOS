@@ -19,3 +19,4 @@ DerivedData
 *.xcuserstate
 # Pods - for those of you who use CocoaPods
 #Pods
+UserInterfaceState.xcuserstate
