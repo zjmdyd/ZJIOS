@@ -69,7 +69,6 @@
     
     NSLog(@"%s", __func__);
     [self test0];
-    //    self.navigationController.navigationBar.topItem.title = @"UIKit-Title";
 }
 
 /*

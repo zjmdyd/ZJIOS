@@ -53,8 +53,12 @@
 //    self.delegate = self;
 }
 
-- (void)setNavigationBarBgImgColor:(UIColor *)navigationBarBgImgColor forBarMetrics:(UIBarMetrics)barMetrics {
-    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:navigationBarBgImgColor] forBarMetrics:barMetrics];
+- (void)setNavigationBarBgImg:(UIImage *)bgImg forBarMetrics:(UIBarMetrics)barMetrics {
+    [self.navigationBar setBackgroundImage:bgImg forBarMetrics:barMetrics];
+}
+
+- (void)setNavigationBarBgImgWithColor:(UIColor *)color forBarMetrics:(UIBarMetrics)barMetrics {
+    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:color] forBarMetrics:barMetrics];
 }
 
 //[self.navigationBar setBackgroundImage:[UIImage imageWithColor:_navigationBarBgImgColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
