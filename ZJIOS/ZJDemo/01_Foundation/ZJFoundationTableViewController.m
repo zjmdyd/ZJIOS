@@ -27,7 +27,7 @@
         @"ZJTestCopyStrongPopertyViewController", @"ZJTestCopyMutableCopyMethodViewController", @"ZJTestMutableAryViewController",
         @"ZJTestDataViewController", @"ZJTestDictionaryViewController", @"ZJTestDateViewController",
         @"ZJTestNSRangeViewController", @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController",
-        @"ZJTestNSLogViewController", @"ZJTestNSURLViewController"
+        @"ZJTestNSLogViewController", @"ZJTestNSURLViewController",
     ];
 }
 
@@ -58,6 +58,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName title:vcName];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 /*

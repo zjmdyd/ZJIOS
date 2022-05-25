@@ -29,37 +29,50 @@
 
 - (void)initAry {
     self.cellTitles = @[@[@"navigationBar.backgroundColor", @"navigationBar.barTintColor", @"navigationBar.tintColor", @"navigationBar.translucent"],
+                        @[@"scrollEdgeAppearance", @"standardAppxearance"],
                         @[@"UIBarMetricsDefault", @"UIBarMetricsCompact", @"UIBarMetricsDefaultPrompt", @"UIBarMetricsCompactPrompt"],
+                        @[@"UIBarMetricsDefault", @"UIBarMetricsCompact", @"UIBarMetricsDefaultPrompt", @"UIBarMetricsCompactPrompt"],
+                        
     ];
-    self.values = @[@[@0, @0, @0, @1].mutableCopy, @[@0, @0, @0, @0].mutableCopy].mutableCopy;
+    self.values = @[@[@0, @0, @0, @1].mutableCopy, @[@0, @0].mutableCopy, @[@0, @0, @0, @0].mutableCopy, @[@0, @0, @0, @0].mutableCopy].mutableCopy;
     self.types = @[@(UIBarMetricsDefault), @(UIBarMetricsCompact), @(UIBarMetricsDefaultPrompt), @(UIBarMetricsCompactPrompt)];
 }
 
 - (void)initSetting {
-//    if(@available(iOS 15.0,*)){
-//        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
-//        [appearance setBackgroundImage:[UIImage imageNamed:@"NavBar64"]];
-//        appearance.backgroundColor = [UIColor greenColor];
-//
-//        UINavigationBarAppearance *stdAppearance = [[UINavigationBarAppearance alloc] init];
-//        stdAppearance.backgroundColor = [UIColor redColor];
-//        //            [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
-//        self.navigationController.navigationBar.standardAppearance = stdAppearance; // contentOoffset不等于0时的显示状态
-//        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;  // contentOoffset=0时的显示状态
-//    }else{
-//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
-////        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
-//
-//        [self.navigationController.navigationBar setTintColor:UIColor.whiteColor];
-//    }
+    //    if(@available(iOS 15.0,*)){
+    //        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+    //        [appearance setBackgroundImage:[UIImage imageNamed:@"NavBar64"]];
+    //        appearance.backgroundColor = [UIColor greenColor];
+    //
+    //        UINavigationBarAppearance *stdAppearance = [[UINavigationBarAppearance alloc] init];
+    //        stdAppearance.backgroundColor = [UIColor redColor];
+    //        //            [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+    //        self.navigationController.navigationBar.standardAppearance = stdAppearance; // contentOoffset不等于0时的显示状态
+    //        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;  // contentOoffset=0时的显示状态
+    //    }else{
+    //        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
+    ////        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+    //
+    //        [self.navigationController.navigationBar setTintColor:UIColor.whiteColor];
+    //    }
     
-    UINavigationBarAppearance *greentAppearance = [[UINavigationBarAppearance alloc] init];
-    greentAppearance.backgroundColor = [UIColor greenColor];
-    
-    UINavigationBarAppearance *redAppearance = [[UINavigationBarAppearance alloc] init];
-    redAppearance.backgroundColor = [UIColor redColor];
-    self.navigationController.navigationBar.standardAppearance = redAppearance;         // iOS15:contentOoffset不等于0时的显示状态
-    self.navigationController.navigationBar.scrollEdgeAppearance = greentAppearance;    // ios15:contentOoffset=0时的显示状态
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
+        greenAppearance.backgroundColor = [UIColor greenColor];
+        
+        UINavigationBarAppearance *redAppearance = [[UINavigationBarAppearance alloc] init];
+        redAppearance.backgroundColor = [UIColor redColor];
+        /*
+         scrollEdgeAppearance: the edge of scrollable content aligns with the edge of the navigation bar.
+         In iOS 15, this property applies to all navigation bars.
+         iOS 14 or earlier, this property applies to navigation bars with large titles.
+         standardAppearance: The appearance settings for a standard-height navigation bar. system's default appearance settings
+         */
+        //        self.navigationController.navigationBar.standardAppxearance = redAppearance;     // iOS15:contentOoffset不等于0时的显示状态
+        //        self.navigationController.navigationBar.scrollEdgeAppearance = greenAppearance; // ios15:contentOoffset=0时的显示状态
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -85,7 +98,7 @@
     UISwitch *swh = [UITableView accessorySwitchWithTarget:self];
     cell.accessoryView = swh;
     
-    swh.tag = indexPath.row + indexPath.section*4;
+    swh.tag = [self getTag:indexPath];
     
     NSNumber *val = self.values[indexPath.section][indexPath.row];
     swh.on = val.boolValue;
@@ -93,16 +106,54 @@
     return cell;
 }
 
+- (NSInteger)getTag:(NSIndexPath *)indexPath {
+    NSInteger sec = indexPath.section;
+    
+    NSInteger beforeTotalCount = 0;
+    for (int i = 0; i < sec; i++) {
+        NSArray *ary = self.cellTitles[i];
+        beforeTotalCount += ary.count;
+    }
+    
+    return beforeTotalCount + indexPath.row;
+}
+// sec=0    sec=1   sec=2
+//  0~3      4~5     6~9
+// 3 < 4 ==> 0
+// 4,5 < 6 ==> 1
+- (NSIndexPath *)getIndexPathWithTag:(NSInteger)tag {
+    NSInteger sec = 0;
+    NSInteger row = 0;
+    
+    NSInteger beforeSecCount = 0;
+    NSInteger beforeTotalCount = 0;
+    for (int i = 0; i < self.cellTitles.count; i++) {
+        NSArray *ary = self.cellTitles[i];
+        beforeTotalCount += ary.count;
+        
+        if (tag < beforeTotalCount) {   // 先定位section
+            sec = i;
+            row = (tag - beforeSecCount) % ary.count;
+            break;
+        }else {
+            beforeSecCount += ary.count;
+        }
+    }
+    
+    return [NSIndexPath indexPathForRow:row inSection:sec];
+}
+
 - (void)switchEvent:(UISwitch *)sender {
-    NSMutableArray *ary = self.values[sender.tag/4];
-    NSLog(@"修改ary[%zd][%zd]", sender.tag/4, sender.tag%4);
-    ary[sender.tag%4] = @(sender.isOn);
-    if (sender.tag / 4 == 0) {
+    NSIndexPath *indexPath = [self getIndexPathWithTag:sender.tag];
+    NSMutableArray *ary = self.values[indexPath.section];
+    NSLog(@"修改ary[%zd][%zd], sender.tag = %zd", indexPath.section, indexPath.row, sender.tag);
+    ary[indexPath.row] = @(sender.isOn);
+    if (indexPath.section < 2) {
         NSString *selString = [NSString stringWithFormat:@"test%zd:", sender.tag];
         SEL sel = NSSelectorFromString(selString);
         [self performSelector:sel withObject:@(sender.isOn)];
     }else {
-        [self test4:sender.tag%4 set:sender.isOn];
+        [self test6:indexPath.row set:sender.isOn];
     }
 }
 
@@ -150,20 +201,22 @@
 /*
  设置barTintColor(背景色)
  iOS13:OK
- iOS15:OK,但是需要向上拖动
+ iOS15:OK,但是需要向上拖动,standardAppxearance在设置barTintColor前后也未发生变化
  */
 - (void)test1:(NSNumber *)set {
     NSLog(@"barTintColor = %@", self.navigationController.navigationBar.barTintColor);  // 默认barTintColor = (null)
     NSLog(@"translucent = %d", self.navigationController.navigationBar.translucent);
     
+    [self getBarAppearance];
+    
     if (set.boolValue) {
         //        This color is made translucent by default unless you set the translucent property to NO
-        //        self.navigationController.navigationBar.barTintColor = [UIColor greenColor];
+        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     }else {
-        //        self.navigationController.navigationBar.barTintColor = nil;
+        self.navigationController.navigationBar.barTintColor = nil;
     }
 
-    [self getBarSubViews];
+    [self getBarAppearance];
 }
 
 - (void)getBarSubViews {
@@ -182,6 +235,12 @@
             break;
         }
     }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    NSLog(@"%s", __func__);
+    
+    [self getBarAppearance];
 }
 
 - (void)getBarAppearance {
@@ -216,22 +275,64 @@
     self.navigationController.navigationBar.translucent = set.boolValue;
 }
 
+- (void)test4:(NSNumber *)set {
+    if (@available(iOS 13.0, *)) {
+        [self getBarAppearance];
+        if (set.boolValue) {
+            UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
+            greenAppearance.backgroundColor = [UIColor greenColor];
+            self.navigationController.navigationBar.scrollEdgeAppearance = greenAppearance;
+        }else {
+            self.navigationController.navigationBar.scrollEdgeAppearance = nil;
+        }
+        // iOS13修改此属性，会影响之后背景图片、barTintColor的设置，tintColor和backgroundColor的设置不影响
+        [self getBarAppearance];
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
+- (void)test5:(NSNumber *)set {
+    if (@available(iOS 13.0, *)) {
+        [self getBarAppearance];
+        UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
+        if (set.boolValue) {
+            greenAppearance.backgroundColor = [UIColor cyanColor];
+        }else {
+            greenAppearance.backgroundColor = nil;  // standardAppearance改变
+        }
+        // 在iOS13上设置不会立马起作用，naviBar要调用setNeedsLayout()方法
+        // iOS13修改此属性，会影响之后背景图片、barTintColor的设置,tintColor和backgroundColor的设置不影响
+        self.navigationController.navigationBar.standardAppearance = greenAppearance;
+        if (@available(iOS 15.0, *)) {
+           
+        } else {
+            [self.navigationController.navigationBar setNeedsLayout];
+        }
+        [self getBarAppearance];
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
 /*
  UIBarMetricsDefault    // 竖屏横屏都有, iOS13:起作用, iOS15:起作用,但是需要向上拖动才有
  UIBarMetricsCompact    // 竖屏没有，横屏有, iOS13:设置不起作用, iOS15:起作用,但是需要向上拖动才有
  UIBarMetricsDefaultPrompt
  UIBarMetricsCompactPrompt
  */
-- (void)test4:(NSInteger)index set:(BOOL)set {
+- (void)test6:(NSInteger)index set:(BOOL)set {
     NSInteger type = [self.types[index] integerValue];
+//    [UIColor brownColor]
+    NSArray *colors = @[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.5], [UIColor orangeColor], [UIColor yellowColor], [UIColor purpleColor]];
     
-    NSArray *colors = @[[UIColor brownColor], [UIColor orangeColor], [UIColor yellowColor], [UIColor purpleColor]];
     if (set) {
         [((ZJNavigationController *)self.navigationController) setNavigationBarBgImgWithColor:colors[index] forBarMetrics:type];
     }else {
         [((ZJNavigationController *)self.navigationController) setNavigationBarBgImg:nil forBarMetrics:type];
     }
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -246,6 +347,7 @@
     NSLog(@"%s", __func__);
     
     [self getItems];
+    [self getBarAppearance];    
 }
 
 - (void)getItems {
