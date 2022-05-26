@@ -18,13 +18,39 @@
     return array;
 }
 
+- (BOOL)hasBoolTrue {
+    return [self hasBoolTrueFromIndex:0];
+}
+
+- (BOOL)hasBoolTrueFromIndex:(NSInteger)index {
+    for(NSInteger i = index; i < self.count; i++) {
+        if ([self[i] boolValue]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)resetBoolValues {
-    for(int i = 0; i < self.count; i++) {
+    [self resetBoolValuesFromIndex:0];
+}
+
+- (void)resetBoolValuesFromIndex:(NSInteger)index {
+    for(NSInteger i = index; i < self.count; i++) {
         if ([self[i] boolValue]) {
             self[i] = @(NO);
         }
     }
 }
+
+- (void)resetBoolValuesFromIndex:(NSInteger)index excludeIndex:(NSInteger)excludeIndex {
+    for(NSInteger i = index; i < self.count; i++) {
+        if (i!= excludeIndex && [self[i] boolValue]) {
+            self[i] = @(NO);
+        }
+    }
+}
+
 
 - (void)changeBoolValueAtIndex:(NSInteger)index {
     [self changeBoolValueAtIndex:index needReset:NO];

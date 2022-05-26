@@ -82,6 +82,10 @@
     NSLog(@"topItem0 = %@", self.navigationController.navigationBar.topItem);
     self.title = @"self-Title1";
     NSLog(@"topItem1 = %@", self.navigationController.navigationBar.topItem);
+    
+    NSLog(@"items = %@", self.navigationController.navigationBar.items);
+    NSLog(@"self.navigationController.navigationItem = %@", self.navigationController.navigationItem);
+    NSLog(@"self.navigationItem = %@", self.navigationItem);
 }
 
 /*

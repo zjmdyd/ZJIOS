@@ -11,6 +11,7 @@
 #import "AppConfigHeader.h"
 #import "ZJNavigationController.h"
 #import "UIView+ZJView.h"
+#import "NSMutableArray+ZJMutableArray.h"
 
 @interface ZJTestNavigationSettingTableViewController ()
 
@@ -30,32 +31,16 @@
 - (void)initAry {
     self.cellTitles = @[@[@"navigationBar.backgroundColor", @"navigationBar.barTintColor", @"navigationBar.tintColor", @"navigationBar.translucent"],
                         @[@"scrollEdgeAppearance", @"standardAppxearance"],
-                        @[@"UIBarMetricsDefault", @"UIBarMetricsCompact", @"UIBarMetricsDefaultPrompt", @"UIBarMetricsCompactPrompt"],
+                        @[@"largeContentTitle"],
+                        @[@"prefersLargeTitles", @"LargeTitleDisplayModeAutomatic", @"LargeTitleDisplayModeAlways", @"LargeTitleDisplayModeNever"],
                         @[@"UIBarMetricsDefault", @"UIBarMetricsCompact", @"UIBarMetricsDefaultPrompt", @"UIBarMetricsCompactPrompt"],
                         
     ];
-    self.values = @[@[@0, @0, @0, @1].mutableCopy, @[@0, @0].mutableCopy, @[@0, @0, @0, @0].mutableCopy, @[@0, @0, @0, @0].mutableCopy].mutableCopy;
+    self.values = @[@[@0, @0, @0, @1].mutableCopy, @[@0, @0].mutableCopy, @[@0].mutableCopy, @[@0, @1, @0, @0].mutableCopy, @[@0, @0, @0, @0].mutableCopy].mutableCopy;
     self.types = @[@(UIBarMetricsDefault), @(UIBarMetricsCompact), @(UIBarMetricsDefaultPrompt), @(UIBarMetricsCompactPrompt)];
 }
 
 - (void)initSetting {
-    //    if(@available(iOS 15.0,*)){
-    //        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
-    //        [appearance setBackgroundImage:[UIImage imageNamed:@"NavBar64"]];
-    //        appearance.backgroundColor = [UIColor greenColor];
-    //
-    //        UINavigationBarAppearance *stdAppearance = [[UINavigationBarAppearance alloc] init];
-    //        stdAppearance.backgroundColor = [UIColor redColor];
-    //        //            [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
-    //        self.navigationController.navigationBar.standardAppearance = stdAppearance; // contentOoffset不等于0时的显示状态
-    //        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;  // contentOoffset=0时的显示状态
-    //    }else{
-    //        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
-    ////        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
-    //
-    //        [self.navigationController.navigationBar setTintColor:UIColor.whiteColor];
-    //    }
-    
     if (@available(iOS 13.0, *)) {
         UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
         greenAppearance.backgroundColor = [UIColor greenColor];
@@ -148,12 +133,43 @@
     NSMutableArray *ary = self.values[indexPath.section];
     NSLog(@"修改ary[%zd][%zd], sender.tag = %zd", indexPath.section, indexPath.row, sender.tag);
     ary[indexPath.row] = @(sender.isOn);
-    if (indexPath.section < 2) {
-        NSString *selString = [NSString stringWithFormat:@"test%zd:", sender.tag];
-        SEL sel = NSSelectorFromString(selString);
-        [self performSelector:sel withObject:@(sender.isOn)];
+    if (indexPath.section > self.cellTitles.count - 2) {
+        [self test9:indexPath.row set:sender.isOn];
     }else {
-        [self test6:indexPath.row set:sender.isOn];
+        if (indexPath.section == 3) {
+            if (indexPath.row == 0) {
+                if (sender.isOn == NO) {
+                    [ary resetBoolValuesFromIndex:1];
+                }else {
+                    if (![ary hasBoolTrueFromIndex:1]) {
+                        ary[1] = @1;
+                    }
+                }
+                [self.tableView reloadData];
+                [self test7:@(sender.isOn)];
+            }else {
+                [ary resetBoolValuesFromIndex:1 excludeIndex:indexPath.row];
+                [self.tableView reloadData];
+                
+                if (sender.isOn == NO) {
+                    if (![ary hasBoolTrueFromIndex:1]) {
+                        ary[1] = @1;
+                        [self test8:@0];
+                    }
+                }else {
+                    [self test8:@(indexPath.row - 1)];
+                }
+            }
+        }else {
+            NSString *selString = [NSString stringWithFormat:@"test%zd:", sender.tag];
+            SEL sel = NSSelectorFromString(selString);
+            if ([self respondsToSelector:sel]) {
+                NSLog(@"有此方法:%@", selString);
+                [self performSelector:sel withObject:@(sender.isOn)];
+            }else {
+                NSLog(@"无此方法:%@", selString);
+            }
+        }
     }
 }
 
@@ -238,9 +254,13 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"%s", __func__);
+//    NSLog(@"%s, contentOffset = %@", __func__, NSStringFromCGPoint(scrollView.contentOffset));
     
-    [self getBarAppearance];
+//    [self getBarAppearance];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    NSLog(@"%s, contentOffset = %@", __func__, NSStringFromCGPoint(scrollView.contentOffset));
 }
 
 - (void)getBarAppearance {
@@ -315,13 +335,49 @@
     }
 }
 
+- (void)test6:(NSNumber *)set {
+    if (@available(iOS 13.0, *)) {
+        if (set.boolValue) {
+            self.navigationController.navigationBar.largeContentTitle = @"largeContentTitle";
+        }else {
+            self.navigationController.navigationBar.largeContentTitle = nil;
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
+- (void)test7:(NSNumber *)set {
+    if (@available(iOS 11.0, *)) {
+        // 有效果，但不会立马显示，需要拖动才正常显示，在viewWillAppear中设置就可以正常显示
+        self.navigationController.navigationBar.prefersLargeTitles = set.boolValue;
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
+- (void)test8:(NSNumber *)set {
+    if (@available(iOS 11.0, *)) {
+        // 有效果，但不会立马显示，需要拖动才正常显示，在viewWillAppear中设置就可以正常显示
+        self.navigationController.navigationBar.prefersLargeTitles = set.boolValue;
+        
+        // UINavigationItemLargeTitleDisplayModeAlways没效果
+        // UINavigationItemLargeTitleDisplayModeNever有效果
+        NSArray *types = @[@(UINavigationItemLargeTitleDisplayModeAutomatic), @(UINavigationItemLargeTitleDisplayModeAlways), @(UINavigationItemLargeTitleDisplayModeNever)];
+        self.navigationController.navigationBar.prefersLargeTitles = YES;   // 要冲洗赋值？？？？？？
+        self.navigationItem.largeTitleDisplayMode = [types[set.integerValue] integerValue];
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
 /*
  UIBarMetricsDefault    // 竖屏横屏都有, iOS13:起作用, iOS15:起作用,但是需要向上拖动才有
  UIBarMetricsCompact    // 竖屏没有，横屏有, iOS13:设置不起作用, iOS15:起作用,但是需要向上拖动才有
  UIBarMetricsDefaultPrompt
  UIBarMetricsCompactPrompt
  */
-- (void)test6:(NSInteger)index set:(BOOL)set {
+- (void)test9:(NSInteger)index set:(BOOL)set {
     NSInteger type = [self.types[index] integerValue];
 //    [UIColor brownColor]
     NSArray *colors = @[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.5], [UIColor orangeColor], [UIColor yellowColor], [UIColor purpleColor]];
@@ -333,11 +389,12 @@
     }
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     NSLog(@"%s", __func__);
+    
+//    self.navigationItem.prompt = @"prompt"; // 此属性在viewDidAppear中设置不起作用
     [self getItems];
 }
 
@@ -345,9 +402,10 @@
     [super viewDidAppear:animated];
     
     NSLog(@"%s", __func__);
-    
+        
     [self getItems];
-    [self getBarAppearance];    
+
+//    [self getBarAppearance];
 }
 
 - (void)getItems {
@@ -361,6 +419,7 @@
     NSLog(@"backItem = %@", backItem);
     //    navigationItem: The default behavior is to create a navigation item that displays the view controller's title
     NSLog(@"self.navigationItem = %@, titleView = %@", self.navigationItem, self.navigationItem.titleView);
+    NSLog(@"self.navigationController.navigationItem = %@, titleView = %@", self.navigationController.navigationItem, self.navigationController.navigationItem.titleView);
 }
 
 /*
