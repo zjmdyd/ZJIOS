@@ -12,6 +12,7 @@
 #import "ZJNavigationController.h"
 #import "UIView+ZJView.h"
 #import "NSMutableArray+ZJMutableArray.h"
+#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestNavigationSettingTableViewController ()
 
@@ -29,35 +30,32 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@[@"navigationBar.backgroundColor", @"navigationBar.barTintColor", @"navigationBar.tintColor", @"navigationBar.translucent"],
+    self.cellTitles = @[@[@"navigationBar.backgroundColor", @"navigationBar.barTintColor", @"navigationBar.tintColor", @"navigationBar.translucent", @"navigationBar.shadowImage"],
                         @[@"scrollEdgeAppearance", @"standardAppxearance"],
-                        @[@"largeContentTitle"],
+                        @[@"backItem.backButtonTitle/title", @"topItem.title", @"navigationItem.prompt"],
                         @[@"prefersLargeTitles", @"LargeTitleDisplayModeAutomatic", @"LargeTitleDisplayModeAlways", @"LargeTitleDisplayModeNever"],
                         @[@"UIBarMetricsDefault", @"UIBarMetricsCompact", @"UIBarMetricsDefaultPrompt", @"UIBarMetricsCompactPrompt"],
-                        
+                        @[@"UIRectEdgeNone", @"UIRectEdgeAll", @"UIRectEdgeTop", @"UIRectEdgeLeft", @"UIRectEdgeBottom", @"UIRectEdgeRight"]
     ];
-    self.values = @[@[@0, @0, @0, @1].mutableCopy, @[@0, @0].mutableCopy, @[@0].mutableCopy, @[@0, @1, @0, @0].mutableCopy, @[@0, @0, @0, @0].mutableCopy].mutableCopy;
+    
+    self.values = @[
+        @[@0, @0, @0, @1, @0].mutableCopy,
+        @[@0, @0].mutableCopy,
+        @[@0, @0, @0].mutableCopy,
+        @[@0, @1, @0, @0].mutableCopy,
+        @[@0, @0, @0, @0].mutableCopy,
+        @[@0, @1, @0, @0, @0, @0].mutableCopy
+    ];
     self.types = @[@(UIBarMetricsDefault), @(UIBarMetricsCompact), @(UIBarMetricsDefaultPrompt), @(UIBarMetricsCompactPrompt)];
 }
 
 - (void)initSetting {
-    if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
-        greenAppearance.backgroundColor = [UIColor greenColor];
-        
-        UINavigationBarAppearance *redAppearance = [[UINavigationBarAppearance alloc] init];
-        redAppearance.backgroundColor = [UIColor redColor];
-        /*
-         scrollEdgeAppearance: the edge of scrollable content aligns with the edge of the navigation bar.
-         In iOS 15, this property applies to all navigation bars.
-         iOS 14 or earlier, this property applies to navigation bars with large titles.
-         standardAppearance: The appearance settings for a standard-height navigation bar. system's default appearance settings
-         */
-        //        self.navigationController.navigationBar.standardAppxearance = redAppearance;     // iOS15:contentOoffset不等于0时的显示状态
-        //        self.navigationController.navigationBar.scrollEdgeAppearance = greenAppearance; // ios15:contentOoffset=0时的显示状态
-    } else {
-        // Fallback on earlier versions
-    }
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(next)];
+}
+
+- (void)next {
+    ((ZJNavigationController *)self.navigationController).hiddenBackBarButtonItemTitle = YES;
+    [self showVCWithName:@"ZJViewController" title:@"hhh"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -133,8 +131,10 @@
     NSMutableArray *ary = self.values[indexPath.section];
     NSLog(@"修改ary[%zd][%zd], sender.tag = %zd", indexPath.section, indexPath.row, sender.tag);
     ary[indexPath.row] = @(sender.isOn);
-    if (indexPath.section > self.cellTitles.count - 2) {
-        [self test9:indexPath.row set:sender.isOn];
+    if (indexPath.section == self.cellTitles.count - 1) {
+        [self test13:indexPath.row set:sender.isOn];
+    }else if (indexPath.section == self.cellTitles.count - 2) {
+        [self test12:indexPath.row set:sender.isOn];
     }else {
         if (indexPath.section == 3) {
             if (indexPath.row == 0) {
@@ -146,19 +146,19 @@
                     }
                 }
                 [self.tableView reloadData];
-                [self test7:@(sender.isOn)];
+                [self test10:@(sender.isOn)];
             }else {
                 [ary resetBoolValuesFromIndex:1 excludeIndex:indexPath.row];
-                [self.tableView reloadData];
                 
                 if (sender.isOn == NO) {
                     if (![ary hasBoolTrueFromIndex:1]) {
                         ary[1] = @1;
-                        [self test8:@0];
+                        [self test11:@0];
                     }
                 }else {
-                    [self test8:@(indexPath.row - 1)];
+                    [self test11:@(indexPath.row - 1)];
                 }
+                [self.tableView reloadData];
             }
         }else {
             NSString *selString = [NSString stringWithFormat:@"test%zd:", sender.tag];
@@ -190,15 +190,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //    NSString *selString = [NSString stringWithFormat:@"test%zd", indexPath.section + indexPath.row];
-    //    SEL sel = NSSelectorFromString(selString);
-    //
-    //    if ([self respondsToSelector:sel]) {
-    //        NSLog(@"有此方法:%@", selString);
-    //        [self performSelector:sel];
-    //    }else {
-    //        NSLog(@"无此方法:%@", selString);
-    //    }
 }
 
 /*
@@ -231,7 +222,7 @@
     }else {
         self.navigationController.navigationBar.barTintColor = nil;
     }
-
+    
     [self getBarAppearance];
 }
 
@@ -254,13 +245,13 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    NSLog(@"%s, contentOffset = %@", __func__, NSStringFromCGPoint(scrollView.contentOffset));
+    //    NSLog(@"%s, contentOffset = %@", __func__, NSStringFromCGPoint(scrollView.contentOffset));
     
-//    [self getBarAppearance];
+    //    [self getBarAppearance];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    NSLog(@"%s, contentOffset = %@", __func__, NSStringFromCGPoint(scrollView.contentOffset));
+    //    NSLog(@"%s, contentOffset = %@", __func__, NSStringFromCGPoint(scrollView.contentOffset));
 }
 
 - (void)getBarAppearance {
@@ -282,28 +273,43 @@
  */
 - (void)test2:(NSNumber *)set {
     NSLog(@"tintColor = %@", self.navigationController.navigationBar.tintColor);        // 默认systemBlueColor
-    if (set.boolValue) {
-        self.navigationController.navigationBar.tintColor = [UIColor redColor];
-    }else {
-        self.navigationController.navigationBar.tintColor = nil;
-    }
+    ((ZJNavigationController *)self.navigationController).navigationBarTintColor = set.boolValue ? [UIColor redColor] : nil;
 }
 
 - (void)test3:(NSNumber *)set {
     NSLog(@"barStyle = %zd", self.navigationController.navigationBar.barStyle);
     NSLog(@"translucent = %d", self.navigationController.navigationBar.translucent);
-    self.navigationController.navigationBar.translucent = set.boolValue;
+    ((ZJNavigationController *)self.navigationController).navigationBarTranslucent = set.boolValue;
 }
 
+/*
+ iOS15需要向上拖动才有效果,iOS13立刻就有效果
+ */
 - (void)test4:(NSNumber *)set {
+    NSLog(@"shadowImage = %@", self.navigationController.navigationBar.shadowImage);
+    ((ZJNavigationController *)self.navigationController).navigationBarShadowColor = set.boolValue ? [UIColor greenColor] : nil;
+}
+
+/*
+ ## scrollEdgeAppearance
+ iOS 14 or earlier, this property applies to navigation bars with large titles.
+ In iOS 15, this property applies to all navigation bars.未滚动时的状态，与prefersLargeTitles值无关
+ */
+- (void)test5:(NSNumber *)set {
     if (@available(iOS 13.0, *)) {
         [self getBarAppearance];
         if (set.boolValue) {
             UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
-            greenAppearance.backgroundColor = [UIColor greenColor];
+            greenAppearance.backgroundColor = [UIColor cyanColor];
             self.navigationController.navigationBar.scrollEdgeAppearance = greenAppearance;
         }else {
             self.navigationController.navigationBar.scrollEdgeAppearance = nil;
+        }
+        // 在iOS13上设置不会立马起作用，naviBar要调用setNeedsLayout()方法，
+        if (@available(iOS 15.0, *)) {
+            
+        } else {
+            [self.navigationController.navigationBar setNeedsLayout];
         }
         // iOS13修改此属性，会影响之后背景图片、barTintColor的设置，tintColor和backgroundColor的设置不影响
         [self getBarAppearance];
@@ -312,20 +318,28 @@
     }
 }
 
-- (void)test5:(NSNumber *)set {
+/*
+ standardAppearance
+ iOS13:
+ 在prefersLargeTitles=NO时直接展示
+ 在prefersLargeTitles=YES时向上滚动时展示，正常未滚动状态展示的是scrollEdgeAppearance
+ iOS15:
+ 在向上滚动时展示，与prefersLargeTitles值无关，正常未滚动状态展示的是scrollEdgeAppearance
+ */
+- (void)test6:(NSNumber *)set {
     if (@available(iOS 13.0, *)) {
         [self getBarAppearance];
         UINavigationBarAppearance *greenAppearance = [[UINavigationBarAppearance alloc] init];
         if (set.boolValue) {
-            greenAppearance.backgroundColor = [UIColor cyanColor];
+            greenAppearance.backgroundColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:0.5];
         }else {
             greenAppearance.backgroundColor = nil;  // standardAppearance改变
         }
-        // 在iOS13上设置不会立马起作用，naviBar要调用setNeedsLayout()方法
-        // iOS13修改此属性，会影响之后背景图片、barTintColor的设置,tintColor和backgroundColor的设置不影响
+        // 在iOS13上设置不会立马起作用，naviBar要调用setNeedsLayout()方法，
+        // iOS13/15修改此属性，会影响之后背景图片、barTintColor的设置,tintColor和backgroundColor的设置不影响
         self.navigationController.navigationBar.standardAppearance = greenAppearance;
         if (@available(iOS 15.0, *)) {
-           
+            
         } else {
             [self.navigationController.navigationBar setNeedsLayout];
         }
@@ -335,19 +349,43 @@
     }
 }
 
-- (void)test6:(NSNumber *)set {
+/*
+ topItem.title过长会影响其显示
+ backItem.backButtonTitle/backItem.title自身过长也会影响其自己的显示
+ 
+ if (@available(iOS 11.0, *)) {
+     //        多了backButtonTitle属性是为了不影响返回父VC后的title显示,因为由test3()可知backItem和super.navigationItem是同一个item
+     self.navigationController.navigationBar.backItem.backButtonTitle = set.boolValue ? @"backTitle" : @"";
+ } else {
+     // 会影响父VC的title显示,修改了backItem的title也会影响super.navigationItem的title
+     self.navigationController.navigationBar.backItem.title = set.boolValue ? @"backItemTitle" : @"";
+ }
+  */
+- (void)test7:(NSNumber *)set {
+    ((ZJNavigationController *)self.navigationController).navigationBarBackButtonTitle = set.boolValue ? @"backTitle" : @"";
+}
+
+- (void)test8:(NSNumber *)set {
+    self.navigationController.navigationBar.topItem.title = set.boolValue ? @"cus_topItem.title" : @"default_topItem.title";
+    NSLog(@"backItem = %@", self.navigationController.navigationBar.backItem);
+}
+
+/*
+ 初次设置此属性只在viewWillAppear中设置才会生效，但修改可以不用，可以在页面加载完之后再修改
+ */
+- (void)test9:(NSNumber *)set {
     if (@available(iOS 13.0, *)) {
         if (set.boolValue) {
-            self.navigationController.navigationBar.largeContentTitle = @"largeContentTitle";
+            self.navigationItem.prompt = @"cus_prompt";
         }else {
-            self.navigationController.navigationBar.largeContentTitle = nil;
+            self.navigationItem.prompt = nil;
         }
     } else {
         // Fallback on earlier versions
     }
 }
 
-- (void)test7:(NSNumber *)set {
+- (void)test10:(NSNumber *)set {
     if (@available(iOS 11.0, *)) {
         // 有效果，但不会立马显示，需要拖动才正常显示，在viewWillAppear中设置就可以正常显示
         self.navigationController.navigationBar.prefersLargeTitles = set.boolValue;
@@ -356,15 +394,11 @@
     }
 }
 
-- (void)test8:(NSNumber *)set {
+- (void)test11:(NSNumber *)set {
     if (@available(iOS 11.0, *)) {
-        // 有效果，但不会立马显示，需要拖动才正常显示，在viewWillAppear中设置就可以正常显示
-        self.navigationController.navigationBar.prefersLargeTitles = set.boolValue;
-        
-        // UINavigationItemLargeTitleDisplayModeAlways没效果
+        // UINavigationItemLargeTitleDisplayModeAlways没效果,还是Automatic的效果
         // UINavigationItemLargeTitleDisplayModeNever有效果
         NSArray *types = @[@(UINavigationItemLargeTitleDisplayModeAutomatic), @(UINavigationItemLargeTitleDisplayModeAlways), @(UINavigationItemLargeTitleDisplayModeNever)];
-        self.navigationController.navigationBar.prefersLargeTitles = YES;   // 要冲洗赋值？？？？？？
         self.navigationItem.largeTitleDisplayMode = [types[set.integerValue] integerValue];
     } else {
         // Fallback on earlier versions
@@ -372,20 +406,40 @@
 }
 
 /*
- UIBarMetricsDefault    // 竖屏横屏都有, iOS13:起作用, iOS15:起作用,但是需要向上拖动才有
- UIBarMetricsCompact    // 竖屏没有，横屏有, iOS13:设置不起作用, iOS15:起作用,但是需要向上拖动才有
- UIBarMetricsDefaultPrompt
- UIBarMetricsCompactPrompt
+ ## setBackgroundImage:forBarMetrics:
+ 
+ UIBarMetricsDefault        // 横竖屏  iOS13:起作用    iOS15:起作用,但是需要向上拖动才有
+ UIBarMetricsCompact        // 横屏    iOS13:不起作用  iOS15:起作用,但是需要向上拖动才有
+ UIBarMetricsDefaultPrompt  // 竖屏高度变大 iOS13/15没效果
+ UIBarMetricsCompactPrompt  // 横屏高度变大 iOS13/15没效果
  */
-- (void)test9:(NSInteger)index set:(BOOL)set {
+- (void)test12:(NSInteger)index set:(BOOL)set {
     NSInteger type = [self.types[index] integerValue];
-//    [UIColor brownColor]
     NSArray *colors = @[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.5], [UIColor orangeColor], [UIColor yellowColor], [UIColor purpleColor]];
-    
     if (set) {
         [((ZJNavigationController *)self.navigationController) setNavigationBarBgImgWithColor:colors[index] forBarMetrics:type];
     }else {
         [((ZJNavigationController *)self.navigationController) setNavigationBarBgImg:nil forBarMetrics:type];
+    }
+}
+
+/*
+ UIRectEdgeNone   = 0,
+ UIRectEdgeTop    = 1 << 0,
+ UIRectEdgeLeft   = 1 << 1,
+ UIRectEdgeBottom = 1 << 2,
+ UIRectEdgeRight  = 1 << 3,
+ UIRectEdgeAll    = UIRectEdgeTop | UIRectEdgeLeft | UIRectEdgeBottom | UIRectEdgeRight
+ 
+ */
+- (void)test13:(NSInteger)index set:(BOOL)set {
+    NSArray *types = @[@(UIRectEdgeNone), @(UIRectEdgeAll), @(UIRectEdgeTop), @(UIRectEdgeLeft), @(UIRectEdgeBottom), @(UIRectEdgeRight)];
+    NSInteger type = [types[index] integerValue];
+    
+    if (set) {
+        self.edgesForExtendedLayout = type;
+    }else {
+        self.edgesForExtendedLayout = UIRectEdgeAll;
     }
 }
 
@@ -402,10 +456,10 @@
     [super viewDidAppear:animated];
     
     NSLog(@"%s", __func__);
-        
+    
     [self getItems];
-
-//    [self getBarAppearance];
+    
+    //    [self getBarAppearance];
 }
 
 - (void)getItems {

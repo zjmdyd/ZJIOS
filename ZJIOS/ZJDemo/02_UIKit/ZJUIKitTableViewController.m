@@ -63,12 +63,11 @@
     [self showVCWithName:vcName title:vcName];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     NSLog(@"%s", __func__);
-    [self test0];
+//    [self test3];
 }
 
 /*
@@ -84,7 +83,6 @@
     NSLog(@"topItem1 = %@", self.navigationController.navigationBar.topItem);
     
     NSLog(@"items = %@", self.navigationController.navigationBar.items);
-    NSLog(@"self.navigationController.navigationItem = %@", self.navigationController.navigationItem);
     NSLog(@"self.navigationItem = %@", self.navigationItem);
 }
 
@@ -106,6 +104,7 @@
  2022-05-23 15:33:35.807490+0800 ZJIOS[7967:242482] topItem2 = <UINavigationItem: 0x7fb2d9f13670> title='topItem-title'
  
  ## 先修改self.title再修改topItem.title, navi的title为topItem的title,tabBar的title为self.title
+ ## 修改topItem不改tabBar的title
  */
 - (void)test2 {
     NSLog(@"topItem0 = %@", self.navigationController.navigationBar.topItem);
@@ -116,38 +115,42 @@
 }
 
 /*
- 2022-05-23 15:50:57.317729+0800 ZJIOS[8515:259600] topItem0 = <UINavigationItem: 0x7feaa5921150> title='UIKit'
- 2022-05-23 15:50:57.318326+0800 ZJIOS[8515:259600] topItem1 = <UINavigationItem: 0x7feaa5921150> title='topItem-title'
- 2022-05-23 15:50:57.320315+0800 ZJIOS[8515:259600] topItem2 = <UINavigationItem: 0x7feaa5921150> title='self-Title1'
+ 2022-05-27 16:12:51.366629+0800 ZJIOS[5121:123000] topItem0 = <UINavigationItem: 0x7fc96a112060> title='UIKit'
+ 2022-05-27 16:12:51.367386+0800 ZJIOS[5121:123000] topItem1 = <UINavigationItem: 0x7fc96a112060> title='topItem-title1'
+ 2022-05-27 16:12:51.370188+0800 ZJIOS[5121:123000] topItem2 = <UINavigationItem: 0x7fc96a112060> title='self-Title1'
+ 2022-05-27 16:12:51.370732+0800 ZJIOS[5121:123000] topItem3 = <UINavigationItem: 0x7fc96a112060> title='topItem-title2'
  
- ## 先修改topItem.title再修改self.title, navi和tabBar的title都为self.title,所以同时设置了topItem和self.title,navi和tabBar的title以之后设置的title为准
+ ## 先修改topItem.title再修改self.title, navi和tabBar的title都为self.title,
+ ## 所以同时设置了topItem和self.title,navi的title以之后设置的title为准
  */
 - (void)test3 {
     NSLog(@"topItem0 = %@", self.navigationController.navigationBar.topItem);
-    self.navigationController.navigationBar.topItem.title = @"topItem-title";
+    self.navigationController.navigationBar.topItem.title = @"topItem-title1";
     NSLog(@"topItem1 = %@", self.navigationController.navigationBar.topItem);
     self.title = @"self-Title1";
     NSLog(@"topItem2 = %@", self.navigationController.navigationBar.topItem);
-    
+    self.navigationController.navigationBar.topItem.title = @"topItem-title2";
+    NSLog(@"topItem3 = %@", self.navigationController.navigationBar.topItem);
     [self performSelector:@selector(changeTabBarTitle) withObject:nil afterDelay:3];
 }
 
 /*
- 2022-05-23 16:00:06.076504+0800 ZJIOS[8851:269609] self.tabBarItem0 = <UITabBarItem: 0x7fd4f075f700> title='self-Title1' image=<UIImage:0x600002900900 anonymous {22, 22} renderingMode=alwaysOriginal> selected
- 2022-05-23 16:00:06.077998+0800 ZJIOS[8851:269609] self.tabBarItem1 = <UITabBarItem: 0x7fd4f075f700> title='tabBarTitle' image=<UIImage:0x600002900900 anonymous {22, 22} renderingMode=alwaysOriginal> selected
- 2022-05-23 16:00:06.078252+0800 ZJIOS[8851:269609] self.tabBarItem2 = <UITabBarItem: 0x7fd4f075f700> title='tabBarTitle' image=<UIImage:0x600002900900 anonymous {22, 22} renderingMode=alwaysOriginal> selected
- 2022-05-23 16:00:06.080316+0800 ZJIOS[8851:269609] self.tabBarItem3 = <UITabBarItem: 0x7fd4f075f700> title='self-Title2' image=<UIImage:0x600002900900 anonymous {22, 22} renderingMode=alwaysOriginal> selected
+ 2022-05-27 16:15:34.500527+0800 ZJIOS[5238:125531] self.tabBarItem0 = <UITabBarItem: 0x7fd2ab216880> title='self-Title1' image=<UIImage:0x6000038e0d80 anonymous {22, 22} renderingMode=alwaysOriginal> selected
+ 2022-05-27 16:15:34.501703+0800 ZJIOS[5238:125531] self.tabBarItem1 = <UITabBarItem: 0x7fd2ab216880> title='tabBarTitle' image=<UIImage:0x6000038e0d80 anonymous {22, 22} renderingMode=alwaysOriginal> selected
+ 2022-05-27 16:15:34.501882+0800 ZJIOS[5238:125531] self.tabBarItem2 = <UITabBarItem: 0x7fd2ab216880> title='tabBarTitle' image=<UIImage:0x6000038e0d80 anonymous {22, 22} renderingMode=alwaysOriginal> selected
+ 2022-05-27 16:15:34.503309+0800 ZJIOS[5238:125531] self.tabBarItem3 = <UITabBarItem: 0x7fd2ab216880> title='self-Title2' image=<UIImage:0x6000038e0d80 anonymous {22, 22} renderingMode=alwaysOriginal> selected
  
  ## self.title值更新了就会去更新navi和tabBar的title
+ ## 所以同时设置了tabBarItem和self.title, tabBarItem的title以之后设置的title为准
  */
 - (void)changeTabBarTitle {
     //    The default value is a tab bar item that displays the view controller's title.
     NSLog(@"self.tabBarItem0 = %@", self.tabBarItem);
     self.tabBarItem.title = @"tabBarTitle"; // self.tabBarItem修改tabBarItem的title,没有设置就与self.title相同
     NSLog(@"self.tabBarItem1 = %@", self.tabBarItem);
-    self.title = @"self-Title1";    // 如果设置self.title = @"self-Title1", 与self.title当前值一样,则tabBarItemtitle值不发生改变
+    self.title = @"self-Title1";    // 如果设置self.title = @"self-Title1", 与self.title当前值一样,则tabBarItemtitle值不发生改变，此时tabBarItem的title和self.title不一致
     NSLog(@"self.tabBarItem2 = %@", self.tabBarItem);
-    self.title = @"self-Title2";    // 如果设置self.title = @"self-Title2", 与self.title当前值不一样,则tabBarItemtitle值会发生改变
+    self.title = @"self-Title2";    // 如果设置self.title = @"self-Title2", 与self.title当前值不一样,则tabBarItem.title值会发生改变
     NSLog(@"self.tabBarItem3 = %@", self.tabBarItem);
 }
 
@@ -161,6 +164,7 @@
  2022-05-23 17:21:18.589660+0800 ZJIOS[10307:326375] topItem0 = <UINavigationItem: 0x7fc720721080> title='self-Title1'
  2022-05-23 17:21:18.589971+0800 ZJIOS[10307:326375] topItem1 = <UINavigationItem: 0x7fc720721080> title='self-Title1'
  */
+
 /*
  从子VC返回，viewWillAppear和viewDidAppear方法中获取到的topItem会发生变化,所以要修改title要在viewDidAppear方法中修改
  */
@@ -169,7 +173,7 @@
     
     NSLog(@"%s", __func__);
     
-    [self test0];
+//    [self test0];
 }
 
 /*

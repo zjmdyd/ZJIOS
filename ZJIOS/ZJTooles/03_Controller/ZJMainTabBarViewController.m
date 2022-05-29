@@ -37,10 +37,6 @@
     for (int i = 0; i < vcNames.count; i++) {
         UIViewController *vc = [UIViewController createVCWithName:vcNames[i] title:titles[i] hidesBottom:NO];
         ZJNavigationController *navi = [[ZJNavigationController alloc] initWithRootViewController:vc];
-//        navi.navigationBar.backgroundColor = MainColor;
-        //        navi.navigationBar.translucent = YES;
-//                navi.navigationBarBgColor = [UIColor mainColor];
-        //        navi.navigationBarTintColor = [UIColor whiteColor];
         if (images.count == vcNames.count) {
             vc.tabBarItem.image = [[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         }

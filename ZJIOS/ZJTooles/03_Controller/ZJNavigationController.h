@@ -13,19 +13,30 @@
 - (void)setNavigationBarBgImg:(UIImage *)bgImg forBarMetrics:(UIBarMetrics)barMetrics;
 - (void)setNavigationBarBgImgWithColor:(UIColor *)color forBarMetrics:(UIBarMetrics)barMetrics;
 
-//@property (nonatomic, strong) UIColor *navigationBarBgImgColor;
-
 /*
- *  导航栏是否半透明效果，默认为NO
+ *  导航栏是否半透明效果，默认为YES
  */
 @property (nonatomic, assign) BOOL navigationBarTranslucent;
 
+// 返回按钮title
+@property (nonatomic, copy) NSString *navigationBarBackButtonTitle;
 @property (nonatomic, assign) BOOL hiddenBackBarButtonItemTitle;
+
+@property (nonatomic, strong) UIColor *navigationBarTintColor;
+
+// 分割线颜色
+@property (nonatomic, strong) UIColor *navigationBarShadowColor;
+@property (nonatomic, assign) BOOL hiddenShadowImage;
+
+
+//@property (nonatomic, strong) UIColor *navigationBarBgImgColor;
+
+
+
 @property (nonatomic, assign) BOOL needChangeExtendedLayout;    // 默认为YES
 
 @property (nonatomic, strong) UIColor *navigationBarBgColor;
-@property (nonatomic, strong) UIColor *navigationBarTintColor;
-@property (nonatomic, strong) UIColor *navigationBarShadowColor;
+
 
 //@property (nonatomic, strong) UIImage *navigationBarBgImage;
 
