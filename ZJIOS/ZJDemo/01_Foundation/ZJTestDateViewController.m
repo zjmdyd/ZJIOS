@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self test6];
+    [self test0];
 }
 
 // 周:(1, 2, 3, 4, 5, 6, 7)
@@ -30,6 +30,7 @@
 - (void)test0 {
     NSDate *date = [NSDate date];
     NSLog(@"date = %@", date);
+    NSLog(@"timestamp = %f", date.timeIntervalSince1970);
 
     NSDateComponents *cmps = [date detailComponents];
     NSLog(@"%ld", (long)cmps.year);

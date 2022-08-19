@@ -1,11 +1,11 @@
 //
-//  ZJBlockViewController.m
+//  ZJTestBlockViewController.m
 //  ZJIOS
 //
 //  Created by Zengjian on 2021/6/17.
 //
 
-#import "ZJBlockViewController.h"
+#import "ZJTestBlockViewController.h"
 #import "ZJAnimal.h"
 #import "NSTimer+ZJBlockTimer.h"
 #import "Student.h"
@@ -41,19 +41,18 @@ struct __main_block_impl_0 {
     struct __Block_byref_age_0 *age;
 };
 
-@interface ZJBlockViewController ()
+@interface ZJTestBlockViewController ()
 
 @property (nonatomic, copy) Blk_t blk;
 @property (nonatomic, strong) ZJAnimal *animal;
 @property (nonatomic, strong) ZJAnimal *animal2;
-@property (nonatomic, strong) NSTimer *timer;
+//@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
 Blk_t block;
 
-
-@implementation ZJBlockViewController
+@implementation ZJTestBlockViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,12 +61,7 @@ Blk_t block;
     [UIView animateWithDuration:0.0 animations:^{
         [self doSomething];
     }];
-    [self test2];
-    
-    //   self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(doSomething) userInfo:nil repeats:YES];
-    //    [NSTimer zj_scheduledTimeWithTimeInterval:1 block:^{
-    //        [self doSomething];
-    //    } repeats:YES];
+    [self cycleRetainMethod4];
 }
 
 //访问外部变量的block默认是存储在堆中的（实际是放在栈区，然后ARC情况下又自动拷贝到堆区），自动释放。
@@ -81,6 +75,11 @@ Blk_t block;
     NSLog(@"%@", block);
 }
 
+/*
+ ARC环境下，访问外部变量的block为什么要自动从栈区拷贝到堆区呢？
+ 因为：栈上的block，如果其所属的变量作用域结束，该block就会被废弃，如同一般的自动变量。当然，block中的__block变量也同时会被废弃。
+ 为了解决栈块在其变量作用域结束之后被废弃（释放）的问题，我们需要把block复制到堆中，延长其生命周期。开启ARC时，大多数情况下编译器会恰当的进行判断是否有必要将block从栈复制到堆，如果有，自动生成将block从栈复制到堆的代码。block的复制操作执行的是Copy实例方法。block只要调用了Copy方法，栈块就会变成堆块。
+ */
 //2021-06-22 00:09:06.606176+0800 ZJIOS[7252:652881] <__NSStackBlock__: 0x7ffeea58eb48>
 - (void)test1 {
     int a = 10;
@@ -89,26 +88,25 @@ Blk_t block;
     };
     NSLog(@"%@", block);
 }
-/*
- ARC环境下，访问外部变量的block为什么要自动从栈区拷贝到堆区呢？
- 因为：栈上的block，如果其所属的变量作用域结束，该block就会被废弃，如同一般的自动变量。当然，block中的__block变量也同时会被废弃。
- 为了解决栈块在其变量作用域结束之后被废弃（释放）的问题，我们需要把block复制到堆中，延长其生命周期。开启ARC时，大多数情况下编译器会恰当的进行判断是否有必要将block从栈复制到堆，如果有，自动生成将block从栈复制到堆的代码。block的复制操作执行的是Copy实例方法。block只要调用了Copy方法，栈块就会变成堆块。
- */
 
 //函数返回的block如果是配置在栈上的，当block作为函数返回值再进行调用时，block变量作用域就结束了，block已经被释放废弃了
 typedef int (^__weak Blk_rt)(int);
+
 - (void)test2 {
     Blk_rt blk_rt = func(10);   // blk_rt已经被释放，再调用程序会crash
 //    int value = blk_rt(2);
 //    NSLog(@"value = %d", value);
 }
+
 Blk_rt func(int rate){
     return ^(int count){
         return rate * count;
     };
 }
 
-
+/*
+ block内部的[__Block_byref_age_0 *] age指向的地址是0x600000a61f40，之后我们在任意地方通过age访问的内存地址是0x600000a61f58，十六进制下它们地址相差了0x18，也就是十进制下的24个字节。
+ */
 -(void)test3 {
     __block int age = 10;
     NSLog(@"oc代码里直接通过a访问的内存空间是：%p",&age);
@@ -127,8 +125,6 @@ Blk_rt func(int rate){
 }
 
 /*
- block内部的[__Block_byref_age_0 *] age指向的地址是0x600000a61f40，之后我们在任意地方通过age访问的内存地址是0x600000a61f58，十六进制下它们地址相差了0x18，也就是十进制下的24个字节。
-
  struct __Block_byref_age_0 {
      void *__isa;  //8
      struct __Block_byref_age_0 *__forwarding; //8
@@ -220,10 +216,11 @@ Blk_rt func(int rate){
 
 - (void)cycleRetainMethod1 {
     self.blk = ^{
-        //        [self doSomething];   // 循环引用
+        [self doSomething];   // 循环引用
     };
 }
 
+// self会释放执行dealloc
 - (void)cycleRetainMethod2 {
     Blk_t block = ^ void(void){
         [self doSomething];
@@ -249,11 +246,12 @@ Blk_rt func(int rate){
     }];
     [_animal2 execute];
 }
+
 /*
  第二种写法，UIViewController持有_person，_person持有block所以形成一个闭环；而第一种写法由于Person.m的- (instancetype)initWithBlock:(Block)block的方法实现，在返回self之前对变量_blk赋值了。即_blk变量已经赋值，但是此时_person变量还没有产生，所以导致_person变量没有持有block
  */
 - (void)doSomething {
-    
+    NSLog(@"%s", __func__);
 }
 
 /*

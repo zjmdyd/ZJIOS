@@ -9,8 +9,6 @@
 
 @interface ZJTestTimerViewController ()
 
-//@property (nonatomic, strong) NSTimer *timer;
-
 @end
 
 @implementation ZJTestTimerViewController
@@ -64,7 +62,7 @@
         }];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     } else {
-        // 此种情形不论我们的timer是strong还是weak都无济于事，因为api内部会强持有
+        // 此种情形不论我们的timer是strong还是weak都无济于事，因为api内部会强持有target
         // 需手动invalid才会释放timer,当repeat为NO的时候则不需要，会自动释放
         NSTimer *timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];   // 不加入RunLoop则出了此方法体，timer就会被释放

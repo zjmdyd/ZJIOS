@@ -10,8 +10,7 @@
 
 @interface ZJCategoryViewController ()
 
-//- (void)testExtention;    // // 扩展中能够的方法必须实现
-
+//- (void)testExtention;    // 扩展中能够的方法必须实现
 @end
 
 @implementation ZJCategoryViewController
@@ -23,11 +22,11 @@
     NSLog(@"%@", ft.class);
     // Do any additional setup after loading the view.
 }
+
 /*
  Extension（扩展）中声明的方法只能在该类的@implementation中实现，这也就意味着，你无法对系统的类（例如NSArray类）使用Extension（扩展）
  因为Extension（扩展）是在编译阶段与该类同时编译的，就是类的一部分。既然作为类的一部分，且与类同时编译，那么就可以在编译阶段为类添加成员变量。
  Category的特性是：可以在运行时阶段动态的为已有类添加新行为。Category是在运行时阶段决定的。而成员变量的内存布局已经在编译阶段确定好了，如果在运行时阶段添加成员变量的话，就会破坏原有类的内存布局
- 
  在category默认添加属性是没有效果的，因为分类的结构体指针中，没有成员变量的成员结构
  category只会声明setter，getter，而不会去实现。
  struct _category_t {

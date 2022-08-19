@@ -29,10 +29,8 @@
 }
 
 - (void)initSetting {
-    self.navigationController.navigationBarHidden = YES;
-//    self.navigationController.navigationBar.hidden = YES;
     self.statusBarStyle = UIStatusBarStyleDefault;
-    self.cellTitles = @[@[@"UIStatusBarStyleDefault", @"UIStatusBarStyleLightContent", @"UIStatusBarStyleDarkContent"], @[@"背景色"]];
+    self.cellTitles = @[@[@"UIStatusBarStyleDefault", @"UIStatusBarStyleLightContent", @"UIStatusBarStyleDarkContent"], @[@"隐藏显示导航栏"], @[@"背景色"]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -94,6 +92,7 @@
 }
 
 - (void)test0 {
+//    View controller-based status bar appearance=YES; / (UIViewControllerBasedStatusBarAppearance=YES)
     if ([UIApplication appBoolInfoWithType:AppBoolInfoTypeBasedStatusBarAppearance]) {
         [self setNeedsStatusBarAppearanceUpdate];
     }else {
@@ -103,6 +102,10 @@
 }
 
 - (void)test1 {
+    self.navigationController.navigationBarHidden = !self.navigationController.isNavigationBarHidden;
+}
+
+- (void)test2 {
     UIView *statusBarView;
     
     if (@available(iOS 13.0, *)) {

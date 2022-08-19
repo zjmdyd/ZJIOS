@@ -7,6 +7,7 @@
 
 #import "ZJTestNSURLViewController.h"
 #import "NSString+ZJTextEncode.h"
+#import <WebKit/WebKit.h>
 
 @interface ZJTestNSURLViewController ()
 
@@ -20,7 +21,6 @@
     NSString *url = @"https://app.sycommercial.com/BM/ygapp/jsp/patrolPlan.jsp?isyg=1&f_patroltype=保洁ticket=6e56acc7-f249-4817-8efa-651bbdc1794e&userId=e5122b0dba2f4128bc4465df63dd2739&lan=zh";
     NSURL *endURL = [NSURL URLWithString:[url URLEncodedString]];
     NSLog(@"endURL = %@", endURL);
-
 }
 
 /*

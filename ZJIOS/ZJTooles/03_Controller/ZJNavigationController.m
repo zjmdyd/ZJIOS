@@ -110,10 +110,10 @@
  *  此方法会在viewDidLoad之后调用
  */
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    NSLog(@"edgesForExtendedLayout = %zd", viewController.edgesForExtendedLayout);
-    NSLog(@"topItem = %@", viewController.navigationController.navigationBar.topItem);
-    NSLog(@"backItem = %@", viewController.navigationController.navigationBar.backItem);
-    NSLog(@"viewController.navigationItem = %@, titleView = %@", viewController.navigationItem, viewController.navigationItem.titleView);
+//    NSLog(@"edgesForExtendedLayout = %zd", viewController.edgesForExtendedLayout);
+//    NSLog(@"topItem = %@", viewController.navigationController.navigationBar.topItem);
+//    NSLog(@"backItem = %@", viewController.navigationController.navigationBar.backItem);
+//    NSLog(@"viewController.navigationItem = %@, titleView = %@", viewController.navigationItem, viewController.navigationItem.titleView);
 //    if (self.needChangeExtendedLayout) {
 //        if([viewController respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
 //            viewController.edgesForExtendedLayout = UIRectEdgeNone;

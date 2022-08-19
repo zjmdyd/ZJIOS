@@ -27,7 +27,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertTableViewController"];
+    self.cellTitles = @[@"ZJTestShareViewController", @"ZJTestBarButtonItemViewController", @"ZJTestAlertTableViewController", @"ZJTestPushViewController"];
 }
 
 - (void)initSetting {

@@ -38,8 +38,12 @@
 }
 
 - (BOOL)touchInTheAnnularWithPoint:(CGPoint)point annularWidth:(CGFloat)annularWidth {
+    return [self touchInTheAnnularWithPoint:point annularWidth:annularWidth baseRangeWidth:self.bounds.size.width];
+}
+
+- (BOOL)touchInTheAnnularWithPoint:(CGPoint)point annularWidth:(CGFloat)annularWidth baseRangeWidth:(CGFloat)baseRangeWidth {
     CGFloat x = point.x, y = point.y;
-    CGFloat width = self.bounds.size.width;
+    CGFloat width = baseRangeWidth;
     CGFloat dx = fabs(x - width/2);
     CGFloat dy = fabs(y - width/2);
     CGFloat dis = sqrt(dx*dx + dy*dy);
@@ -47,6 +51,14 @@
         return YES;
     }
     return NO;
+}
+
+- (CGFloat)touchAngleWithPoint:(CGPoint)point baseRangeWidth:(CGFloat)baseRangeWidth {
+    CGFloat x = point.x, y = point.y;
+    CGFloat width = baseRangeWidth;
+    CGFloat dx = fabs(x - width/2);
+    CGFloat dy = fabs(y - width/2);
+    return atan2(dy, dx);
 }
 
 + (MoveDirection)moveDirection:(CGPoint)startPoint endPoint:(CGPoint)endPoint {

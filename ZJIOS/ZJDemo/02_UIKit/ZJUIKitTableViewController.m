@@ -24,7 +24,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestNavigationBarItemsTableViewController", @"ZJTestNavigationSettingTableViewController", @"ZJTestStatusBarTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController", @"ZJTestBezierPathViewController"];
+    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestNavigationBarItemsTableViewController", @"ZJTestNavigationSettingTableViewController", @"ZJTestStatusBarTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController", @"ZJTestVectorViewController"];
 }
 
 #pragma mark - UITableViewDataSource

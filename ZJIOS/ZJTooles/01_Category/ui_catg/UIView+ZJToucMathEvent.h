@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger, MoveDirection) {
  判断点是否在环形区域内
  */
 - (BOOL)touchInTheAnnularWithPoint:(CGPoint)point annularWidth:(CGFloat)annularWidth;
+- (BOOL)touchInTheAnnularWithPoint:(CGPoint)point annularWidth:(CGFloat)annularWidth baseRangeWidth:(CGFloat)baseRangeWidth;
 
 + (MoveDirection)moveDirection:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 

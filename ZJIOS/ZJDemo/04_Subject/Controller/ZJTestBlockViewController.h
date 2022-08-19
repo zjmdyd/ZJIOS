@@ -1,5 +1,5 @@
 //
-//  ZJBlockViewController.h
+//  ZJTestBlockViewController.h
 //  ZJIOS
 //
 //  Created by Zengjian on 2021/6/17.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJBlockViewController : ZJViewController
+@interface ZJTestBlockViewController : ZJViewController
 
 @end
 

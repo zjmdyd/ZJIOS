@@ -25,6 +25,7 @@
 }
 
 // 当强制释放self后，vc会执行dealloc方法，但必须手动对timer执行invalid操作，否则可能会出现野指针访问crash
+// 非法访问:Thread 1: EXC_BAD_ACCESS (code=EXC_I386_GPFLT)
 - (void)test1 {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
 }

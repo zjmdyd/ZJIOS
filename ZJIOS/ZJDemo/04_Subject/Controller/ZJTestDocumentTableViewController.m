@@ -92,14 +92,17 @@
  */
 
 /* 沙盒路径
- 2022-05-02 11:41:22.659609+0800 ZJIOS[18154:477658] homePath = /Users/issuser/Library/Developer/CoreSimulator/Devices/85CBF745-8847-4843-95E6-D53262D1B3D9/data/Containers/Data/Application/E98F6EE0-87DD-4AB0-9F4E-8563C3BF7B8E
- 2022-05-02 11:41:22.659861+0800 ZJIOS[18154:477658] NSCachesDirectory = (
-     "/Users/issuser/Library/Developer/CoreSimulator/Devices/85CBF745-8847-4843-95E6-D53262D1B3D9/data/Containers/Data/Application/E98F6EE0-87DD-4AB0-9F4E-8563C3BF7B8E/Library/Caches"
+ 2022-08-16 14:47:14.171234+0800 ZJIOS[5308:109356] homePath = /Users/issuser/Library/Developer/CoreSimulator/Devices/832358D8-0054-40F6-97D1-EF1BD0563E2F/data/Containers/Data/Application/4C7E001A-1B39-44C8-A1B0-928F524D5369
+ 2022-08-16 14:47:14.171803+0800 ZJIOS[5308:109356] NSDocumentDirectory = (
+     "/Users/issuser/Library/Developer/CoreSimulator/Devices/832358D8-0054-40F6-97D1-EF1BD0563E2F/data/Containers/Data/Application/4C7E001A-1B39-44C8-A1B0-928F524D5369/Documents"
  )
- 2022-05-02 11:41:22.659983+0800 ZJIOS[18154:477658] NSLibraryDirectory = (
-     "/Users/issuser/Library/Developer/CoreSimulator/Devices/85CBF745-8847-4843-95E6-D53262D1B3D9/data/Containers/Data/Application/E98F6EE0-87DD-4AB0-9F4E-8563C3BF7B8E/Library"
+ 2022-08-16 14:47:14.172098+0800 ZJIOS[5308:109356] NSLibraryDirectory = (
+     "/Users/issuser/Library/Developer/CoreSimulator/Devices/832358D8-0054-40F6-97D1-EF1BD0563E2F/data/Containers/Data/Application/4C7E001A-1B39-44C8-A1B0-928F524D5369/Library"
  )
- 2022-05-02 11:41:22.660089+0800 ZJIOS[18154:477658] tmpDir = /Users/issuser/Library/Developer/CoreSimulator/Devices/85CBF745-8847-4843-95E6-D53262D1B3D9/data/Containers/Data/Application/E98F6EE0-87DD-4AB0-9F4E-8563C3BF7B8E/tmp/
+ 2022-08-16 14:47:14.172311+0800 ZJIOS[5308:109356] tmpDir = /Users/issuser/Library/Developer/CoreSimulator/Devices/832358D8-0054-40F6-97D1-EF1BD0563E2F/data/Containers/Data/Application/4C7E001A-1B39-44C8-A1B0-928F524D5369/tmp/
+ 2022-08-16 14:47:14.172566+0800 ZJIOS[5308:109356] NSCachesDirectory = (
+     "/Users/issuser/Library/Developer/CoreSimulator/Devices/832358D8-0054-40F6-97D1-EF1BD0563E2F/data/Containers/Data/Application/4C7E001A-1B39-44C8-A1B0-928F524D5369/Library/Caches"
+ )
  */
 - (void)test0 {
     NSString *path = NSHomeDirectory();
