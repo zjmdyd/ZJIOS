@@ -21,6 +21,14 @@
     return NO;
 }
 
+- (BOOL)isValidString {
+    if ([self isKindOfClass:[NSString class]] && self.length > 0) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (NSString *)pathWithParam:(id)param {
     return [NSString stringWithFormat:@"%@/%@", self, param];
 }
@@ -127,6 +135,21 @@
         }
     }
     return [str mutableCopy];
+}
+
+#pragma mark - AttributedString
+
+- (NSAttributedString *)underlineAttributedString {
+    NSDictionary *attributeDict = @{NSStrikethroughStyleAttributeName : [NSNumber numberWithInteger:NSUnderlineStyleSingle],
+    };
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:self attributes:attributeDict];
+    
+    return attributeStr;
+}
+
+- (NSAttributedString *)attStringWithAttributed:(NSDictionary *)attributed {
+    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:self?:@"" attributes:attributed];
+    return attrStr;;
 }
 
 @end

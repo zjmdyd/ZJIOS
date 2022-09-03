@@ -12,6 +12,7 @@
 #import "ZJNavigationController.h"
 #import "UIView+ZJView.h"
 #import "NSMutableArray+ZJMutableArray.h"
+#import "NSArray+ZJArray.h"
 #import "UIViewController+ZJViewController.h"
 
 @interface ZJTestNavigationSettingTableViewController ()

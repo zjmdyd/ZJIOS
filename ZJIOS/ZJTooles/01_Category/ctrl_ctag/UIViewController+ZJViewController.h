@@ -21,6 +21,18 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 
 - (void)popToVCWithIndex:(NSUInteger)index;
 - (void)popToVCWithName:(NSString *)name;
+- (void)popToVCWithName:(NSString *)name isNib:(BOOL)isNib;
+- (void)showVCWithNibName:(NSString *)name;
+- (void)showVCWithNibName:(NSString *)name title:(NSString *)title;
+
+- (void)showDetailVCWithNibName:(NSString *)name;
+- (void)showDetailVCWithNibName:(NSString *)name title:(NSString *)title;
+
+- (void)presentVCWithNibName:(NSString *)name;
+- (void)presentVCWithNibName:(NSString *)name title:(NSString *)title;
+
++ (UIViewController *)createVCWithNibName:(NSString *)name;
++ (UIViewController *)createVCWithNibName:(NSString *)name title:(NSString *)title;
 
 - (void)showVCWithConfig:(ZJCtrlConfig *)ctrlConfig;
 

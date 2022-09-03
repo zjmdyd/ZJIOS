@@ -28,16 +28,4 @@
 @property (nonatomic, strong) UIColor *navigationBarShadowColor;
 @property (nonatomic, assign) BOOL hiddenShadowImage;
 
-
-//@property (nonatomic, strong) UIColor *navigationBarBgImgColor;
-
-
-
-@property (nonatomic, assign) BOOL needChangeExtendedLayout;    // 默认为YES
-
-@property (nonatomic, strong) UIColor *navigationBarBgColor;
-
-
-//@property (nonatomic, strong) UIImage *navigationBarBgImage;
-
 @end

@@ -1,18 +1,18 @@
 //
-//  ZJSubjectTableViewController.m
+//  ZJTestAnimationTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2021/6/13.
+//  Created by issuser on 2022/6/12.
 //
 
-#import "ZJSubjectTableViewController.h"
+#import "ZJTestAnimationTableViewController.h"
 #import "UIViewController+ZJViewController.h"
 
-@interface ZJSubjectTableViewController ()
+@interface ZJTestAnimationTableViewController ()
 
 @end
 
-@implementation ZJSubjectTableViewController
+@implementation ZJTestAnimationTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestMacroViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController", @"ZJTestTimerTableViewController", @"ZJTestFileTableViewController", @"ZJTestCALayerTableViewController", @"ZJTestBlockViewController", @"ZJTestAnimationTableViewController", @"ZJTestCIImageTableViewController", @"ZJTestBezierPathViewController"];
+    self.cellTitles = @[@"ZJTestRotateAnimatonViewController"];
 }
 
 - (void)initSetting {

@@ -13,15 +13,6 @@
 
 @implementation UIView (ZJView)
 
-- (UITapGestureRecognizer *)addTapGestureWithDelegate:(id <UIGestureRecognizerDelegate>)delegate target:(id)target {
-    SEL s = NSSelectorFromString(tapEvent);
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:s];
-    tap.delegate = delegate;
-    [self addGestureRecognizer:tap];
-    
-    return tap;
-}
-
 + (UIView *)maskViewWithFrame:(CGRect)frame {
     UIView *view = [[UIView alloc] initWithFrame:frame];
     view.backgroundColor = [UIColor maskViewColor];
@@ -79,12 +70,31 @@
     return nil;
 }
 
++ (UIView *)createViewWithNibName:(NSString *)name {
+    return [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil].firstObject;
+}
+
 - (void)logSubViews {
     for (UIView *view in self.subviews) {
         NSLog(@"view = %@", view);
         [view logSubViews];
     }
     NSLog(@"\n\n");
+}
+
+- (void)removeAllSubViews {
+    for (UIView *sView in self.subviews) {
+        [sView removeFromSuperview];
+    }
+}
+
+- (UITapGestureRecognizer *)addTapGestureWithDelegate:(id <UIGestureRecognizerDelegate>)delegate target:(id)target {
+    SEL s = NSSelectorFromString(tapEvent);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:s];
+    tap.delegate = delegate;
+    [self addGestureRecognizer:tap];
+    
+    return tap;
 }
 
 #pragma mark - supplementView
@@ -125,6 +135,5 @@
     
     return view;
 }
-
 
 @end

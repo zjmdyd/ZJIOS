@@ -7,10 +7,11 @@
 //
 
 #import "XHPageControl.h"
+
 @interface XHPageControl ()<XHPageControlDelegate>
 
-
 @end
+
 @implementation XHPageControl
 
 - (instancetype)initWithFrame:(CGRect)frame{

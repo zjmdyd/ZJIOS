@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZJAlertAction : UIAlertAction
 
 @property (nonatomic, assign) NSInteger tag;
-@property (nonatomic, strong) UIColor *titleColor;
-
 
 @end
 

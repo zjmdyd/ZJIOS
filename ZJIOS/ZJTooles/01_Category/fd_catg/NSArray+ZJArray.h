@@ -40,6 +40,15 @@ typedef NS_ENUM(NSInteger, TimeStringType) {
 // 十二星座
 + (NSArray *)twelveConstellations;
 
+- (BOOL)multiSubAryHasBoolTrue;
+- (BOOL)multiAryHasBoolTrue;
+- (BOOL)hasBoolTrue;
+- (BOOL)hasBoolTrueFromIndex:(NSInteger)index;
+- (NSInteger)boolTrueCount;
+
+- (BOOL)checkEmpty;
+- (NSInteger)checkEmptyIndex;
+
 @end
 
 NS_ASSUME_NONNULL_END

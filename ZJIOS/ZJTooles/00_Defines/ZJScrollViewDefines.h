@@ -19,6 +19,14 @@
 #define DefaultSectionFooterHeight 8
 #endif
 
+#ifndef DefaultDoubleSectionHeaderHeight
+#define DefaultDoubleSectionHeaderHeight 16
+#endif
+
+#ifndef DefaultDoubleSectionFooterHeight
+#define DefaultDoubleSectionFooterHeight 16
+#endif
+
 #ifndef DefaultSectionTitleHeight
 #define DefaultSectionTitleHeight 35
 #endif

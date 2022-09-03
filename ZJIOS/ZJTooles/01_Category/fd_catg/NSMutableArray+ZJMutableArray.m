@@ -18,19 +18,6 @@
     return array;
 }
 
-- (BOOL)hasBoolTrue {
-    return [self hasBoolTrueFromIndex:0];
-}
-
-- (BOOL)hasBoolTrueFromIndex:(NSInteger)index {
-    for(NSInteger i = index; i < self.count; i++) {
-        if ([self[i] boolValue]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (void)resetBoolValues {
     [self resetBoolValuesFromIndex:0];
 }

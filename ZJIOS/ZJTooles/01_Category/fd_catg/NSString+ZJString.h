@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (ZJString)
 
 - (BOOL)isEmptyString;
+- (BOOL)isValidString;
 
 - (NSString *)pathWithParam:(id)param;
 
@@ -31,6 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)invertString;
 - (NSString *)invertStringWithSegmentLenth:(int)len;
+
+#pragma mark - AttributedString
+
+- (NSAttributedString *)underlineAttributedString;
+- (NSAttributedString *)attStringWithAttributed:(NSDictionary *)attributed;
 
 @end
 

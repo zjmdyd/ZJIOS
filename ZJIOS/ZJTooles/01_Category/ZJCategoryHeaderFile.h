@@ -9,7 +9,6 @@
 #ifndef ZJCategoryHeaderFile_h
 #define ZJCategoryHeaderFile_h
 
-#import "ZJNSObjectCategory.h"
 #import "ZJFdCatg.h"
 #import "ZJUICatg.h"
 #import "ZJCtrlCatg.h"

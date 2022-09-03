@@ -39,7 +39,27 @@
 #endif
 
 #ifndef kIsIphoneXMax
-#define kIsIphoneXMax (kScreenH > 812)       // 是否是iphoneX Max系列
+#define kIsIphoneXMax (kScreenH > 812)  // 是否是iphoneX Max系列
+#endif
+
+#ifndef kIsIPadPro12_9
+#define kIsIPadPro12_9 (kScreenH >= 1366)   // 是否是12.9英寸的iPad
+#endif
+
+#ifndef kIsIPadMini
+#define kIsIPadMini (kScreenW < 745)        // kIsIPadMini:744,1133
+#endif
+
+#ifndef kIsIPad9_7
+#define kIsIPad9_7 (kScreenW < 769 && kScreenH < 1025)        // kIsIPad9_7:768,1024
+#endif
+
+#ifndef kIsIPadMini
+#define kIsIPadMini (kScreenW < 745)        // kIsIPadMini:744,1133
+#endif
+
+#ifndef kIsIPad12_9
+#define kIsIPad12_9 (kScreenW > 1023 && kScreenH > 1365)        // kIsIPad12_9:1024,1366
 #endif
 
 #ifndef kStatusBarH

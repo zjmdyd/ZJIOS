@@ -54,18 +54,18 @@
 #pragma mark - 读取
 
 + (id)readFileWithPathComponent:(NSString *)name {
-    return [self readFileWithPathComponent:name needDeserialize:NO suffix:nil];
+    return [self readFileWithPathComponent:name needEncodFileName:NO suffix:nil];
 }
 
 + (id)readFileWithPathComponent:(NSString *)name suffix:(nullable NSString *)suffix {
-    return [self readFileWithPathComponent:name needDeserialize:NO suffix:suffix];
+    return [self readFileWithPathComponent:name needEncodFileName:NO suffix:suffix];
 }
 
-+ (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need {
-    return [self readFileWithPathComponent:name needDeserialize:need suffix:nil];
++ (id)readFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need {
+    return [self readFileWithPathComponent:name needEncodFileName:need suffix:nil];
 }
 
-+ (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need suffix:(nullable NSString *)suffix {
++ (id)readFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need suffix:(nullable NSString *)suffix {
     ZJDocumentReadCofig *config = [ZJDocumentReadCofig new];
     config.fileName = name;;
     config.needEncodFileName = need;
@@ -81,18 +81,18 @@
 #pragma mark - 删除
 
 + (void)removeFileWithPathComponent:(NSString *)name {
-    [self removeFileWithPathComponent:name needDeserialize:NO suffix:nil];
+    [self removeFileWithPathComponent:name needEncodFileName:NO suffix:nil];
 }
 
 + (void)removeFileWithPathComponent:(NSString *)name suffix:(nullable NSString *)suffix {
-    [self removeFileWithPathComponent:name needDeserialize:NO suffix:suffix];
+    [self removeFileWithPathComponent:name needEncodFileName:NO suffix:suffix];
 }
 
-+ (void)removeFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need {
-    [self removeFileWithPathComponent:name needDeserialize:need suffix:nil];
++ (void)removeFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need {
+    [self removeFileWithPathComponent:name needEncodFileName:need suffix:nil];
 }
 
-+ (void)removeFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need suffix:(nullable NSString *)suffix {
++ (void)removeFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need suffix:(nullable NSString *)suffix {
     ZJDocumentCofig *config = [ZJDocumentCofig new];
     config.fileName = name;;
     config.needEncodFileName = need;

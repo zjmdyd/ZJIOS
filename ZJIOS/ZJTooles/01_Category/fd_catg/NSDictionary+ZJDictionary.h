@@ -19,10 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 // @param keys 给特定属性赋值的keys
 - (void)jsonToModel:(id)obj withSpecifyKeys:(nullable NSArray *)specifyKeys;
 
-- (BOOL)containsKey:(NSString *)key;
+- (BOOL)zj_containsKey:(NSString *)key;
 - (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive;
 
 - (NSString *)httpParamsString;
+
++ (NSDictionary *)generateParamsWithKeys:(NSArray *)keys values:(NSArray *)values;
 
 @end
 

@@ -31,8 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (id)readFileWithPathComponent:(NSString *)name;
 + (id)readFileWithPathComponent:(NSString *)name suffix:(nullable NSString *)suffix;
 
-+ (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need;
-+ (id)readFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need suffix:(nullable NSString *)suffix;
++ (id)readFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need;
++ (id)readFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need suffix:(nullable NSString *)suffix;
 
 + (id)readFileWithDocumentConfig:(ZJDocumentReadCofig *)config;
 
@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeFileWithPathComponent:(NSString *)name;
 + (void)removeFileWithPathComponent:(NSString *)name suffix:(nullable NSString *)suffix;
 
-+ (void)removeFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need;
-+ (void)removeFileWithPathComponent:(NSString *)name needDeserialize:(BOOL)need suffix:(nullable NSString *)suffix;
++ (void)removeFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need;
++ (void)removeFileWithPathComponent:(NSString *)name needEncodFileName:(BOOL)need suffix:(nullable NSString *)suffix;
 
 + (void)removeFileWithDocumentConfig:(ZJDocumentCofig *)config;
 

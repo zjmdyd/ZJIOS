@@ -18,6 +18,25 @@
 #define ZJNSLog(FORMAT, ...) nil
 #endif
 
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define RATIO_H SCREEN_HEIGHT / 1366.0
+#define RATIO_W SCREEN_WIDTH / 1024.0
+#define XPDockItemWidth 88 * RATIO_W
+#define XPDockItemHeight 102 * RATIO_H
+
+#define XPDockHeaderItemHeigt 20 * RATIO_H
+
+#define TIPS_H 562 * RATIO_H
+#define TIPS_TOP 96 * RATIO_H
+// 平方细体
+#define PF_THIN(s) [UIFont fontWithName:NotoSansSC_Thin size:s * RATIO_W]
+// 平方字体加粗
+#define PF_Medium(s)  [UIFont fontWithName:NotoSansSC_Medium size:s * RATIO_W]
+#define PF_Blod(s)  [UIFont fontWithName:NotoSansSC_Bold size:s * RATIO_W]
+#define PF_SC(s) [UIFont fontWithName:NotoSansSC_Regular size:s * RATIO_W]
+
+#define PF_Light(s) [UIFont fontWithName:NotoSansSC_Light size:s * RATIO_W]
 // #用来把参数转换成字符串
 #define P(A) printf("%s:%d\n",#A,A);
 

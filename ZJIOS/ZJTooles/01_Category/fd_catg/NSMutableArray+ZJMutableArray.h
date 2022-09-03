@@ -16,8 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSMutableArray *)arrayWithObject:(id)obj count:(NSInteger)count;
 
-- (BOOL)hasBoolTrue;
-- (BOOL)hasBoolTrueFromIndex:(NSInteger)index;
+
 
 - (void)resetBoolValues;
 - (void)resetBoolValuesFromIndex:(NSInteger)index;
