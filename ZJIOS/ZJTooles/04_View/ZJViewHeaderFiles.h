@@ -9,10 +9,9 @@
 #ifndef ZJViewHeaderFiles_h
 #define ZJViewHeaderFiles_h
 
-#import "ZJView.h"
-
 // tableViewCell
 #import "ZJBaseTableViewCell.h"
 
+#import "XHPageControl.h"
 
 #endif /* ZJViewHeaderFiles_h */

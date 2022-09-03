@@ -26,12 +26,67 @@
 }
 
 - (void)popToVCWithName:(NSString *)name {
+    [self popToVCWithName:name isNib:NO];
+}
+
+- (void)popToVCWithName:(NSString *)name isNib:(BOOL)isNib {
+    if ([self isKindOfClass:NSClassFromString(name)]) {
+        return;
+    }
+    
+    BOOL hasMatch = NO;
     for (UIViewController *vc in self.navigationController.viewControllers) {
         if ([vc isKindOfClass:NSClassFromString(name)]) {
             [self.navigationController popToViewController:vc animated:YES];
-            break;
+            hasMatch = YES;
+            return;
         }
     }
+    if (!hasMatch) {
+        if (isNib) {
+            [self showVCWithNibName:name];
+        }else {
+            [self showVCWithName:name];
+        }
+    }
+}
+
+- (void)showVCWithNibName:(NSString *)name {
+    [self showVCWithNibName:name title:@""];
+}
+
+- (void)showVCWithNibName:(NSString *)name title:(NSString *)title {
+    UIViewController *vc = [UIViewController createVCWithNibName:name title:title];
+    [self showViewController:vc sender:nil];
+}
+
+- (void)showDetailVCWithNibName:(NSString *)name {
+    [self showDetailVCWithNibName:name title:@""];
+}
+
+- (void)showDetailVCWithNibName:(NSString *)name title:(NSString *)title {
+    UIViewController *vc = [UIViewController createVCWithNibName:name title:title];
+    [self showDetailViewController:vc sender:nil];
+}
+
+- (void)presentVCWithNibName:(NSString *)name {
+    [self presentVCWithNibName:name title:@""];
+}
+
+- (void)presentVCWithNibName:(NSString *)name title:(NSString *)title {
+    UIViewController *vc = [UIViewController createVCWithNibName:name title:title];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
++ (UIViewController *)createVCWithNibName:(NSString *)name {
+    return [self createVCWithNibName:name title:@""];
+}
+
++ (UIViewController *)createVCWithNibName:(NSString *)name title:(NSString *)title {
+    UIViewController *vc = [((UIViewController *)[NSClassFromString(name) alloc]) initWithNibName:name bundle:nil];
+    vc.title = title;
+    return vc;
 }
 
 - (void)showVCWithName:(NSString *)name {

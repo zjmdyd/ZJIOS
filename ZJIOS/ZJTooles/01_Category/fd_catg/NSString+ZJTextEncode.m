@@ -43,7 +43,20 @@
     return MD5Strubg;
 }
 
-#pragma 字符串编码
+#pragma mark - sha1
+
+- (NSString*)sha1:(NSString *)str {
+    const char *cstr = [str cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:str.length];
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(data.bytes, (uint32_t)data.length, digest);
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    return output;
+}
+
+#pragma mark - 字符串编码
 
 - (NSString *)URLEncodedString {
     if (!self) return nil;

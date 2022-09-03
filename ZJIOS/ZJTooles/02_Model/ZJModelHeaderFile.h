@@ -9,12 +9,16 @@
 #ifndef ZJModelHeaderFile_h
 #define ZJModelHeaderFile_h
 
-#import "ZJPageSizeObjectInfo.h"
 #import "ZJAlertAction.h"
 #import "ZJAlertObject.h"
-#import "ZJAlertSheetObj.h"
 #import "ZJCtrlConfig.h"
+#import "ZJDateFormatter.h"
 #import "ZJDocumentCofig.h"
+#import "ZJDocumentReadCofig.h"
+#import "ZJDocumentWriteCofig.h"
+#import "ZJMentionObject.h"
+#import "ZJPageSizeObjectInfo.h"
+#import "ZJTextInputConfig.h"
 
 #endif /* ZJModelHeaderFile_h */
 

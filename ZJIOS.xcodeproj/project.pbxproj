@@ -515,6 +515,7 @@
 		65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestStringViewController.m; sourceTree = "<group>"; };
 		65C574F2274CF30400D8FE00 /* ZJTestNSRangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestNSRangeViewController.h; sourceTree = "<group>"; };
 		65C574F3274CF30400D8FE00 /* ZJTestNSRangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestNSRangeViewController.m; sourceTree = "<group>"; };
+		65D1E64528C36B9000B0730A /* ZJControllerHeaderFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJControllerHeaderFile.h; sourceTree = "<group>"; };
 		65D303A7282513FF0063723F /* ZJTestWriteFileTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestWriteFileTableViewController.h; sourceTree = "<group>"; };
 		65D303A8282513FF0063723F /* ZJTestWriteFileTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestWriteFileTableViewController.m; sourceTree = "<group>"; };
 		65D56F09287FFD2700E94FBC /* ZJTestFloatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestFloatViewController.h; sourceTree = "<group>"; };
@@ -1013,6 +1014,7 @@
 		38EBE0D72675B5AF00E090D9 /* 03_Controller */ = {
 			isa = PBXGroup;
 			children = (
+				65D1E64528C36B9000B0730A /* ZJControllerHeaderFile.h */,
 				38A1F08B26774A6200A4D044 /* ZJViewController.h */,
 				38A1F08C26774A6200A4D044 /* ZJViewController.m */,
 				38EBE13E2675B75800E090D9 /* ZJMainTabBarViewController.h */,

@@ -42,8 +42,12 @@
     }
 }
 
-- (BOOL)containsKey:(NSString *)key {
-    return [self containsKey:key caseInsensitive:NO];
+- (BOOL)zj_containsKey:(NSString *)key {
+    NSLog(@"%s", __func__);
+    if ([key isKindOfClass:[NSString class]]) {
+        return [self containsKey:key caseInsensitive:NO];
+    }
+    return NO;
 }
 
 - (BOOL)containsKey:(NSString *)key caseInsensitive:(BOOL)caseInsensitive {
@@ -76,5 +80,18 @@
     
     return str.copy;
 }
+
++ (NSDictionary *)generateParamsWithKeys:(NSArray *)keys values:(NSArray *)values {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (keys.count != values.count) {
+        NSLog(@"key_value个数不匹配");
+    }
+    for (int i = 0; i < keys.count; i++) {
+        dic[keys[i]] = values[i];
+    }
+    
+    return dic.copy;
+}
+
 
 @end

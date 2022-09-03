@@ -12,11 +12,9 @@
 #import "ZJDefine.h"
 #import "ZJCategoryHeaderFile.h"
 #import "ZJModelHeaderFile.h"
-#import "ZJViewHeaderFile.h"
+#import "ZJViewHeaderFiles.h"
 #import "ZJControllerHeaderFile.h"
-#include "ZJByteData.h"
-#import "ZJNetRequestHeaderFile.h"
-//#import "ZJBLETool.h"
+#import "ZJLayerCatg.h"
 
 #endif /* ZJHeaderFile_h */
 

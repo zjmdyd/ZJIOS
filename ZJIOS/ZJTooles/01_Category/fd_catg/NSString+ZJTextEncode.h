@@ -23,6 +23,10 @@ typedef NS_ENUM(NSInteger, MD5Type) {
 - (NSString *)md5;
 - (NSString *)md5WithType:(MD5Type)type;
 
+#pragma mark - sha1
+
+- (NSString*)sha1:(NSString *)str;
+
 #pragma 字符串编码
 
 /**

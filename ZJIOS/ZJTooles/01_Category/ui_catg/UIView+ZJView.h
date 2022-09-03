@@ -11,6 +11,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZJView)
 
+
++ (UIView *)maskViewWithFrame:(CGRect)frame;
+- (UIView *)subViewWithTag:(NSInteger)tag;
+- (UIView *)fetchSubViewWithClassName:(NSString *)className;
+- (UIView *)fetchSuperViewWithClassName:(NSString *)className;
++ (UIView *)createViewWithNibName:(NSString *)name;
+
+- (void)logSubViews;
+- (void)removeAllSubViews;
+
 /**
  *  添加tap手势
  *
@@ -18,21 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (UITapGestureRecognizer *)addTapGestureWithDelegate:(id <UIGestureRecognizerDelegate>)delegate target:(id)target;
 
-+ (UIView *)maskViewWithFrame:(CGRect)frame;
-- (UIView *)subViewWithTag:(NSInteger)tag;
-- (UIView *)fetchSubViewWithClassName:(NSString *)className;
-- (UIView *)fetchSuperViewWithClassName:(NSString *)className;
-- (void)logSubViews;
-
-// 左文字右图片
-+ (UIView *)createTitleIVWithFrame:(CGRect)frame path:(NSString *)path placehold:(NSString *)placehold title:(NSString *)title;
-
 #pragma mark - supplementView
 
 - (void)addIconBadgeWithImage:(UIImage *)image;
 - (void)addIconBadgeWithImage:(UIImage *)image bgColor:(UIColor *)color;
-
-
+// 左文字右图片
++ (UIView *)createTitleIVWithFrame:(CGRect)frame path:(NSString *)path placehold:(NSString *)placehold title:(NSString *)title;
 
 @end
 

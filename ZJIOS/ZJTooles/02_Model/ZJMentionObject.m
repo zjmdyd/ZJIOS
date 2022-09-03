@@ -10,4 +10,14 @@
 
 @implementation ZJMentionObject
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.duration = 0.25;
+        self.firstText = @"";
+        self.secondText = @"";
+    }
+    return self;
+}
 @end
