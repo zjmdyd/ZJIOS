@@ -6,6 +6,7 @@
 //
 
 #import "ZJViewController.h"
+#import "AppConfigHeader.h"
 
 @interface ZJViewController ()
 
@@ -16,11 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initSetting];
+    [self initSuperSetting];
 }
 
-- (void)initSetting {
-    self.view.backgroundColor = [UIColor whiteColor];
+- (void)initSuperSetting {
+#ifdef DefaultViewBackgroundColor
+    self.view.backgroundColor = DefaultViewBackgroundColor;
+#endif
+}
+
+- (void)dealloc {
+    NSLog(@"%s, currentVC = %@", __func__, self.class);
+    if (self.timer) {
+        [self.timer invalidate];
+    }
 }
 
 /*

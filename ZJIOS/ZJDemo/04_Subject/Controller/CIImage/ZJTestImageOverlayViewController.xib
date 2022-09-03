@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZJTestImageOverlayViewController">
+            <connections>
+                <outlet property="bgIV" destination="Byz-Ny-Xhv" id="aUb-0h-0Cf"/>
+                <outlet property="changeColorIV" destination="gkO-41-R6S" id="VL6-LC-GQR"/>
+                <outlet property="hazeIV" destination="j8g-YG-6jC" id="R4W-MM-lru"/>
+                <outlet property="originIV" destination="EVb-ct-Ijo" id="JwV-2y-tQo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="warpIV" destination="Ru5-Dn-guF" id="L7M-9e-7qg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EVb-ct-Ijo">
+                    <rect key="frame" x="20" y="120" width="400" height="500"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="500" id="PyN-B9-yNI"/>
+                        <constraint firstAttribute="width" constant="400" id="p7l-bZ-pYL"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ru5-Dn-guF">
+                    <rect key="frame" x="604" y="120" width="400" height="500"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j8g-YG-6jC">
+                    <rect key="frame" x="20" y="666" width="400" height="500"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_hehua" translatesAutoresizingMaskIntoConstraints="NO" id="Byz-Ny-Xhv">
+                    <rect key="frame" x="604" y="666" width="400" height="500"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gkO-41-R6S">
+                    <rect key="frame" x="604" y="666" width="400" height="500"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Byz-Ny-Xhv" firstAttribute="trailing" secondItem="gkO-41-R6S" secondAttribute="trailing" id="0SN-Bn-q4B"/>
+                <constraint firstItem="Ru5-Dn-guF" firstAttribute="top" secondItem="EVb-ct-Ijo" secondAttribute="top" id="1Rh-WG-zdX"/>
+                <constraint firstItem="EVb-ct-Ijo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="1X6-e9-HyQ"/>
+                <constraint firstItem="gkO-41-R6S" firstAttribute="trailing" secondItem="Ru5-Dn-guF" secondAttribute="trailing" id="4Jn-xC-cqg"/>
+                <constraint firstItem="gkO-41-R6S" firstAttribute="width" secondItem="j8g-YG-6jC" secondAttribute="width" id="9lk-yj-zcs"/>
+                <constraint firstItem="Byz-Ny-Xhv" firstAttribute="bottom" secondItem="gkO-41-R6S" secondAttribute="bottom" id="A1R-e0-zcS"/>
+                <constraint firstAttribute="trailing" secondItem="Ru5-Dn-guF" secondAttribute="trailing" constant="20" symbolic="YES" id="JsN-PH-RTP"/>
+                <constraint firstItem="j8g-YG-6jC" firstAttribute="leading" secondItem="EVb-ct-Ijo" secondAttribute="leading" id="KJW-Tg-5hi"/>
+                <constraint firstItem="Byz-Ny-Xhv" firstAttribute="top" secondItem="gkO-41-R6S" secondAttribute="top" id="KLS-W9-b1i"/>
+                <constraint firstItem="Ru5-Dn-guF" firstAttribute="height" secondItem="EVb-ct-Ijo" secondAttribute="height" id="Okn-9q-Zrp"/>
+                <constraint firstItem="EVb-ct-Ijo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="UXJ-eW-4R7"/>
+                <constraint firstItem="gkO-41-R6S" firstAttribute="top" secondItem="j8g-YG-6jC" secondAttribute="top" id="V7R-yB-3eV"/>
+                <constraint firstItem="j8g-YG-6jC" firstAttribute="width" secondItem="EVb-ct-Ijo" secondAttribute="width" id="fr8-XV-Ezv"/>
+                <constraint firstItem="gkO-41-R6S" firstAttribute="height" secondItem="j8g-YG-6jC" secondAttribute="height" id="h6K-tS-H3T"/>
+                <constraint firstItem="j8g-YG-6jC" firstAttribute="height" secondItem="EVb-ct-Ijo" secondAttribute="height" id="mEc-Xm-1a1"/>
+                <constraint firstItem="Ru5-Dn-guF" firstAttribute="width" secondItem="EVb-ct-Ijo" secondAttribute="width" id="xCG-9H-aYD"/>
+                <constraint firstItem="Byz-Ny-Xhv" firstAttribute="leading" secondItem="gkO-41-R6S" secondAttribute="leading" id="zYf-bx-FfT"/>
+                <constraint firstItem="j8g-YG-6jC" firstAttribute="top" secondItem="EVb-ct-Ijo" secondAttribute="bottom" constant="46" id="zbJ-8z-NpG"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8359375" y="77.745241581259151"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_hehua" width="250" height="375"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

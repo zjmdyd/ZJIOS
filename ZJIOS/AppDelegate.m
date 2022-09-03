@@ -20,24 +20,6 @@
     return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    NSLog(@"%s", __func__);
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    NSLog(@"%s", __func__);
-    UIApplication*   app = [UIApplication sharedApplication];
-    __block    UIBackgroundTaskIdentifier bgTask;
-    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (bgTask != UIBackgroundTaskInvalid)
-            {
-                bgTask = UIBackgroundTaskInvalid;
-            }
-        });
-    }];
-}
-
 #pragma mark - UISceneSession lifecycle
 
 

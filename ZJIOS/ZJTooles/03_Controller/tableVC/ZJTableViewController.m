@@ -23,15 +23,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (void)dealloc {
+    NSLog(@"%s, currentVC = %@", __func__, self.class);
+    if (self.timer) {
+        [self.timer invalidate];
+    }
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

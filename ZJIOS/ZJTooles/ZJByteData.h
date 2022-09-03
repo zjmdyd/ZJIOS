@@ -10,7 +10,9 @@
 #define ZJByteData_h
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #endif /* ZJByteData_h */
 
 extern uint16_t bitReverse(uint16_t us_DataIn);
+bool isBigEndian(void);
