@@ -141,9 +141,9 @@
                 if (sender.isOn == NO) {
                     [ary resetBoolValuesFromIndex:1];
                 }else {
-                    if (![ary hasBoolTrueFromIndex:1]) {
-                        ary[1] = @1;
-                    }
+//                    if (![ary hasBoolTrueFromIndex:1]) {
+//                        ary[1] = @1;
+//                    }
                 }
                 [self.tableView reloadData];
                 [self test10:@(sender.isOn)];
@@ -151,10 +151,10 @@
                 [ary resetBoolValuesFromIndex:1 excludeIndex:indexPath.row];
                 
                 if (sender.isOn == NO) {
-                    if (![ary hasBoolTrueFromIndex:1]) {
-                        ary[1] = @1;
-                        [self test11:@0];
-                    }
+//                    if (![ary hasBoolTrueFromIndex:1]) {
+//                        ary[1] = @1;
+//                        [self test11:@0];
+//                    }
                 }else {
                     [self test11:@(indexPath.row - 1)];
                 }

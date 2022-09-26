@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test1];
+    [self test2];
 }
 
 /*
@@ -44,6 +44,22 @@
     NSArray *ary = @[@"1", @"2", @"3", @"4"];
     NSLog(@"%@", [ary joinToStringWithSeparateString:@"/"]);
     NSLog(@"%@", [ary joinToStringWithSeparateString:@"/" range:NSMakeRange(1, 2)]);
+}
+
+- (void)test2 {
+    NSArray *ary = @[@"0099", @"2233", @""];
+    if ([ary containsObject:@"0099"]) {
+        NSLog(@"数组包含字符串功能成立");
+    }else {
+        NSLog(@"数组包含字符串功能不成立");
+    }
+    
+    if ([ary containsObject:@""]) {
+        NSLog(@"数组包含空字符串功能成立");
+    }else {
+        NSLog(@"数组包含空字符串功能不成立");
+    }
+
 }
 
 /*

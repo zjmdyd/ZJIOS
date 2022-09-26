@@ -161,13 +161,13 @@
     [strs writeToFileWithPathComponent:@"hello" needEncodeFileName:YES suffix:@".json"];
     
     // 读取文件
-    id value = [NSObject readFileWithPathComponent:@"hello" needDeserialize:YES suffix:@".json"];
-    NSLog(@"value = %@", value);
+//    id value = [NSObject readFileWithPathComponent:@"hello" needDeserialize:YES suffix:@".json"];
+//    NSLog(@"value = %@", value);
 }
 
 - (void)test5 {
     // 删除文件, 文件名加密
-    [NSObject removeFileWithPathComponent:@"hello" needDeserialize:YES suffix:@".json"];
+//    [NSObject removeFileWithPathComponent:@"hello" needDeserialize:YES suffix:@".json"];
 }
 
 /*
