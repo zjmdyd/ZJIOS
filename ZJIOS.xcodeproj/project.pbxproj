@@ -92,6 +92,8 @@
 		656E660B275F505500CFD5FC /* NSObject+ZJDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 656E660A275F505400CFD5FC /* NSObject+ZJDocument.m */; };
 		656E660E275F509400CFD5FC /* NSScanner+ZJScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 656E660D275F509400CFD5FC /* NSScanner+ZJScanner.m */; };
 		6574BD3026A66F5E00FA5920 /* ZJTestDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574BD2F26A66F5E00FA5920 /* ZJTestDataViewController.m */; };
+		6577B30428F2A7E0009471EA /* ZJTestMultiTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577B30328F2A7E0009471EA /* ZJTestMultiTargetViewController.m */; };
+		6577B30528F2A7E0009471EA /* ZJTestMultiTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6577B30328F2A7E0009471EA /* ZJTestMultiTargetViewController.m */; };
 		657D57BF281F870C008B1964 /* ZJTestUnsignedDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57BE281F870C008B1964 /* ZJTestUnsignedDataViewController.m */; };
 		657D57C2281F8CA4008B1964 /* ZJTestDocumentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57C1281F8CA4008B1964 /* ZJTestDocumentTableViewController.m */; };
 		657D57C5281F921D008B1964 /* ZJTestSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57C4281F921D008B1964 /* ZJTestSandboxViewController.m */; };
@@ -164,6 +166,198 @@
 		65B0328C284615E800E9C08A /* ZJDocumentCofig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03280284615E800E9C08A /* ZJDocumentCofig.m */; };
 		65B130B12761F98200F4B3B3 /* ZJTestDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */; };
 		65B3008F28AB6FB900524D8B /* ZJTestCSVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B3008E28AB6FB900524D8B /* ZJTestCSVViewController.m */; };
+		65BD8FB028E13CC600CDC2CC /* Son.m in Sources */ = {isa = PBXBuildFile; fileRef = 6590A436274BA52400BDB826 /* Son.m */; };
+		65BD8FB128E13CC600CDC2CC /* ZJCtrlTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6597C21527450A24003161AB /* ZJCtrlTableViewController.m */; };
+		65BD8FB228E13CC600CDC2CC /* ZJTestSleepFuncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150CD28C3659300688F62 /* ZJTestSleepFuncViewController.m */; };
+		65BD8FB328E13CC600CDC2CC /* ZJTestLayerBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508086E2831129A0010D447 /* ZJTestLayerBorderViewController.m */; };
+		65BD8FB428E13CC600CDC2CC /* ZJTestPageCtrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA5F9E28043CDC00D6C61A /* ZJTestPageCtrlViewController.m */; };
+		65BD8FB528E13CC600CDC2CC /* ZJTouchMathEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650808372830FA6B0010D447 /* ZJTouchMathEventViewController.m */; };
+		65BD8FB628E13CC600CDC2CC /* Father.m in Sources */ = {isa = PBXBuildFile; fileRef = 6590A42E274B8C2400BDB826 /* Father.m */; };
+		65BD8FB728E13CC600CDC2CC /* ZJTestSearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652B58F127BA5CE200745D11 /* ZJTestSearchBarViewController.m */; };
+		65BD8FB828E13CC600CDC2CC /* ZJTestBlockTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC466279FECC100A7FE1D /* ZJTestBlockTimerViewController.m */; };
+		65BD8FB928E13CC600CDC2CC /* ZJTestMethodSwizzlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6590A42B274B83C700BDB826 /* ZJTestMethodSwizzlingViewController.m */; };
+		65BD8FBA28E13CC600CDC2CC /* ZJDocumentCofig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03280284615E800E9C08A /* ZJDocumentCofig.m */; };
+		65BD8FBB28E13CC600CDC2CC /* ZJTestAppearanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65939422281BEBB400D4872C /* ZJTestAppearanceView.m */; };
+		65BD8FBC28E13CC600CDC2CC /* ZJTestScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6585A8CB26CA9A7A00306DD8 /* ZJTestScannerViewController.m */; };
+		65BD8FBD28E13CC600CDC2CC /* NSTimer+ZJBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0BB267B538D00A4D044 /* NSTimer+ZJBlockTimer.m */; };
+		65BD8FBE28E13CC600CDC2CC /* ZJTestCALayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508086B283110C80010D447 /* ZJTestCALayerTableViewController.m */; };
+		65BD8FBF28E13CC600CDC2CC /* ZJTestDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6574BD2F26A66F5E00FA5920 /* ZJTestDataViewController.m */; };
+		65BD8FC028E13CC600CDC2CC /* ZJTestRotateAnimatonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E12982855EF8B004C4748 /* ZJTestRotateAnimatonViewController.m */; };
+		65BD8FC128E13CC600CDC2CC /* UIView+ZJToucMathEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AAD40328153AD800A89F10 /* UIView+ZJToucMathEvent.m */; };
+		65BD8FC228E13CC600CDC2CC /* UIApplication+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 659492132711736300FDD87D /* UIApplication+Network.m */; };
+		65BD8FC328E13CC600CDC2CC /* NSObject+ZJObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6DA2692F40B00121EBD /* NSObject+ZJObject.m */; };
+		65BD8FC428E13CC600CDC2CC /* UIView+ZJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68E2692E74500121EBD /* UIView+ZJView.m */; };
+		65BD8FC528E13CC600CDC2CC /* ZJTestServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384FE198268DDB5F00E568AF /* ZJTestServerViewController.m */; };
+		65BD8FC628E13CC600CDC2CC /* ZJTestSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57C4281F921D008B1964 /* ZJTestSandboxViewController.m */; };
+		65BD8FC728E13CC600CDC2CC /* ZJDocumentWriteCofig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B0327E284615E800E9C08A /* ZJDocumentWriteCofig.m */; };
+		65BD8FC828E13CC600CDC2CC /* ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F08C26774A6200A4D044 /* ZJViewController.m */; };
+		65BD8FC928E13CC600CDC2CC /* ZJShapeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FB043283228F1004CD08C /* ZJShapeLayer.m */; };
+		65BD8FCA28E13CC600CDC2CC /* UIDevice+ZJDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6D72692EC7000121EBD /* UIDevice+ZJDevice.m */; };
+		65BD8FCB28E13CC600CDC2CC /* ZJCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B32DB267D98780071F530 /* ZJCategoryViewController.m */; };
+		65BD8FCC28E13CC600CDC2CC /* ZJTestColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659EB72627B66C8F0016D91D /* ZJTestColorTableViewController.m */; };
+		65BD8FCD28E13CC600CDC2CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8E026750B04008AB02C /* main.m */; };
+		65BD8FCE28E13CC600CDC2CC /* ZJTestDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */; };
+		65BD8FCF28E13CC600CDC2CC /* ZJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE18D2675BE0200E090D9 /* ZJTableViewController.m */; };
+		65BD8FD028E13CC600CDC2CC /* NSString+ZJString.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6BC2692E9CB00121EBD /* NSString+ZJString.m */; };
+		65BD8FD128E13CC600CDC2CC /* ZJAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03279284615E800E9C08A /* ZJAlertAction.m */; };
+		65BD8FD228E13CC600CDC2CC /* ZJRunLoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F09926798FE700A4D044 /* ZJRunLoopViewController.m */; };
+		65BD8FD328E13CC600CDC2CC /* UITabBar+ZJTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6972692E74600121EBD /* UITabBar+ZJTabBar.m */; };
+		65BD8FD428E13CC600CDC2CC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0A72679B3AA00A4D044 /* Person.m */; };
+		65BD8FD528E13CC600CDC2CC /* ZJTestFloatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D56F0A287FFD2700E94FBC /* ZJTestFloatViewController.m */; };
+		65BD8FD628E13CC600CDC2CC /* UICollectionView+ZJCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6932692E74600121EBD /* UICollectionView+ZJCollectionView.m */; };
+		65BD8FD728E13CC600CDC2CC /* ZJTestBezierPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FB04928323C76004CD08C /* ZJTestBezierPathView.m */; };
+		65BD8FD828E13CC600CDC2CC /* ZJTestTouchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E12A528563106004C4748 /* ZJTestTouchViewController.m */; };
+		65BD8FD928E13CC600CDC2CC /* UITextField+ZJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9AA2826468C002F0DDA /* UITextField+ZJTextField.m */; };
+		65BD8FDA28E13CC600CDC2CC /* UIBarButtonItem+ZJBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C69E2692E74600121EBD /* UIBarButtonItem+ZJBarButtonItem.m */; };
+		65BD8FDB28E13CC600CDC2CC /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6A62692E74600121EBD /* UIViewExt.m */; };
+		65BD8FDC28E13CC600CDC2CC /* ZJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A4D49283377D4006BEBDC /* ZJNavigationController.m */; };
+		65BD8FDD28E13CC600CDC2CC /* ZJTestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65939426281BF3A300D4872C /* ZJTestTableViewController.m */; };
+		65BD8FDE28E13CC600CDC2CC /* UITextView+ZJTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C69D2692E74600121EBD /* UITextView+ZJTextView.m */; };
+		65BD8FDF28E13CC600CDC2CC /* NSTimer+ZJBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC469279FF9C000A7FE1D /* NSTimer+ZJBlockTimer.m */; };
+		65BD8FE028E13CC600CDC2CC /* ZJTestCopyMutableCopyMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m */; };
+		65BD8FE128E13CC600CDC2CC /* ZJPageSizeObjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03275284615E800E9C08A /* ZJPageSizeObjectInfo.m */; };
+		65BD8FE228E13CC600CDC2CC /* ZJTestUnsignedDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57BE281F870C008B1964 /* ZJTestUnsignedDataViewController.m */; };
+		65BD8FE328E13CC600CDC2CC /* UITableView+ZJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6892692E74500121EBD /* UITableView+ZJTableView.m */; };
+		65BD8FE428E13CC600CDC2CC /* ZJTestLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652B58F427BA631700745D11 /* ZJTestLabelViewController.m */; };
+		65BD8FE528E13CC600CDC2CC /* NSData+ZJData.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6BD2692E9CB00121EBD /* NSData+ZJData.m */; };
+		65BD8FE628E13CC600CDC2CC /* ZJFoundationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE1422675BB5B00E090D9 /* ZJFoundationTableViewController.m */; };
+		65BD8FE728E13CC600CDC2CC /* ZJTestDocumentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57C1281F8CA4008B1964 /* ZJTestDocumentTableViewController.m */; };
+		65BD8FE828E13CC600CDC2CC /* UIImage+ZJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68A2692E74500121EBD /* UIImage+ZJImage.m */; };
+		65BD8FE928E13CC600CDC2CC /* UIBezierPath+ZJBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FB04C28324B38004CD08C /* UIBezierPath+ZJBezierPath.m */; };
+		65BD8FEA28E13CC600CDC2CC /* ZJTestNSLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6593EDB727956650001CC588 /* ZJTestNSLogViewController.m */; };
+		65BD8FEB28E13CC600CDC2CC /* ZJTestMacroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510B7DB2862C02000EA4236 /* ZJTestMacroViewController.m */; };
+		65BD8FEC28E13CC600CDC2CC /* ZJTestBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0B4267AF3A000A4D044 /* ZJTestBlockViewController.m */; };
+		65BD8FED28E13CC600CDC2CC /* NSObject+ZJRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6C82692E9CC00121EBD /* NSObject+ZJRuntime.m */; };
+		65BD8FEE28E13CC600CDC2CC /* ZJAlertObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B0327B284615E800E9C08A /* ZJAlertObject.m */; };
+		65BD8FEF28E13CC600CDC2CC /* ZJAngleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F94A4D28A0E22A0042F8F6 /* ZJAngleObject.m */; };
+		65BD8FF028E13CC600CDC2CC /* NSMutableArray+ZJMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6C32692E9CC00121EBD /* NSMutableArray+ZJMutableArray.m */; };
+		65BD8FF128E13CC600CDC2CC /* ZJRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0922678F54300A4D044 /* ZJRuntimeViewController.m */; };
+		65BD8FF228E13CC600CDC2CC /* ZJTestImageOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA1BE28895CC70043B21A /* ZJTestImageOverlayViewController.m */; };
+		65BD8FF328E13CC600CDC2CC /* UIApplication+SystemSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 6594920A271143C500FDD87D /* UIApplication+SystemSound.m */; };
+		65BD8FF428E13CC600CDC2CC /* ZJMergeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8729428598B46000B7A3C /* ZJMergeViewController.m */; };
+		65BD8FF528E13CC600CDC2CC /* NSString+ZJTextEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABCA99274E2F1400377283 /* NSString+ZJTextEncode.m */; };
+		65BD8FF628E13CC600CDC2CC /* ZJTestAlertTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6531ED0427465790005BC5A3 /* ZJTestAlertTableViewController.m */; };
+		65BD8FF728E13CC600CDC2CC /* ZJTestNavigationBarItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656A4D442833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m */; };
+		65BD8FF828E13CC600CDC2CC /* ZJTestAnimationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E129D2855F49C004C4748 /* ZJTestAnimationTableViewController.m */; };
+		65BD8FF928E13CC600CDC2CC /* UINavigationController+ZJNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025126940991003B652F /* UINavigationController+ZJNaviController.m */; };
+		65BD8FFA28E13CC600CDC2CC /* ZJTestCopyStrongPopertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB8CF3278C3117009322A1 /* ZJTestCopyStrongPopertyViewController.m */; };
+		65BD8FFB28E13CC600CDC2CC /* ZJFruit+ZJFruitCatgy.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B32E4267E554D0071F530 /* ZJFruit+ZJFruitCatgy.m */; };
+		65BD8FFC28E13CC600CDC2CC /* ZJTestMutableAryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3883B93D268EAE1300236663 /* ZJTestMutableAryViewController.m */; };
+		65BD8FFD28E13CC600CDC2CC /* ZJTestSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D13DAA267F51A600BCAC42 /* ZJTestSuperViewController.m */; };
+		65BD8FFE28E13CC600CDC2CC /* UIImageView+ZJImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68F2692E74500121EBD /* UIImageView+ZJImageView.m */; };
+		65BD8FFF28E13CC600CDC2CC /* UISearchBar+ZJSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6A02692E74600121EBD /* UISearchBar+ZJSearchBar.m */; };
+		65BD900028E13CC600CDC2CC /* ZJTestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */; };
+		65BD900128E13CC600CDC2CC /* ZJMainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE13F2675B75800E090D9 /* ZJMainTabBarViewController.m */; };
+		65BD900228E13CC600CDC2CC /* UIViewController+ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025726942C97003B652F /* UIViewController+ZJViewController.m */; };
+		65BD900328E13CC600CDC2CC /* ZJSubjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE1482675BB8900E090D9 /* ZJSubjectTableViewController.m */; };
+		65BD900428E13CC600CDC2CC /* ZJTestNSURLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AAE65D283645570095450E /* ZJTestNSURLViewController.m */; };
+		65BD900528E13CC600CDC2CC /* ZJPointerAryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D13DB2268084F300BCAC42 /* ZJPointerAryViewController.m */; };
+		65BD900628E13CC600CDC2CC /* ZJTestCSVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B3008E28AB6FB900524D8B /* ZJTestCSVViewController.m */; };
+		65BD900728E13CC600CDC2CC /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D13DA7267F519200BCAC42 /* Student.m */; };
+		65BD900828E13CC600CDC2CC /* ZJTestVectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654AFE112844C2D300B507DA /* ZJTestVectorViewController.m */; };
+		65BD900928E13CC600CDC2CC /* UIScrollView+ZJScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C69B2692E74600121EBD /* UIScrollView+ZJScrollView.m */; };
+		65BD900A28E13CC600CDC2CC /* ZJTestNSRangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F3274CF30400D8FE00 /* ZJTestNSRangeViewController.m */; };
+		65BD900B28E13CC600CDC2CC /* ZJMVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F09E2679A6A500A4D044 /* ZJMVCViewController.m */; };
+		65BD900C28E13CC600CDC2CC /* ZJTestNibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABF0D026D7A48300A08267 /* ZJTestNibViewController.m */; };
+		65BD900D28E13CC600CDC2CC /* ZJTestBarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658AE86F26A0119A00688CC5 /* ZJTestBarButtonItemViewController.m */; };
+		65BD900E28E13CC600CDC2CC /* ZJTestPushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A18775284607DA00DD78D4 /* ZJTestPushViewController.m */; };
+		65BD900F28E13CC600CDC2CC /* ZJTestUIAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6593941F281BE8CD00D4872C /* ZJTestUIAppearanceViewController.m */; };
+		65BD901028E13CC600CDC2CC /* ZJBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65080857283100C60010D447 /* ZJBaseTableViewCell.m */; };
+		65BD901128E13CC600CDC2CC /* ZJTestTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6587046F26E6006D00669B5D /* ZJTestTimerViewController.m */; };
+		65BD901228E13CC600CDC2CC /* ZJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3883B9B9268EBE2800236663 /* ZJWebViewController.m */; };
+		65BD901328E13CC600CDC2CC /* UIApplication+Cooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6594920D2711711E00FDD87D /* UIApplication+Cooks.m */; };
+		65BD901428E13CC600CDC2CC /* ZJIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8D726750B04008AB02C /* ZJIOS.xcdatamodeld */; };
+		65BD901528E13CC600CDC2CC /* ZJTestScrollTimerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A00FA927A14F3000B60045 /* ZJTestScrollTimerTableViewController.m */; };
+		65BD901628E13CC600CDC2CC /* ZJFruit.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B32E1267E55160071F530 /* ZJFruit.m */; };
+		65BD901728E13CC600CDC2CC /* ZJTestBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FB04628323BD7004CD08C /* ZJTestBezierPathViewController.m */; };
+		65BD901828E13CC600CDC2CC /* ZJTestSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AC698728702D2B002074ED /* ZJTestSizeViewController.m */; };
+		65BD901928E13CC600CDC2CC /* NSNumber+ZJNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6BB2692E9CB00121EBD /* NSNumber+ZJNumber.m */; };
+		65BD901A28E13CC600CDC2CC /* ZJUIKitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE1452675BB7800E090D9 /* ZJUIKitTableViewController.m */; };
+		65BD901B28E13CC600CDC2CC /* CIImage+ZJCIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6A22692E74600121EBD /* CIImage+ZJCIImage.m */; };
+		65BD901C28E13CC600CDC2CC /* ZJTestDictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0BE267B57C500A4D044 /* ZJTestDictionaryViewController.m */; };
+		65BD901D28E13CC600CDC2CC /* NSPredicate+ZJPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABCA96274E2D9F00377283 /* NSPredicate+ZJPredicate.m */; };
+		65BD901E28E13CC600CDC2CC /* NSObject+HookClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D13DAD267F53E200BCAC42 /* NSObject+HookClass.m */; };
+		65BD901F28E13CC600CDC2CC /* ZJByteData.c in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE0402675B43100E090D9 /* ZJByteData.c */; };
+		65BD902028E13CC600CDC2CC /* ZJTestNavigationSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65894A32283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.m */; };
+		65BD902128E13CC600CDC2CC /* ZJTestWriteFileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D303A8282513FF0063723F /* ZJTestWriteFileTableViewController.m */; };
+		65BD902228E13CC600CDC2CC /* CALayer+ZJLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AAD3F92814F86000A89F10 /* CALayer+ZJLayer.m */; };
+		65BD902328E13CC600CDC2CC /* ZJTextInputConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03271284615E800E9C08A /* ZJTextInputConfig.m */; };
+		65BD902428E13CC600CDC2CC /* XHPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA5F9A28043B4400D6C61A /* XHPageControl.m */; };
+		65BD902528E13CC600CDC2CC /* ZJAnchorPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E12A02855F69A004C4748 /* ZJAnchorPointViewController.m */; };
+		65BD902628E13CC600CDC2CC /* ZJDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03277284615E800E9C08A /* ZJDateFormatter.m */; };
+		65BD902728E13CC600CDC2CC /* ZJAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0B7267B47CA00A4D044 /* ZJAnimal.m */; };
+		65BD902828E13CC600CDC2CC /* ZJTestCharacterSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D224B2754D09300095B71 /* ZJTestCharacterSetViewController.m */; };
+		65BD902928E13CC600CDC2CC /* UILabel+ZJLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68C2692E74500121EBD /* UILabel+ZJLabel.m */; };
+		65BD902A28E13CC600CDC2CC /* ZJTestRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D8C6F289BD2E100589A07 /* ZJTestRoundView.m */; };
+		65BD902B28E13CC600CDC2CC /* ZJTestTimerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC462279FEAE800A7FE1D /* ZJTestTimerTableViewController.m */; };
+		65BD902C28E13CC600CDC2CC /* UIColor+ZJColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C69C2692E74600121EBD /* UIColor+ZJColor.m */; };
+		65BD902D28E13CC600CDC2CC /* ZJTestCIImageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C228C3628F00688F62 /* ZJTestCIImageTableViewController.m */; };
+		65BD902E28E13CC600CDC2CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CC26750B04008AB02C /* AppDelegate.m */; };
+		65BD902F28E13CC600CDC2CC /* ZJTestStatusBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E624C2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.m */; };
+		65BD903028E13CC600CDC2CC /* ZJTestJsonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */; };
+		65BD903128E13CC600CDC2CC /* NSObject+ZJDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 656E660A275F505400CFD5FC /* NSObject+ZJDocument.m */; };
+		65BD903228E13CC600CDC2CC /* ZJTestAryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6590A428274B806300BDB826 /* ZJTestAryViewController.m */; };
+		65BD903328E13CC600CDC2CC /* NSObject+ZJMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 6590A425274B7DFF00BDB826 /* NSObject+ZJMethodSwizzling.m */; };
+		65BD903428E13CC600CDC2CC /* UIApplication+ZJApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6D42692EB8300121EBD /* UIApplication+ZJApplication.m */; };
+		65BD903528E13CC600CDC2CC /* ZJTestGCDTimerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A82DE727A2A384008CD8F1 /* ZJTestGCDTimerTableViewController.m */; };
+		65BD903628E13CC600CDC2CC /* NSScanner+ZJScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 656E660D275F509400CFD5FC /* NSScanner+ZJScanner.m */; };
+		65BD903728E13CC600CDC2CC /* ZJDocumentReadCofig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03278284615E800E9C08A /* ZJDocumentReadCofig.m */; };
+		65BD903828E13CC600CDC2CC /* ZJSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 384FE192268DC28C00E568AF /* ZJSocketManager.m */; };
+		65BD903928E13CC600CDC2CC /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CF26750B04008AB02C /* SceneDelegate.m */; };
+		65BD903A28E13CC600CDC2CC /* ZJTestFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA1BB288956E30043B21A /* ZJTestFilterViewController.m */; };
+		65BD903B28E13CC600CDC2CC /* NSString+ZJTextDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABCA93274E2A6700377283 /* NSString+ZJTextDisplay.m */; };
+		65BD903C28E13CC600CDC2CC /* UIApplication+International.m in Sources */ = {isa = PBXBuildFile; fileRef = 65949210271172B800FDD87D /* UIApplication+International.m */; };
+		65BD903D28E13CC600CDC2CC /* UIApplication+SystemService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6594921627117A4700FDD87D /* UIApplication+SystemService.m */; };
+		65BD903E28E13CC600CDC2CC /* ZJTestArySortedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6504AF5E282FF881005E1275 /* ZJTestArySortedViewController.m */; };
+		65BD903F28E13CC600CDC2CC /* ZJTestShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6597C21227450935003161AB /* ZJTestShareViewController.m */; };
+		65BD904028E13CC600CDC2CC /* ZJCtrlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B0327A284615E800E9C08A /* ZJCtrlConfig.m */; };
+		65BD904128E13CC600CDC2CC /* NSDictionary+ZJDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6C62692E9CC00121EBD /* NSDictionary+ZJDictionary.m */; };
+		65BD904228E13CC600CDC2CC /* ZJManualReleaseTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6587E979281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m */; };
+		65BD904328E13CC600CDC2CC /* ZJMentionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03274284615E800E9C08A /* ZJMentionObject.m */; };
+		65BD904428E13CC600CDC2CC /* NSArray+ZJArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6C22692E9CB00121EBD /* NSArray+ZJArray.m */; };
+		65BD904528E13CC600CDC2CC /* NSDate+ZJDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6BF2692E9CB00121EBD /* NSDate+ZJDate.m */; };
+		65BD904628E13CC600CDC2CC /* ZJTestFileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C528C3639D00688F62 /* ZJTestFileTableViewController.m */; };
+		65BD904728E13CC600CDC2CC /* ZJMemAnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0B1267A610500A4D044 /* ZJMemAnalyzeViewController.m */; };
+		65BD904828E13CC600CDC2CC /* ZJTestCFunctionnTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C928C364C800688F62 /* ZJTestCFunctionnTableViewController.m */; };
+		65BD904928E13CC600CDC2CC /* AppDelegate+ZJBackgroundAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659EB72127B4BAA50016D91D /* AppDelegate+ZJBackgroundAppDelegate.m */; };
+		65BD904B28E13CC600CDC2CC /* Pods_ZJIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */; };
+		65BD904D28E13CC600CDC2CC /* MVC.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0A02679A6B300A4D044 /* MVC.jpeg */; };
+		65BD904E28E13CC600CDC2CC /* zjFoundation.md in Resources */ = {isa = PBXBuildFile; fileRef = 654ABAC2277C47260048F7A8 /* zjFoundation.md */; };
+		65BD904F28E13CC600CDC2CC /* block_malloc.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB5769268334B70014CECE /* block_malloc.png */; };
+		65BD905028E13CC600CDC2CC /* MVVM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0A12679A6B400A4D044 /* MVVM.jpeg */; };
+		65BD905128E13CC600CDC2CC /* block_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB576A268334B80014CECE /* block_stack.png */; };
+		65BD905228E13CC600CDC2CC /* block-struct.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DAF267F8D4000BCAC42 /* block-struct.jpeg */; };
+		65BD905328E13CC600CDC2CC /* changeColor.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 65D62C06288AB300001C616E /* changeColor.cikernel */; };
+		65BD905428E13CC600CDC2CC /* ZJTestServerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384FE199268DDB5F00E568AF /* ZJTestServerViewController.xib */; };
+		65BD905528E13CC600CDC2CC /* MVC.gif in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0CC267B949600A4D044 /* MVC.gif */; };
+		65BD905628E13CC600CDC2CC /* sortedArrayUsingComparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF612830104D005E1275 /* sortedArrayUsingComparator.png */; };
+		65BD905728E13CC600CDC2CC /* userHelp.html in Resources */ = {isa = PBXBuildFile; fileRef = 3883B9BB268EBE9800236663 /* userHelp.html */; };
+		65BD905828E13CC600CDC2CC /* runloop.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F09B267993D200A4D044 /* runloop.png */; };
+		65BD905928E13CC600CDC2CC /* 野指针调试.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0AC267A5E8D00A4D044 /* 野指针调试.jpeg */; };
+		65BD905A28E13CC600CDC2CC /* ZJTestRotateAnimatonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658E12992855EF8B004C4748 /* ZJTestRotateAnimatonViewController.xib */; };
+		65BD905B28E13CC600CDC2CC /* ZJTestImageOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658CA1BF28895CC70043B21A /* ZJTestImageOverlayViewController.xib */; };
+		65BD905C28E13CC600CDC2CC /* haze.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 65D62C04288A9EA4001C616E /* haze.cikernel */; };
+		65BD905D28E13CC600CDC2CC /* 四象限.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AAD40028153A8800A89F10 /* 四象限.png */; };
+		65BD905E28E13CC600CDC2CC /* block_bref.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DBD2680C00E00BCAC42 /* block_bref.png */; };
+		65BD905F28E13CC600CDC2CC /* block_forwarding.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DB82680BFBB00BCAC42 /* block_forwarding.png */; };
+		65BD906028E13CC600CDC2CC /* 数组指针.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DBF2680C00E00BCAC42 /* 数组指针.jpeg */; };
+		65BD906128E13CC600CDC2CC /* 点与环形区域.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AAD3FE281532D600A89F10 /* 点与环形区域.png */; };
+		65BD906228E13CC600CDC2CC /* 野指针log.webp in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0AD267A5E8D00A4D044 /* 野指针log.webp */; };
+		65BD906328E13CC600CDC2CC /* ZJTestNibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ABF0D126D7A48300A08267 /* ZJTestNibViewController.xib */; };
+		65BD906428E13CC600CDC2CC /* a.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 65D62C02288A9436001C616E /* a.cikernel */; };
+		65BD906528E13CC600CDC2CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382EE8DC26750B04008AB02C /* LaunchScreen.storyboard */; };
+		65BD906628E13CC600CDC2CC /* runtime_class.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F094267901E600A4D044 /* runtime_class.png */; };
+		65BD906728E13CC600CDC2CC /* MVP.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0A42679A8AD00A4D044 /* MVP.png */; };
+		65BD906828E13CC600CDC2CC /* metaClass.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F09626790A6800A4D044 /* metaClass.png */; };
+		65BD906928E13CC600CDC2CC /* NSTaggedPointerString.docx in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF6428301098005E1275 /* NSTaggedPointerString.docx */; };
+		65BD906A28E13CC600CDC2CC /* 内存五大区.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DC02680C00E00BCAC42 /* 内存五大区.png */; };
+		65BD906B28E13CC600CDC2CC /* ZJTestSleepFuncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B150CE28C3659300688F62 /* ZJTestSleepFuncViewController.xib */; };
+		65BD906C28E13CC600CDC2CC /* ZJAnchorPointViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658E12A12855F69A004C4748 /* ZJAnchorPointViewController.xib */; };
+		65BD906D28E13CC600CDC2CC /* block_bref_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DBE2680C00E00BCAC42 /* block_bref_2.png */; };
+		65BD906E28E13CC600CDC2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382EE8DA26750B04008AB02C /* Assets.xcassets */; };
+		65BD906F28E13CC600CDC2CC /* sorted.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF602830104D005E1275 /* sorted.rtf */; };
+		65BD907028E13CC600CDC2CC /* ZJMergeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D8729528598B46000B7A3C /* ZJMergeViewController.xib */; };
+		65BD907928E1440100CDC2CC /* ZJIOSPro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65BD907828E1440100CDC2CC /* ZJIOSPro.plist */; };
 		65C574F1274CF22100D8FE00 /* ZJTestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */; };
 		65C574F4274CF30400D8FE00 /* ZJTestNSRangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F3274CF30400D8FE00 /* ZJTestNSRangeViewController.m */; };
 		65D303A9282513FF0063723F /* ZJTestWriteFileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D303A8282513FF0063723F /* ZJTestWriteFileTableViewController.m */; };
@@ -385,6 +579,8 @@
 		656E660D275F509400CFD5FC /* NSScanner+ZJScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+ZJScanner.m"; sourceTree = "<group>"; };
 		6574BD2E26A66F5E00FA5920 /* ZJTestDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestDataViewController.h; sourceTree = "<group>"; };
 		6574BD2F26A66F5E00FA5920 /* ZJTestDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestDataViewController.m; sourceTree = "<group>"; };
+		6577B30228F2A7E0009471EA /* ZJTestMultiTargetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestMultiTargetViewController.h; sourceTree = "<group>"; };
+		6577B30328F2A7E0009471EA /* ZJTestMultiTargetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestMultiTargetViewController.m; sourceTree = "<group>"; };
 		657D57BD281F870C008B1964 /* ZJTestUnsignedDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestUnsignedDataViewController.h; sourceTree = "<group>"; };
 		657D57BE281F870C008B1964 /* ZJTestUnsignedDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestUnsignedDataViewController.m; sourceTree = "<group>"; };
 		657D57C0281F8CA4008B1964 /* ZJTestDocumentTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestDocumentTableViewController.h; sourceTree = "<group>"; };
@@ -525,6 +721,8 @@
 		65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestDateViewController.m; sourceTree = "<group>"; };
 		65B3008D28AB6FB900524D8B /* ZJTestCSVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCSVViewController.h; sourceTree = "<group>"; };
 		65B3008E28AB6FB900524D8B /* ZJTestCSVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCSVViewController.m; sourceTree = "<group>"; };
+		65BD907428E13CC600CDC2CC /* ZJIOSPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJIOSPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BD907828E1440100CDC2CC /* ZJIOSPro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZJIOSPro.plist; sourceTree = "<group>"; };
 		65C574EF274CF22100D8FE00 /* ZJTestStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestStringViewController.h; sourceTree = "<group>"; };
 		65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestStringViewController.m; sourceTree = "<group>"; };
 		65C574F2274CF30400D8FE00 /* ZJTestNSRangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestNSRangeViewController.h; sourceTree = "<group>"; };
@@ -629,6 +827,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65BD904A28E13CC600CDC2CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BD904B28E13CC600CDC2CC /* Pods_ZJIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -650,6 +856,7 @@
 				382EE8C826750B04008AB02C /* ZJIOS.app */,
 				382EE8E626750B05008AB02C /* ZJIOSTests.xctest */,
 				382EE8F126750B05008AB02C /* ZJIOSUITests.xctest */,
+				65BD907428E13CC600CDC2CC /* ZJIOSPro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -669,6 +876,7 @@
 				382EE8DC26750B04008AB02C /* LaunchScreen.storyboard */,
 				3883B9BB268EBE9800236663 /* userHelp.html */,
 				382EE8DF26750B04008AB02C /* Info.plist */,
+				65BD907828E1440100CDC2CC /* ZJIOSPro.plist */,
 				382EE8E026750B04008AB02C /* main.m */,
 				382EE8D726750B04008AB02C /* ZJIOS.xcdatamodeld */,
 			);
@@ -972,6 +1180,8 @@
 				38EBE1482675BB8900E090D9 /* ZJSubjectTableViewController.m */,
 				6510B7DA2862C02000EA4236 /* ZJTestMacroViewController.h */,
 				6510B7DB2862C02000EA4236 /* ZJTestMacroViewController.m */,
+				6577B30228F2A7E0009471EA /* ZJTestMultiTargetViewController.h */,
+				6577B30328F2A7E0009471EA /* ZJTestMultiTargetViewController.m */,
 				65AC698628702D2B002074ED /* ZJTestSizeViewController.h */,
 				65AC698728702D2B002074ED /* ZJTestSizeViewController.m */,
 				657D57BD281F870C008B1964 /* ZJTestUnsignedDataViewController.h */,
@@ -1397,6 +1607,24 @@
 			productReference = 382EE8F126750B05008AB02C /* ZJIOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		65BD8FAD28E13CC600CDC2CC /* ZJIOSPro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65BD907128E13CC600CDC2CC /* Build configuration list for PBXNativeTarget "ZJIOSPro" */;
+			buildPhases = (
+				65BD8FAE28E13CC600CDC2CC /* [CP] Check Pods Manifest.lock */,
+				65BD8FAF28E13CC600CDC2CC /* Sources */,
+				65BD904A28E13CC600CDC2CC /* Frameworks */,
+				65BD904C28E13CC600CDC2CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZJIOSPro;
+			productName = ZJIOS;
+			productReference = 65BD907428E13CC600CDC2CC /* ZJIOSPro.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1436,6 +1664,7 @@
 				382EE8C726750B04008AB02C /* ZJIOS */,
 				382EE8E526750B05008AB02C /* ZJIOSTests */,
 				382EE8F026750B05008AB02C /* ZJIOSUITests */,
+				65BD8FAD28E13CC600CDC2CC /* ZJIOSPro */,
 			);
 		};
 /* End PBXProject section */
@@ -1498,6 +1727,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65BD904C28E13CC600CDC2CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BD904D28E13CC600CDC2CC /* MVC.jpeg in Resources */,
+				65BD904E28E13CC600CDC2CC /* zjFoundation.md in Resources */,
+				65BD904F28E13CC600CDC2CC /* block_malloc.png in Resources */,
+				65BD905028E13CC600CDC2CC /* MVVM.jpeg in Resources */,
+				65BD905128E13CC600CDC2CC /* block_stack.png in Resources */,
+				65BD905228E13CC600CDC2CC /* block-struct.jpeg in Resources */,
+				65BD905328E13CC600CDC2CC /* changeColor.cikernel in Resources */,
+				65BD905428E13CC600CDC2CC /* ZJTestServerViewController.xib in Resources */,
+				65BD905528E13CC600CDC2CC /* MVC.gif in Resources */,
+				65BD905628E13CC600CDC2CC /* sortedArrayUsingComparator.png in Resources */,
+				65BD905728E13CC600CDC2CC /* userHelp.html in Resources */,
+				65BD905828E13CC600CDC2CC /* runloop.png in Resources */,
+				65BD905928E13CC600CDC2CC /* 野指针调试.jpeg in Resources */,
+				65BD905A28E13CC600CDC2CC /* ZJTestRotateAnimatonViewController.xib in Resources */,
+				65BD905B28E13CC600CDC2CC /* ZJTestImageOverlayViewController.xib in Resources */,
+				65BD905C28E13CC600CDC2CC /* haze.cikernel in Resources */,
+				65BD905D28E13CC600CDC2CC /* 四象限.png in Resources */,
+				65BD905E28E13CC600CDC2CC /* block_bref.png in Resources */,
+				65BD905F28E13CC600CDC2CC /* block_forwarding.png in Resources */,
+				65BD906028E13CC600CDC2CC /* 数组指针.jpeg in Resources */,
+				65BD906128E13CC600CDC2CC /* 点与环形区域.png in Resources */,
+				65BD906228E13CC600CDC2CC /* 野指针log.webp in Resources */,
+				65BD906328E13CC600CDC2CC /* ZJTestNibViewController.xib in Resources */,
+				65BD906428E13CC600CDC2CC /* a.cikernel in Resources */,
+				65BD907928E1440100CDC2CC /* ZJIOSPro.plist in Resources */,
+				65BD906528E13CC600CDC2CC /* LaunchScreen.storyboard in Resources */,
+				65BD906628E13CC600CDC2CC /* runtime_class.png in Resources */,
+				65BD906728E13CC600CDC2CC /* MVP.png in Resources */,
+				65BD906828E13CC600CDC2CC /* metaClass.png in Resources */,
+				65BD906928E13CC600CDC2CC /* NSTaggedPointerString.docx in Resources */,
+				65BD906A28E13CC600CDC2CC /* 内存五大区.png in Resources */,
+				65BD906B28E13CC600CDC2CC /* ZJTestSleepFuncViewController.xib in Resources */,
+				65BD906C28E13CC600CDC2CC /* ZJAnchorPointViewController.xib in Resources */,
+				65BD906D28E13CC600CDC2CC /* block_bref_2.png in Resources */,
+				65BD906E28E13CC600CDC2CC /* Assets.xcassets in Resources */,
+				65BD906F28E13CC600CDC2CC /* sorted.rtf in Resources */,
+				65BD907028E13CC600CDC2CC /* ZJMergeViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1517,6 +1790,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ZJIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65BD8FAE28E13CC600CDC2CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZJIOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1599,6 +1894,7 @@
 				657D57C5281F921D008B1964 /* ZJTestSandboxViewController.m in Sources */,
 				65B0328B284615E800E9C08A /* ZJDocumentWriteCofig.m in Sources */,
 				38A1F08D26774A6200A4D044 /* ZJViewController.m in Sources */,
+				6577B30428F2A7E0009471EA /* ZJTestMultiTargetViewController.m in Sources */,
 				658FB044283228F1004CD08C /* ZJShapeLayer.m in Sources */,
 				65F7C6D82692EC7000121EBD /* UIDevice+ZJDevice.m in Sources */,
 				388B32DC267D98780071F530 /* ZJCategoryViewController.m in Sources */,
@@ -1744,6 +2040,168 @@
 			buildActionMask = 2147483647;
 			files = (
 				382EE8F626750B05008AB02C /* ZJIOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BD8FAF28E13CC600CDC2CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BD8FB028E13CC600CDC2CC /* Son.m in Sources */,
+				65BD8FB128E13CC600CDC2CC /* ZJCtrlTableViewController.m in Sources */,
+				65BD8FB228E13CC600CDC2CC /* ZJTestSleepFuncViewController.m in Sources */,
+				65BD8FB328E13CC600CDC2CC /* ZJTestLayerBorderViewController.m in Sources */,
+				65BD8FB428E13CC600CDC2CC /* ZJTestPageCtrlViewController.m in Sources */,
+				65BD8FB528E13CC600CDC2CC /* ZJTouchMathEventViewController.m in Sources */,
+				65BD8FB628E13CC600CDC2CC /* Father.m in Sources */,
+				65BD8FB728E13CC600CDC2CC /* ZJTestSearchBarViewController.m in Sources */,
+				65BD8FB828E13CC600CDC2CC /* ZJTestBlockTimerViewController.m in Sources */,
+				65BD8FB928E13CC600CDC2CC /* ZJTestMethodSwizzlingViewController.m in Sources */,
+				65BD8FBA28E13CC600CDC2CC /* ZJDocumentCofig.m in Sources */,
+				65BD8FBB28E13CC600CDC2CC /* ZJTestAppearanceView.m in Sources */,
+				65BD8FBC28E13CC600CDC2CC /* ZJTestScannerViewController.m in Sources */,
+				65BD8FBD28E13CC600CDC2CC /* NSTimer+ZJBlockTimer.m in Sources */,
+				65BD8FBE28E13CC600CDC2CC /* ZJTestCALayerTableViewController.m in Sources */,
+				65BD8FBF28E13CC600CDC2CC /* ZJTestDataViewController.m in Sources */,
+				65BD8FC028E13CC600CDC2CC /* ZJTestRotateAnimatonViewController.m in Sources */,
+				65BD8FC128E13CC600CDC2CC /* UIView+ZJToucMathEvent.m in Sources */,
+				65BD8FC228E13CC600CDC2CC /* UIApplication+Network.m in Sources */,
+				65BD8FC328E13CC600CDC2CC /* NSObject+ZJObject.m in Sources */,
+				65BD8FC428E13CC600CDC2CC /* UIView+ZJView.m in Sources */,
+				65BD8FC528E13CC600CDC2CC /* ZJTestServerViewController.m in Sources */,
+				65BD8FC628E13CC600CDC2CC /* ZJTestSandboxViewController.m in Sources */,
+				65BD8FC728E13CC600CDC2CC /* ZJDocumentWriteCofig.m in Sources */,
+				65BD8FC828E13CC600CDC2CC /* ZJViewController.m in Sources */,
+				6577B30528F2A7E0009471EA /* ZJTestMultiTargetViewController.m in Sources */,
+				65BD8FC928E13CC600CDC2CC /* ZJShapeLayer.m in Sources */,
+				65BD8FCA28E13CC600CDC2CC /* UIDevice+ZJDevice.m in Sources */,
+				65BD8FCB28E13CC600CDC2CC /* ZJCategoryViewController.m in Sources */,
+				65BD8FCC28E13CC600CDC2CC /* ZJTestColorTableViewController.m in Sources */,
+				65BD8FCD28E13CC600CDC2CC /* main.m in Sources */,
+				65BD8FCE28E13CC600CDC2CC /* ZJTestDateViewController.m in Sources */,
+				65BD8FCF28E13CC600CDC2CC /* ZJTableViewController.m in Sources */,
+				65BD8FD028E13CC600CDC2CC /* NSString+ZJString.m in Sources */,
+				65BD8FD128E13CC600CDC2CC /* ZJAlertAction.m in Sources */,
+				65BD8FD228E13CC600CDC2CC /* ZJRunLoopViewController.m in Sources */,
+				65BD8FD328E13CC600CDC2CC /* UITabBar+ZJTabBar.m in Sources */,
+				65BD8FD428E13CC600CDC2CC /* Person.m in Sources */,
+				65BD8FD528E13CC600CDC2CC /* ZJTestFloatViewController.m in Sources */,
+				65BD8FD628E13CC600CDC2CC /* UICollectionView+ZJCollectionView.m in Sources */,
+				65BD8FD728E13CC600CDC2CC /* ZJTestBezierPathView.m in Sources */,
+				65BD8FD828E13CC600CDC2CC /* ZJTestTouchViewController.m in Sources */,
+				65BD8FD928E13CC600CDC2CC /* UITextField+ZJTextField.m in Sources */,
+				65BD8FDA28E13CC600CDC2CC /* UIBarButtonItem+ZJBarButtonItem.m in Sources */,
+				65BD8FDB28E13CC600CDC2CC /* UIViewExt.m in Sources */,
+				65BD8FDC28E13CC600CDC2CC /* ZJNavigationController.m in Sources */,
+				65BD8FDD28E13CC600CDC2CC /* ZJTestTableViewController.m in Sources */,
+				65BD8FDE28E13CC600CDC2CC /* UITextView+ZJTextView.m in Sources */,
+				65BD8FDF28E13CC600CDC2CC /* NSTimer+ZJBlockTimer.m in Sources */,
+				65BD8FE028E13CC600CDC2CC /* ZJTestCopyMutableCopyMethodViewController.m in Sources */,
+				65BD8FE128E13CC600CDC2CC /* ZJPageSizeObjectInfo.m in Sources */,
+				65BD8FE228E13CC600CDC2CC /* ZJTestUnsignedDataViewController.m in Sources */,
+				65BD8FE328E13CC600CDC2CC /* UITableView+ZJTableView.m in Sources */,
+				65BD8FE428E13CC600CDC2CC /* ZJTestLabelViewController.m in Sources */,
+				65BD8FE528E13CC600CDC2CC /* NSData+ZJData.m in Sources */,
+				65BD8FE628E13CC600CDC2CC /* ZJFoundationTableViewController.m in Sources */,
+				65BD8FE728E13CC600CDC2CC /* ZJTestDocumentTableViewController.m in Sources */,
+				65BD8FE828E13CC600CDC2CC /* UIImage+ZJImage.m in Sources */,
+				65BD8FE928E13CC600CDC2CC /* UIBezierPath+ZJBezierPath.m in Sources */,
+				65BD8FEA28E13CC600CDC2CC /* ZJTestNSLogViewController.m in Sources */,
+				65BD8FEB28E13CC600CDC2CC /* ZJTestMacroViewController.m in Sources */,
+				65BD8FEC28E13CC600CDC2CC /* ZJTestBlockViewController.m in Sources */,
+				65BD8FED28E13CC600CDC2CC /* NSObject+ZJRuntime.m in Sources */,
+				65BD8FEE28E13CC600CDC2CC /* ZJAlertObject.m in Sources */,
+				65BD8FEF28E13CC600CDC2CC /* ZJAngleObject.m in Sources */,
+				65BD8FF028E13CC600CDC2CC /* NSMutableArray+ZJMutableArray.m in Sources */,
+				65BD8FF128E13CC600CDC2CC /* ZJRuntimeViewController.m in Sources */,
+				65BD8FF228E13CC600CDC2CC /* ZJTestImageOverlayViewController.m in Sources */,
+				65BD8FF328E13CC600CDC2CC /* UIApplication+SystemSound.m in Sources */,
+				65BD8FF428E13CC600CDC2CC /* ZJMergeViewController.m in Sources */,
+				65BD8FF528E13CC600CDC2CC /* NSString+ZJTextEncode.m in Sources */,
+				65BD8FF628E13CC600CDC2CC /* ZJTestAlertTableViewController.m in Sources */,
+				65BD8FF728E13CC600CDC2CC /* ZJTestNavigationBarItemsTableViewController.m in Sources */,
+				65BD8FF828E13CC600CDC2CC /* ZJTestAnimationTableViewController.m in Sources */,
+				65BD8FF928E13CC600CDC2CC /* UINavigationController+ZJNaviController.m in Sources */,
+				65BD8FFA28E13CC600CDC2CC /* ZJTestCopyStrongPopertyViewController.m in Sources */,
+				65BD8FFB28E13CC600CDC2CC /* ZJFruit+ZJFruitCatgy.m in Sources */,
+				65BD8FFC28E13CC600CDC2CC /* ZJTestMutableAryViewController.m in Sources */,
+				65BD8FFD28E13CC600CDC2CC /* ZJTestSuperViewController.m in Sources */,
+				65BD8FFE28E13CC600CDC2CC /* UIImageView+ZJImageView.m in Sources */,
+				65BD8FFF28E13CC600CDC2CC /* UISearchBar+ZJSearchBar.m in Sources */,
+				65BD900028E13CC600CDC2CC /* ZJTestStringViewController.m in Sources */,
+				65BD900128E13CC600CDC2CC /* ZJMainTabBarViewController.m in Sources */,
+				65BD900228E13CC600CDC2CC /* UIViewController+ZJViewController.m in Sources */,
+				65BD900328E13CC600CDC2CC /* ZJSubjectTableViewController.m in Sources */,
+				65BD900428E13CC600CDC2CC /* ZJTestNSURLViewController.m in Sources */,
+				65BD900528E13CC600CDC2CC /* ZJPointerAryViewController.m in Sources */,
+				65BD900628E13CC600CDC2CC /* ZJTestCSVViewController.m in Sources */,
+				65BD900728E13CC600CDC2CC /* Student.m in Sources */,
+				65BD900828E13CC600CDC2CC /* ZJTestVectorViewController.m in Sources */,
+				65BD900928E13CC600CDC2CC /* UIScrollView+ZJScrollView.m in Sources */,
+				65BD900A28E13CC600CDC2CC /* ZJTestNSRangeViewController.m in Sources */,
+				65BD900B28E13CC600CDC2CC /* ZJMVCViewController.m in Sources */,
+				65BD900C28E13CC600CDC2CC /* ZJTestNibViewController.m in Sources */,
+				65BD900D28E13CC600CDC2CC /* ZJTestBarButtonItemViewController.m in Sources */,
+				65BD900E28E13CC600CDC2CC /* ZJTestPushViewController.m in Sources */,
+				65BD900F28E13CC600CDC2CC /* ZJTestUIAppearanceViewController.m in Sources */,
+				65BD901028E13CC600CDC2CC /* ZJBaseTableViewCell.m in Sources */,
+				65BD901128E13CC600CDC2CC /* ZJTestTimerViewController.m in Sources */,
+				65BD901228E13CC600CDC2CC /* ZJWebViewController.m in Sources */,
+				65BD901328E13CC600CDC2CC /* UIApplication+Cooks.m in Sources */,
+				65BD901428E13CC600CDC2CC /* ZJIOS.xcdatamodeld in Sources */,
+				65BD901528E13CC600CDC2CC /* ZJTestScrollTimerTableViewController.m in Sources */,
+				65BD901628E13CC600CDC2CC /* ZJFruit.m in Sources */,
+				65BD901728E13CC600CDC2CC /* ZJTestBezierPathViewController.m in Sources */,
+				65BD901828E13CC600CDC2CC /* ZJTestSizeViewController.m in Sources */,
+				65BD901928E13CC600CDC2CC /* NSNumber+ZJNumber.m in Sources */,
+				65BD901A28E13CC600CDC2CC /* ZJUIKitTableViewController.m in Sources */,
+				65BD901B28E13CC600CDC2CC /* CIImage+ZJCIImage.m in Sources */,
+				65BD901C28E13CC600CDC2CC /* ZJTestDictionaryViewController.m in Sources */,
+				65BD901D28E13CC600CDC2CC /* NSPredicate+ZJPredicate.m in Sources */,
+				65BD901E28E13CC600CDC2CC /* NSObject+HookClass.m in Sources */,
+				65BD901F28E13CC600CDC2CC /* ZJByteData.c in Sources */,
+				65BD902028E13CC600CDC2CC /* ZJTestNavigationSettingTableViewController.m in Sources */,
+				65BD902128E13CC600CDC2CC /* ZJTestWriteFileTableViewController.m in Sources */,
+				65BD902228E13CC600CDC2CC /* CALayer+ZJLayer.m in Sources */,
+				65BD902328E13CC600CDC2CC /* ZJTextInputConfig.m in Sources */,
+				65BD902428E13CC600CDC2CC /* XHPageControl.m in Sources */,
+				65BD902528E13CC600CDC2CC /* ZJAnchorPointViewController.m in Sources */,
+				65BD902628E13CC600CDC2CC /* ZJDateFormatter.m in Sources */,
+				65BD902728E13CC600CDC2CC /* ZJAnimal.m in Sources */,
+				65BD902828E13CC600CDC2CC /* ZJTestCharacterSetViewController.m in Sources */,
+				65BD902928E13CC600CDC2CC /* UILabel+ZJLabel.m in Sources */,
+				65BD902A28E13CC600CDC2CC /* ZJTestRoundView.m in Sources */,
+				65BD902B28E13CC600CDC2CC /* ZJTestTimerTableViewController.m in Sources */,
+				65BD902C28E13CC600CDC2CC /* UIColor+ZJColor.m in Sources */,
+				65BD902D28E13CC600CDC2CC /* ZJTestCIImageTableViewController.m in Sources */,
+				65BD902E28E13CC600CDC2CC /* AppDelegate.m in Sources */,
+				65BD902F28E13CC600CDC2CC /* ZJTestStatusBarTableViewController.m in Sources */,
+				65BD903028E13CC600CDC2CC /* ZJTestJsonTableViewController.m in Sources */,
+				65BD903128E13CC600CDC2CC /* NSObject+ZJDocument.m in Sources */,
+				65BD903228E13CC600CDC2CC /* ZJTestAryViewController.m in Sources */,
+				65BD903328E13CC600CDC2CC /* NSObject+ZJMethodSwizzling.m in Sources */,
+				65BD903428E13CC600CDC2CC /* UIApplication+ZJApplication.m in Sources */,
+				65BD903528E13CC600CDC2CC /* ZJTestGCDTimerTableViewController.m in Sources */,
+				65BD903628E13CC600CDC2CC /* NSScanner+ZJScanner.m in Sources */,
+				65BD903728E13CC600CDC2CC /* ZJDocumentReadCofig.m in Sources */,
+				65BD903828E13CC600CDC2CC /* ZJSocketManager.m in Sources */,
+				65BD903928E13CC600CDC2CC /* SceneDelegate.m in Sources */,
+				65BD903A28E13CC600CDC2CC /* ZJTestFilterViewController.m in Sources */,
+				65BD903B28E13CC600CDC2CC /* NSString+ZJTextDisplay.m in Sources */,
+				65BD903C28E13CC600CDC2CC /* UIApplication+International.m in Sources */,
+				65BD903D28E13CC600CDC2CC /* UIApplication+SystemService.m in Sources */,
+				65BD903E28E13CC600CDC2CC /* ZJTestArySortedViewController.m in Sources */,
+				65BD903F28E13CC600CDC2CC /* ZJTestShareViewController.m in Sources */,
+				65BD904028E13CC600CDC2CC /* ZJCtrlConfig.m in Sources */,
+				65BD904128E13CC600CDC2CC /* NSDictionary+ZJDictionary.m in Sources */,
+				65BD904228E13CC600CDC2CC /* ZJManualReleaseTimerViewController.m in Sources */,
+				65BD904328E13CC600CDC2CC /* ZJMentionObject.m in Sources */,
+				65BD904428E13CC600CDC2CC /* NSArray+ZJArray.m in Sources */,
+				65BD904528E13CC600CDC2CC /* NSDate+ZJDate.m in Sources */,
+				65BD904628E13CC600CDC2CC /* ZJTestFileTableViewController.m in Sources */,
+				65BD904728E13CC600CDC2CC /* ZJMemAnalyzeViewController.m in Sources */,
+				65BD904828E13CC600CDC2CC /* ZJTestCFunctionnTableViewController.m in Sources */,
+				65BD904928E13CC600CDC2CC /* AppDelegate+ZJBackgroundAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2011,6 +2469,61 @@
 			};
 			name = Release;
 		};
+		65BD907228E13CC600CDC2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3ABJW33Z4D;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					PROD_ENV,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/ZJIOS/ZJIOSPro.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.ZJApp.ZJIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65BD907328E13CC600CDC2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3ABJW33Z4D;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					PROD_ENV,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/ZJIOS/ZJIOSPro.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.ZJApp.ZJIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2046,6 +2559,15 @@
 			buildConfigurations = (
 				382EE90126750B05008AB02C /* Debug */,
 				382EE90226750B05008AB02C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65BD907128E13CC600CDC2CC /* Build configuration list for PBXNativeTarget "ZJIOSPro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BD907228E13CC600CDC2CC /* Debug */,
+				65BD907328E13CC600CDC2CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
