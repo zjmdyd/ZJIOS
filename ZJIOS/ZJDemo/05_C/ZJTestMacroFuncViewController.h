@@ -1,5 +1,5 @@
 //
-//  ZJTestMacroViewController.h
+//  ZJTestMacroFuncViewController.h
 //  ZJIOS
 //
 //  Created by issuser on 2022/6/22.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestMacroViewController : ZJViewController
+@interface ZJTestMacroFuncViewController : ZJViewController
 
 @end
 

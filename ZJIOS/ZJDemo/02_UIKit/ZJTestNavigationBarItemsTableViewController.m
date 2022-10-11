@@ -35,7 +35,7 @@ int zj_times;
 
 - (void)initSetting {
     self.selectBarStyleRow = 0;
-    self.cellTitles = @[@[@"UIBarStyleDefault", @"UIBarStyleBlack"], @[@"navigationBarHidden", @"animated"], @[@"items", @"navigationItem.backBarButtonItem", @"super.navigationItem"]];
+    self.cellTitles = @[@[@"UIBarStyleDefault", @"UIBarStyleBlack"], @[@"navigationBarHidden", @"animated"], @[@"navigationBar.backItem.backButtonTitle", @"navigationBar.backItem.title", @"navigationItem.backBarButtonItem", @"self.navigationItem", @"返回按钮title(下级页面为短标题)", @"返回按钮title(下级页面为长标题)"]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -134,15 +134,14 @@ int zj_times;
     隐藏和显示navigationBar，状态栏文字颜色无变化
  
  当初始barStyle=UIBarStyleBlack时，navigationBarHidden=NO, 执行以下步骤:
-    1.当navigationBarHidden=NO-->YES时，状态栏颜色文字以preferredStatusBarStyle方法返回为准,如果当前控制器没实现则为黑色(UIBarStyleDefault时的颜色),此时无导航栏
+    1.当navigationBarHidden=NO-->YES时，状态栏颜色文字style以preferredStatusBarStyle方法返回为准,如果当前控制器没实现则为黑色(UIBarStyleDefault时的颜色),此时无导航栏
     2.当navigationBarHidden=YES-->NO时，状态栏文字变为白色(UIBarStyleBlack), 导航栏文字颜色也为UIBarStyleBlack状态下的文字(白色),此时不会调用preferredStatusBarStyle方法
-    3.barStyle=UIBarStyleBlack-->UIBarStyleDefault,状态栏颜色文字变为黑色(UIBarStyleDefault时的颜色),导航栏依旧保持白色文字
+    3.barStyle=UIBarStyleBlack-->UIBarStyleDefault,状态栏颜色文字变为黑色(UIBarStyleDefault时的颜色),导航栏依旧保持白色文字(前提:导航栏执行过隐藏显示操作,导航栏未隐藏状态)
     4.navigationBarHidden=NO-->YES,状态栏颜色文字以preferredStatusBarStyle方法返回为准,此时无导航栏
     5.navigationBarHidden=YES-->NO(barStyle=UIBarStyleDefault), 状态栏颜色文字变为黑色(UIBarStyleDefault时的颜色)此时不会调用preferredStatusBarStyle方法,导航栏文字颜色变为黑色
 
  总结:
  当导航栏navigationBarHidden=NO时，修改barStyle不会改变导航栏文字颜色，只会改变状态栏颜色文字
- 当导航栏navigationBarHidden=YES时，修改barStyle不会改变导航栏文字颜色(导航栏已不可见)，也不会改变状态栏颜色文字(保持UIBarStyleDefault黑色)
  当导航栏navigationBarHidden=YES-->NO时，导航栏文字颜色和状态栏文字颜色根据barStyle显示: UIBarStyleDefault都为黑色, UIBarStyleBlack时都为白色,
  */
 - (void)test0 {
@@ -174,14 +173,15 @@ int zj_times;
  */
 
 /*
- 2022-05-26 15:09:53.511551+0800 ZJIOS[7288:190397] items = (
-     "<UINavigationItem: 0x7faf7aa136a0> title='self-Title1' backButtonTitle='back1'",
-     "<UINavigationItem: 0x7faf7aa099f0> title='hh'"
+ 设置navigationBar.backItem.backButtonTitle
+ 2022-10-11 17:01:29.305316+0800 ZJIOS[17663:497792] navigationBar.items = (
+     "<UINavigationItem: 0x7fd140f183b0> title='UIKit' backButtonTitle='back1'",
+     "<UINavigationItem: 0x7fd142114db0> title='hh'"
  )
- 2022-05-26 15:09:53.511787+0800 ZJIOS[7288:190397] topItem = <UINavigationItem: 0x7faf7aa099f0> title='hh'
- 2022-05-26 15:09:53.511927+0800 ZJIOS[7288:190397] backItem = <UINavigationItem: 0x7faf7aa136a0> title='self-Title1' backButtonTitle='back1'
- 2022-05-26 15:09:53.512040+0800 ZJIOS[7288:190397] self.navigationItem = <UINavigationItem: 0x7faf7aa099f0> title='hh', titleView = (null)
- 2022-05-26 15:09:53.512132+0800 ZJIOS[7288:190397] self.navigationController.navigationItem = <UINavigationItem: 0x7faf7a809930> title='self-Title1', titleView = (null)
+ 2022-10-11 17:01:29.305554+0800 ZJIOS[17663:497792] navigationBar.topItem = <UINavigationItem: 0x7fd142114db0> title='hh'
+ 2022-10-11 17:01:29.305749+0800 ZJIOS[17663:497792] navigationBar.backItem = <UINavigationItem: 0x7fd140f183b0> title='UIKit' backButtonTitle='back1'
+ 2022-10-11 17:01:29.305887+0800 ZJIOS[17663:497792] self.navigationItem = <UINavigationItem: 0x7fd142114db0> title='hh', titleView = (null)
+ 2022-10-11 17:01:29.305998+0800 ZJIOS[17663:497792] self.navigationController.navigationItem = <UINavigationItem: 0x7fd140f10e60> title='UIKit', titleView = (null)
  */
 - (void)test1 {
     NSLog(@"%s", __func__);
@@ -193,39 +193,105 @@ int zj_times;
 //        多了backButtonTitle属性是为了不影响返回父VC后的title显示,因为由test3()可知backItem和super.navigationItem是同一个item
         self.navigationController.navigationBar.backItem.backButtonTitle = [NSString stringWithFormat:@"back%d", zj_times];
     } else {
-        // 会影响父VC的title显示,修改了backItem的title也会影响super.navigationItem的title
-        self.navigationController.navigationBar.backItem.title = [NSString stringWithFormat:@"back%d", zj_times];
+
     }
     [self getItems];
 }
 
+/*
+ 设置navigationBar.backItem.title: 设置了navigationBar.backItem.backButtonTitle的优先级更高
+ 2022-10-11 17:03:49.892367+0800 ZJIOS[17663:497792] navigationBar.items = (
+     "<UINavigationItem: 0x7fd140f183b0> title='back2' backButtonTitle='back1'",
+     "<UINavigationItem: 0x7fd142114db0> title='gg'"
+ )
+ 2022-10-11 17:03:49.892570+0800 ZJIOS[17663:497792] navigationBar.topItem = <UINavigationItem: 0x7fd142114db0> title='gg'
+ 2022-10-11 17:03:49.892690+0800 ZJIOS[17663:497792] navigationBar.backItem = <UINavigationItem: 0x7fd140f183b0> title='back2' backButtonTitle='back1'
+ 2022-10-11 17:03:49.892856+0800 ZJIOS[17663:497792] self.navigationItem = <UINavigationItem: 0x7fd142114db0> title='gg', titleView = (null)
+ 2022-10-11 17:03:49.892971+0800 ZJIOS[17663:497792] self.navigationController.navigationItem = <UINavigationItem: 0x7fd140f10e60> title='UIKit', titleView = (null)
+ */
 - (void)test2 {
     NSLog(@"%s", __func__);
-    //    The default value of this property is nil,注意backBarButtonItem和backItem不是一回事
+        
+    // 过长会挤压backItem的title,此时修改成短title有效果, 但backItem在title没有改变的情况下不会改变,title值改变了会重新展示backItem的文字
+    self.navigationController.navigationBar.topItem.title = @"gg";
+    zj_times++;
+    // 会影响父VC的title显示,修改了backItem的title也会影响super.navigationItem的title
+    self.navigationController.navigationBar.backItem.title = [NSString stringWithFormat:@"back%d", zj_times];
+    [self getItems];
+}
+
+- (void)test3 {
+    NSLog(@"%s", __func__);
+    //    The default value of this property is nil,注意navigationItem.backBarButtonItem和navigationBar.backItem不是一回事
     NSLog(@"self.navigationItem.backBarButtonItem = %@", self.navigationItem.backBarButtonItem);    // null
     NSLog(@"super.navigationItem.backBarButtonItem = %@", [self preControllerWithIndex:1].navigationItem.backBarButtonItem);    // null
+    
+// 注意设置navigationItem.backBarButtonItem是对下一级页面起作用
+// target和action都可以赋值为nil，因为我们是使用设置backBarButtonItem的方式，所以pop的操作，会由系统为我们执行，不需要操心，即使写了，也是不起作用的
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"自定义" style:UIBarButtonItemStylePlain target:self action:@selector(customEvent)];
+    [self getItems];
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.title = @"NN";
+    [self showViewController:vc sender:nil];
+}
+
+// 该方法不会起作用
+- (void)customEvent {
+    NSLog(@"%s", __func__);
 }
 
 /*
  2022-05-26 15:08:21.412726+0800 ZJIOS[7288:190397] self.navigationItem = <UINavigationItem: 0x7faf7aa099f0> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
  2022-05-26 15:08:21.412859+0800 ZJIOS[7288:190397] super.navigationItem = <UINavigationItem: 0x7faf7aa136a0> title='self-Title1', titleView = (null)
  */
-- (void)test3 {
+- (void)test4 {
     UIViewController *superVC = [self preControllerWithIndex:1];
     
+    // self.navigationItem与self.navigationBar.topItem是同一个item
     NSLog(@"self.navigationItem = %@, titleView = %@", self.navigationItem, self.navigationItem.titleView);
+    
+    self.navigationItem.title = @"mm";
     // super.navigationItem与self.navigationBar.backItem是同一个item
     NSLog(@"super.navigationItem = %@, titleView = %@", superVC.navigationItem, superVC.navigationItem.titleView);
+    [self getItems];
+}
+
+- (void)test5 {
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.title = @"短title";
+    [self showViewController:vc sender:nil];
+}
+
+// 长标题会挤压返回按钮标题
+- (void)test6 {
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.title = @"长title长title长title长title长title";
+    [self showViewController:vc sender:nil];
+}
+
+- (void)getItems {
+    NSArray *items = self.navigationController.navigationBar.items;
+//    The navigation item at the top of the navigation bar’s stack.
+    UINavigationItem *topItem = self.navigationController.navigationBar.topItem;
+//    The navigation item that is immediately below the topmost item on a navigation bar’s stack
+    UINavigationItem *backItem = self.navigationController.navigationBar.backItem;
+
+    NSLog(@"navigationBar.items = %@", items);
+    NSLog(@"navigationBar.topItem = %@", topItem);
+    NSLog(@"navigationBar.backItem = %@", backItem);
+    //    navigationItem: The default behavior is to create a navigation item that displays the view controller's title
+    NSLog(@"self.navigationItem = %@, titleView = %@", self.navigationItem, self.navigationItem.titleView);
+    NSLog(@"self.navigationController.navigationItem = %@, titleView = %@", self.navigationController.navigationItem, self.navigationController.navigationItem.titleView);
 }
 
 /*
- 2022-05-26 15:04:23.437780+0800 ZJIOS[7288:190397] items = (
-     "<UINavigationItem: 0x7faf7aa136a0> title='self-Title1'"
+ 2022-10-11 16:54:33.438563+0800 ZJIOS[17564:494402] navigationBar.items = (
+     "<UINavigationItem: 0x7f8edd21dec0> title='UIKit'"
  )
- 2022-05-26 15:04:23.437959+0800 ZJIOS[7288:190397] topItem = <UINavigationItem: 0x7faf7aa136a0> title='self-Title1'
- 2022-05-26 15:04:23.438108+0800 ZJIOS[7288:190397] backItem = (null)
- 2022-05-26 15:04:23.438324+0800 ZJIOS[7288:190397] self.navigationItem = <UINavigationItem: 0x7faf7aa099f0> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
- 2022-05-26 15:04:23.438504+0800 ZJIOS[7288:190397] self.navigationController.navigationItem = <UINavigationItem: 0x7faf7a809930> title='self-Title1', titleView = (null)
+ 2022-10-11 16:54:33.438707+0800 ZJIOS[17564:494402] navigationBar.topItem = <UINavigationItem: 0x7f8edd21dec0> title='UIKit'
+ 2022-10-11 16:54:33.438826+0800 ZJIOS[17564:494402] navigationBar.backItem = (null)
+ 2022-10-11 16:54:33.438979+0800 ZJIOS[17564:494402] self.navigationItem = <UINavigationItem: 0x7f8edd20a720> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
+ 2022-10-11 16:54:33.439155+0800 ZJIOS[17564:494402] self.navigationController.navigationItem = <UINavigationItem: 0x7f8edd70ac50> title='UIKit', titleView = (null)
  */
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -236,19 +302,19 @@ int zj_times;
 }
 
 /*
- 2022-05-26 15:04:23.992849+0800 ZJIOS[7288:190397] items = (
-     "<UINavigationItem: 0x7faf7aa136a0> title='self-Title1'",
-     "<UINavigationItem: 0x7faf7aa099f0> title='ZJTestNavigationBarItemsTableViewController'"
+ 2022-10-11 16:54:33.987285+0800 ZJIOS[17564:494402] navigationBar.items = (
+     "<UINavigationItem: 0x7f8edd21dec0> title='UIKit'",
+     "<UINavigationItem: 0x7f8edd20a720> title='ZJTestNavigationBarItemsTableViewController'"
  )
- 2022-05-26 15:04:23.993089+0800 ZJIOS[7288:190397] topItem = <UINavigationItem: 0x7faf7aa099f0> title='ZJTestNavigationBarItemsTableViewController'
- 2022-05-26 15:04:23.993401+0800 ZJIOS[7288:190397] backItem = <UINavigationItem: 0x7faf7aa136a0> title='self-Title1'
- 2022-05-26 15:04:23.993679+0800 ZJIOS[7288:190397] self.navigationItem = <UINavigationItem: 0x7faf7aa099f0> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
- 2022-05-26 15:04:23.994073+0800 ZJIOS[7288:190397] self.navigationController.navigationItem = <UINavigationItem: 0x7faf7a809930> title='self-Title1', titleView = (null)
+ 2022-10-11 16:54:33.987577+0800 ZJIOS[17564:494402] navigationBar.topItem = <UINavigationItem: 0x7f8edd20a720> title='ZJTestNavigationBarItemsTableViewController'
+ 2022-10-11 16:54:33.987849+0800 ZJIOS[17564:494402] navigationBar.backItem = <UINavigationItem: 0x7f8edd21dec0> title='UIKit'
+ 2022-10-11 16:54:33.988079+0800 ZJIOS[17564:494402] self.navigationItem = <UINavigationItem: 0x7f8edd20a720> title='ZJTestNavigationBarItemsTableViewController', titleView = (null)
+ 2022-10-11 16:54:33.988308+0800 ZJIOS[17564:494402] self.navigationController.navigationItem = <UINavigationItem: 0x7f8edd70ac50> title='UIKit', titleView = (null)
  */
 /*
  ## self.navigationItem和self.navigationController.navigationItem不是同一个item
  
- ## viewWillAppear-->viewDidAppear,items发生了变化,topItem和backItem的指向发生了改变
+ ## viewWillAppear-->viewDidAppear,items发生了变化,topItem、backItem等都会发生了改变
  */
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -256,20 +322,6 @@ int zj_times;
     NSLog(@"%s", __func__);
     [self getItems];
 //    NSLog(@"tabBarItem = %@", self.tabBarItem);
-}
-
-- (void)getItems {
-    NSArray *items = self.navigationController.navigationBar.items;
-    UINavigationItem *topItem = self.navigationController.navigationBar.topItem;
-//    The navigation item that is immediately below the topmost item on a navigation bar’s stack
-    UINavigationItem *backItem = self.navigationController.navigationBar.backItem;
-
-    NSLog(@"items = %@", items);
-    NSLog(@"topItem = %@", topItem);
-    NSLog(@"backItem = %@", backItem);
-    //    navigationItem: The default behavior is to create a navigation item that displays the view controller's title
-    NSLog(@"self.navigationItem = %@, titleView = %@", self.navigationItem, self.navigationItem.titleView);
-    NSLog(@"self.navigationController.navigationItem = %@, titleView = %@", self.navigationController.navigationItem, self.navigationController.navigationItem.titleView);
 }
 
 // 默认情况下状态栏根据导航栏的barStyle来显示状态

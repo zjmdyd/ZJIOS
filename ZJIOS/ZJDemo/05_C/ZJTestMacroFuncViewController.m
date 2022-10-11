@@ -1,13 +1,13 @@
 //
-//  ZJTestMacroViewController.m
+//  ZJTestMacroFuncViewController.m
 //  ZJIOS
 //
 //  Created by issuser on 2022/6/22.
 //
 
-#import "ZJTestMacroViewController.h"
+#import "ZJTestMacroFuncViewController.h"
 
-@interface ZJTestMacroViewController ()
+@interface ZJTestMacroFuncViewController ()
 
 @end
 
@@ -28,7 +28,7 @@ void main(){
 }
 );
 
-@implementation ZJTestMacroViewController
+@implementation ZJTestMacroFuncViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -1,18 +1,18 @@
 //
-//  ZJSubjectTableViewController.m
+//  ZJCTipsTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2021/6/13.
+//  Created by issuser on 2022/10/11.
 //
 
-#import "ZJSubjectTableViewController.h"
+#import "ZJCTipsTableViewController.h"
 #import "UIViewController+ZJViewController.h"
 
-@interface ZJSubjectTableViewController ()
+@interface ZJCTipsTableViewController ()
 
 @end
 
-@implementation ZJSubjectTableViewController
+@implementation ZJCTipsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestMultiTargetViewController", @"ZJTestTimerTableViewController", @"ZJTestFileTableViewController", @"ZJTestCALayerTableViewController", @"ZJTestBlockViewController", @"ZJTestAnimationTableViewController", @"ZJTestCIImageTableViewController", @"ZJTestBezierPathViewController"];
+    self.cellTitles = @[@"ZJTestMacroFuncViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
 }
 
 - (void)initSetting {
@@ -50,10 +50,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName title:vcName];
 }
+
 
 /*
 // Override to support conditional editing of the table view.
