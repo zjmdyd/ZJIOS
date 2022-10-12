@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestMacroFuncViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
+    self.cellTitles = @[@"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
 }
 
 - (void)initSetting {

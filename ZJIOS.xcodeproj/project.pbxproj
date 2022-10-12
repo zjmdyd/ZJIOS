@@ -78,7 +78,6 @@
 		6508086C283110C80010D447 /* ZJTestCALayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508086B283110C80010D447 /* ZJTestCALayerTableViewController.m */; };
 		6508086F2831129A0010D447 /* ZJTestLayerBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508086E2831129A0010D447 /* ZJTestLayerBorderViewController.m */; };
 		650F3F172823A8D80029F7A5 /* ZJTestJsonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */; };
-		6510B7DC2862C02000EA4236 /* ZJTestMacroFuncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510B7DB2862C02000EA4236 /* ZJTestMacroFuncViewController.m */; };
 		6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025126940991003B652F /* UINavigationController+ZJNaviController.m */; };
 		6516025826942C97003B652F /* UIViewController+ZJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6516025726942C97003B652F /* UIViewController+ZJViewController.m */; };
 		652B58F227BA5CE200745D11 /* ZJTestSearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652B58F127BA5CE200745D11 /* ZJTestSearchBarViewController.m */; };
@@ -365,6 +364,15 @@
 		65D62C07288AB300001C616E /* changeColor.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 65D62C06288AB300001C616E /* changeColor.cikernel */; };
 		65D8729628598B46000B7A3C /* ZJMergeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D8729428598B46000B7A3C /* ZJMergeViewController.m */; };
 		65D8729728598B46000B7A3C /* ZJMergeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D8729528598B46000B7A3C /* ZJMergeViewController.xib */; };
+		65D95C4B28F66B7F00879A28 /* ZJTestMemcpyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D95C4A28F66B7F00879A28 /* ZJTestMemcpyViewController.m */; };
+		65D95C4C28F66B7F00879A28 /* ZJTestMemcpyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D95C4A28F66B7F00879A28 /* ZJTestMemcpyViewController.m */; };
+		65D95C4E28F66BA100879A28 /* ZJCTipsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE086D28F54E35000349D3 /* ZJCTipsTableViewController.m */; };
+		65D95C4F28F66BB400879A28 /* ZJTestUnsignedDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657D57BE281F870C008B1964 /* ZJTestUnsignedDataViewController.m */; };
+		65D95C5028F66BB700879A28 /* ZJTestSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AC698728702D2B002074ED /* ZJTestSizeViewController.m */; };
+		65D95C5328F6AF2800879A28 /* ZJTestStructViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */; };
+		65D95C5428F6AF2800879A28 /* ZJTestStructViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */; };
+		65D95C5728F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D95C5628F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m */; };
+		65D95C5828F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D95C5628F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m */; };
 		65F7C6A82692E74600121EBD /* UITableView+ZJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6892692E74500121EBD /* UITableView+ZJTableView.m */; };
 		65F7C6A92692E74600121EBD /* UIImage+ZJImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68A2692E74500121EBD /* UIImage+ZJImage.m */; };
 		65F7C6AA2692E74600121EBD /* UILabel+ZJLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C68C2692E74500121EBD /* UILabel+ZJLabel.m */; };
@@ -546,8 +554,6 @@
 		6508086E2831129A0010D447 /* ZJTestLayerBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestLayerBorderViewController.m; sourceTree = "<group>"; };
 		650F3F152823A8D80029F7A5 /* ZJTestJsonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestJsonTableViewController.h; sourceTree = "<group>"; };
 		650F3F162823A8D80029F7A5 /* ZJTestJsonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestJsonTableViewController.m; sourceTree = "<group>"; };
-		6510B7DA2862C02000EA4236 /* ZJTestMacroFuncViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestMacroFuncViewController.h; sourceTree = "<group>"; };
-		6510B7DB2862C02000EA4236 /* ZJTestMacroFuncViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestMacroFuncViewController.m; sourceTree = "<group>"; };
 		6516025026940991003B652F /* UINavigationController+ZJNaviController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZJNaviController.h"; sourceTree = "<group>"; };
 		6516025126940991003B652F /* UINavigationController+ZJNaviController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZJNaviController.m"; sourceTree = "<group>"; };
 		6516025626942C97003B652F /* UIViewController+ZJViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZJViewController.h"; sourceTree = "<group>"; };
@@ -738,6 +744,12 @@
 		65D8729328598B46000B7A3C /* ZJMergeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJMergeViewController.h; sourceTree = "<group>"; };
 		65D8729428598B46000B7A3C /* ZJMergeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJMergeViewController.m; sourceTree = "<group>"; };
 		65D8729528598B46000B7A3C /* ZJMergeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJMergeViewController.xib; sourceTree = "<group>"; };
+		65D95C4928F66B7F00879A28 /* ZJTestMemcpyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestMemcpyViewController.h; sourceTree = "<group>"; };
+		65D95C4A28F66B7F00879A28 /* ZJTestMemcpyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestMemcpyViewController.m; sourceTree = "<group>"; };
+		65D95C5128F6AF2800879A28 /* ZJTestStructViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestStructViewController.h; sourceTree = "<group>"; };
+		65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestStructViewController.m; sourceTree = "<group>"; };
+		65D95C5528F6C29A00879A28 /* ZJTestMacroFuncTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestMacroFuncTableViewController.h; sourceTree = "<group>"; };
+		65D95C5628F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestMacroFuncTableViewController.m; sourceTree = "<group>"; };
 		65F7C6872692E6F900121EBD /* ZJUICatg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJUICatg.h; sourceTree = "<group>"; };
 		65F7C6882692E74500121EBD /* UITextView+ZJTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZJTextView.h"; sourceTree = "<group>"; };
 		65F7C6892692E74500121EBD /* UITableView+ZJTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ZJTableView.m"; sourceTree = "<group>"; };
@@ -1255,6 +1267,8 @@
 				38B150CC28C3659300688F62 /* ZJTestSleepFuncViewController.h */,
 				38B150CD28C3659300688F62 /* ZJTestSleepFuncViewController.m */,
 				38B150CE28C3659300688F62 /* ZJTestSleepFuncViewController.xib */,
+				65D95C4928F66B7F00879A28 /* ZJTestMemcpyViewController.h */,
+				65D95C4A28F66B7F00879A28 /* ZJTestMemcpyViewController.m */,
 			);
 			path = C_Function;
 			sourceTree = "<group>";
@@ -1481,8 +1495,10 @@
 			children = (
 				65AE086C28F54E35000349D3 /* ZJCTipsTableViewController.h */,
 				65AE086D28F54E35000349D3 /* ZJCTipsTableViewController.m */,
-				6510B7DA2862C02000EA4236 /* ZJTestMacroFuncViewController.h */,
-				6510B7DB2862C02000EA4236 /* ZJTestMacroFuncViewController.m */,
+				65D95C5128F6AF2800879A28 /* ZJTestStructViewController.h */,
+				65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */,
+				65D95C5528F6C29A00879A28 /* ZJTestMacroFuncTableViewController.h */,
+				65D95C5628F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m */,
 				65AC698628702D2B002074ED /* ZJTestSizeViewController.h */,
 				65AC698728702D2B002074ED /* ZJTestSizeViewController.m */,
 				657D57BD281F870C008B1964 /* ZJTestUnsignedDataViewController.h */,
@@ -1924,6 +1940,7 @@
 				658CA9AB2826468C002F0DDA /* UITextField+ZJTextField.m in Sources */,
 				65F7C6B32692E74600121EBD /* UIBarButtonItem+ZJBarButtonItem.m in Sources */,
 				65F7C6B72692E74600121EBD /* UIViewExt.m in Sources */,
+				65D95C4B28F66B7F00879A28 /* ZJTestMemcpyViewController.m in Sources */,
 				656A4D4B283377D4006BEBDC /* ZJNavigationController.m in Sources */,
 				65939427281BF3A300D4872C /* ZJTestTableViewController.m in Sources */,
 				65F7C6B22692E74600121EBD /* UITextView+ZJTextView.m in Sources */,
@@ -1939,7 +1956,6 @@
 				65F7C6A92692E74600121EBD /* UIImage+ZJImage.m in Sources */,
 				658FB04D28324B38004CD08C /* UIBezierPath+ZJBezierPath.m in Sources */,
 				6593EDB827956650001CC588 /* ZJTestNSLogViewController.m in Sources */,
-				6510B7DC2862C02000EA4236 /* ZJTestMacroFuncViewController.m in Sources */,
 				38A1F0B5267AF3A000A4D044 /* ZJTestBlockViewController.m in Sources */,
 				65F7C6D22692E9CC00121EBD /* NSObject+ZJRuntime.m in Sources */,
 				65B0328A284615E800E9C08A /* ZJAlertObject.m in Sources */,
@@ -1965,6 +1981,7 @@
 				6516025826942C97003B652F /* UIViewController+ZJViewController.m in Sources */,
 				38EBE1492675BB8900E090D9 /* ZJSubjectTableViewController.m in Sources */,
 				65AAE65E283645570095450E /* ZJTestNSURLViewController.m in Sources */,
+				65D95C5328F6AF2800879A28 /* ZJTestStructViewController.m in Sources */,
 				38D13DB3268084F300BCAC42 /* ZJPointerAryViewController.m in Sources */,
 				65B3008F28AB6FB900524D8B /* ZJTestCSVViewController.m in Sources */,
 				38D13DA8267F519200BCAC42 /* Student.m in Sources */,
@@ -1979,6 +1996,7 @@
 				65080867283100C60010D447 /* ZJBaseTableViewCell.m in Sources */,
 				6587047026E6006D00669B5D /* ZJTestTimerViewController.m in Sources */,
 				3883B9BA268EBE2800236663 /* ZJWebViewController.m in Sources */,
+				65D95C5728F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m in Sources */,
 				6594920E2711711E00FDD87D /* UIApplication+Cooks.m in Sources */,
 				65AE086E28F54E35000349D3 /* ZJCTipsTableViewController.m in Sources */,
 				382EE8D926750B04008AB02C /* ZJIOS.xcdatamodeld in Sources */,
@@ -2124,6 +2142,7 @@
 				65BD8FF028E13CC600CDC2CC /* NSMutableArray+ZJMutableArray.m in Sources */,
 				65BD8FF128E13CC600CDC2CC /* ZJRuntimeViewController.m in Sources */,
 				65BD8FF228E13CC600CDC2CC /* ZJTestImageOverlayViewController.m in Sources */,
+				65D95C4F28F66BB400879A28 /* ZJTestUnsignedDataViewController.m in Sources */,
 				65BD8FF328E13CC600CDC2CC /* UIApplication+SystemSound.m in Sources */,
 				65BD8FF428E13CC600CDC2CC /* ZJMergeViewController.m in Sources */,
 				65BD8FF528E13CC600CDC2CC /* NSString+ZJTextEncode.m in Sources */,
@@ -2143,17 +2162,22 @@
 				65BD900328E13CC600CDC2CC /* ZJSubjectTableViewController.m in Sources */,
 				65BD900428E13CC600CDC2CC /* ZJTestNSURLViewController.m in Sources */,
 				65BD900528E13CC600CDC2CC /* ZJPointerAryViewController.m in Sources */,
+				65D95C5428F6AF2800879A28 /* ZJTestStructViewController.m in Sources */,
 				65BD900628E13CC600CDC2CC /* ZJTestCSVViewController.m in Sources */,
 				65BD900728E13CC600CDC2CC /* Student.m in Sources */,
 				65BD900828E13CC600CDC2CC /* ZJTestVectorViewController.m in Sources */,
 				65BD900928E13CC600CDC2CC /* UIScrollView+ZJScrollView.m in Sources */,
+				65D95C5028F66BB700879A28 /* ZJTestSizeViewController.m in Sources */,
 				65BD900A28E13CC600CDC2CC /* ZJTestNSRangeViewController.m in Sources */,
 				65BD900B28E13CC600CDC2CC /* ZJMVCViewController.m in Sources */,
 				65BD900C28E13CC600CDC2CC /* ZJTestNibViewController.m in Sources */,
 				65BD900D28E13CC600CDC2CC /* ZJTestBarButtonItemViewController.m in Sources */,
 				65BD900E28E13CC600CDC2CC /* ZJTestPushViewController.m in Sources */,
+				65D95C4E28F66BA100879A28 /* ZJCTipsTableViewController.m in Sources */,
+				65D95C4C28F66B7F00879A28 /* ZJTestMemcpyViewController.m in Sources */,
 				65BD900F28E13CC600CDC2CC /* ZJTestUIAppearanceViewController.m in Sources */,
 				65BD901028E13CC600CDC2CC /* ZJBaseTableViewCell.m in Sources */,
+				65D95C5828F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m in Sources */,
 				65BD901128E13CC600CDC2CC /* ZJTestTimerViewController.m in Sources */,
 				65BD901228E13CC600CDC2CC /* ZJWebViewController.m in Sources */,
 				65BD901328E13CC600CDC2CC /* UIApplication+Cooks.m in Sources */,
