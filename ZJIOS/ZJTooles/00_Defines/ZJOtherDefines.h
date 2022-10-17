@@ -13,10 +13,6 @@
 #define DefaultAnimationDuration 0.5
 #endif
 
-#ifndef DefaultTimeoutInterval
-#define DefaultTimeoutInterval 15
-#endif
-
 #ifndef ZJNaviCtrl
 #define ZJNaviCtrl navigationController
 #endif

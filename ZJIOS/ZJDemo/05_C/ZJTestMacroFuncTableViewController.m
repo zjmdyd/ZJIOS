@@ -6,6 +6,7 @@
 //
 
 #import "ZJTestMacroFuncTableViewController.h"
+#import "ZJFuncDefine.h"
 
 @interface ZJTestMacroFuncTableViewController ()
 
@@ -17,15 +18,10 @@
     [super viewDidLoad];
     
     [self initAry];
-    [self initSetting];
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"attribute vec4"];
-}
-
-- (void)initSetting {
-    
+    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"ZJNSLog"];
 }
 
 // ‘#’运算符:用来把参数转换成字符串
@@ -85,6 +81,16 @@ void logB(void) {
     debug_log_func2("debug");   //
 }
 
+- (void)test5 {
+    NSString *str = @"hello world";
+    ZJNSLog(@"str = %@", str);
+    
+    NSString *s =  [[NSString stringWithUTF8String:__FILE__] lastPathComponent];
+    NSLog(@"s = %@", s);
+    const char *ch = [s UTF8String];
+    printf("ch = %s", ch);
+}
+
 // '##': 不可以是第一个或者最后一个子串,所以(_##NAME)加了下划线,去掉下划线会报错
 #define RECORD_TIME(NAME) double _##NAME = [NSDate date].timeIntervalSince1970;
 
@@ -111,7 +117,7 @@ static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING(abc);
 static NSString *const CAMREA_RESIZE_VERTEX = @TTF_SHADER_STRING(abc);
 */
 
-- (void)test5 {
+- (void)test55 {
     RECORD_TIME(began);
     NSLog(@"_began = %f", _began);
     NSString *str = CAMREA_RESIZE_VERTEX;

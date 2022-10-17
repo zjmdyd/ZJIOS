@@ -19,23 +19,6 @@
     [self test3];
 }
 
-//源码文件中的行号
-- (void)test0 {
-    NSLog(@"%d", __LINE__); // 24
-}
-
-//当前源代码文件全路径 －－>宏在预编译时会替换成当前的源文件名
-- (void)test1 {
-    NSLog(@"%s", __FILE__);
-//    源码文件的名称
-    NSLog(@"%@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent]); // ZJTestNSLogViewController.m
-}
-
-- (void)test2 {
-    NSLog(@"%s", __func__);                     // -[ZJTestNSLogViewController test1]
-    NSLog(@"%@", NSStringFromSelector(_cmd));   // test1
-}
-
 /*
  32位
  typedef unsigned int size_t
@@ -55,7 +38,6 @@
     ssize_t t = -10;
     NSLog(@"t = %zd", t);
 }
-
 
 /*
 #pragma mark - Navigation

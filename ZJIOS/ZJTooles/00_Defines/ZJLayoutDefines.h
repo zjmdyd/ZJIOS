@@ -51,7 +51,7 @@
 #endif
 
 #ifndef kIsIPad9_7
-#define kIsIPad9_7 (kScreenW < 769 && kScreenH < 1025)        // kIsIPad9_7:768,1024
+#define kIsIPad9_7 (kScreenW < 769 && kScreenH < 1025)  // kIsIPad9_7:768,1024
 #endif
 
 #ifndef kIsIPadMini

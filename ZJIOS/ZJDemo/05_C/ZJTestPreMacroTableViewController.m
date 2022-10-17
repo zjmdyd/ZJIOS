@@ -1,18 +1,18 @@
 //
-//  ZJCTipsTableViewController.m
+//  ZJTestPreMacroTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2022/10/11.
+//  Created by issuser on 2022/10/17.
 //
 
-#import "ZJCTipsTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestPreMacroTableViewController.h"
 
-@interface ZJCTipsTableViewController ()
+@interface ZJTestPreMacroTableViewController ()
 
 @end
 
-@implementation ZJCTipsTableViewController
+@implementation ZJTestPreMacroTableViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,12 +22,14 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestPreMacroTableViewController", @"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
+    self.cellTitles = @[@"__LINE__", @"__FILE__", @"__func__&&_cmd"];
+
 }
 
 - (void)initSetting {
     
 }
+
 
 #pragma mark - UITableViewDataSource
 
@@ -35,14 +37,12 @@
     return self.cellTitles.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
     if (!cell) {
-        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 
@@ -51,10 +51,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName title:vcName];
+    SEL s = NSSelectorFromString([NSString stringWithFormat:@"test%zd", indexPath.row]);
+    [self performSelector:s];
 }
 
+//源码文件中的行号
+- (void)test0 {
+    NSLog(@"%d", __LINE__); // 24
+}
+
+//当前源代码文件全路径 －－>宏在预编译时会替换成当前的源文件名
+- (void)test1 {
+    NSLog(@"%s", __FILE__);
+//    源码文件的名称
+    NSLog(@"%@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent]); // ZJTestNSLogViewController.m
+}
+
+- (void)test2 {
+    NSLog(@"%s", __func__);                     // -[ZJTestNSLogViewController test1]
+    NSLog(@"%@", NSStringFromSelector(_cmd));   // test1
+}
 
 /*
 // Override to support conditional editing of the table view.
