@@ -135,6 +135,8 @@
 		6597C21327450935003161AB /* ZJTestShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6597C21227450935003161AB /* ZJTestShareViewController.m */; };
 		6597C21627450A24003161AB /* ZJCtrlTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6597C21527450A24003161AB /* ZJCtrlTableViewController.m */; };
 		659B208328FD3A32002923F6 /* ZJTestPreMacroTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B208228FD3A32002923F6 /* ZJTestPreMacroTableViewController.m */; };
+		659B20AE28FD5218002923F6 /* ZJTestC_StringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B20AD28FD5218002923F6 /* ZJTestC_StringViewController.m */; };
+		659B20AF28FD5219002923F6 /* ZJTestC_StringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B20AD28FD5218002923F6 /* ZJTestC_StringViewController.m */; };
 		659E624D2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E624C2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.m */; };
 		659EB72227B4BAA50016D91D /* AppDelegate+ZJBackgroundAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659EB72127B4BAA50016D91D /* AppDelegate+ZJBackgroundAppDelegate.m */; };
 		659EB72727B66C8F0016D91D /* ZJTestColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659EB72627B66C8F0016D91D /* ZJTestColorTableViewController.m */; };
@@ -665,6 +667,8 @@
 		6597C21527450A24003161AB /* ZJCtrlTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJCtrlTableViewController.m; sourceTree = "<group>"; };
 		659B208128FD3A32002923F6 /* ZJTestPreMacroTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestPreMacroTableViewController.h; sourceTree = "<group>"; };
 		659B208228FD3A32002923F6 /* ZJTestPreMacroTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestPreMacroTableViewController.m; sourceTree = "<group>"; };
+		659B20AC28FD5218002923F6 /* ZJTestC_StringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestC_StringViewController.h; sourceTree = "<group>"; };
+		659B20AD28FD5218002923F6 /* ZJTestC_StringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestC_StringViewController.m; sourceTree = "<group>"; };
 		659E624B2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestStatusBarTableViewController.h; sourceTree = "<group>"; };
 		659E624C2838E93600CAAAF5 /* ZJTestStatusBarTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestStatusBarTableViewController.m; sourceTree = "<group>"; };
 		659EB72027B4BAA50016D91D /* AppDelegate+ZJBackgroundAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ZJBackgroundAppDelegate.h"; sourceTree = "<group>"; };
@@ -1266,6 +1270,8 @@
 				38B150CE28C3659300688F62 /* ZJTestSleepFuncViewController.xib */,
 				65D95C4928F66B7F00879A28 /* ZJTestMemcpyViewController.h */,
 				65D95C4A28F66B7F00879A28 /* ZJTestMemcpyViewController.m */,
+				659B20AC28FD5218002923F6 /* ZJTestC_StringViewController.h */,
+				659B20AD28FD5218002923F6 /* ZJTestC_StringViewController.m */,
 			);
 			path = C_Function;
 			sourceTree = "<group>";
@@ -1971,6 +1977,7 @@
 				658E129E2855F49C004C4748 /* ZJTestAnimationTableViewController.m in Sources */,
 				6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */,
 				65AB8CF4278C3117009322A1 /* ZJTestCopyStrongPopertyViewController.m in Sources */,
+				659B20AE28FD5218002923F6 /* ZJTestC_StringViewController.m in Sources */,
 				388B32E5267E554D0071F530 /* ZJFruit+ZJFruitCatgy.m in Sources */,
 				3883B93E268EAE1300236663 /* ZJTestMutableAryViewController.m in Sources */,
 				38D13DAB267F51A600BCAC42 /* ZJTestSuperViewController.m in Sources */,
@@ -2110,6 +2117,7 @@
 				65BD8FCF28E13CC600CDC2CC /* ZJTableViewController.m in Sources */,
 				65BD8FD028E13CC600CDC2CC /* NSString+ZJString.m in Sources */,
 				65BD8FD128E13CC600CDC2CC /* ZJAlertAction.m in Sources */,
+				659B20AF28FD5219002923F6 /* ZJTestC_StringViewController.m in Sources */,
 				65BD8FD228E13CC600CDC2CC /* ZJRunLoopViewController.m in Sources */,
 				65BD8FD328E13CC600CDC2CC /* UITabBar+ZJTabBar.m in Sources */,
 				65BD8FD428E13CC600CDC2CC /* Person.m in Sources */,

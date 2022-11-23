@@ -23,17 +23,22 @@
     float a = 0;
     if (a > 0) {
         NSLog(@"a大于0");
+    }else if(a == 0) {      // a等于0
+        NSLog(@"a等于0");
     }else {
         NSLog(@"a小于0");
     }
     
     if (a > FLT_EPSILON) {
         NSLog(@"a大于 FLT_EPSILON");
+    }else if(a == FLT_EPSILON){
+        NSLog(@"a等于 FLT_EPSILON");
     }else {
-        NSLog(@"a小于 FLT_EPSILON");
+        NSLog(@"a小于 FLT_EPSILON");  // a小于 FLT_EPSILON
     }
     NSLog(@"a = %f", a);
     NSLog(@"FLT_EPSILON = %f", FLT_EPSILON);
+    NSLog(@"FLT_EPSILON = %lf", FLT_EPSILON);
 }
 
 /*

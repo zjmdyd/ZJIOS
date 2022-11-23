@@ -22,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestSleepFuncViewController", @"ZJTestMemcpyViewController"];
+    self.cellTitles = @[@"ZJTestSleepFuncViewController", @"ZJTestMemcpyViewController", @"ZJTestC_StringViewController"];
 }
 
 - (void)initSetting {
