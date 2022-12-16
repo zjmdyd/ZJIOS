@@ -29,6 +29,7 @@
 - (void)dealloc {
     NSLog(@"%s, currentVC = %@", __func__, self.class);
     if (self.timer) {
+        NSLog(@"调用了[self.timer invalidate]方法, 手动释放了timer");
         [self.timer invalidate];
     }
 }

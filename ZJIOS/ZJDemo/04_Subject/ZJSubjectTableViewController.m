@@ -1,18 +1,17 @@
 //
-//  ZJTestFileTableViewController.m
+//  ZJSubjectTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2022/9/3.
+//  Created by Zengjian on 2021/6/13.
 //
 
-#import "ZJTestFileTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJSubjectTableViewController.h"
 
-@interface ZJTestFileTableViewController ()
+@interface ZJSubjectTableViewController ()
 
 @end
 
-@implementation ZJTestFileTableViewController
+@implementation ZJSubjectTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController", @"ZJTestSandboxViewController", @"ZJTestCSVViewController"];
+    self.cellTitles = @[@"ZJTestMultiTargetViewController", @"ZJTestTimerTableViewController", @"ZJTestThreadTableViewController", @"ZJTestFileTableViewController", @"ZJTestCALayerTableViewController", @"ZJTestBlockViewController", @"ZJTestAnimationTableViewController", @"ZJTestCIImageTableViewController", @"ZJTestBezierPathViewController"];
 }
 
 - (void)initSetting {
@@ -42,7 +41,7 @@
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
 }
 
@@ -50,8 +49,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    [self showVCWithName:vcName title:vcName];
 }
 
 /*

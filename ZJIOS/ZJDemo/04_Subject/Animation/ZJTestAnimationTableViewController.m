@@ -1,17 +1,17 @@
 //
-//  ZJCTipsTableViewController.m
+//  ZJTestAnimationTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2022/10/11.
+//  Created by issuser on 2022/6/12.
 //
 
-#import "ZJCTipsTableViewController.h"
+#import "ZJTestAnimationTableViewController.h"
 
-@interface ZJCTipsTableViewController ()
+@interface ZJTestAnimationTableViewController ()
 
 @end
 
-@implementation ZJCTipsTableViewController
+@implementation ZJTestAnimationTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestPreMacroTableViewController", @"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
+    self.cellTitles = @[@"ZJTestRotateAnimatonViewController"];
 }
 
 - (void)initSetting {
@@ -48,12 +48,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName title:vcName];
 }
-
 
 /*
 // Override to support conditional editing of the table view.

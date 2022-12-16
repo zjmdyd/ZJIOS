@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestCFunctionnTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestCFunctionnTableViewController ()
 

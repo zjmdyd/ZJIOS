@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestNavigationBarItemsTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 #import "ZJScrollViewDefines.h"
 #import "UITableView+ZJTableView.h"
 

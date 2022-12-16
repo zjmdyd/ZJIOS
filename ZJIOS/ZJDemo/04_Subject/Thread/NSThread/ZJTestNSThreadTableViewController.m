@@ -1,17 +1,17 @@
 //
-//  ZJCTipsTableViewController.m
+//  ZJTestNSThreadTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2022/10/11.
+//  Created by issuser on 2022/12/16.
 //
 
-#import "ZJCTipsTableViewController.h"
+#import "ZJTestNSThreadTableViewController.h"
 
-@interface ZJCTipsTableViewController ()
+@interface ZJTestNSThreadTableViewController ()
 
 @end
 
-@implementation ZJCTipsTableViewController
+@implementation ZJTestNSThreadTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestPreMacroTableViewController", @"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
+    self.cellTitles = @[@"ZJTestNSThreadFuncTableViewController", @"ZJTestNSThreadDemoViewController"];
 }
 
 - (void)initSetting {
@@ -49,11 +49,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     NSString *vcName = self.cellTitles[indexPath.row];
     [self showVCWithName:vcName title:vcName];
 }
-
 
 /*
 // Override to support conditional editing of the table view.

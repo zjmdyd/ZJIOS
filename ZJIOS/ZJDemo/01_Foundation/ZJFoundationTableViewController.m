@@ -6,7 +6,6 @@
 //
 
 #import "ZJFoundationTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJFoundationTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 

@@ -1,18 +1,17 @@
 //
-//  ZJTestCIImageTableViewController.m
+//  ZJTestThreadTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2022/9/3.
+//  Created by issuser on 2022/12/15.
 //
 
-#import "ZJTestCIImageTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestThreadTableViewController.h"
 
-@interface ZJTestCIImageTableViewController ()
+@interface ZJTestThreadTableViewController ()
 
 @end
 
-@implementation ZJTestCIImageTableViewController
+@implementation ZJTestThreadTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestFilterViewController", @"ZJTestImageOverlayViewController"];
+    self.cellTitles = @[@"ZJTestNSThreadTableViewController", @"ZJGCDViewController", @"ZJNSOperationViewController"];
 }
 
 - (void)initSetting {
@@ -42,7 +41,7 @@
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
 }
 
@@ -50,8 +49,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    [self showVCWithName:vcName title:vcName];
 }
 
 /*

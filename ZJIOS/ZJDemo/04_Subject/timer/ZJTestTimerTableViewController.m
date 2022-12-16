@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestTimerTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestTimerTableViewController ()
 

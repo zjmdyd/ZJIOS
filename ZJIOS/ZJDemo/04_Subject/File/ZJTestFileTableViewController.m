@@ -1,18 +1,17 @@
 //
-//  ZJTestAnimationTableViewController.m
+//  ZJTestFileTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2022/6/12.
+//  Created by Zengjian on 2022/9/3.
 //
 
-#import "ZJTestAnimationTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestFileTableViewController.h"
 
-@interface ZJTestAnimationTableViewController ()
+@interface ZJTestFileTableViewController ()
 
 @end
 
-@implementation ZJTestAnimationTableViewController
+@implementation ZJTestFileTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestRotateAnimatonViewController"];
+    self.cellTitles = @[@"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController", @"ZJTestSandboxViewController", @"ZJTestCSVViewController"];
 }
 
 - (void)initSetting {
@@ -42,15 +41,16 @@
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName title:vcName];
+    [self showVCWithName:vcName];
 }
 
 /*

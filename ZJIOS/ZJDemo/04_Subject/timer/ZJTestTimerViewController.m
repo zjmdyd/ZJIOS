@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test3];
+    [self test0];
 }
 
 /*

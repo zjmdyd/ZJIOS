@@ -6,7 +6,6 @@
 //
 
 #import "ZJCtrlTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJCtrlTableViewController ()
 

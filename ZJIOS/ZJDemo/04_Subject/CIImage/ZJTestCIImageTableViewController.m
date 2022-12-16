@@ -1,18 +1,17 @@
 //
-//  ZJTestCALayerTableViewController.m
+//  ZJTestCIImageTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2022/5/15.
+//  Created by Zengjian on 2022/9/3.
 //
 
-#import "ZJTestCALayerTableViewController.h"
-#import "UIViewController+ZJViewController.h"
+#import "ZJTestCIImageTableViewController.h"
 
-@interface ZJTestCALayerTableViewController ()
+@interface ZJTestCIImageTableViewController ()
 
 @end
 
-@implementation ZJTestCALayerTableViewController
+@implementation ZJTestCIImageTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestLayerBorderViewController", @"ZJAnchorPointViewController", @"ZJTestTouchViewController", @"ZJMergeViewController"];
+    self.cellTitles = @[@"ZJTestFilterViewController", @"ZJTestImageOverlayViewController"];
 }
 
 - (void)initSetting {

@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJBaseTableViewCell.h"
+#import "UIViewController+ZJViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

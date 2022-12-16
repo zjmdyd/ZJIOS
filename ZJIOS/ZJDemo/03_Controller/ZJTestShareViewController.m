@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestShareViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestShareViewController ()
 

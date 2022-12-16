@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestBarButtonItemViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestBarButtonItemViewController ()
 

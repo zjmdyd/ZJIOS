@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestDocumentTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 #import "UITableView+ZJTableView.h"
 #import "ZJScrollViewDefines.h"
 #import "NSObject+ZJDocument.h"

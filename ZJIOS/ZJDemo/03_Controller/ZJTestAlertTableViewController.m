@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestAlertTableViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestAlertTableViewController ()
 

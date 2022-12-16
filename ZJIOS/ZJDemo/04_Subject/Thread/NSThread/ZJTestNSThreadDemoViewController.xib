@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZJTestNSThreadDemoViewController">
+            <connections>
+                <outlet property="addBtn" destination="aek-y1-hdq" id="1Qs-5B-cba"/>
+                <outlet property="collectionView" destination="Uuy-XM-4o0" id="KwO-4b-P4U"/>
+                <outlet property="view" destination="iN0-l3-epB" id="qH3-dr-vLL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Uuy-XM-4o0">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="776"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hgg-VN-9Z2">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="bnz-sg-v7l"/>
+                        <outlet property="delegate" destination="-1" id="Gxq-1z-S80"/>
+                    </connections>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-Ds-8kP">
+                    <rect key="frame" x="0.0" y="856" width="90" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.230000224" blue="0.1089698071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="36H-WK-P9S"/>
+                        <constraint firstAttribute="width" constant="90" id="Az1-CK-ool"/>
+                    </constraints>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Manual">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="controlOffsetEvent:" destination="-1" eventType="touchUpInside" id="brZ-Ac-mHL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aek-y1-hdq">
+                    <rect key="frame" x="110" y="856" width="100" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.230000224" blue="0.1089698071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Hja-OA-9se"/>
+                        <constraint firstAttribute="height" constant="40" id="Yfo-O4-EjL"/>
+                    </constraints>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Start Add">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="add:" destination="-1" eventType="touchUpInside" id="NSK-3e-kVC"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="lBk-Ds-8kP" firstAttribute="top" secondItem="Uuy-XM-4o0" secondAttribute="bottom" constant="80" id="2a7-b4-AD2"/>
+                <constraint firstItem="Uuy-XM-4o0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DIW-GL-MS6"/>
+                <constraint firstAttribute="bottom" secondItem="lBk-Ds-8kP" secondAttribute="bottom" id="P2J-xT-KpV"/>
+                <constraint firstItem="Uuy-XM-4o0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cck-lg-XqW"/>
+                <constraint firstItem="aek-y1-hdq" firstAttribute="leading" secondItem="lBk-Ds-8kP" secondAttribute="trailing" constant="20" id="n9Q-Q0-y1a"/>
+                <constraint firstAttribute="trailing" secondItem="Uuy-XM-4o0" secondAttribute="trailing" id="nGK-Up-F21"/>
+                <constraint firstItem="aek-y1-hdq" firstAttribute="top" secondItem="lBk-Ds-8kP" secondAttribute="top" id="rYa-a9-iw7"/>
+                <constraint firstItem="lBk-Ds-8kP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xya-qa-rOs"/>
+            </constraints>
+            <point key="canvasLocation" x="-142" y="232"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

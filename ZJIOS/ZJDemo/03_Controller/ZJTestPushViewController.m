@@ -6,7 +6,6 @@
 //
 
 #import "ZJTestPushViewController.h"
-#import "UIViewController+ZJViewController.h"
 
 @interface ZJTestPushViewController ()
 
