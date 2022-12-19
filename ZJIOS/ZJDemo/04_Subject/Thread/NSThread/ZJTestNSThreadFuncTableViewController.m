@@ -101,7 +101,7 @@
             [NSThread exit];
         }
     }
-    NSLog(@"test---线程结束---%@", current.name);   // 不会执行
+    NSLog(@"test---线程结束---%@", current.name);   // 不会执行，因为执行过[NSThread exit]方法
 }
 
 #pragma mark - UITableViewDataSource

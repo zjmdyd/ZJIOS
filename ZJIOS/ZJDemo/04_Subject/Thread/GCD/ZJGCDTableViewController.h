@@ -1,5 +1,5 @@
 //
-//  ZJGCDViewController.h
+//  ZJGCDTableViewController.h
 //  ZJFoundation
 //
 //  Created by YunTu on 15/8/10.
@@ -8,6 +8,6 @@
 
 #import "ZJTableViewController.h"
 
-@interface ZJGCDViewController : ZJTableViewController
+@interface ZJGCDTableViewController : ZJTableViewController
 
 @end

@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestNSThreadTableViewController", @"ZJGCDViewController", @"ZJNSOperationViewController"];
+    self.cellTitles = @[@"ZJTestNSThreadTableViewController", @"ZJGCDTableViewController", @"ZJNSOperationViewController"];
 }
 
 - (void)initSetting {
