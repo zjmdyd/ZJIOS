@@ -9,9 +9,12 @@
 
 @interface ZJTestThreadSafeViewController ()
 
+//atomic：原子属性，为setter方法加自旋锁（即为单写多读）
+
 //@property (nonatomic, strong) NSString *target;   // 此处用nonatomic会闪退，nonatomic是非线程安全的。
 //@property (atomic, strong) NSString *target;
 @property (nonatomic, weak) NSString *target;
+
 
 @end
 

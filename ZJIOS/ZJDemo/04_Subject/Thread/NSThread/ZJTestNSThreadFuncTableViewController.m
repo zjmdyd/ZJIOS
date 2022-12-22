@@ -39,6 +39,15 @@
     [self.thread setName:@"线程A"];
 }
 
+
+/*
+ 任务的执行速度的影响因素:
+
+ CPU
+ 任务的复杂度
+ 任务的优先级
+ 线程的状态
+ */
 - (void)test0 {
     /*
         create NSThread 法1:

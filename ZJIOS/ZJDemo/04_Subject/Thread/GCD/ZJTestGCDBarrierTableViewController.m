@@ -32,7 +32,7 @@
  需要注意的是queue的选择，需要是自己创建的，dispatch_queue_create并且是concurrent的queue，
  不能是serial或者全局的global concurrent queues
  */
-- (void)test0 {
+- (void)test0_async {
     NSLog(@"dispatch_barrier --- begin");
     dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queue, ^{
@@ -91,7 +91,7 @@
     NSLog(@"dispatch_barrier --- end");
 }
 
-- (void)test1 {
+- (void)test1_sync {
     NSLog(@"dispatch_barrier --- begin");
     dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queue, ^{
