@@ -29,12 +29,13 @@
         NSLog(@"a小于0");
     }
     
-    if (a > FLT_EPSILON) {
-        NSLog(@"a大于 FLT_EPSILON");
+    if (a < FLT_EPSILON) {
+        NSLog(@"a小于 FLT_EPSILON");  // a小于 FLT_EPSILON
     }else if(a == FLT_EPSILON){
         NSLog(@"a等于 FLT_EPSILON");
     }else {
-        NSLog(@"a小于 FLT_EPSILON");  // a小于 FLT_EPSILON
+        NSLog(@"a大于 FLT_EPSILON");
+        
     }
     NSLog(@"a = %f", a);
     NSLog(@"FLT_EPSILON = %f", FLT_EPSILON);

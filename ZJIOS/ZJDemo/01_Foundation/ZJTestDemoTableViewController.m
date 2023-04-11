@@ -1,36 +1,37 @@
 //
-//  ZJCTipsTableViewController.m
+//  ZJTestDemoTableViewController.m
 //  ZJIOS
 //
-//  Created by issuser on 2022/10/11.
+//  Created by issuser on 2023/4/11.
 //
 
-#import "ZJCTipsTableViewController.h"
+#import "ZJTestDemoTableViewController.h"
 
-@interface ZJCTipsTableViewController ()
+@interface ZJTestDemoTableViewController ()
 
 @end
 
-@implementation ZJCTipsTableViewController
+@implementation ZJTestDemoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.hasMultiSections) {
+        return self.cellTitles.count;
+    }
     
-    [self initAry];
-    [self initSetting];
+    return 1;
 }
-
-- (void)initAry {
-    self.cellTitles = @[@"ZJTestFloatViewController", @"ZJTestStructViewController", @"ZJTestPreMacroTableViewController", @"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
-}
-
-- (void)initSetting {
-    
-}
-
-#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.hasMultiSections) {
+        return [self.cellTitles[section] count];
+    }
     return self.cellTitles.count;
 }
 
@@ -39,9 +40,9 @@
     if (!cell) {
         cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
+    cell.textLabel.text = self.hasMultiSections ? self.cellTitles[indexPath.section][indexPath.row] : self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 
@@ -49,12 +50,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName title:vcName];
+    if (self.eventType == DidSelectedEventTypeExecuteFunc) {
+        NSString *funcName = self.hasMultiSections ? self.cellTitles[indexPath.section][indexPath.row] : self.cellTitles[indexPath.row];
+        SEL selector = NSSelectorFromString(funcName);
+        IMP imp = [self methodForSelector:selector];
+        
+        //  注意：这里需要注意的就是函数指针的前两个参数必须是id和SEL。
+        void (*func)(id, SEL) = (void *)imp;
+        func(self, selector);
+    }else {
+        NSString *vcName = self.hasMultiSections ? self.cellTitles[indexPath.section][indexPath.row] : self.cellTitles[indexPath.row];
+        [self showVCWithName:vcName title:vcName];
+    }
 }
-
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

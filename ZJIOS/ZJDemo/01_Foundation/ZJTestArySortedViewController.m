@@ -16,17 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self test3];
-}
-
-/*
- 与null比较
- 2022-05-14 22:55:00.846550+0800 ZJIOS[7265:241389] result = 0, 0, num = (null)
- */
-- (void)test0 {
-    NSNumber *num;
-    NSComparisonResult result = [num compare:@1];
-    NSLog(@"result = %zd, %zd, num = %@", result, NSOrderedSame, num);
+    self.cellTitles = @[@"test0", @"test1", @"test2"];
 }
 
 /*
@@ -39,7 +29,7 @@
  )
  sortedArrayUsingSelector默认升序排列
  */
-- (void)test1 {
+- (void)test0 {
     NSArray *ary0 = @[@3, @2, @4, @8, @7];
     NSArray *ary1 = [ary0 sortedArrayUsingSelector:@selector(compare:)];
     NSLog(@"ary1 = %@", ary1);
@@ -82,7 +72,7 @@
  
  执行排序操作后会返回一个新的数组
  */
-- (void)test2 {
+- (void)test1 {
     NSArray *ary0 = @[@3, @2, @4, @8, @7];
     NSLog(@"ary0 = %@, %p, %@", ary0, ary0, ary0.class);
     
@@ -135,7 +125,7 @@
      2
  ), 0x60000062ef60, __NSArrayI_Transfer
  */
-- (void)test3 {
+- (void)test2 {
     NSArray *ary0 = @[@3, @2, @4, @8, @7];
     NSLog(@"ary0 = %@, %p, %@", ary0, ary0, ary0.class);
 

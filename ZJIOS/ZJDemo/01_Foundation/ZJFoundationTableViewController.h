@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJTableViewController.h"
+#import "ZJTestDemoTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJFoundationTableViewController : ZJTableViewController
+@interface ZJFoundationTableViewController : ZJTestDemoTableViewController
 
 @end
 

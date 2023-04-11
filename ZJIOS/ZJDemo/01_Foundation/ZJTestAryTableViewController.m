@@ -1,23 +1,23 @@
 //
-//  ZJTestAryViewController.m
+//  ZJTestAryTableViewController.m
 //  ZJIOS
 //
 //  Created by issuser on 2021/11/22.
 //
 
-#import "ZJTestAryViewController.h"
+#import "ZJTestAryTableViewController.h"
 #import "NSArray+ZJArray.h"
 
-@interface ZJTestAryViewController ()
+@interface ZJTestAryTableViewController ()
 
 @end
 
-@implementation ZJTestAryViewController
+@implementation ZJTestAryTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test2];
+    self.cellTitles = @[@"test0", @"test1", @"test2"];
 }
 
 /*
@@ -40,6 +40,10 @@
     NSLog(@"%@", [NSArray timeStringWithType:TimeStringType12Hour]);
 }
 
+/*
+ 2023-04-11 15:31:08.936192+0800 ZJIOS[15382:333809] 1/2/3/4
+ 2023-04-11 15:31:08.936368+0800 ZJIOS[15382:333809] 2/3
+ */
 - (void)test1 {
     NSArray *ary = @[@"1", @"2", @"3", @"4"];
     NSLog(@"%@", [ary joinToStringWithSeparateString:@"/"]);
@@ -47,19 +51,24 @@
 }
 
 - (void)test2 {
-    NSArray *ary = @[@"0099", @"2233", @""];
+    NSArray *ary = @[@"0099", @"2233", @"", @" "];
     if ([ary containsObject:@"0099"]) {
-        NSLog(@"数组包含字符串功能成立");
+        NSLog(@"数组包含字符串方法成立");      // 数组包含字符串方法成立
     }else {
-        NSLog(@"数组包含字符串功能不成立");
+        NSLog(@"数组包含字符串方法不成立");
     }
     
-    if ([ary containsObject:@""]) {
-        NSLog(@"数组包含空字符串功能成立");
+    if ([ary containsObject:@""]) {         // 数组包含空字符串方法成立
+        NSLog(@"数组包含空字符串方法成立");
     }else {
-        NSLog(@"数组包含空字符串功能不成立");
+        NSLog(@"数组包含空字符串方法不成立");
     }
-
+    
+    if ([ary containsObject:@" "]) {        // 数组包含空格字符串方法成立
+        NSLog(@"数组包含空格字符串方法成立");
+    }else {
+        NSLog(@"数组包含空格字符串方法不成立");
+    }
 }
 
 /*

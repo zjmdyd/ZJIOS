@@ -21,6 +21,8 @@ static NSString *const SystemNormalTableViewCell = @"ZJBaseTableViewCell";
 
 @property (nonatomic, strong) NSTimer *timer;
 
+@property (nonatomic, assign) BOOL hasMultiSections;
+
 @end
 
 NS_ASSUME_NONNULL_END
