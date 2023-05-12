@@ -69,6 +69,8 @@
 		38EBE1462675BB7800E090D9 /* ZJUIKitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE1452675BB7800E090D9 /* ZJUIKitTableViewController.m */; };
 		38EBE1492675BB8900E090D9 /* ZJSubjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE1482675BB8900E090D9 /* ZJSubjectTableViewController.m */; };
 		38EBE18E2675BE0200E090D9 /* ZJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBE18D2675BE0200E090D9 /* ZJTableViewController.m */; };
+		38FF5B232A0E885E00F7DBEC /* ZJBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FF5B222A0E885E00F7DBEC /* ZJBaseTableViewController.m */; };
+		38FF5B242A0E885E00F7DBEC /* ZJBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FF5B222A0E885E00F7DBEC /* ZJBaseTableViewController.m */; };
 		6504AF5F282FF881005E1275 /* ZJTestArySortedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6504AF5E282FF881005E1275 /* ZJTestArySortedViewController.m */; };
 		6504AF622830104D005E1275 /* sorted.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF602830104D005E1275 /* sorted.rtf */; };
 		6504AF632830104D005E1275 /* sortedArrayUsingComparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF612830104D005E1275 /* sortedArrayUsingComparator.png */; };
@@ -566,6 +568,8 @@
 		38EBE1482675BB8900E090D9 /* ZJSubjectTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJSubjectTableViewController.m; sourceTree = "<group>"; };
 		38EBE18C2675BE0200E090D9 /* ZJTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTableViewController.h; sourceTree = "<group>"; };
 		38EBE18D2675BE0200E090D9 /* ZJTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTableViewController.m; sourceTree = "<group>"; };
+		38FF5B212A0E885E00F7DBEC /* ZJBaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJBaseTableViewController.h; sourceTree = "<group>"; };
+		38FF5B222A0E885E00F7DBEC /* ZJBaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJBaseTableViewController.m; sourceTree = "<group>"; };
 		39D2543F0682D2A6B42DA3DC /* Pods_ZJIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.release.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.release.xcconfig"; sourceTree = "<group>"; };
 		4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1545,6 +1549,8 @@
 		6597C20D274506E3003161AB /* ZJDemo */ = {
 			isa = PBXGroup;
 			children = (
+				38FF5B212A0E885E00F7DBEC /* ZJBaseTableViewController.h */,
+				38FF5B222A0E885E00F7DBEC /* ZJBaseTableViewController.m */,
 				382EE90326750DEC008AB02C /* 01_Foundation */,
 				382EE90726751A83008AB02C /* 02_UIKit */,
 				6597C20E27450881003161AB /* 03_Controller */,
@@ -2029,6 +2035,7 @@
 				65FA5F9F28043CDC00D6C61A /* ZJTestPageCtrlViewController.m in Sources */,
 				650808382830FA6B0010D447 /* ZJTouchMathEventViewController.m in Sources */,
 				6590A42F274B8C2400BDB826 /* Father.m in Sources */,
+				38FF5B232A0E885E00F7DBEC /* ZJBaseTableViewController.m in Sources */,
 				652B58F227BA5CE200745D11 /* ZJTestSearchBarViewController.m in Sources */,
 				658FC467279FECC100A7FE1D /* ZJTestBlockTimerViewController.m in Sources */,
 				6590A42C274B83C700BDB826 /* ZJTestMethodSwizzlingViewController.m in Sources */,
@@ -2277,6 +2284,7 @@
 				65BD8FE128E13CC600CDC2CC /* ZJPageSizeObjectInfo.m in Sources */,
 				65BD8FE328E13CC600CDC2CC /* UITableView+ZJTableView.m in Sources */,
 				65BD8FE428E13CC600CDC2CC /* ZJTestLabelViewController.m in Sources */,
+				38FF5B242A0E885E00F7DBEC /* ZJBaseTableViewController.m in Sources */,
 				65BD8FE528E13CC600CDC2CC /* NSData+ZJData.m in Sources */,
 				65BD8FE628E13CC600CDC2CC /* ZJFoundationTableViewController.m in Sources */,
 				65BD8FE728E13CC600CDC2CC /* ZJTestDocumentTableViewController.m in Sources */,
