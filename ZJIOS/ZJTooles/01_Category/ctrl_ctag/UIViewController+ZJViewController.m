@@ -111,6 +111,8 @@
     UIViewController *vc = [UIViewController createVCWithConfig:ctrlConfig];
     if (vc) {
         [self showViewController:vc sender:nil];
+    }else {
+        NSLog(@"创建控制器%@失败", ctrlConfig.vcName);
     }
 }
 
@@ -123,6 +125,7 @@
         }else {
             vc = [vc init];
         }
+        if(!vc) return nil;
         
         NSString *title = ctrlConfig.title;
         if ([title isKindOfClass:[NSString class]] && title.length) {

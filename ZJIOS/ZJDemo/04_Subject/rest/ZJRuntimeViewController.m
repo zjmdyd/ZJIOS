@@ -74,7 +74,24 @@
     Person *p = [Person new];
     [p performSelector:@selector(jump) withObject:@20];
 }
-
+//- (void)test1 {
+//    unsigned int numIvars; // 成员变量个数
+////    Method *meth = class_copyMethodList(NSClassFromString(@"ZJTestFloatViewController"), &numIvars);
+//    Method *meth = class_copyMethodList([ZJTestFloatViewController class], &numIvars);
+//    NSLog(@"numIvars = %d", numIvars);
+//    
+//    for(int i = 0; i < numIvars; i++) {
+//        Method thisIvar = meth[i];
+//        SEL sel = method_getName(thisIvar);
+//        IMP im = method_getImplementation(thisIvar);
+//        const char *name = sel_getName(sel);
+//        NSLog(@"zp method :%s", name);
+//        NSString *selString =  NSStringFromSelector(sel);
+//        NSLog(@"selString :%@", selString);
+//    }
+//    
+//    free(meth);
+//}
 
 //Class objc_allocateClassPair(Class superclass, const char *name,
 //                             size_t extraBytes)

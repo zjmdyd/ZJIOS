@@ -17,13 +17,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test5];
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2"];
 }
 
 /*
+ 继承关系:
  NSTaggedPointerString(栈区)      ---> NSString
  __NSCFConstantString(数据常量区)  ---> __NSCFString (堆区) --->NSMutableString --->NSString
+ 
+ 对于stringWithFormat()方法
+ 字符串较短的class,系统会对其进行比较特殊的内存管理,NSObject字符串比较短,直接存储在栈区,类型为NSTaggedPointerString,不论你NSStringFromClass多少次,得到的都是同一个内存地址的string;但对于较长的class,则为__NSCFString类型,而NSCFString存储在堆区,每次NSStringFromClass都会得到不同内存地址的string
+ 
+ __NSCFConstantString类型的字符串,存储在数据区,即使当前控制器被dealloc释放了,存在于这个控制器的该字符串所在内存仍然不会被销毁.通过快捷方式创建的字符串,无论字符串多长或多短,都是__NSCFConstantString类型,存储在数据区.
+ */
+/*
+ NSString是一个类簇，也就是说NSString只是一个公共接口，实际实现的类是不同的
+ 
+ __NSTaggedPointerString
 
+ 这个类型是标签指针字符串，这是苹果在 64 位环境下对 NSString,NSNumber 等对象做的一些优化。简单来讲可以理解为把指针指向的内容直接放在了指针变量的内存地址中，因为在 64 位环境下指针变量的大小达到了 8 字节足以容纳一些长度较小的内容。于是使用了标签指针这种方式来优化数据的存储方式。从他的引用计数可以看出，这货也是一个释放不掉的单例常量对象。在运行时根据实际情况创建。
+ 对于 NSString 对象来讲，当非字面值常量的数字，英文字母字符串的长度小于等于 9 的时候会自动成为 NSTaggedPointerString 类型.
+ 如果有中文或其他特殊符号（可能是非 ASCII 字符）存在的话则会直接成为 ）__NSCFString 类型。
+ 这种对象被直接存储在指针的内容中，可以当作一种伪对象
  */
 
 // 2022-05-12 18:24:45.931031+0800 ZJIOS[10209:377440] __NSCFConstantString->__NSCFString->NSMutableString->NSString:0x1018db3d0
@@ -44,14 +64,14 @@
  */
 - (void)test0 {
     NSString *str0 = @"a";
-    NSLog(@"%@->%@->%@->%@:%p", [str0 class], [[str0 class] superclass], [[[str0 class] superclass] superclass] ,[[[[str0 class] superclass] superclass] superclass], str0);
-    
+    [self printf:str0];
+
     NSString *str1 = [NSString stringWithFormat:@"b"];
-    NSLog(@"%@->%@->%@->%@:%p", [str1 class], [[str1 class] superclass], [[[str1 class] superclass] superclass] ,[[[[str1 class] superclass] superclass] superclass], str1);
+    [self printf:str1];
 
     NSString *str2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
-    NSLog(@"%@->%@->%@->%@:%p", [str2 class], [[str2 class] superclass], [[[str2 class] superclass] superclass] ,[[[[str2 class] superclass] superclass] superclass], str2);
-    
+    [self printf:str2];
+
     CFShowStr((CFStringRef)str2);
     
     if ([str2 respondsToSelector:@selector(appendString:)]) {
@@ -63,7 +83,22 @@
     }else {
         NSLog(@"不可以调用appendString:");
     }
+    
+    NSString *str0_1 = @"a";    // __NSCFConstantString 与str0同一个地址
+    [self printf:str0_1];
+    
+    NSString *str1_1 = [NSString stringWithFormat:@"b"];    // NSTaggedPointerString 与str1同一个地址
+    [self printf:str1_1];
+    
+//    __NSCFString  与str2不是同一个地址
+    NSString *str2_2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
+    [self printf:str2_2];
 }
+
+- (void)printf:(NSString *)str {
+    NSLog(@"%@->%@->%@->%@:%p", [str class], [[str class] superclass], [[[str class] superclass] superclass] ,[[[[str class] superclass] superclass] superclass], str);
+}
+
 
 /*
  分割:空字符串会占用数组元素
@@ -93,20 +128,6 @@
     NSLog(@"invertString = %@", [str invertString]);
     NSLog(@"invertStringWithSegmentLenth = %@", [str invertStringWithSegmentLenth:3]);
 }
-
-/*
- 继承关系:
- NSTaggedPointerString(栈区)      ---> NSString
- __NSCFConstantString(数据常量区)  ---> __NSCFString (堆区) --->NSMutableString --->NSString
- 
- 对于NSStringFromClass()方法
- 字符串较短的class,系统会对其进行比较特殊的内存管理,NSObject字符串比较短,直接存储在栈区,类型为NSTaggedPointerString,不论你NSStringFromClass多少次,得到的都是同一个内存地址的string;但对于较长的class,则为__NSCFString类型,而NSCFString存储在堆区,每次NSStringFromClass都会得到不同内存地址的string
- 
- __NSCFConstantString类型的字符串,存储在数据区,即使当前控制器被dealloc释放了,存在于这个控制器的该字符串所在内存仍然不会被销毁.通过快捷方式创建的字符串,无论字符串多长或多短,都是__NSCFConstantString类型,存储在数据区.
- */
-/*
- NSString是一个类簇，也就是说NSString只是一个公共接口，实际实现的类是不同的
- */
 
 /*
  2022-01-18 16:50:03.625951+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString

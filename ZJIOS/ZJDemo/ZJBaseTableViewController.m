@@ -23,27 +23,63 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-#pragma mark - Table view data source
+- (BOOL)isMultiSection {
+    return [self.cellTitles[0] isKindOfClass:[NSArray class]];;
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    if ([self isMultiSection]) {
+        return self.cellTitles.count;
+    }
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if ([self isMultiSection]) {
+        return [self.cellTitles[section] count];
+    }
+    
+    return self.cellTitles.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
+    if (!cell) {
+        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
+    }
+    if ([self isMultiSection]) {
+        cell.textLabel.text = self.cellTitles[indexPath.section][indexPath.row];
+    }else {
+        cell.textLabel.text = self.cellTitles[indexPath.row];
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
-*/
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *name;
+    if ([self isMultiSection]) {
+        name = self.cellTitles[indexPath.section][indexPath.row];
+    }else {
+        name = self.cellTitles[indexPath.row];
+    }
+    if (self.vcType == ZJBaseTableViewTypeShow) {
+        [self showVCWithName:name title:name];
+    }else {
+        SEL sel = NSSelectorFromString(name);
+        if ([self respondsToSelector:sel]) {
+            [self performSelector:sel];
+        }
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
