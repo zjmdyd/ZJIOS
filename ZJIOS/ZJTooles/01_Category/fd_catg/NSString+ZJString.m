@@ -107,7 +107,7 @@
     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:matchNum];
     NSArray *filterStrs = [self componentsSeparatedByCharactersInSet:charSet.invertedSet];
     NSString *str = [filterStrs componentsJoinedByString:@""];
-    NSLog(@"self = %@, str = %@", self, str);
+
     return str;
 }
 
@@ -119,13 +119,13 @@
     for (int i = (int)self.length; i > 0; i--) {
         [str appendString:[self substringWithRange:NSMakeRange(i-1, 1)]];
     }
-    return [str mutableCopy];
+    return str.copy;
 }
 
 /**
  翻转字符串2: abcde-->debca
  */
-- (NSString *)invertStringWithSegmentLenth:(int)len {
+- (NSString *)invertStringWithUnitSpan:(int)len {
     NSMutableString *str = [NSMutableString string];
     for (int i = (int)self.length; i > 0; i-=len) {
         if (i-len >= 0) {
@@ -134,7 +134,7 @@
             [str appendString:[self substringWithRange:NSMakeRange(0, i)]];
         }
     }
-    return [str mutableCopy];
+    return str.copy;
 }
 
 #pragma mark - AttributedString

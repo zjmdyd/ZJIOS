@@ -13,6 +13,7 @@
 + (BOOL)isPureInt:(NSString *)string {
     NSScanner *scan = [NSScanner scannerWithString:string];
     NSInteger val;
+    
     return [scan scanInteger:&val] && [scan isAtEnd];
 }
 
@@ -20,6 +21,7 @@
 + (BOOL)isPureFloat:(NSString *)string {
     NSScanner *scan = [NSScanner scannerWithString:string];
     float val;
+    
     return [scan scanFloat:&val] && [scan isAtEnd];
 }
 

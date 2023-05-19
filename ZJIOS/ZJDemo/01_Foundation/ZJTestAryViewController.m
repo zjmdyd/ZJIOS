@@ -45,6 +45,10 @@
     NSLog(@"%@", [NSArray timeStringWithType:TimeStringType12Hour]);
 }
 
+/*
+ 2023-05-17 17:24:50.820856+0800 ZJIOS[81588:4275477] 1/2/3/4
+ 2023-05-17 17:24:50.821069+0800 ZJIOS[81588:4275477] 2/3
+ */
 - (void)test1 {
     NSArray *ary = @[@"1", @"2", @"3", @"4"];
     NSLog(@"%@", [ary joinToStringWithSeparateString:@"/"]);
@@ -54,13 +58,13 @@
 - (void)test2 {
     NSArray *ary = @[@"0099", @"2233", @""];
     if ([ary containsObject:@"0099"]) {
-        NSLog(@"数组包含字符串功能成立");
+        NSLog(@"数组包含字符串功能成立");  // 数组包含字符串功能成立
     }else {
         NSLog(@"数组包含字符串功能不成立");
     }
     
     if ([ary containsObject:@""]) {
-        NSLog(@"数组包含空字符串功能成立");
+        NSLog(@"数组包含空字符串功能成立"); // 数组包含空字符串功能成立
     }else {
         NSLog(@"数组包含空字符串功能不成立");
     }

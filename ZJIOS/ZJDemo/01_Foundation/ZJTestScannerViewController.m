@@ -17,9 +17,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test8];
+    [self initAry];
 }
 
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8"];
+}
+
+/*
+ 2023-05-18 18:23:34.877197+0800 ZJIOS[97600:4804423] 非整形数据
+ 2023-05-18 18:23:34.877443+0800 ZJIOS[97600:4804423] 浮点形数据
+ */
 - (void)test0 {
     NSString *str = @"123.1";
     
@@ -87,6 +96,7 @@
 }
 
 /*
+ 解决上test3循环
  2022-01-20 16:43:28.183125+0800 ZJIOS[17280:549207] AA
  2022-01-20 16:43:28.183306+0800 ZJIOS[17280:549207] BB
  2022-01-20 16:43:28.183407+0800 ZJIOS[17280:549207] CCDD
@@ -106,9 +116,10 @@
 
 /*
  scanUpToCharactersFromSet:intoString：扫描字符串直到遇到NSCharacterSet字符集的字符时停止，
- 指针指向的地址存储的内容为遇到跳过字符集字符之前的内容
+ 指针指向的内容为遇到停止字符集字符之前的内容
  
- 2022-01-20 17:29:09.230430+0800 ZJIOS[18095:579412] str = abcdef
+ 2023-05-18 19:04:43.795287+0800 ZJIOS[98896:4858755] str = abcdef, 6, 满足if条件
+ 2023-05-18 19:04:43.795503+0800 ZJIOS[98896:4858755] str = (null), 6
  */
 - (void)test5 {
     NSString *numString = @"abcdef6";
@@ -117,23 +128,7 @@
     while (![scanner isAtEnd]) {
         NSString *str;
         if ([scanner scanUpToCharactersFromSet:numSet intoString:&str]) {
-            NSLog(@"str = %@, %zd", str, scanner.scanLocation);
-        }else {
-            NSLog(@"str = %@, %zd", str, scanner.scanLocation);
-            scanner.scanLocation++;
-        }
-    }
-}
-
-//2022-05-11 18:21:26.031298+0800 ZJIOS[9050:268857] str = abc, 3
-- (void)test6 {
-    NSString *numString = @"abc1mm2c3d4e5f6";
-    NSScanner *scanner = [NSScanner scannerWithString:numString];
-    NSCharacterSet *numSet = [NSCharacterSet decimalDigitCharacterSet];
-    while (![scanner isAtEnd]) {
-        NSString *str;
-        if ([scanner scanUpToCharactersFromSet:numSet intoString:&str]) {
-            NSLog(@"str = %@, %zd", str, scanner.scanLocation);
+            NSLog(@"str = %@, %zd, 满足if条件", str, scanner.scanLocation);
         }else {
             NSLog(@"str = %@, %zd", str, scanner.scanLocation);
             scanner.scanLocation++;
@@ -142,7 +137,36 @@
 }
 
 /*
- test6和test7两种方法避免死循环
+ 2023-05-18 19:04:53.120015+0800 ZJIOS[98896:4858755] str = abc, 3, 匹配到
+ 2023-05-18 19:04:53.120225+0800 ZJIOS[98896:4858755] str = (null), 3
+ 2023-05-18 19:04:53.120383+0800 ZJIOS[98896:4858755] str = mm, 6, 匹配到
+ 2023-05-18 19:04:53.120515+0800 ZJIOS[98896:4858755] str = (null), 6
+ 2023-05-18 19:04:53.120682+0800 ZJIOS[98896:4858755] str = c, 8, 匹配到
+ 2023-05-18 19:04:53.120817+0800 ZJIOS[98896:4858755] str = (null), 8
+ 2023-05-18 19:04:53.120972+0800 ZJIOS[98896:4858755] str = d, 10, 匹配到
+ 2023-05-18 19:04:53.121100+0800 ZJIOS[98896:4858755] str = (null), 10
+ 2023-05-18 19:04:53.121239+0800 ZJIOS[98896:4858755] str = e, 12, 匹配到
+ 2023-05-18 19:04:53.121385+0800 ZJIOS[98896:4858755] str = (null), 12
+ 2023-05-18 19:04:53.121582+0800 ZJIOS[98896:4858755] str = f, 14, 匹配到
+ 2023-05-18 19:04:53.121695+0800 ZJIOS[98896:4858755] str = (null), 14
+ */
+- (void)test6 {
+    NSString *numString = @"abc1mm2c3d4e5f6";
+    NSScanner *scanner = [NSScanner scannerWithString:numString];
+    NSCharacterSet *numSet = [NSCharacterSet decimalDigitCharacterSet];
+    while (![scanner isAtEnd]) {
+        NSString *str;
+        if ([scanner scanUpToCharactersFromSet:numSet intoString:&str]) {
+            NSLog(@"str = %@, %zd, 匹配到", str, scanner.scanLocation);
+        }else {
+            NSLog(@"str = %@, %zd", str, scanner.scanLocation);
+            scanner.scanLocation++;
+        }
+    }
+}
+
+/*
+ test7和test8两种方法避免死循环
  */
 
 /*
@@ -178,11 +202,11 @@
     NSString *numString = @"123abc456";
     NSScanner *scanner = [NSScanner scannerWithString:numString];
     
-    while (NO == [scanner isAtEnd]) {
+    while (![scanner isAtEnd]) {
         NSString *str;
         if ([scanner scanString:@"abc" intoString:&str]) {
             NSLog(@"找到, str = %@, loc = %zd", str, scanner.scanLocation);
-            break;
+//            break; // 此处不加break也不会死循环
         }else {
             NSLog(@"未找到, loc = %zd", scanner.scanLocation);
             scanner.scanLocation++;

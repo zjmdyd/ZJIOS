@@ -16,7 +16,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test3];
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0"];
 }
 
 /*
@@ -28,7 +33,13 @@
  typedef long unsigned int size_t
  typedef long  int         ssize_t
  */
-- (void)test3 {
+
+/*
+ 2023-05-18 19:21:47.885404+0800 ZJIOS[99288:4874392] i= 1
+ 2023-05-18 19:21:47.885591+0800 ZJIOS[99288:4874392] s = 10
+ 2023-05-18 19:21:47.885703+0800 ZJIOS[99288:4874392] t = -10
+ */
+- (void)test0 {
     NSInteger i = 1;
     NSLog(@"i= %zd", i);
     

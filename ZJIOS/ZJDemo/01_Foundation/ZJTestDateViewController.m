@@ -17,7 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self test0];
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6"];
 }
 
 // 周:(1, 2, 3, 4, 5, 6, 7)

@@ -22,7 +22,11 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2"];
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8"];
+}
+
+- (void)printEvent:(NSString *)str {
+    NSLog(@"str = %@, %@->%@->%@->%@:%p", str, [str class], [[str class] superclass], [[[str class] superclass] superclass] ,[[[[str class] superclass] superclass] superclass], str);
 }
 
 /*
@@ -64,110 +68,205 @@
  */
 - (void)test0 {
     NSString *str0 = @"a";
-    [self printf:str0];
+    [self printEvent:str0];
 
     NSString *str1 = [NSString stringWithFormat:@"b"];
-    [self printf:str1];
+    [self printEvent:str1];
 
     NSString *str2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
-    [self printf:str2];
+    [self printEvent:str2];
 
     CFShowStr((CFStringRef)str2);
     
     if ([str2 respondsToSelector:@selector(appendString:)]) {
         NSLog(@"可以调用appendString:");    
-        if ([str2 isKindOfClass:[NSMutableString class]]) {
+        if ([str2 isKindOfClass:[NSMutableString class]]) {   //isKindOfClass会检测通过
             NSLog(@"str2是可变字符串");
-//            [((NSMutableString *)str2) appendString:@"123"];    // Attempt to mutate immutable object with appendString:
+            // [((NSMutableString *)str2) appendString:@"123"];    // Attempt to mutate immutable object with appendString:
+        }else {
+            NSLog(@"str2不是可变字符串");
         }
     }else {
         NSLog(@"不可以调用appendString:");
     }
     
     NSString *str0_1 = @"a";    // __NSCFConstantString 与str0同一个地址
-    [self printf:str0_1];
+    [self printEvent:str0_1];
     
     NSString *str1_1 = [NSString stringWithFormat:@"b"];    // NSTaggedPointerString 与str1同一个地址
-    [self printf:str1_1];
+    [self printEvent:str1_1];
     
 //    __NSCFString  与str2不是同一个地址
     NSString *str2_2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
-    [self printf:str2_2];
+    [self printEvent:str2_2];
 }
 
-- (void)printf:(NSString *)str {
-    NSLog(@"%@->%@->%@->%@:%p", [str class], [[str class] superclass], [[[str class] superclass] superclass] ,[[[[str class] superclass] superclass] superclass], str);
+// 经过mutableCopy后都变为栈区的字符串
+- (void)test1 {
+    NSString *str0 = @"a".mutableCopy;
+    [(NSMutableString *)str0 appendString:@"a1"];
+    [self printEvent:str0];
+
+    NSString *str1 = [NSString stringWithFormat:@"b"].mutableCopy;
+    [(NSMutableString *)str1 appendString:@"b1"];
+
+    [self printEvent:str1];
+
+    NSString *str2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"].mutableCopy;
+    [self printEvent:str2];
+
+    CFShowStr((CFStringRef)str2);
+    
+    if ([str2 respondsToSelector:@selector(appendString:)]) {
+        NSLog(@"可以调用appendString:");
+        if ([str2 isKindOfClass:[NSMutableString class]]) {   //isKindOfClass会检测通过
+            NSLog(@"str2是可变字符串");
+//            [((NSMutableString *)str2) appendString:@"123"];    // Attempt to mutate immutable object with appendString:
+        }else {
+            NSLog(@"str2不是可变字符串");
+        }
+    }else {
+        NSLog(@"不可以调用appendString:");
+    }
+    
+    NSString *str0_1 = @"aa1";    // __NSCFConstantString 与str0不是同一个地址
+    [self printEvent:str0_1];
+    
+    NSString *str1_1 = [NSString stringWithFormat:@"bb1"];    // NSTaggedPointerString 与str1不是同一个地址
+    [self printEvent:str1_1];
+    
+//    __NSCFString 与str2不是同一个地址
+    NSString *str2_2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
+    [self printEvent:str2_2];
 }
 
+/*
+ initWithFormat和stringWithFormat创建的字符串内存分配结果一样
+ */
+- (void)test2 {
+//    static NSString *a = @"haha";
+    NSString *str0 = @"a";
+    [self printEvent:str0];
+
+    NSString *str1 = [[NSString alloc] initWithFormat:@"b"];
+    [self printEvent:str1];
+
+    NSString *str2 = [[NSString alloc] initWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
+    [self printEvent:str2];
+
+    CFShowStr((CFStringRef)str2);
+    
+    if ([str2 respondsToSelector:@selector(appendString:)]) {
+        NSLog(@"可以调用appendString:");
+        if ([str2 isKindOfClass:[NSMutableString class]]) {   //isKindOfClass会检测通过
+            NSLog(@"str2是可变字符串");
+//            [((NSMutableString *)str2) appendString:@"123"];    // Attempt to mutate immutable object with appendString:
+        }else {
+            NSLog(@"str2不是可变字符串");
+        }
+    }else {
+        NSLog(@"不可以调用appendString:");
+    }
+    
+    NSString *str0_1 = @"a";    // __NSCFConstantString 与str0同一个地址
+    [self printEvent:str0_1];
+    
+    NSString *str1_1 = [NSString stringWithFormat:@"b"];    // NSTaggedPointerString 与str1同一个地址
+    [self printEvent:str1_1];
+    
+//    __NSCFString  与str2不是同一个地址
+    NSString *str2_2 = [NSString stringWithFormat:@"Kraftfahrzeughaftpflichtversicherung"];
+    [self printEvent:str2_2];
+}
 
 /*
  分割:空字符串会占用数组元素
  -->(
      "",
      aa
- )
+ ), count = 2
  -->(
      "",
      "",
      aa
- )
- */
-- (void)test1 {
-    NSString *string1 = @"1aa";
-    NSString *string2 = @"11aa";
-    NSLog(@"-->%@", [string1 componentsSeparatedByString:@"1"]);
-    NSLog(@"-->%@", [string2 componentsSeparatedByString:@"1"]);
-}
-
-/*
- 2022-01-10 16:39:56.361375+0800 ZJIOS[41584:1018052] invertString = fedcba
- 2022-01-10 16:39:56.361619+0800 ZJIOS[41584:1018052] invertStringWithSegmentLenth = defabc
- */
-- (void)test2 {
-    NSString *str = @"abcdef";
-    NSLog(@"invertString = %@", [str invertString]);
-    NSLog(@"invertStringWithSegmentLenth = %@", [str invertStringWithSegmentLenth:3]);
-}
-
-/*
- 2022-01-18 16:50:03.625951+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString
- 2022-01-18 16:50:03.626174+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString
- 2022-01-18 16:50:03.626259+0800 ZJIOS[3734:113728] haha, 0x100d1efd8, __NSCFConstantString
- 2022-01-18 16:50:03.626363+0800 ZJIOS[3734:113728] haha, 0x8c40371903ebe94d, NSTaggedPointerString
- 2022-01-18 16:50:03.626475+0800 ZJIOS[3734:113728] haha, 0x60000173adc0, __NSCFString
+ ), count = 3
  */
 - (void)test3 {
-    static NSString *a = @"haha";
-    NSString *b = @"haha";
-    NSString *c = @"haha";
-    NSString *d = [[NSString alloc] initWithFormat:@"%@", @"haha"];
-    NSMutableString *e = b.mutableCopy;
-    NSLog(@"%@, %p, %@", a, a, a.class);
-    NSLog(@"%@, %p, %@", b, b, b.class);
-    NSLog(@"%@, %p, %@", c, c, c.class);
-    NSLog(@"%@, %p, %@", d, d, d.class);
-    NSLog(@"%@, %p, %@", e, e, e.class);
+    NSString *string1 = @"1aa";
+    NSString *string2 = @"11aa";
+    NSArray *ary1 = [string1 componentsSeparatedByString:@"1"];
+    NSArray *ary2 = [string2 componentsSeparatedByString:@"1"];
+    NSLog(@"-->%@, count = %zd", ary1, ary1.count);
+    NSLog(@"-->%@, count = %zd", ary2, ary2.count);
+    for (NSString *obj in ary2) {
+        NSLog(@"obj = %@, %p", obj, obj);
+    }
 }
 
 /*
- 2022-01-11 16:07:21.029427+0800 ZJIOS[54224:1342679] str1: 0x10f43bf98, hello
- 2022-01-11 16:07:21.029668+0800 ZJIOS[54224:1342679] str2: 0x6000000cf300, hello+111
+ 2023-05-15 00:23:10.339801+0800 ZJIOS[49622:3054184] invertString = gfedcba
+ 2023-05-15 00:23:10.340127+0800 ZJIOS[49622:3054184] invertStringWithUnitSpan = efgbcda
+ */
+- (void)test4 {
+    NSString *str = @"abcdefg";
+    NSLog(@"invertString = %@", [str invertString]);
+    NSLog(@"invertStringWithUnitSpan = %@", [str invertStringWithUnitSpan:3]);
+}
+
+/*
+ str = hello, __NSCFConstantString->__NSCFString->NSMutableString->NSString:0x108cfd0e0
+ str = hello+111, __NSCFString->NSMutableString->NSString->NSObject:0x60000324d6b0
  
  ***stringByAppendingString会生成一个全新的变量
  */
-- (void)test4 {
+- (void)test5 {
     NSString *str1 = @"hello";
     NSString *str2 = [str1 stringByAppendingString:@"+111"];
-    NSLog(@"str1: %p, %@", str1, str1);
-    NSLog(@"str2: %p, %@", str2, str2);
+    [self printEvent:str1];
+    [self printEvent:str2];
+}
+
+/*
+ str = hello, __NSCFConstantString->__NSCFString->NSMutableString->NSString:0x1039820e0
+ str = hello baby, __NSCFConstantString->__NSCFString->NSMutableString->NSString:0x1039834c0
+ 修改不可变字符串，改变了字符串的地址
+ */
+- (void)test6 {
+    NSString *str1 = @"hello";
+    [self printEvent:str1];
+    str1 = @"hello baby";
+    [self printEvent:str1];
+}
+
+//  判断可变字符串只能通过copy方法判断，copy出来的地址不相同为可变字符串，否则为不可变
+- (void)test7 {
+    NSMutableString *str1 = [[NSMutableString alloc] initWithString:@"hello"];
+    [self printEvent:str1];
+    [str1 appendString:@"111"];
+    [self printEvent:str1];
+    if([str1 isMemberOfClass:[NSMutableString class]]) {    // isMemberOfClass判断会进入else,判断失败
+        NSLog(@"str1是可变字符串");
+    }else {
+        NSLog(@"str1不是可变字符串");
+    }
+    
+    NSString *str2 = str1.copy;
+    [self printEvent:str2];
+
+    if (str1 == str2) {
+        NSLog(@"str1不是可变字符串");
+    }else {
+        NSLog(@"str1是可变字符串");
+        [str1 appendString:@"222"];
+        [self printEvent:str1];
+    }
 }
 
 /*
  2022-05-15 16:56:22.052346+0800 ZJIOS[7308:213976] dic = (null)
  非标准json格式会转换失败
  */
-
-- (void)test5 {
+- (void)test8 {
     NSString *str = @"hello";
     NSDictionary *dic = [str stringToJson];
     NSLog(@"dic = %@", dic);

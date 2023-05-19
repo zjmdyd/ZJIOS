@@ -21,8 +21,8 @@
 
 - (void)initAry {
     self.cellTitles = @[
-        @"ZJTestFloatViewController", @"ZJTestAryViewController", @"ZJTestArySortedViewController", @"ZJTestStringViewController",
-        @"ZJTestCopyStrongPopertyViewController", @"ZJTestCopyMutableCopyMethodViewController", @"ZJTestMutableAryViewController",
+        @"ZJTestFloatViewController", @"ZJTestStringViewController", @"ZJTestAryViewController", @"ZJTestArySortedViewController", 
+        @"ZJTestCopyStrongPopertyViewController", @"ZJTestCopyMutableCopyViewController", @"ZJTestMutableAryViewController",
         @"ZJTestDataViewController", @"ZJTestDictionaryViewController", @"ZJTestDateViewController",
         @"ZJTestNSRangeViewController", @"ZJTestCharacterSetViewController", @"ZJTestScannerViewController",
         @"ZJTestNSLogViewController", @"ZJTestNSURLViewController",
@@ -32,7 +32,6 @@
 - (void)initSetting {
     NSString *str = @"a";
     NSLog(@"%@->%@->%@->%@:%p", [str class], [[str class] superclass], [[[str class] superclass] superclass] ,[[[[str class] superclass] superclass] superclass], str);
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {

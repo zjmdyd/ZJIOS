@@ -37,7 +37,7 @@
 		38A1F0A32679A6B400A4D044 /* MVVM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0A12679A6B400A4D044 /* MVVM.jpeg */; };
 		38A1F0A52679A8AD00A4D044 /* MVP.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0A42679A8AD00A4D044 /* MVP.png */; };
 		38A1F0A82679B3AA00A4D044 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0A72679B3AA00A4D044 /* Person.m */; };
-		38A1F0AB267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m */; };
+		38A1F0AB267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.m */; };
 		38A1F0AE267A5E8D00A4D044 /* 野指针调试.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0AC267A5E8D00A4D044 /* 野指针调试.jpeg */; };
 		38A1F0AF267A5E8D00A4D044 /* 野指针log.webp in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0AD267A5E8D00A4D044 /* 野指针log.webp */; };
 		38A1F0B2267A610500A4D044 /* ZJMemAnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0B1267A610500A4D044 /* ZJMemAnalyzeViewController.m */; };
@@ -244,7 +244,7 @@
 		65BD8FDD28E13CC600CDC2CC /* ZJTestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65939426281BF3A300D4872C /* ZJTestTableViewController.m */; };
 		65BD8FDE28E13CC600CDC2CC /* UITextView+ZJTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C69D2692E74600121EBD /* UITextView+ZJTextView.m */; };
 		65BD8FDF28E13CC600CDC2CC /* NSTimer+ZJBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FC469279FF9C000A7FE1D /* NSTimer+ZJBlockTimer.m */; };
-		65BD8FE028E13CC600CDC2CC /* ZJTestCopyMutableCopyMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m */; };
+		65BD8FE028E13CC600CDC2CC /* ZJTestCopyMutableCopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.m */; };
 		65BD8FE128E13CC600CDC2CC /* ZJPageSizeObjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B03275284615E800E9C08A /* ZJPageSizeObjectInfo.m */; };
 		65BD8FE328E13CC600CDC2CC /* UITableView+ZJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C6892692E74500121EBD /* UITableView+ZJTableView.m */; };
 		65BD8FE428E13CC600CDC2CC /* ZJTestLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652B58F427BA631700745D11 /* ZJTestLabelViewController.m */; };
@@ -510,8 +510,8 @@
 		38A1F0A42679A8AD00A4D044 /* MVP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MVP.png; sourceTree = "<group>"; };
 		38A1F0A62679B3AA00A4D044 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		38A1F0A72679B3AA00A4D044 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		38A1F0A9267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCopyMutableCopyMethodViewController.h; sourceTree = "<group>"; };
-		38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCopyMutableCopyMethodViewController.m; sourceTree = "<group>"; };
+		38A1F0A9267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCopyMutableCopyViewController.h; sourceTree = "<group>"; };
+		38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCopyMutableCopyViewController.m; sourceTree = "<group>"; };
 		38A1F0AC267A5E8D00A4D044 /* 野指针调试.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "野指针调试.jpeg"; sourceTree = "<group>"; };
 		38A1F0AD267A5E8D00A4D044 /* 野指针log.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = "野指针log.webp"; sourceTree = "<group>"; };
 		38A1F0B0267A610500A4D044 /* ZJMemAnalyzeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJMemAnalyzeViewController.h; sourceTree = "<group>"; };
@@ -993,8 +993,8 @@
 				6504AF5E282FF881005E1275 /* ZJTestArySortedViewController.m */,
 				65AB8CF2278C3117009322A1 /* ZJTestCopyStrongPopertyViewController.h */,
 				65AB8CF3278C3117009322A1 /* ZJTestCopyStrongPopertyViewController.m */,
-				38A1F0A9267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.h */,
-				38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m */,
+				38A1F0A9267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.h */,
+				38A1F0AA267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.m */,
 				3883B93C268EAE1300236663 /* ZJTestMutableAryViewController.h */,
 				3883B93D268EAE1300236663 /* ZJTestMutableAryViewController.m */,
 				6574BD2E26A66F5E00FA5920 /* ZJTestDataViewController.h */,
@@ -1005,10 +1005,10 @@
 				65B130B02761F98200F4B3B3 /* ZJTestDateViewController.m */,
 				65C574F2274CF30400D8FE00 /* ZJTestNSRangeViewController.h */,
 				65C574F3274CF30400D8FE00 /* ZJTestNSRangeViewController.m */,
-				6585A8CA26CA9A7A00306DD8 /* ZJTestScannerViewController.h */,
-				6585A8CB26CA9A7A00306DD8 /* ZJTestScannerViewController.m */,
 				656D224A2754D09300095B71 /* ZJTestCharacterSetViewController.h */,
 				656D224B2754D09300095B71 /* ZJTestCharacterSetViewController.m */,
+				6585A8CA26CA9A7A00306DD8 /* ZJTestScannerViewController.h */,
+				6585A8CB26CA9A7A00306DD8 /* ZJTestScannerViewController.m */,
 				6593EDB627956650001CC588 /* ZJTestNSLogViewController.h */,
 				6593EDB727956650001CC588 /* ZJTestNSLogViewController.m */,
 				65AAE65C283645570095450E /* ZJTestNSURLViewController.h */,
@@ -2081,7 +2081,7 @@
 				65939427281BF3A300D4872C /* ZJTestTableViewController.m in Sources */,
 				65F7C6B22692E74600121EBD /* UITextView+ZJTextView.m in Sources */,
 				658FC46A279FF9C000A7FE1D /* NSTimer+ZJBlockTimer.m in Sources */,
-				38A1F0AB267A49CF00A4D044 /* ZJTestCopyMutableCopyMethodViewController.m in Sources */,
+				38A1F0AB267A49CF00A4D044 /* ZJTestCopyMutableCopyViewController.m in Sources */,
 				65B03285284615E800E9C08A /* ZJPageSizeObjectInfo.m in Sources */,
 				657D57BF281F870C008B1964 /* ZJTestUnsignedDataViewController.m in Sources */,
 				65F7C6A82692E74600121EBD /* UITableView+ZJTableView.m in Sources */,
@@ -2280,7 +2280,7 @@
 				65BD8FDD28E13CC600CDC2CC /* ZJTestTableViewController.m in Sources */,
 				65BD8FDE28E13CC600CDC2CC /* UITextView+ZJTextView.m in Sources */,
 				65BD8FDF28E13CC600CDC2CC /* NSTimer+ZJBlockTimer.m in Sources */,
-				65BD8FE028E13CC600CDC2CC /* ZJTestCopyMutableCopyMethodViewController.m in Sources */,
+				65BD8FE028E13CC600CDC2CC /* ZJTestCopyMutableCopyViewController.m in Sources */,
 				65BD8FE128E13CC600CDC2CC /* ZJPageSizeObjectInfo.m in Sources */,
 				65BD8FE328E13CC600CDC2CC /* UITableView+ZJTableView.m in Sources */,
 				65BD8FE428E13CC600CDC2CC /* ZJTestLabelViewController.m in Sources */,

@@ -77,6 +77,8 @@
         SEL sel = NSSelectorFromString(name);
         if ([self respondsToSelector:sel]) {
             [self performSelector:sel];
+        }else {
+            NSLog(@"没有该方法:%@", name);
         }
     }
 }

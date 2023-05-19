@@ -31,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  字符串翻转
  */
 - (NSString *)invertString;
-- (NSString *)invertStringWithSegmentLenth:(int)len;
+// 以多长的长度为单元倒置字符串
+- (NSString *)invertStringWithUnitSpan:(int)len;
 
 #pragma mark - AttributedString
 

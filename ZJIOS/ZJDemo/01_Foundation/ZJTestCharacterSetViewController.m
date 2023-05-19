@@ -17,10 +17,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test3];
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3"];
 }
 
 /*
+ 2023-05-18 17:13:23.017069+0800 ZJIOS[97214:4788563] 拆分后的字符串数组------(
+     hello,
+     "",
+     "***NSChar",
+     "acterSet*",
+     "**",
+     "",
+     ""
+ )@
+ 2023-05-18 17:13:23.017296+0800 ZJIOS[97214:4788563] resultStr = hello***NSCharacterSet***
  */
 - (void)test0 {
     NSString *str = @"hello-毛***NSChar主acterSet*w**席我";
