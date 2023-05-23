@@ -18,18 +18,13 @@
     [super viewDidLoad];
     
     [self initAry];
-    [self initSetting];
 }
 
 - (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
     self.cellTitles = @[@"__LINE__", @"__FILE__", @"__func__&&_cmd"];
-
+    self.values = @[@"test0", @"test1", @"test2"];
 }
-
-- (void)initSetting {
-    
-}
-
 
 #pragma mark - UITableViewDataSource
 
@@ -57,7 +52,7 @@
 
 //源码文件中的行号
 - (void)test0 {
-    NSLog(@"%d", __LINE__); // 24
+    NSLog(@"%d", __LINE__); // 55
 }
 
 //当前源代码文件全路径 －－>宏在预编译时会替换成当前的源文件名

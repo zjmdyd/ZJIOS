@@ -21,7 +21,9 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"ZJNSLog"];
+    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"ZJNSLog,NSLog,printf", @"RECORD_TIME"];
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6"];
 }
 
 // ‘#’运算符:用来把参数转换成字符串
@@ -38,9 +40,13 @@
 #define Func_Area(n) printf("the square of "#n" is %d.\n", area_##n)
 
 - (void)test1 {
-    int m = 30;
-    int area_m = m*m;
-    Func_Area(m);   // 输出: the square of m is 900.
+    int a = 30;
+    int area_a = a*a;
+    
+    int b = 10;
+    int area_b = b*b;
+    Func_Area(a);   // 输出: the square of a is 900.
+    Func_Area(b);   // 输出: the square of b is 100.
 }
 
 /*
@@ -70,15 +76,16 @@ void logB(void) {
 #define debug_log_func1(format, ...) printf(format, __VA_ARGS__)
 #define debug_log_func2(format, ...) printf(format, ##__VA_ARGS__)
 - (void)test3 {
+    /*
+     __VA_ARGS__会替换为与省略号匹配的所有参数，同时会将省略号前面的一个逗号带上，既debug_log_func1("debug")，会拓展成printf("debug",)末尾多了个逗号
+     debug_log_func1("debug");  // 会报错
+     */
     debug_log_func1("%s:%d\r\n", "debug", 100);
 }
 
 - (void)test4 {
-    /*
-     __VA_ARGS__会替换为与省略号匹配的所有参数，同时会将省略号前面的一个逗号带上，既debug_log_1("debug")，会拓展成printf("debug",)末尾多了个逗号
-     debug_log_func1("debug");  // 会报错
-     */
-    debug_log_func2("debug");   //
+//    debug_log_func1("debug");   // 会拓展成printf("debug",)末尾多了个逗号
+    debug_log_func2("debug");   // 会将 printf("debug",) 多余的逗号去掉
 }
 
 - (void)test5 {
@@ -90,13 +97,18 @@ void logB(void) {
     const char *ch = [s UTF8String];
     printf("ch = %s", ch);
 }
+/*
+ ZJTestMacroFuncTableViewController.m:93    str = hello world
+ 2023-05-23 18:30:19.334887+0800 ZJIOS[78070:7895225] s = ZJTestMacroFuncTableViewController.m
+ ch = ZJTestMacroFuncTableViewController.m
+ */
 
 // '##': 不可以是第一个或者最后一个子串,所以(_##NAME)加了下划线,去掉下划线会报错
 #define RECORD_TIME(NAME) double _##NAME = [NSDate date].timeIntervalSince1970;
 
 #define TTF_STRINGIZE(x) #x
-//#define TTF_STRINGIZE2(x) TTF_STRINGIZE(x)
-#define TTF_STRINGIZE2(x) #x
+#define TTF_STRINGIZE2(x) TTF_STRINGIZE(x)
+//#define TTF_STRINGIZE2(x) #x
 #define TTF_SHADER_STRING(text) @TTF_STRINGIZE2(text)
 
 //static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING
@@ -117,7 +129,7 @@ static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING(abc);
 static NSString *const CAMREA_RESIZE_VERTEX = @TTF_SHADER_STRING(abc);
 */
 
-- (void)test55 {
+- (void)test6 {
     RECORD_TIME(began);
     NSLog(@"_began = %f", _began);
     NSString *str = CAMREA_RESIZE_VERTEX;

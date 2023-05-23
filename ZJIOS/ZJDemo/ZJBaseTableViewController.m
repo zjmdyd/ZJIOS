@@ -74,6 +74,9 @@
     if (self.vcType == ZJBaseTableViewTypeShow) {
         [self showVCWithName:name title:name];
     }else {
+        if (self.values) {
+            name = [self isMultiSection] ? self.values[indexPath.section][indexPath.row] : self.values[indexPath.row];
+        }
         SEL sel = NSSelectorFromString(name);
         if ([self respondsToSelector:sel]) {
             [self performSelector:sel];

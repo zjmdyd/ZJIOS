@@ -12,12 +12,18 @@
 
 @end
 
+UILabel *label;
+
 @implementation ZJTestC_StringViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    test0();
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 35)];
+    label.text = @"haha";
+    [self.view addSubview:label];
+    
+    test1();
 }
 
 void test0(void) {
@@ -32,6 +38,14 @@ void test1(void) {
     char src[100] = {0};
     printf("请输入一个字符串:");
     gets(src);
+    printf("%s\n", src);
+
+    char str[10];
+    printf("请输入:");
+    scanf("%s", str);
+    printf("str = %s\n", str);  // 不会执行
+
+    label.text = [[NSString alloc] initWithCString:str encoding:NSUTF8StringEncoding];
 }
 
 /*
