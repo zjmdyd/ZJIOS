@@ -58,7 +58,7 @@
     // tabBarItem: you should not access this property if you are not using a tab bar controller to display the view controller
     self.viewControllers = ary;
     NSLog(@"tabBar.items = %@", self.tabBar.items);
-//    self.selectedIndex = 3;
+    self.selectedIndex = 1;
 }
 
 /*

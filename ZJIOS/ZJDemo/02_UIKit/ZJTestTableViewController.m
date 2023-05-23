@@ -42,7 +42,7 @@
     return cell;
 }
 
-- (void)switchEvents:(UISwitch *)sender {
+- (void)switchEvent:(UISwitch *)sender {
     NSLog(@"%s", __func__);
 }
 

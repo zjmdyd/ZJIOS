@@ -21,10 +21,16 @@
     
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 100, kScreenW, 100)];
     searchBar.prompt = @"提示";
+    searchBar.text = @"";
     searchBar.placeholder = @"请输入";
     searchBar.showsCancelButton = YES;
     [searchBar setCancelBtnTitleColor:[UIColor redColor]];
 //    [searchBar setCancelBtnTitle:@"取消"];
+    if (@available(iOS 13.0, *)) {
+        searchBar.searchTextField.text = @"hh";
+    } else {
+        // Fallback on earlier versions
+    }
     [self.view addSubview:searchBar];
 }
 

@@ -16,8 +16,7 @@
 
 @implementation ZJTestAppearanceView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         CGFloat width = frame.size.width/2;
@@ -31,12 +30,14 @@
 }
 
 - (void)setLeftColor:(UIColor *)leftColor {
+    NSLog(@"%s", __func__);
     _leftColor = leftColor;
     
     self.leftView.backgroundColor = _leftColor;
 }
 
 - (void)setRightColor:(UIColor *)rightColor {
+    NSLog(@"%s", __func__);
     _rightColor = rightColor;
     
     self.rightView.backgroundColor = _rightColor;

@@ -89,8 +89,6 @@
     _pageControl2.layer.borderWidth = 1;
     [self.view addSubview:_pageControl2];
     
-    
-    
     _pageControl3 = [[XHPageControl alloc] initWithFrame:CGRectMake(0, 440,[UIScreen mainScreen].bounds.size.width, 30)];
     _pageControl3.numberOfPages = 7;
     _pageControl3.controlSize = 12;
@@ -111,6 +109,7 @@
     _pageControl4.tag = 904;
     [self.view addSubview:_pageControl4];
 }
+
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
     NSInteger currentPage = targetContentOffset->x / [UIScreen mainScreen].bounds.size.width;
 

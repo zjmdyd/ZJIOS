@@ -20,30 +20,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initSetting];
     [self initAry];
+    [self initSetting];
+}
+
+- (void)initAry {
+    self.cellTitles = @[@"maskViewColor", @"maskViewAlphaColor"];
+    self.values = @[[UIColor maskViewColor], [UIColor maskViewAlphaColor]];
 }
 
 - (void)initSetting {
     self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
+    self.colorView.alpha = 0;
     self.colorView.hidden = YES;
-    
+    [KeyWindow addSubview:self.colorView];
+
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame = CGRectMake(0, 0, 100, 50);
     btn.center = self.colorView.center;
     [btn setTitle:@"关闭" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.colorView addSubview:btn];
-    [KeyWindow addSubview:self.colorView];
 }
 
 - (void)btnEvent:(UIButton *)sender {
+    self.colorView.alpha = 0;
     self.colorView.hidden = YES;
-}
-
-- (void)initAry {
-    self.cellTitles = @[@"maskViewColor", @"maskViewAlphaColor"];
-    self.values = @[[UIColor maskViewColor], [UIColor maskViewAlphaColor]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -69,14 +71,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     self.colorView.backgroundColor = self.values[indexPath.row];
+    self.colorView.hidden = NO;
     [UIView animateWithDuration:0.25 animations:^{
-        self.colorView.hidden = NO;
+        self.colorView.alpha = 1;
     }];
-}
-
-// 会执行
-- (void)dealloc {
-    NSLog(@"%s", __func__);
 }
 
 /*

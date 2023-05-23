@@ -66,10 +66,6 @@
 #define kStatusBarH [UIApplication getStatusBarHight]
 #endif
 
-//#ifndef kStatusBarH
-//#define kStatusBarH 20
-//#endif
-
 #ifndef kNaviBarHeight
 #define kNaviBarHeight 44
 #endif
@@ -79,7 +75,7 @@
 #endif
 
 #ifndef kNaviBottoom
-#define kNaviBottoom (kIsIphoneX ? 88 : 64)
+#define kNaviBottoom (kStatusBarH + kNaviBarHeight)
 #endif
 
 #endif /* ZJLayoutDefines_h */

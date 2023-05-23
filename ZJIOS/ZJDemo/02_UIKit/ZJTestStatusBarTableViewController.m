@@ -12,6 +12,8 @@
 @interface ZJTestStatusBarTableViewController ()
 
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
+@property (nonatomic, strong) UIView *statusBarView;
+
 
 @end
 
@@ -30,7 +32,7 @@
 
 - (void)initSetting {
     self.statusBarStyle = UIStatusBarStyleDefault;
-    self.cellTitles = @[@[@"UIStatusBarStyleDefault", @"UIStatusBarStyleLightContent", @"UIStatusBarStyleDarkContent"], @[@"隐藏显示导航栏"], @[@"背景色"]];
+    self.cellTitles = @[@[@"UIStatusBarStyleDefault", @"UIStatusBarStyleLightContent", @"UIStatusBarStyleDarkContent"], @[@"隐藏显示导航栏"], @[@"状态栏背景色"]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -86,13 +88,15 @@
             }
         }
         [self test0];
-    }else {
+    }else if (indexPath.section == 1){
         [self test1];
+    }else if (indexPath.section == 2){
+        [self test2];
     }
 }
 
 - (void)test0 {
-//    View controller-based status bar appearance=YES; / (UIViewControllerBasedStatusBarAppearance=YES)
+    //    View controller-based status bar appearance=YES; / (UIViewControllerBasedStatusBarAppearance=YES)
     if ([UIApplication appBoolInfoWithType:AppBoolInfoTypeBasedStatusBarAppearance]) {
         [self setNeedsStatusBarAppearanceUpdate];
     }else {
@@ -106,77 +110,92 @@
 }
 
 - (void)test2 {
-    UIView *statusBarView;
+    self.statusBarView;
     
     if (@available(iOS 13.0, *)) {
         UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].keyWindow.windowScene.statusBarManager;
-        if([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
-            UIView *localStatusBarView = [statusBarManager performSelector:@selector(createLocalStatusBar)];
-            statusBarView = [localStatusBarView performSelector:@selector(statusBar)];
+
+        if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
+            UIView *localStatusBar = [statusBarManager performSelector:@selector(createLocalStatusBar)];
+            NSLog(@"localStatusBar = %@", localStatusBar);  // 拿不到，为null            
+            
+            if (localStatusBar && [localStatusBar respondsToSelector:@selector(statusBar)]) {
+                self.statusBarView = [localStatusBar performSelector:@selector(statusBar)];
+            }else {
+                self.statusBarView = [[UIView alloc] initWithFrame:statusBarManager.statusBarFrame];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.statusBarView];
+            }
         }
     } else {
-        statusBarView = [[UIApplication sharedApplication] valueForKeyPath:@"statusBar"];
+        self.statusBarView = [[UIApplication sharedApplication] valueForKeyPath:@"statusBar"];
     }
-    statusBarView.backgroundColor = [UIColor redColor];
-    statusBarView.layer.borderWidth = 1;
-    statusBarView.layer.borderColor = [UIColor blueColor].CGColor;
-    UIView *sv = statusBarView.subviews[0];
-    sv.backgroundColor = [UIColor redColor];
-    sv.layer.borderWidth = 1;
-    sv.layer.borderColor = [UIColor blueColor].CGColor;
-    NSLog(@"%@", statusBarView.superview);
-    NSLog(@"%@", statusBarView.subviews);
-    NSLog(@"statusBarView = %@", statusBarView);
+    
+    self.statusBarView.backgroundColor = [UIColor redColor];
+//    self.statusBarView.layer.borderWidth = 1;
+//    self.statusBarView.layer.borderColor = [UIColor blueColor].CGColor;
+//    UIView *sv = statusBarView.subviews[0];
+//    sv.backgroundColor = [UIColor redColor];
+//    sv.layer.borderWidth = 1;
+//    sv.layer.borderColor = [UIColor blueColor].CGColor;
+    NSLog(@"%@", self.statusBarView.superview);
+    NSLog(@"%@", self.statusBarView.subviews);
+    NSLog(@"statusBarView = %@", self.statusBarView);
 }
 
 // 默认情况下状态栏根据导航栏的barStyle来显示状态
-// 此方法被调用需要隐藏导航栏
+// 此方法被调用需要隐藏导航栏,未隐藏不会调用preferredStatusBarStyle方法
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return self.statusBarStyle;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.statusBarView removeFromSuperview];
+    self.statusBarView = nil;
 }
-*/
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-#pragma mark - Navigation
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

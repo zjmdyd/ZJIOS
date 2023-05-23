@@ -8,6 +8,7 @@
 #import "ZJTestLabelViewController.h"
 #import "UILabel+ZJLabel.h"
 #import "UIViewExt.h"
+#import "ZJLayoutDefines.h"
 
 @interface ZJTestLabelViewController ()
 
@@ -18,14 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test2];
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4"];
 }
 
 #pragma mark 高度自适应
 
 // 给定宽度
 - (void)test0 {
-    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 64, 250, 0)];
+    NSLog(@"navigationBar.height = %@", self.navigationController.navigationBar);
+    NSLog(@"kNaviBottoom = %f", kNaviBottoom);  // iPhone14: 47+44
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 250, 0)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     labelOne.font = [UIFont systemFontOfSize:20];
@@ -39,9 +47,9 @@
     [self.view addSubview:labelOne];
 }
 
-// 给定宽度
+// 给定宽度,带属性字符串
 - (void)test1 {
-    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 64, 250, 0)];
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 250, 0)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     labelOne.numberOfLines = 0;
@@ -63,7 +71,7 @@
 
 // 匹配文字最大宽度，高度设置不起作用
 - (void)test2 {
-    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 64, 0, 0)];
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 0, 0)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     labelOne.font = [UIFont systemFontOfSize:20];
@@ -77,7 +85,7 @@
 }
 
 - (void)test3 {
-    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 64, 0, 0)];
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 0, 0)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     labelOne.numberOfLines = 0;
@@ -95,11 +103,11 @@
 
 // 根据设置的宽高匹配最适合的size, 优先匹配宽度
 - (void)test4 {
-    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 64, 250, 250)];
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 100, 250)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     [labelOne fitSizeWithFont:[UIFont systemFontOfSize:20]];
-    NSLog(@"%@", NSStringFromCGRect(labelOne.frame));   // {{10, 64}, {235, 143.5}}
+    NSLog(@"%@", NSStringFromCGRect(labelOne.frame));   // {{10, 100}, {235, 143.5}}
 
     [self.view addSubview:labelOne];
 }
