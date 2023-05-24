@@ -23,28 +23,14 @@ struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test0];
+    [self initAry];
 }
 
-- (void)test0 {
-    char myname[] = "Pierre de Fermar";
-    // using mencpy to copy string
-    My_memcpy(person.name, myname, strlen(myname) + 1);
-    person.age = 46;
-    printf("person = %p, person.name = %s, person.age = %d\n", &person, person.name, person.age);
-    
-    // using mencpy to copy structure
-    My_memcpy(&person_copy, &person, sizeof(person));
-    printf("person_copy = %p, person_copy.name = %s, person_copy.age = %d\n", &person_copy, person_copy.name, person_copy.age);
-    
-    // 修改person的成员变量值
-    char myname2[] = "abcd";
-    My_memcpy(person.name, myname2, strlen(myname2) + 1);
-    person.age = 88;
-    
-    printf("person = %p, person.name = %s, person.age = %d\n", &person, person.name, person.age);
-    printf("person_copy = %p, person_copy.name = %s, person_copy.age = %d\n", &person_copy, person_copy.name, person_copy.age);
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2"];
 }
+
 /*
  将 num 字节值从源指向的位置直接复制到目标内存块。
  源指针和目标指针所指向的对象的基础类型与此函数无关;结果是数据的二进制副本。
@@ -65,6 +51,34 @@ void * My_memcpy(void* dest, const void* src, size_t num) {
     }
     
     return ret;
+}
+
+// person = 0x10d3a3f50, person.name = Pierre de Fermar, person.age = 46
+- (void)test0 {
+    char myname[] = "Pierre de Fermar";
+    // using mencpy to copy string
+    My_memcpy(person.name, myname, strlen(myname) + 1);
+    person.age = 46;
+    printf("person = %p, person.name = %s, person.age = %d\n", &person, person.name, person.age);
+}
+
+// using mencpy to copy structure
+//person_copy = 0x109feaf7c, person_copy.name = Pierre de Fermar, person_copy.age = 46
+- (void)test1 {
+    My_memcpy(&person_copy, &person, sizeof(person));
+    printf("person_copy = %p, person_copy.name = %s, person_copy.age = %d\n", &person_copy, person_copy.name, person_copy.age);
+}
+
+// 修改person的成员变量值,不会改变person_copy的值
+// person = 0x109feaf50, person.name = abcd, person.age = 88
+// person_copy = 0x109feaf7c, person_copy.name = Pierre de Fermar, person_copy.age = 46
+- (void)test2 {
+    char myname2[] = "abcd";
+    My_memcpy(person.name, myname2, strlen(myname2) + 1);
+    person.age = 88;
+    
+    printf("person = %p, person.name = %s, person.age = %d\n", &person, person.name, person.age);
+    printf("person_copy = %p, person_copy.name = %s, person_copy.age = %d\n", &person_copy, person_copy.name, person_copy.age);
 }
 
 /*

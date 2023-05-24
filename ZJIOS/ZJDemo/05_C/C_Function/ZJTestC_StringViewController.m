@@ -34,6 +34,7 @@ void test0(void) {
     }
 }
 
+// 模拟器跑不出效果
 void test1(void) {
     char src[100] = {0};
     printf("请输入一个字符串:");
