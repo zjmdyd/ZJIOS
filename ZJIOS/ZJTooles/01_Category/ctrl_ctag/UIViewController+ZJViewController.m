@@ -51,7 +51,7 @@
     }
 }
 
-// show-nib
+#pragma mark - show-nib
 - (void)showVCWithNibName:(NSString *)name {
     [self showVCWithNibName:name title:@""];
 }
@@ -136,7 +136,6 @@
         if ([color isKindOfClass:[UIColor class]]) {
             vc.view.backgroundColor = color;
         }
-        NSLog(@"hidesBottomBarWhenPushed = %d---%d", vc.hidesBottomBarWhenPushed, ctrlConfig.hiddenBottom);
         vc.hidesBottomBarWhenPushed = ctrlConfig.hiddenBottom;
         
         return vc;
@@ -145,19 +144,21 @@
     return nil;
 }
 
+#pragma mark - 根据控制器名字创建控制器
+
 + (UIViewController *)createVCWithName:(NSString *)name {
-    return [self createVCWithName:name title:@"" hidesBottom:YES style:UITableViewStyleGrouped];
+    return [self createVCWithName:name title:@"" style:UITableViewStyleGrouped hidesBottom:NO];
 }
 
 + (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title {
-    return [self createVCWithName:name title:title hidesBottom:YES style:UITableViewStyleGrouped];
+    return [self createVCWithName:name title:title style:UITableViewStyleGrouped hidesBottom:NO];
 }
 
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden {
-    return [self createVCWithName:name title:title hidesBottom:hidden style:UITableViewStyleGrouped];
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style {
+    return [self createVCWithName:name title:title style:UITableViewStyleGrouped hidesBottom:NO];
 }
 
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden style:(UITableViewStyle)style {
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden {
     ZJCtrlConfig *config = [ZJCtrlConfig new];
     config.vcName = name;
     config.style = style;

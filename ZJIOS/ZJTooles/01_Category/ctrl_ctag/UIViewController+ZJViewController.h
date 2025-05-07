@@ -31,6 +31,8 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 - (void)presentVCWithNibName:(NSString *)name;
 - (void)presentVCWithNibName:(NSString *)name title:(NSString *)title;
 
+#pragma mark - 
+
 + (UIViewController *)createVCWithNibName:(NSString *)name;
 + (UIViewController *)createVCWithNibName:(NSString *)name title:(NSString *)title;
 
@@ -40,13 +42,12 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 - (void)showVCWithName:(NSString *)name title:(NSString *)title;
 - (void)showVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden;
 
-/**
- *  根据控制器名字创建控制器
- */
+#pragma mark - 根据控制器名字创建控制器
+
 + (UIViewController *)createVCWithName:(NSString *)name;
 + (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title;
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden;
-+ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title hidesBottom:(BOOL)hidden style:(UITableViewStyle)style;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style;
++ (UIViewController *)createVCWithName:(NSString *)name title:(NSString *)title style:(UITableViewStyle)style hidesBottom:(BOOL)hidden;
 
 #pragma mark - UIBarButtonItem
 

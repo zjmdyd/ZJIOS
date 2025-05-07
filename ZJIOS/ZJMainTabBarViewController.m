@@ -30,7 +30,7 @@
     
     NSMutableArray *ary = [NSMutableArray array];
     for (int i = 0; i < vcNames.count; i++) {
-        UIViewController *vc = [UIViewController createVCWithName:vcNames[i] title:titles[i] hidesBottom:NO];
+        UIViewController *vc = [UIViewController createVCWithName:vcNames[i] title:titles[i]];
         ZJNavigationController *navi = [[ZJNavigationController alloc] initWithRootViewController:vc];
         if (images.count == vcNames.count) {
             vc.tabBarItem.image = [[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

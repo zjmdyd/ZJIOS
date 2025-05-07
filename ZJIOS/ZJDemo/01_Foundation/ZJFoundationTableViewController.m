@@ -30,17 +30,6 @@
     ];
 }
 
-- (void)initSetting {
-    NSString *str = @"a";
-    NSLog(@"%@->%@->%@->%@:%p", [str class], [[str class] superclass], [[[str class] superclass] superclass] ,[[[[str class] superclass] superclass] superclass], str);
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self initSetting];
-}
-
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
