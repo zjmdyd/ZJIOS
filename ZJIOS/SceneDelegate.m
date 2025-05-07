@@ -33,6 +33,8 @@
  */
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+    NSLog(@"%s", __func__);
+    
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -47,6 +49,11 @@
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 }
 
+- (void)sceneWillEnterForeground:(UIScene *)scene {
+    NSLog(@"%s", __func__);
+    // Called as the scene transitions from the background to the foreground.
+    // Use this method to undo the changes made on entering the background.
+}
 
 - (void)sceneDidDisconnect:(UIScene *)scene {
     NSLog(@"%s", __func__);
@@ -55,7 +62,6 @@
     // Release any resources associated with this scene that can be re-created the next time the scene connects.
     // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
 }
-
 
 - (void)sceneDidBecomeActive:(UIScene *)scene {
     NSLog(@"%s", __func__);
@@ -67,18 +73,10 @@
     }
 }
 
-
 - (void)sceneWillResignActive:(UIScene *)scene {
     NSLog(@"%s", __func__);
     // Called when the scene will move from an active state to an inactive state.
     // This may occur due to temporary interruptions (ex. an incoming phone call).
-}
-
-
-- (void)sceneWillEnterForeground:(UIScene *)scene {
-    NSLog(@"%s", __func__);
-    // Called as the scene transitions from the background to the foreground.
-    // Use this method to undo the changes made on entering the background.
 }
 
 /*
@@ -91,21 +89,21 @@
     // to restore the scene back to its current state.
     
     // Save changes in the application's managed object context when the application transitions to the background.
-    NSTimeInterval backgroundTimeRemanging = [[UIApplication sharedApplication] backgroundTimeRemaining];
-    NSLog(@"backgroundTimeRemanging = %.02f", backgroundTimeRemanging);
-    
-    if ([self isMutiltaskingSupported] == NO) {
-        NSLog(@"--->不支持多任务");
-        return;
-    }
-    
-    UIApplication *app = [UIApplication sharedApplication];
-    self.backgroundTaskIdentifier = [app beginBackgroundTaskWithExpirationHandler:^{
-        NSLog(@"触发ExpirationHandler");
-        [self endBackgroundTask];
-    }];
+//    NSTimeInterval backgroundTimeRemanging = [[UIApplication sharedApplication] backgroundTimeRemaining];
+//    NSLog(@"backgroundTimeRemanging = %.02f", backgroundTimeRemanging);
+//
+//    if ([self isMutiltaskingSupported] == NO) {
+//        NSLog(@"--->不支持多任务");
+//        return;
+//    }
+//
+//    UIApplication *app = [UIApplication sharedApplication];
+//    self.backgroundTaskIdentifier = [app beginBackgroundTaskWithExpirationHandler:^{
+//        NSLog(@"触发ExpirationHandler");
+//        [self endBackgroundTask];
+//    }];
 //    [self test0];
-    [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
+//    [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
 }
 
 - (void)test0 {
@@ -128,7 +126,7 @@
     dispatch_async(mainQueue, ^{
         if (weakSelf != nil) {
             [weakSelf.timer invalidate];
-            [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskIdentifier];
+            [[UIApplication sharedApplication] endBackgroundTask:weakSelf.backgroundTaskIdentifier];
             weakSelf.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
         }
     });

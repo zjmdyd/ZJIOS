@@ -136,6 +136,7 @@
         if ([color isKindOfClass:[UIColor class]]) {
             vc.view.backgroundColor = color;
         }
+        NSLog(@"hidesBottomBarWhenPushed = %d---%d", vc.hidesBottomBarWhenPushed, ctrlConfig.hiddenBottom);
         vc.hidesBottomBarWhenPushed = ctrlConfig.hiddenBottom;
         
         return vc;

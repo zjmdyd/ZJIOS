@@ -12,11 +12,6 @@
 
 @interface ZJMainTabBarViewController ()
 
-//@property (nonatomic, strong) NSArray *vcNames;
-//@property (nonatomic, strong) NSArray *titles;
-//@property (nonatomic, strong) NSArray *images;
-//@property (nonatomic, strong) NSArray *selectImages;
-
 @end
 
 @implementation ZJMainTabBarViewController
@@ -44,8 +39,9 @@
             vc.tabBarItem.selectedImage = [[UIImage imageNamed:selectImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         }
         
+        self.tabBar.tintColor = MainColor;
+        
         if (@available(iOS 10.0, *)) {
-            self.tabBar.tintColor = MainColor;
             self.tabBar.unselectedItemTintColor = [UIColor grayColor];
         } else {
             [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : MainColor} forState:UIControlStateSelected];
@@ -53,12 +49,11 @@
         }
         [ary addObject:navi];
     }
-//        self.tabBar.translucent = NO;
     
-    // tabBarItem: you should not access this property if you are not using a tab bar controller to display the view controller
     self.viewControllers = ary;
+
     NSLog(@"tabBar.items = %@", self.tabBar.items);
-    self.selectedIndex = 4;
+//    self.selectedIndex = 4;
 }
 
 /*

@@ -17,24 +17,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *logDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Log"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL fileExists = [fileManager fileExistsAtPath:logDirectory];
-    if (!fileExists) {
-        [fileManager createDirectoryAtPath:logDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
-    NSLog(@"dateStr = %@", dateStr);
-    NSString *logFilePath = [logDirectory stringByAppendingFormat:@"/%@.txt", dateStr];
-    NSLog(@"logFilePath = %@", logFilePath);
-    // freopen 重定向输出流,将log输入到文件
-//    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stdout);
-//    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
-//
     return YES;
 }
 

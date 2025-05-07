@@ -15,7 +15,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"tabBarItem1 = %@", self.tabBarItem);
+
     [self initAry];
 }
 
