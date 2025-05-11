@@ -34,6 +34,21 @@
     }
 }
 
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    NSLog(@"%s", __func__);
+    
+    if (@available(iOS 13.0, *)) {
+        UITraitCollection *traitCollection = [UITraitCollection currentTraitCollection];
+        if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+            self.view.backgroundColor = [UIColor darkGrayColor];
+        }else {
+            self.view.backgroundColor = [UIColor whiteColor];
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
 /*
 #pragma mark - Navigation
 

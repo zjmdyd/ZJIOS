@@ -30,7 +30,7 @@
 }
 
 - (void)setLeftColor:(UIColor *)leftColor {
-    NSLog(@"%s", __func__);
+    NSLog(@"%s, %@", __func__, leftColor);
     _leftColor = leftColor;
     
     self.leftView.backgroundColor = _leftColor;

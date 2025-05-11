@@ -51,6 +51,7 @@
     return [fmt stringFromDate:self];
 }
 
+// Date转字符串
 - (NSString *)dateToStringWithFormat:(NSString *)format {
     ZJDateFormatter *fmt = [NSDate baseFormatterWithString:format];
 
@@ -158,7 +159,7 @@
     return comps1.day - comps2.day;
 }
 
-// 是否为昨天
+// 是否为明天
 - (BOOL)isTomorrow {
     NSInteger diff = [self dayDiffWithDate:[NSDate date]];
     

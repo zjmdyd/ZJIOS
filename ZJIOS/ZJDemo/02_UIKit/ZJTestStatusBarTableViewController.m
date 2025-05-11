@@ -109,9 +109,15 @@
     self.navigationController.navigationBarHidden = !self.navigationController.isNavigationBarHidden;
 }
 
+/*
+ 从iOS 14开始，刘海屏的状态栏高度不再是固定的44pt，而是根据具体机型有所不同。
+ 例如，iPhone 11和XR的状态栏高度为48pt，iPhone 12、13非mini系列以及iPhone 14的状态栏高度为47pt，
+ iPhone 12、13 mini系列的状态栏高度为50pt，而iPhone 14、15 Pro/Pro Max的状态栏高度为59pt。
+ 非刘海屏机型的状态栏高度保持为20pt。
+ ‌‌状态栏高度可能因iOS版本更新而变化‌：
+ 随着iOS版本的更新，状态栏高度的处理逻辑可能会有所调整
+ */
 - (void)test2 {
-    self.statusBarView;
-    
     if (@available(iOS 13.0, *)) {
         UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].keyWindow.windowScene.statusBarManager;
 
@@ -122,6 +128,7 @@
             if (localStatusBar && [localStatusBar respondsToSelector:@selector(statusBar)]) {
                 self.statusBarView = [localStatusBar performSelector:@selector(statusBar)];
             }else {
+                NSLog(@"statusBarFrame = %@", NSStringFromCGRect(statusBarManager.statusBarFrame));
                 self.statusBarView = [[UIView alloc] initWithFrame:statusBarManager.statusBarFrame];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.statusBarView];
             }

@@ -24,33 +24,38 @@
     [self test1];
 }
 /*
- 2022-06-12 18:42:15.069434+0800 ZJIOS[3584:73747] anchorPoint = {0.5, 0.5}
- 2022-06-12 18:42:15.069725+0800 ZJIOS[3584:73747] frame = {{37.5, 183.5}, {300, 300}}
- 2022-06-12 18:42:15.069960+0800 ZJIOS[3584:73747] position = {187.5, 333.5}
- 2022-06-12 18:42:15.070117+0800 ZJIOS[3584:73747] p(x, y) = (187.500000, 187.500000)
+ 2025-05-10 23:28:50.443553+0800 ZJIOS[75098:2934913] anchorPoint = {0.5, 0.5}
+ 2025-05-10 23:28:50.443804+0800 ZJIOS[75098:2934913] bgView_position = {187.5, 333.5}
+ 2025-05-10 23:28:50.444004+0800 ZJIOS[75098:2934913] frame = {{37.5, 183.5}, {300, 300}}
+ 2025-05-10 23:28:50.444164+0800 ZJIOS[75098:2934913] p(x, y) = (187.500000, 333.500000)
+ 2025-05-10 23:28:50.444331+0800 ZJIOS[75098:2934913] center = {187.5, 333.5}
  */
 - (void)test0 {
     NSLog(@"anchorPoint = %@", NSStringFromCGPoint(self.bgView.layer.anchorPoint));
     NSLog(@"bgView_position = %@", NSStringFromCGPoint(self.bgView.layer.position));
     NSLog(@"frame = %@", NSStringFromCGRect(self.bgView.frame));
     CGFloat p_x = self.bgView.frame.origin.x + self.bgView.frame.size.width/2;
-    CGFloat p_y = self.bgView.frame.origin.x + self.bgView.frame.size.height/2;
-    NSLog(@"position = %@", NSStringFromCGPoint(self.bgView.layer.position));
+    CGFloat p_y = self.bgView.frame.origin.y + self.bgView.frame.size.height/2;
     NSLog(@"p(x, y) = (%f, %f)", p_x, p_y);
+    NSLog(@"center = %@", NSStringFromCGPoint(self.bgView.center));
 }
-//moveView_anchorPoint = {0.5, 0.5}
-//moveView_position = {225, 150} = 150+75,150
+/*
+ 2025-05-10 23:28:50.444492+0800 ZJIOS[75098:2934913] moveView_anchorPoint = {0.5, 0.5}
+ 2025-05-10 23:28:50.444641+0800 ZJIOS[75098:2934913] moveView_position = {225, 150}
+ 2025-05-10 23:28:50.444862+0800 ZJIOS[75098:2934913] moveView_anchorPoint = {0, 0.5}
+ 2025-05-10 23:28:50.445024+0800 ZJIOS[75098:2934913] moveView_position = {150, 150}
+ */
 - (void)test1 {
     NSLog(@"moveView_anchorPoint = %@", NSStringFromCGPoint(self.moveView.layer.anchorPoint));
     NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
 
     self.moveView.layer.anchorPoint = CGPointMake(0, 0.5);
-    self.moveView.layer.position = CGPointMake(150, 150);
+//    The value of this property is specified in points and is always specified relative to the value in the anchorPoint property
+//    self.moveView.layer.position = CGPointMake(150, 150); // 修改无效，与锚点相关联
 
     NSLog(@"moveView_anchorPoint = %@", NSStringFromCGPoint(self.moveView.layer.anchorPoint));
     NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
     
-    return;
     [UIView animateWithDuration:2 animations:^{
         self.moveView.transform = CGAffineTransformMakeRotation(M_PI_2);
     }];

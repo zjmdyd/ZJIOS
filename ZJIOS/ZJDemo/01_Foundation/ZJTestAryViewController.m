@@ -23,6 +23,11 @@
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
     self.cellTitles = @[@"test0", @"test1", @"test2"];
+    [self printEvent:self.cellTitles];
+}
+
+- (void)printEvent:(NSArray *)ary {
+    NSLog(@"ary = %@, %@->%@->%@->%@:%p", ary, [ary class], [[ary class] superclass], [[[ary class] superclass] superclass] ,[[[[ary class] superclass] superclass] superclass], ary);
 }
 
 /*

@@ -102,7 +102,7 @@
 - (NSString *)dataToHexString {
     if (!self) return nil;
     
-    Byte *bytes = (Byte *)[self bytes];
+    Byte *bytes = (Byte *)self.bytes;
     NSMutableString *str = [NSMutableString stringWithCapacity:self.length * 2];
     for (int i = 0; i < self.length; i++) {
         [str appendFormat:@"%02x", bytes[i]];

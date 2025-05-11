@@ -32,6 +32,16 @@
 - (void)test0 {
     NSString *str = @"123.1";
     
+    NSInteger value;
+    NSScanner *scanner = [NSScanner scannerWithString:str];
+
+    // 扫描成功:loc = 3, isAtEnd = 0
+    if ([scanner scanInteger:&value]) {
+        NSLog(@"扫描成功:loc = %zd, isAtEnd = %d", scanner.scanLocation, scanner.isAtEnd);
+    }else {
+        NSLog(@"扫描失败:loc = %zd, isAtEnd = %d", scanner.scanLocation, scanner.isAtEnd);
+    }
+    
     if ([NSScanner isPureInt:str]) {
         NSLog(@"整形数据");
     }else {
@@ -80,7 +90,17 @@
 }
 
 /*
-死循环, 字母E跳不过
+死循环, 字母E跳不过:手动给scanLocation++解决死循环
+ 
+ 2025-05-10 10:02:34.264458+0800 ZJIOS[59010:2245951] 扫描到了
+ 2025-05-10 10:02:34.264658+0800 ZJIOS[59010:2245951] str = AA, 2
+ 2025-05-10 10:02:34.264860+0800 ZJIOS[59010:2245951] 没有匹配到
+ 2025-05-10 10:02:34.265015+0800 ZJIOS[59010:2245951] str = AA, 3
+ 2025-05-10 10:02:34.265172+0800 ZJIOS[59010:2245951] 扫描到了
+ 2025-05-10 10:02:34.265314+0800 ZJIOS[59010:2245951] str = BB, 5
+ 2025-05-10 10:02:34.265447+0800 ZJIOS[59010:2245951] 扫描到了
+ 2025-05-10 10:02:34.265585+0800 ZJIOS[59010:2245951] str = CCDD, 10
+ 2025-05-10 10:02:34.265716+0800 ZJIOS[59010:2245951] end_str = CCDD
  */
 - (void)test3 {
     NSString *test = @"AAEBBTCCDD";
@@ -90,16 +110,24 @@
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"ABCD"];
     NSString *str;
     while (![scanner isAtEnd]) {
-        [scanner scanCharactersFromSet:set intoString:&str];
-        NSLog(@"%@", str);
+        if ([scanner scanCharactersFromSet:set intoString:&str]) {
+            NSLog(@"扫描到了");
+        }else {
+            NSLog(@"没有匹配到");
+            scanner.scanLocation++;
+        }
+        NSLog(@"str = %@, %zd", str, scanner.scanLocation);
+        
+//        [scanner scanCharactersFromSet:set intoString:&str]; 加上if-else条件语句可避免死循环
     }
+    NSLog(@"end_str = %@", str);
 }
 
 /*
  解决上test3循环
- 2022-01-20 16:43:28.183125+0800 ZJIOS[17280:549207] AA
- 2022-01-20 16:43:28.183306+0800 ZJIOS[17280:549207] BB
- 2022-01-20 16:43:28.183407+0800 ZJIOS[17280:549207] CCDD
+ 2022-01-20 16:43:28.183125+0800 ZJIOS[17280:549207] AA, 2
+ 2022-01-20 16:43:28.183306+0800 ZJIOS[17280:549207] BB, 5
+ 2022-01-20 16:43:28.183407+0800 ZJIOS[17280:549207] CCDD, 10
  */
 - (void)test4 {
     NSString *test = @"AAEBBTCCDD";
@@ -108,30 +136,37 @@
     scanner.charactersToBeSkipped = skipSet;
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"ABCD"];
     NSString *str;
+    
     while (![scanner isAtEnd]) {
         [scanner scanCharactersFromSet:set intoString:&str];
-        NSLog(@"%@", str);
+        NSLog(@"str = %@, %zd", str, scanner.scanLocation);
     }
 }
 
 /*
- scanUpToCharactersFromSet:intoString：扫描字符串直到遇到NSCharacterSet字符集的字符时停止，
- 指针指向的内容为遇到停止字符集字符之前的内容
+ - (BOOL)scanUpToCharactersFromSet:(NSCharacterSet *)stopSet
+                        intoString:(NSString **)value;
+ ‌‌参数‌：
+ stopSet: 指定需要扫描到的终止字符集合。
+ value: 指向 NSString 指针的指针，存储从当前位置到首个匹配 stopSet 字符前的连续字符
+        value的内容为遇到停止字符集字符之前的内容
  
  2023-05-18 19:04:43.795287+0800 ZJIOS[98896:4858755] str = abcdef, 6, 满足if条件
  2023-05-18 19:04:43.795503+0800 ZJIOS[98896:4858755] str = (null), 6
  */
 - (void)test5 {
-    NSString *numString = @"abcdef6";
+    NSString *numString = @"abcdef1";
     NSScanner *scanner = [NSScanner scannerWithString:numString];
     NSCharacterSet *numSet = [NSCharacterSet decimalDigitCharacterSet];
     while (![scanner isAtEnd]) {
         NSString *str;
         if ([scanner scanUpToCharactersFromSet:numSet intoString:&str]) {
-            NSLog(@"str = %@, %zd, 满足if条件", str, scanner.scanLocation);
+            // str = abcdef, 6, isAtEnd = 0, 满足if条件
+            NSLog(@"str = %@, %zd, isAtEnd = %d, 满足if条件", str, scanner.scanLocation, scanner.isAtEnd);
         }else {
-            NSLog(@"str = %@, %zd", str, scanner.scanLocation);
             scanner.scanLocation++;
+            // str = (null), 7, isAtEnd = 1
+            NSLog(@"str = %@, %zd, isAtEnd = %d", str, scanner.scanLocation, scanner.isAtEnd);
         }
     }
 }
@@ -205,28 +240,14 @@
     while (![scanner isAtEnd]) {
         NSString *str;
         if ([scanner scanString:@"abc" intoString:&str]) {
-            NSLog(@"找到, str = %@, loc = %zd", str, scanner.scanLocation);
+            NSLog(@"找到, str = %@, loc = %zd, isAtEnd = %d", str, scanner.scanLocation, scanner.isAtEnd);
 //            break; // 此处不加break也不会死循环
         }else {
-            NSLog(@"未找到, loc = %zd", scanner.scanLocation);
+            NSLog(@"未找到, loc = %zd, isAtEnd = %d", scanner.scanLocation, scanner.isAtEnd);
             scanner.scanLocation++;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
  #pragma mark - Navigation

@@ -119,7 +119,7 @@
     for (int i = (int)self.length; i > 0; i--) {
         [str appendString:[self substringWithRange:NSMakeRange(i-1, 1)]];
     }
-    return str.copy;
+    return str;
 }
 
 /**
@@ -134,7 +134,7 @@
             [str appendString:[self substringWithRange:NSMakeRange(0, i)]];
         }
     }
-    return str.copy;
+    return str;
 }
 
 #pragma mark - AttributedString

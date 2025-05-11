@@ -53,7 +53,7 @@
     NSLog(@"str2:%@, %@, %p, %p", str2, str2.class, str2, &str2);
     
     NSLog(@"--------修改源------------");
-    str1 = @"呵呵呵呵要变了额";
+    str1 = @"呵呵呵呵要变了额"; //  修改不可变字符串，改变了字符串的地址， str1指向的地址会改变
     
     NSLog(@"str1:%@, %@, %p, %p", str1, str1.class, str1, &str1);
     NSLog(@"str2:%@, %@, %p, %p", str2, str2.class, str2, &str2);
@@ -139,7 +139,7 @@
     self.mut_copyArry = [arr mutableCopy];
     NSLog(@"arr:%@, %p, %@", arr, arr, [arr class]);
     NSLog(@"self.mut_copyArry:%@, %p, %@", self.mut_copyArry, self.mut_copyArry, [self.mut_copyArry class]);
-    if ([self.mut_copyArry isKindOfClass:[NSMutableArray class]]) {
+    if ([self.mut_copyArry isKindOfClass:[NSMutableArray class]]) { // mut_copyArry用strong修饰就会是可变数组
         NSLog(@"self.mut_copyArry是可变数组");
         [self.mut_copyArry addObject:@"aa"];
     }else {

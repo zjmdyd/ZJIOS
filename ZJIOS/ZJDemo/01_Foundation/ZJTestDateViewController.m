@@ -29,8 +29,13 @@
 //    日  一 二  三 四 五  六
 /*
  weekdayOrdinal说明
- 例如 weekday = 1；//1~7,1表示周日 weekdayOrdinal = 2， weekdayOfMonth = 2;
- weekdayOrdinal 表示 这是这个月的第2个周日，可能是这个月的第二周，可能是第三周
+ 例如 weekday = 1；//1~7,1表示周日
+ weekdayOrdinal weekdayOrdinal属性用于表示某一星期几在更大日历单元（如月或年）中的序号位置
+ weekdayOrdinal表示‌特定星期几在月份或年份内的出现次数‌。例如，设置weekday=3（周二）且weekdayOrdinal=2时，表示当月第二个周二
+ 
+ yearForWeekOfYear表示‌基于ISO 8601周历规则的年份‌，可能与普通年份不同。例如：
+ 假设2024年1月1日所在的周实际属于2023年的最后一周，此时year属性返回2024，而yearForWeekOfYear返回2023
+ 跨年周的yearForWeekOfYear与year差异常见于每年首末周
  */
 - (void)test0 {
     NSDate *date = [NSDate date];
@@ -38,39 +43,54 @@
     NSLog(@"timestamp = %f", date.timeIntervalSince1970);
 
     NSDateComponents *cmps = [date detailComponents];
-    NSLog(@"%ld", (long)cmps.year);
-    NSLog(@"%ld", (long)cmps.month);
-    NSLog(@"%ld", (long)cmps.day);
+    NSLog(@"year = %ld", (long)cmps.year);
+    NSLog(@"month = %ld", (long)cmps.month);
+    NSLog(@"day = %ld", (long)cmps.day);
     NSLog(@"hour = %ld", (long)cmps.hour);
     NSLog(@"minute = %ld", (long)cmps.minute);
     NSLog(@"second = %ld", (long)cmps.second);
-    NSLog(@"%ld", (long)cmps.weekday);
-    NSLog(@"%ld", (long)cmps.weekOfMonth);  // The week number of the months.
-    NSLog(@"%ld", (long)cmps.weekOfYear);
-    NSLog(@"%ld", (long)cmps.weekdayOrdinal);
-    NSLog(@"%ld", (long)cmps.quarter);
-    NSLog(@"%ld", (long)cmps.yearForWeekOfYear);
-    NSLog(@"%ld", (long)cmps.timeZone);
+    NSLog(@"weekday = %ld", (long)cmps.weekday);
+    NSLog(@"weekOfMonth = %ld", (long)cmps.weekOfMonth);  // The week number of the months.
+    NSLog(@"weekOfYear = %ld", (long)cmps.weekOfYear);
+    NSLog(@"weekdayOrdinal = %ld", (long)cmps.weekdayOrdinal);
+    NSLog(@"quarter = %ld", (long)cmps.quarter);  //季度
+    NSLog(@"yearForWeekOfYear = %ld", (long)cmps.yearForWeekOfYear);
+    NSLog(@"timeZone = %@, systemTimeZone = %@", cmps.timeZone, [NSTimeZone systemTimeZone]);
+    NSLog(@"systemTimeZone = %@", [NSTimeZone systemTimeZone]);
+
+    [NSTimeZone systemTimeZone];
 }
 
 - (void)test1 {
-    NSDate *date1 = [NSDate dateFromString:@"2022-05-14 09:00:00" withStyle:ZJDateFormatStyleFull];
+    NSDate *date1 = [NSDate dateFromString:@"2025-05-08 09:00:00" withStyle:ZJDateFormatStyleFull];
     NSLog(@"isYesterday = %d", [date1 isYesterday]);
     
-    NSDate *date2 = [NSDate dateFromString:@"2022-05-16 09:00:00" withStyle:ZJDateFormatStyleFull];
+    NSDate *date2 = [NSDate dateFromString:@"2025-05-10 09:00:00" withStyle:ZJDateFormatStyleFull];
     NSLog(@"isTomorrow = %d", [date2 isTomorrow]);
 }
 
 /*
- - (NSDateComponents *)components:(NSCalendarUnit)unitFlags fromDate:(NSDate *)startingDate toDate:(NSDate *)resultDate options:(NSCalendarOptions)opts;可能为负数
+ NSCalendar 类中用于计算两个日期之间时间差的方法，返回一个包含差值信息的 NSDateComponents 对象
  */
 - (void)test2 {
-    NSDate *date = [NSDate dateFromString:@"2021-12-10 20:00:00" withStyle:ZJDateFormatStyleFull];
-    NSLog(@"%@", @([date isYesterday]));
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:0]; // 1970-01-01
+    NSDate *endDate = [NSDate date]; // 当前日期 2025-05-09
+
+    // 定义需要计算的组件
+    NSCalendarUnit units = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+
+    // 计算差值
+    NSDateComponents *components = [calendar components:units
+                                               fromDate:startDate
+                                                 toDate:endDate
+                                                options:0];
+    //    相差 55 年 4 月 8 日
+    NSLog(@"相差 %ld 年 %ld 月 %ld 日", components.year, components.month, components.day);
 }
 
 /*
- 两个方法中的ZJDateFormatter为同一个
+ ZJDateFormatter单例对象， 两个方法中的ZJDateFormatter为同一个
  2021-12-13 17:50:27.719384+0800 ZJIOS[22932:292158] fmt1 = <NSDateFormatter: 0x6000035d93b0>
  2021-12-13 17:50:27.722130+0800 ZJIOS[22932:292158] fmt2 = <NSDateFormatter: 0x6000035d93b0>
  2021-12-13 17:50:27.722594+0800 ZJIOS[22932:292158] date1 = Fri Dec 10 20:00:00 2021
@@ -89,7 +109,7 @@
  2022-05-15 00:14:04.510107+0800 ZJIOS[9286:314978] daySpan = 6
  */
 - (void)test4 {
-    NSDate *date1 = [NSDate dateFromString:@"2022-05-09 00:07:00" withStyle:ZJDateFormatStyleFull];
+    NSDate *date1 = [NSDate dateFromString:@"2025-05-08 00:07:00" withStyle:ZJDateFormatStyleFull];
     NSDate *date2 = [NSDate date];
     NSInteger daySpan = [NSDate daySpanFromDate:date1 toDate:date2];
     NSLog(@"data1 = %@", [date1 dateToStringWithStyle:ZJDateFormatStyleFull]);
@@ -102,7 +122,7 @@
     NSDate *date1 = [NSDate dateFromString:@"2021-09-09 09:09:09" withStyle:ZJDateFormatStyleMedium];
     NSDate *date2 = [NSDate dateFromString:@"2021-12-11 19:10:09" withFormat:@"yyyy/MM/dd HH:mm:ss"];
     BOOL isSame =  [date1 isEqualToDate:date2];
-    NSLog(@"isSame = %@, (date1 compare:date2):%@, ZJDateFormatStyleShort:%@", @(isSame), @([date1 compare:date2]), [date1 dateToStringWithStyle:ZJDateFormatStyleShort]);
+    NSLog(@"isSame = %@, (date1 compare:date2):%ld, ZJDateFormatStyleShort:%@", @(isSame), (long)[date1 compare:date2], [date1 dateToStringWithStyle:ZJDateFormatStyleShort]);
 }
 /*
  2022-05-15 11:24:29.210176+0800 ZJIOS[5107:141091] str1 = 2022-05-14 13:00:09

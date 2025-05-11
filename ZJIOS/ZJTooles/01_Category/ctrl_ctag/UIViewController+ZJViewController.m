@@ -301,11 +301,23 @@
     }else {
         textToShare = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     }
+    
     //分享的url
     NSURL *urlToShare;
     if (url.length) {
         urlToShare = [NSURL URLWithString:url];
     }
+    //分享的url
+//    __block NSURL *urlToShare;
+//    if (url.length) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            urlToShare = [NSURL URLWithString:url];
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//
+//            });
+//        });
+//    }
     //在这里 如果想分享图片 就把图片添加进去  文字什么的加上
     NSMutableArray *activityItems = @[textToShare].mutableCopy;
     if (imageToShare) {
@@ -314,8 +326,28 @@
     if (urlToShare) {
         [activityItems addObject:urlToShare];
     }
+    /*
+     ‌activityItems‌
+
+     ‌‌类型‌：NSArray
+     ‌‌作用‌：存储待分享或操作的数据集合，支持多种数据类型混合：
+     NSString（文本内容）
+     UIImage（图片资源）
+     NSURL（链接或文件路径）
+     NSData（二进制数据）
+     其他符合 UIActivityItemSource 协议的对象
+     
+     applicationActivities‌
+
+     ‌‌类型‌：NSArray<UIActivity *>
+     ‌‌作用‌：声明应用支持的自定义分享服务（如第三方登录、内部功能扩展），需继承 UIActivity 实现自定义行为；若无需自定义则传 nil
+     示例:
+     CustomActivity *customActivity = [[CustomActivity alloc] initWithTitle:@"自定义服务"];
+     NSArray *activities = @[customActivity];
+
+     */
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     //不出现在活动项目
     activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
     [self presentViewController:activityVC animated:YES completion:nil];

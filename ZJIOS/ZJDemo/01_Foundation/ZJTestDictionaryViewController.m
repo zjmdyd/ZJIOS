@@ -28,10 +28,12 @@
  {
      num = "<null>";
  }
+ 
  */
 - (void)test0 {
     NSMutableDictionary *dic = @{}.mutableCopy;
-    [dic setObject:[NSNull null] forKey:@"num"];
+    [dic setObject:[NSNull null] forKey:@"num"];// 可以为<null>
+    //[dic setObject:nil forKey:@"num"];          // object cannot be nil
     NSLog(@"%@", dic);
 }
 

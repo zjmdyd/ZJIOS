@@ -52,7 +52,7 @@
  2023-05-17 19:26:09.716243+0800 ZJIOS[84774:4388516] self.mustr_strong:  0x600003f1eca0--__NSCFString--呵呵哈哈哈或
  */
 /*
- 源字符串为不可变，无论copy还是strong，都是浅复制，仅复制指针。
+ 源字符串为不可变，无论属性修饰为copy还是strong，都是浅复制，仅复制指针。
  当其修改内容时，会开辟一块新的内存，有新的指针。而self.str_copy 、self.str_strong、 self.mustr_strong 、self.mutStr_copy 指向的地址不会发生改变。
  */
 - (void)test0 {
@@ -161,10 +161,10 @@
  成员变量赋值(copy/strong)的变量都不会开辟新的地址，
  */
 /*
- 当我们用self.str_copy = originString赋值时，会调用str_copy的setter方法，在setter方法中有一个非常关键的语句：_str_copy = [str_copy copy];
+ 当源字符串为可变字符串时，我们用self.str_copy = originString赋值时，会调用str_copy的setter方法，在setter方法中有一个非常关键的语句：_str_copy = [str_copy copy];
  用self.str_copy = originString 赋值时，调用str_copy的setter方法，setter方法对传入的str_copy做了次深拷贝生成了一个新的对象赋值给_str_copy
  所以_str_copy指向的地址和对象值都不再和originString相同。
- 而_str_copy = originString赋值时，直接对成员变量进行赋值，并不会调用str_copy的setter方法
+ 而_str_copy = originString赋值时，直接对成员变量进行赋值，不会调用str_copy的setter方法
  所以此时的地址都不会改变
  */
 - (void)test2 {

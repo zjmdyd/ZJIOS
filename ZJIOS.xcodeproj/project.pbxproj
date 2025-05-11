@@ -48,6 +48,9 @@
 		38A1F0CD267B949600A4D044 /* MVC.gif in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0CC267B949600A4D044 /* MVC.gif */; };
 		38AB576B268334B80014CECE /* block_malloc.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB5769268334B70014CECE /* block_malloc.png */; };
 		38AB576C268334B80014CECE /* block_stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB576A268334B80014CECE /* block_stack.png */; };
+		38AD52492DD08B8B004168E3 /* ZJTestDarkModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD52482DD08B8B004168E3 /* ZJTestDarkModeViewController.m */; };
+		38AD524C2DD0A050004168E3 /* ZJDarmModeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD524B2DD0A050004168E3 /* ZJDarmModeView.m */; };
+		38AD524F2DD0A0A9004168E3 /* ZJDarkModeLael.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD524E2DD0A0A9004168E3 /* ZJDarkModeLael.m */; };
 		38B150C328C3628F00688F62 /* ZJTestCIImageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C228C3628F00688F62 /* ZJTestCIImageTableViewController.m */; };
 		38B150C628C3639D00688F62 /* ZJTestFileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C528C3639D00688F62 /* ZJTestFileTableViewController.m */; };
 		38B150CA28C364C800688F62 /* ZJTestCFunctionnTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C928C364C800688F62 /* ZJTestCFunctionnTableViewController.m */; };
@@ -531,6 +534,12 @@
 		38AB5766268334380014CECE /* associateive_refrence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = associateive_refrence.cpp; sourceTree = "<group>"; };
 		38AB5769268334B70014CECE /* block_malloc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block_malloc.png; sourceTree = "<group>"; };
 		38AB576A268334B80014CECE /* block_stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block_stack.png; sourceTree = "<group>"; };
+		38AD52472DD08B8B004168E3 /* ZJTestDarkModeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestDarkModeViewController.h; sourceTree = "<group>"; };
+		38AD52482DD08B8B004168E3 /* ZJTestDarkModeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestDarkModeViewController.m; sourceTree = "<group>"; };
+		38AD524A2DD0A050004168E3 /* ZJDarmModeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJDarmModeView.h; sourceTree = "<group>"; };
+		38AD524B2DD0A050004168E3 /* ZJDarmModeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJDarmModeView.m; sourceTree = "<group>"; };
+		38AD524D2DD0A0A9004168E3 /* ZJDarkModeLael.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJDarkModeLael.h; sourceTree = "<group>"; };
+		38AD524E2DD0A0A9004168E3 /* ZJDarkModeLael.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJDarkModeLael.m; sourceTree = "<group>"; };
 		38B150C128C3628F00688F62 /* ZJTestCIImageTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCIImageTableViewController.h; sourceTree = "<group>"; };
 		38B150C228C3628F00688F62 /* ZJTestCIImageTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCIImageTableViewController.m; sourceTree = "<group>"; };
 		38B150C428C3639D00688F62 /* ZJTestFileTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestFileTableViewController.h; sourceTree = "<group>"; };
@@ -989,8 +998,6 @@
 			children = (
 				38EBE1412675BB5B00E090D9 /* ZJFoundationTableViewController.h */,
 				38EBE1422675BB5B00E090D9 /* ZJFoundationTableViewController.m */,
-				65D56F09287FFD2700E94FBC /* ZJTestFloatViewController.h */,
-				65D56F0A287FFD2700E94FBC /* ZJTestFloatViewController.m */,
 				65C574EF274CF22100D8FE00 /* ZJTestStringViewController.h */,
 				65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */,
 				6590A427274B806300BDB826 /* ZJTestAryViewController.h */,
@@ -1049,6 +1056,12 @@
 				6593941F281BE8CD00D4872C /* ZJTestUIAppearanceViewController.m */,
 				38FF5B252A1CAE6200F7DBEC /* ZJTestAppearanceViewController.h */,
 				38FF5B262A1CAE6200F7DBEC /* ZJTestAppearanceViewController.m */,
+				38AD52472DD08B8B004168E3 /* ZJTestDarkModeViewController.h */,
+				38AD52482DD08B8B004168E3 /* ZJTestDarkModeViewController.m */,
+				38AD524A2DD0A050004168E3 /* ZJDarmModeView.h */,
+				38AD524B2DD0A050004168E3 /* ZJDarmModeView.m */,
+				38AD524D2DD0A0A9004168E3 /* ZJDarkModeLael.h */,
+				38AD524E2DD0A0A9004168E3 /* ZJDarkModeLael.m */,
 				65FA5F9D28043CDC00D6C61A /* ZJTestPageCtrlViewController.h */,
 				65FA5F9E28043CDC00D6C61A /* ZJTestPageCtrlViewController.m */,
 				65ABF0CF26D7A48300A08267 /* ZJTestNibViewController.h */,
@@ -1611,6 +1624,8 @@
 			children = (
 				65AE086C28F54E35000349D3 /* ZJCTipsTableViewController.h */,
 				65AE086D28F54E35000349D3 /* ZJCTipsTableViewController.m */,
+				65D56F09287FFD2700E94FBC /* ZJTestFloatViewController.h */,
+				65D56F0A287FFD2700E94FBC /* ZJTestFloatViewController.m */,
 				65D95C5128F6AF2800879A28 /* ZJTestStructViewController.h */,
 				65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */,
 				659B208128FD3A32002923F6 /* ZJTestPreMacroTableViewController.h */,
@@ -2102,6 +2117,7 @@
 				6585EF70294B161800392F66 /* ZJTestThreadTableViewController.m in Sources */,
 				65F7C6D22692E9CC00121EBD /* NSObject+ZJRuntime.m in Sources */,
 				65B0328A284615E800E9C08A /* ZJAlertObject.m in Sources */,
+				38AD52492DD08B8B004168E3 /* ZJTestDarkModeViewController.m in Sources */,
 				65F94A4E28A0E22A0042F8F6 /* ZJAngleObject.m in Sources */,
 				65F7C6D02692E9CC00121EBD /* NSMutableArray+ZJMutableArray.m in Sources */,
 				659B208328FD3A32002923F6 /* ZJTestPreMacroTableViewController.m in Sources */,
@@ -2115,6 +2131,7 @@
 				65ADD1CD294C682400A93E9C /* ZJTestNSThreadTableViewController.m in Sources */,
 				654682DB2951B29C00B626B0 /* ZJTestLockTableViewController.m in Sources */,
 				658E129E2855F49C004C4748 /* ZJTestAnimationTableViewController.m in Sources */,
+				38AD524F2DD0A0A9004168E3 /* ZJDarkModeLael.m in Sources */,
 				6516025226940991003B652F /* UINavigationController+ZJNaviController.m in Sources */,
 				65AB8CF4278C3117009322A1 /* ZJTestCopyStrongPopertyViewController.m in Sources */,
 				659B20AE28FD5218002923F6 /* ZJTestC_StringViewController.m in Sources */,
@@ -2148,6 +2165,7 @@
 				3883B9BA268EBE2800236663 /* ZJWebViewController.m in Sources */,
 				65D95C5728F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m in Sources */,
 				6594920E2711711E00FDD87D /* UIApplication+Cooks.m in Sources */,
+				38AD524C2DD0A050004168E3 /* ZJDarmModeView.m in Sources */,
 				65AE086E28F54E35000349D3 /* ZJCTipsTableViewController.m in Sources */,
 				382EE8D926750B04008AB02C /* ZJIOS.xcdatamodeld in Sources */,
 				65A00FAA27A14F3000B60045 /* ZJTestScrollTimerTableViewController.m in Sources */,
@@ -2553,16 +2571,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ABJW33Z4D;
 				INFOPLIST_FILE = ZJIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZJApp.ZJIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2576,16 +2596,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ABJW33Z4D;
 				INFOPLIST_FILE = ZJIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZJApp.ZJIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

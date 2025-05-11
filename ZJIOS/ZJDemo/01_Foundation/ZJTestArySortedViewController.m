@@ -31,7 +31,7 @@
 - (void)test0 {
     NSNumber *num;
     NSComparisonResult result = [num compare:@1];
-    NSLog(@"result = %zd, %zd, num = %@", result, NSOrderedSame, num);
+    NSLog(@"result = %zd, NSComparisonResult = %zd, num = %@", result, NSOrderedSame, num);
 }
 
 /*
@@ -48,6 +48,7 @@
     NSArray *ary0 = @[@3, @2, @4, @8, @7];
     NSArray *ary1 = [ary0 sortedArrayUsingSelector:@selector(compare:)];
     NSLog(@"ary1 = %@", ary1);
+    NSLog(@"%p, %p", ary0, ary1);
 }
 
 /* 升序排列

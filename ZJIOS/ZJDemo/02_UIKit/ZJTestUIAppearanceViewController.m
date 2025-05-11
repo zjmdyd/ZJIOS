@@ -19,13 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 修改部分实例需要使用另外的API,会先调用修改全部实例的方法
+    [ZJTestAppearanceView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]].leftColor = [UIColor greenColor];
+    
     // 修改全部实例需要使用的API
     // 此处不会调用setter方法
     [[ZJTestAppearanceView appearance] setLeftColor:[UIColor redColor]];
     [[ZJTestAppearanceView appearance] setRightColor:[UIColor yellowColor]];
-    
-    // 修改部分实例需要使用另外的API
-    [ZJTestAppearanceView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]].leftColor = [UIColor greenColor];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 500, 100, 50)];
     [btn setTitle:@"next" forState:UIControlStateNormal];
@@ -37,6 +37,7 @@
 }
 
 - (void)nextEvent:(UIButton *)sender {
+    // 未被UINavigationController包含，修改部分实例的设置greenColor不会生效
     ZJTestAppearanceViewController *vc = [ZJTestAppearanceViewController new];
     /*
      Defaults to UIModalPresentationAutomatic on iOS starting in iOS 13.0, and UIModalPresentationFullScreen on previous versions. Defaults to UIModalPresentationFullScreen on all other platforms.
@@ -57,8 +58,17 @@
 
 
  每一个实现 UIAppearance 协议的类，都会有一个 _UIApperance 实例，保存着这个类通过appearance 设置属性的 invocations，在该类被添加或应用到视图树上的时候，它会检查并调用这些属性设置。这样就实现了让所有该类的实例都自动统一属性。appearance 只是起到一个代理作用，在特定的时机，让代理替所有实例做同样的事
+ 
+ // 会先调用 [[ZJTestAppearanceView appearance] setLeftColor:[UIColor redColor]];
+再调用appearanceWhenContainedInInstancesOfClasses
+ 
+  -[ZJTestAppearanceView setLeftColor:], UIExtendedSRGBColorSpace 1 0 0 1
+  -[ZJTestAppearanceView setRightColor:]
+
+  -[ZJTestAppearanceView setLeftColor:], UIExtendedSRGBColorSpace 0 1 0 1
  */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"%s", __func__);
     ZJTestAppearanceView *view = [[ZJTestAppearanceView alloc] initWithFrame:CGRectMake(10, 100, kScreenW-20, 150)];
     [self.view addSubview:view];
 }

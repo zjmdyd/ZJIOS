@@ -16,12 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"tabBarItem2 = %@", self.tabBarItem);
+
     [self initAry];
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestNavigationBarItemsTableViewController", @"ZJTestNavigationSettingTableViewController", @"ZJTestStatusBarTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestNibViewController", @"ZJTestPageCtrlViewController"];
+    self.cellTitles = @[@"ZJTestTableViewController", @"ZJTestColorTableViewController", @"ZJTestNavigationBarItemsTableViewController", @"ZJTestNavigationSettingTableViewController", @"ZJTestStatusBarTableViewController", @"ZJTestSearchBarViewController", @"ZJTouchMathEventViewController", @"ZJTestLabelViewController", @"ZJTestUIAppearanceViewController", @"ZJTestDarkModeViewController",@"ZJTestNibViewController", @"ZJTestPageCtrlViewController"];
 }
 
 #pragma mark - UITableViewDataSource

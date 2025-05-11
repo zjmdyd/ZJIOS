@@ -22,7 +22,7 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3"];
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4"];
 }
 
 /*

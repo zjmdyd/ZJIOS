@@ -48,6 +48,8 @@
 
 - (void)initSetting {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(next)];
+    
+//    self.tableView.sectionHeaderHeight = 38;
 }
 
 - (void)next {
@@ -288,7 +290,7 @@
  iOS 14 or earlier, this property applies to navigation bars with large titles.
  In iOS 15, this property applies to all navigation bars.未滚动时的状态，与prefersLargeTitles值无关
  
- iOS 13中 UINavigationBar新增了scrollEdgeAppearance属性，但在iOS 15以前的版本中此属性只应用在大标题导航栏上。而在iOS 15中此属性适用于所有导航栏。
+ iOS 13中 UINavigationBar新增了scrollEdgeAppearance属性，但在iOS15以前的版本中此属性只应用在大标题导航栏上。而在iOS 15中此属性适用于所有导航栏。
  */
 - (void)test6:(NSNumber *)set {
     if (@available(iOS 13.0, *)) {
@@ -402,7 +404,7 @@
 - (void)test12:(NSInteger)index set:(BOOL)set {
     if (@available(iOS 11.0, *)) {
         // UINavigationItemLargeTitleDisplayModeAlways没效果,还是Automatic的效果
-        // UINavigationItemLargeTitleDisplayModeNever有效果改变
+        // UINavigationItemLargeTitleDisplayModeNever不展示LargeTitle
         if(set) {
             NSArray *types = @[@(UINavigationItemLargeTitleDisplayModeAutomatic), @(UINavigationItemLargeTitleDisplayModeAlways), @(UINavigationItemLargeTitleDisplayModeNever)];
             self.navigationItem.largeTitleDisplayMode = [types[index] integerValue];
@@ -415,16 +417,21 @@
 }
 
 /*
+ 设置了 scrollEdgeAppearance/standardAppearance会让此方法失效
+
  ## setBackgroundImage:forBarMetrics:
- 
- UIBarMetricsDefault        // 横竖屏  iOS13:起作用    iOS15:起作用,但是需要向上拖动才有
+
+ 布局模式枚举值:
+ UIBarMetricsDefault        // 竖屏常规模式  iOS13:起作用    iOS15:起作用,但是需要向上拖动才有
  UIBarMetricsCompact        // 横屏    iOS13:不起作用  iOS15:起作用,但是需要向上拖动才有
+ 
+ 带提示文本的导航栏模式
  UIBarMetricsDefaultPrompt  // 竖屏高度变大 iOS13/15没效果
  UIBarMetricsCompactPrompt  // 横屏高度变大 iOS13/15没效果
  */
 - (void)test13:(NSInteger)index set:(BOOL)set {
     NSArray *types = @[@(UIBarMetricsDefault), @(UIBarMetricsCompact), @(UIBarMetricsDefaultPrompt), @(UIBarMetricsCompactPrompt)];
-    NSArray *colors = @[[UIColor clearColor], [UIColor orangeColor], [UIColor yellowColor], [UIColor purpleColor]];
+    NSArray *colors = @[[UIColor redColor], [UIColor orangeColor], [UIColor yellowColor], [UIColor purpleColor]];
     NSInteger type = [types[index] integerValue];
     if (set) {
         [((ZJNavigationController *)self.navigationController) setNavigationBarBgImgWithColor:colors[index] forBarMetrics:type];

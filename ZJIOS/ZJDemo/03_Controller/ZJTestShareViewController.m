@@ -16,7 +16,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self systemShareWithIcon:@"ic_leaf" text:@"测试系统分享" url:@"https://www.baidu.com"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self systemShareWithIcon:@"ic_leaf" text:@"测试系统分享" url:@"https://www.apple.com.cn/"];
 }
 
 /*

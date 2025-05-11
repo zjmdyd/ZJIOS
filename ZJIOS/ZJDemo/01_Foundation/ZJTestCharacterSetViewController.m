@@ -42,7 +42,7 @@
     NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"-w我毛主席"];
     NSArray *setArr = [str componentsSeparatedByCharactersInSet:characterSet];
     NSString *resultStr = [setArr componentsJoinedByString:@""];
-    NSLog(@"拆分后的字符串数组------%@@", setArr);
+    NSLog(@"拆分后的字符串数组------%@", setArr);
     NSLog(@"resultStr = %@", resultStr);    // hello***NSCharacterSet***
 }
 

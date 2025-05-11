@@ -30,7 +30,6 @@ int zj_times;
 
 - (void)initAry {
     self.title = @"hhhhhhh";
-
 }
 
 - (void)initSetting {
@@ -136,12 +135,12 @@ int zj_times;
  当初始barStyle=UIBarStyleBlack时，navigationBarHidden=NO, 执行以下步骤:
     1.当navigationBarHidden=NO-->YES时，状态栏颜色文字style以preferredStatusBarStyle方法返回为准,如果当前控制器没实现则为黑色(UIBarStyleDefault时的颜色),此时无导航栏
     2.当navigationBarHidden=YES-->NO时，状态栏文字变为白色(UIBarStyleBlack), 导航栏文字颜色也为UIBarStyleBlack状态下的文字(白色),此时不会调用preferredStatusBarStyle方法
-    3.barStyle=UIBarStyleBlack-->UIBarStyleDefault,状态栏颜色文字变为黑色(UIBarStyleDefault时的颜色),导航栏依旧保持白色文字(前提:导航栏执行过隐藏显示操作,导航栏未隐藏状态)
+    3.barStyle=UIBarStyleBlack-->UIBarStyleDefault,状态栏颜色文字变为黑色(UIBarStyleDefault时的颜色),导航栏依旧保持白色文字(前提:导航栏执行过显隐操作,导航栏未隐藏状态)
     4.navigationBarHidden=NO-->YES,状态栏颜色文字以preferredStatusBarStyle方法返回为准,此时无导航栏
     5.navigationBarHidden=YES-->NO(barStyle=UIBarStyleDefault), 状态栏颜色文字变为黑色(UIBarStyleDefault时的颜色)此时不会调用preferredStatusBarStyle方法,导航栏文字颜色变为黑色
 
  总结:
- 当导航栏navigationBarHidden=NO时，修改barStyle不会改变导航栏文字颜色，只会改变状态栏颜色文字
+ 当导航栏navigationBarHidden=NO时，修改barStyle不会改变导航栏文字颜色，会改变状态栏颜色文字
  当导航栏navigationBarHidden=YES-->NO时，导航栏文字颜色和状态栏文字颜色根据barStyle显示: UIBarStyleDefault都为黑色, UIBarStyleBlack时都为白色,
  */
 - (void)test0 {
@@ -205,11 +204,11 @@ int zj_times;
      "<UINavigationItem: 0x7f8c44e10560> title='back1' style=navigator",
      "<UINavigationItem: 0x7f8c43f0f380> title='kk' style=navigator"
  )
- 2023-05-19 18:29:19.182632+0800 ZJIOS[13451:5395473] navigationBar.topItem = <UINavigationItem: 0x7f8c43f0f380> title='kk' style=navigator
- 2023-05-19 18:29:19.182774+0800 ZJIOS[13451:5395473] navigationBar.backItem = <UINavigationItem: 0x7f8c44e10560> title='back1' style=navigator
- 2023-05-19 18:29:19.182892+0800 ZJIOS[13451:5395473] self.navigationItem = <UINavigationItem: 0x7f8c43f0f380> title='kk' style=navigator, titleView = (null)
- 2023-05-19 18:29:19.183026+0800 ZJIOS[13451:5395473] self.navigationController.navigationItem = <UINavigationItem: 0x7f8c44d05b40> title='UIKit' style=navigator, titleView = (null)
- 2023-05-19 18:29:19.183158+0800 ZJIOS[13451:5395473] self.navigationItem.backBarButtonItem = (null)
+ 2025-05-10 15:46:32.990463+0800 ZJIOS[64612:2446093] navigationBar.topItem = <UINavigationItem: 0x7fe31cb48160> title='kk' style=navigator
+ 2025-05-10 15:46:32.990598+0800 ZJIOS[64612:2446093] navigationBar.backItem = <UINavigationItem: 0x7fe320008050> title='back28' style=navigator backButtonTitle='back24'
+ 2025-05-10 15:46:32.990719+0800 ZJIOS[64612:2446093] self.navigationItem = <UINavigationItem: 0x7fe31cb48160> title='kk' style=navigator, titleView = (null)
+ 2025-05-10 15:46:32.990841+0800 ZJIOS[64612:2446093] self.navigationController.navigationItem = <UINavigationItem: 0x7fe31cb05090> title='UIKit' style=navigator, titleView = (null)
+ 2025-05-10 15:46:32.990965+0800 ZJIOS[64612:2446093] self.navigationItem.backBarButtonItem = (null)
  */
 - (void)test2 {
     NSLog(@"%s", __func__);
@@ -238,7 +237,7 @@ int zj_times;
 - (void)test3 {
     NSLog(@"%s", __func__);
     //    The default value of this property is nil,注意navigationItem.backBarButtonItem和navigationBar.backItem不是一回事
-    NSLog(@"self.navigationItem.backBarButtonItem = %@", self.navigationItem.backBarButtonItem);    // null
+    NSLog(@"self.navigationItem.backBarButtonItem = %@", self.navigationItem.backBarButtonItem);    // 默认为null
     NSLog(@"super.navigationItem.backBarButtonItem = %@", [self preControllerWithIndex:1].navigationItem.backBarButtonItem);    // null
     
 // 注意设置navigationItem.backBarButtonItem是对下一级页面起作用

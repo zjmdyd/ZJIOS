@@ -3,33 +3,4 @@
    uuid = "B0DF7609-BAF6-410A-B8BE-B0444BAA9C3D"
    type = "1"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
-         <BreakpointContent
-            uuid = "A84F8D5E-619A-44C5-86A5-96E527A7930B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "*0x1019e337f">
-            <Locations>
-               <Location
-                  uuid = "A84F8D5E-619A-44C5-86A5-96E527A7930B - 7a3607398eb9d9c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[Student testSuperClass]"
-                  moduleName = "ZJIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zj/Desktop/Project/ZJIOS/ZJIOS/03_Subject/Model/Student.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "111">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

@@ -37,19 +37,23 @@
         cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryView = [UITableView accessorySwitchWithTarget:self];
-    
+    UISwitch *swh = [UITableView accessorySwitchWithTarget:self];
+    cell.accessoryView = swh;
+    NSLog(@"swh.superview = %@", swh.superview);    // 此时superview为空
+    NSLog(@"currentMode1 = %@, currentThread = %@", [NSRunLoop currentRunLoop].currentMode, [NSThread currentThread]);
     return cell;
 }
 
 - (void)switchEvent:(UISwitch *)sender {
     NSLog(@"%s", __func__);
+    NSLog(@"currentMode2 = %@, currentThrea= %@", [NSRunLoop currentRunLoop].currentMode, [NSThread currentThread]);
+    NSLog(@"sender.superview = %@", sender.superview);
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

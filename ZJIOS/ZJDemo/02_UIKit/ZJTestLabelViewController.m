@@ -33,6 +33,7 @@
 - (void)test0 {
     NSLog(@"navigationBar.height = %@", self.navigationController.navigationBar);
     NSLog(@"kNaviBottoom = %f", kNaviBottoom);  // iPhone14: 47+44
+//    默认sectionHeader的高度为35(导航栏不透明状态，iphone14)
     UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 250, 0)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
@@ -45,6 +46,7 @@
     labelOne.frame = frame;
     
     [self.view addSubview:labelOne];
+    [self.tableView rowHeight];
 }
 
 // 给定宽度,带属性字符串
@@ -89,9 +91,12 @@
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     labelOne.numberOfLines = 0;
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:labelOne.text attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:20],
-                                                                                                    NSForegroundColorAttributeName : [UIColor redColor]
-                                                                                                  }];
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:labelOne.text attributes:@{
+        NSFontAttributeName : [UIFont systemFontOfSize:20],
+        NSForegroundColorAttributeName : [UIColor redColor],
+        NSBackgroundColorAttributeName: [UIColor greenColor]
+    }];
+    labelOne.attributedText = str;
     CGSize size = [UILabel fitSizeWithText:str];
     NSLog(@"%@", NSStringFromCGSize(size)); // {1132.5, 24}
     CGRect frame = labelOne.frame;
@@ -101,9 +106,9 @@
     [self.view addSubview:labelOne];
 }
 
-// 根据设置的宽高匹配最适合的size, 优先匹配宽度
+// 根据设置的宽高匹配最适合的size, 优先匹配宽度,高度自适应
 - (void)test4 {
-    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 100, 250)];
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 100, 100)];
     labelOne.text = @"In a storyboard-based application, you will often want to do a little preparation before navigation.In a storyboard-based application";
     labelOne.backgroundColor = [UIColor grayColor];
     [labelOne fitSizeWithFont:[UIFont systemFontOfSize:20]];
