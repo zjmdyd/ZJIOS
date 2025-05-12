@@ -29,7 +29,7 @@
 }
 
 - (void)initAry {
-    self.actTitles = @[@"item0", @"item1", @"item2"];
+    self.actTitles = @[@"item0", @"item1"];
     self.sectionTitles = @[@"选择AlertControllerStyle", @"选择AlertActionStyleCancel", @"选择AlertActionStyleDestructive", @"选择TextField", @"Show"];
     self.cellTitles = @[
         @[@"AlertStyleActionSheet", @"AlertStyleAlert"],
@@ -120,9 +120,9 @@
 
 - (void)swhEvent:(UISwitch *)sender {
     if (sender.tag < 2) {
-        if (sender.isOn) {
+        if (sender.isOn) {  // 开启
             self.alertCtrlStyle = sender.tag == 0 ?  UIAlertControllerStyleActionSheet : UIAlertControllerStyleAlert;
-        }else {
+        }else { // 关闭
             self.alertCtrlStyle = sender.tag == 0 ?  UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet;
         }
     }else if(sender.tag == 4) { // textField

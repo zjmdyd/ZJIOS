@@ -6,6 +6,7 @@
 //
 
 #import "UIViewController+ZJViewController.h"
+#import <LinkPresentation/LinkPresentation.h>
 
 @implementation UIViewController (ZJViewController)
 
@@ -211,21 +212,36 @@
 }
 
 /*
- <_UIButtonBarStackView: 0x7fbc6773bc10; frame = (259 0; 100 44); layer = <CALayer: 0x600000f004c0>> buttonBar=0x600003796940
- <_UIButtonBarStackView: 0x7fe96c732f30; frame = (270 0; 97 44); layer = <CALayer: 0x600002f51040>> buttonBar=0x6000010fe490
-自定义UIBarButtonItem和使用系统的UIBarButtonItem会出现与x方向上的偏移
+ 系统rightBarButtonItems
+ <_UIButtonBarStackView: 0x7b5000003600; frame = (285 0; 97 44); layer = <CALayer: 0x7b0800062c80>> buttonBar=0x7b3c00046050
+ Printing description of $40:
+ <_UIButtonBarButton: 0x7b5400026980; frame = (0 0; 46 44); tintColor = <UIDynamicCatalogSystemColor: 0x7b1000055f00; name = systemBlueColor>; gestureRecognizers = <NSArray: 0x7b0c0011fa30>; layer = <CALayer: 0x7b08002561c0>>
+ Printing description of $41:
+ <_UIModernBarButton: 0x7b5c00047500; frame = (11 9.66667; 24 24); opaque = NO; userInteractionEnabled = NO; layer = <CALayer: 0x7b0800020fa0>>
+ Printing description of $42:
+ <_UIButtonBarButton: 0x7b5400026e80; frame = (54 0; 43 44); tintColor = <UIDynamicCatalogSystemColor: 0x7b1000055f00; name = systemBlueColor>; gestureRecognizers = <NSArray: 0x7b0c00102300>; layer = <CALayer: 0x7b08002c0900>>
+ Printing description of $43:
+ <_UIModernBarButton: 0x7b5c00047880; frame = (11 9.66667; 24 24); opaque = NO; userInteractionEnabled = NO; layer = <CALayer: 0x7b0800024120>>
+ 
+ // 减少自定义view的宽度来适配x轴的偏移量
+ <_UIButtonBarStackView: 0x7b500006b000; frame = (277 0; 97 44); layer = <CALayer: 0x7b0800060bc0>> buttonBar=0x7b3c0003d860
+ // 和系统的origin.x一样，但宽度不一样
+ <_UIButtonBarStackView: 0x7b5000061800; frame = (285 0; 89 44); layer = <CALayer: 0x7b0800060bc0>> buttonBar=0x7b3c0004d850
+ 
+ 
+ 自定义UIBarButtonItem和使用系统的UIBarButtonItem会出现与x方向上的偏移
  */
 - (UIBarButtonItem *)barButtonItemWithCustomViewWithImageNames:(NSArray *)images {
     CGFloat itemWidth = 46, btnWidth = 24;
-    CGFloat offsetX = 8, originX = 11, originY = 9.5;
-    CGFloat adjust = 11;    // 修正值,调整自定义item与系统方法创建的item与屏幕边距的差别
+    CGFloat marginX = 8, paddingX = 11, originY = 9.66667;
+    CGFloat adjust = 8+3;    // 修正值,调整自定义item与系统方法创建的item与屏幕边距的差别,8为x轴偏移,3为btn宽度调整
     NSInteger count = images.count;
-    CGFloat width = itemWidth*count + offsetX*(count-1);
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width-2)];
+    CGFloat width = itemWidth*count + marginX*(count-1)-adjust;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 44)];
     for (int i = 0; i < count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.tag = i;
-        btn.frame = CGRectMake(width - (itemWidth*(i+1) + offsetX*i) + originX + adjust, originY, btnWidth, btnWidth);
+        btn.frame = CGRectMake(width - (itemWidth*(i+1) + marginX*i) + adjust + paddingX, originY, btnWidth, btnWidth); // 最右边是第0个
         [btn setImage:[[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         [btn addTarget:self action:kBarItemAction forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
@@ -289,46 +305,61 @@
  系统分享
  */
 - (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text url:(NSString *)url {
-    //分享的图片
-    UIImage *imageToShare;
-    if (icon.length) {
-        imageToShare = [UIImage imageNamed:icon];
-    }
-    //分享的标题
-    NSString *textToShare;
-    if (text.length) {
-        textToShare = text;
-    }else {
-        textToShare = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
-    }
+    
     
     //分享的url
-    NSURL *urlToShare;
-    if (url.length) {
-        urlToShare = [NSURL URLWithString:url];
-    }
-    //分享的url
-//    __block NSURL *urlToShare;
-//    if (url.length) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            urlToShare = [NSURL URLWithString:url];
-//
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//
-//            });
-//        });
-//    }
-    //在这里 如果想分享图片 就把图片添加进去  文字什么的加上
-    NSMutableArray *activityItems = @[textToShare].mutableCopy;
-    if (imageToShare) {
-        [activityItems addObject:imageToShare];
-    }
-    if (urlToShare) {
-        [activityItems addObject:urlToShare];
-    }
+    //    NSURL *urlToShare;
+    //    if (url.length) {
+    //        urlToShare = [NSURL URLWithString:url];
+    //    }
+    //    分享的url
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //分享的图片
+        UIImage *imageToShare;
+        if (icon.length) {
+            imageToShare = [UIImage imageNamed:icon];
+        }
+        //分享的标题
+        NSString *textToShare;
+        if (text.length) {
+            textToShare = text;
+        }else {
+            textToShare = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+        }
+        NSURL *urlToShare;
+        if (url.length) {
+            NSLog(@"currentThread = %@", [NSThread currentThread]);
+            urlToShare = [NSURL URLWithString:url];
+        }
+        //在这里 如果想分享图片 就把图片添加进去  文字什么的加上
+        NSMutableArray *activityItems = @[textToShare].mutableCopy;
+        if (imageToShare) {
+            [activityItems addObject:imageToShare];
+        }
+        if (urlToShare) {
+            [activityItems addObject:urlToShare];
+        }
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+        
+        //不出现在活动项目
+        activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:activityVC animated:YES completion:nil];
+        });
+        // 分享之后的回调
+        activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+            if (completed) {
+                NSLog(@"completed");    //分享 成功
+            } else  {
+                NSLog(@"cancled");      //分享 取消
+            }
+            NSLog(@"activityError = %@", activityError);
+        };
+    });
+    
     /*
      ‌activityItems‌
-
+     
      ‌‌类型‌：NSArray
      ‌‌作用‌：存储待分享或操作的数据集合，支持多种数据类型混合：
      NSString（文本内容）
@@ -338,28 +369,13 @@
      其他符合 UIActivityItemSource 协议的对象
      
      applicationActivities‌
-
+     
      ‌‌类型‌：NSArray<UIActivity *>
      ‌‌作用‌：声明应用支持的自定义分享服务（如第三方登录、内部功能扩展），需继承 UIActivity 实现自定义行为；若无需自定义则传 nil
      示例:
      CustomActivity *customActivity = [[CustomActivity alloc] initWithTitle:@"自定义服务"];
      NSArray *activities = @[customActivity];
-
-     */
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    
-    //不出现在活动项目
-    activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
-    [self presentViewController:activityVC animated:YES completion:nil];
-    // 分享之后的回调
-    activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
-        if (completed) {
-            NSLog(@"completed");    //分享 成功
-        } else  {
-            NSLog(@"cancled");      //分享 取消
-        }
-        NSLog(@"activityError = %@", activityError);
-    };
+    */
 }
 
 @end

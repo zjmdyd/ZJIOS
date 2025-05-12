@@ -46,11 +46,15 @@
  */
 - (void)btnEvent:(UIButton *)sender {
     static int time = 0;
-    if (time == 0) {    // 自定义
+    if (time == 0) {    // 自定义右rightBarButtonItems
         self.navigationItem.rightBarButtonItems = nil;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 97-8, 44)];
+        view.backgroundColor = [UIColor redColor];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
         self.navigationItem.rightBarButtonItem = [self barButtonItemWithCustomViewWithImageNames:@[@"ic_more", @"ic_setting"]];
+
         self.label.text = @"customView_rightBarButtonItem";
-    }else {             // 系统
+    }else {             // 系统rightBarButtonItems
         self.navigationItem.rightBarButtonItem = nil;
         self.navigationItem.rightBarButtonItems = [self barButtonWithImageNames:@[@"ic_more", @"ic_setting"]];
         self.label.text = @"系统rightBarButtonItems";

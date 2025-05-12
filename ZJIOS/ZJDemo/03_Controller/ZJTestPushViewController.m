@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = [UIColor redColor];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
