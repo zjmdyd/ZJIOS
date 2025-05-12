@@ -22,32 +22,8 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"__LINE__", @"__FILE__", @"__func__&&_cmd"];
+    self.cellTitles = @[@"__LINE__", @"__FILE__", @"__func__&&_cmd", @"空指针常量"];
     self.values = @[@"test0", @"test1", @"test2"];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
-    }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    SEL s = NSSelectorFromString([NSString stringWithFormat:@"test%zd", indexPath.row]);
-    [self performSelector:s];
 }
 
 //源码文件中的行号
@@ -65,6 +41,12 @@
 - (void)test2 {
     NSLog(@"%s", __func__);                     // -[ZJTestNSLogViewController test1]
     NSLog(@"%@", NSStringFromSelector(_cmd));   // test1
+}
+
+- (void)test3 {
+    int *p = NULL, q = 10;
+    p = &q;
+    printf("a= %d\n", *p);
 }
 
 /*

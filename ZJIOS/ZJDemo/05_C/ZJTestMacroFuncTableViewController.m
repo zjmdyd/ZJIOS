@@ -21,23 +21,27 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"ZJNSLog,NSLog,printf", @"RECORD_TIME"];
     self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"NSLog_P(FORMAT, ...)", @"ZJNSLog,NSLog,printf", @"RECORD_TIME"];
     self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6"];
 }
 
-// ‘#’运算符:用来把参数转换成字符串
+// ‘#’运算符,字符串话操作符:用来把宏参数转换成字符串
 #define P(A) printf("%s = %d\n", #A, A);
+#define P_S(A) NSLog(@"%s = %@", #A, A);
 
 - (void)test0 {
     int a = 10;
     P(a);   // 输出:a = 10
     P(10);  // 输出:10 = 10
+    
+    NSString *str = @"hello baby";
+    P_S(str);   // str = hello baby
 }
 
 // '##'运算符:可以用于宏函数的替换部分。这个运算符把两个语言符号组合成单个语言符号，为宏扩展提供了一种连接实际变元的手段
 // ## 是宏连接符，作变量链接
-#define Func_Area(n) printf("the square of "#n" is %d.\n", area_##n)
+#define Func_Area(n) printf("the square of "#n", area_%s is %d.\n", #n, area_##n)
 
 - (void)test1 {
     int a = 30;
@@ -65,7 +69,8 @@ void logB(void) {
 
 - (void)test2 {
     LOG(A); // 输出:log func A.
-    getchar();
+    LOG(B); // 输出:log func B.
+//    getchar();
 }
 
 /*
@@ -77,31 +82,48 @@ void logB(void) {
 #define debug_log_func2(format, ...) printf(format, ##__VA_ARGS__)
 - (void)test3 {
     /*
-     __VA_ARGS__会替换为与省略号匹配的所有参数，同时会将省略号前面的一个逗号带上，既debug_log_func1("debug")，会拓展成printf("debug",)末尾多了个逗号
+     __VA_ARGS__会替换为与省略号匹配的所有参数，同时会将省略号前面的一个逗号带上，
+     既debug_log_func1("debug")，会拓展成printf("debug",)末尾多了个逗号
      debug_log_func1("debug");  // 会报错
      */
-    debug_log_func1("%s:%d\r\n", "debug", 100);
+    debug_log_func1("%s:%d\n", "debug", 100);   // debug:100
 }
 
 - (void)test4 {
 //    debug_log_func1("debug");   // 会拓展成printf("debug",)末尾多了个逗号
-    debug_log_func2("debug");   // 会将 printf("debug",) 多余的逗号去掉
+    debug_log_func2("debug\n");   // 会将 printf("debug",) 多余的逗号去掉
 }
 
+/*
+ 
+ */
+#define NSLog_P(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat: FORMAT, ##__VA_ARGS__] UTF8String])
+
 - (void)test5 {
+    NSString *str = @"hello world";
+    NSLog_P(@"str = %@", str);
+}
+
+/*
+ #define ZJNSLog(FORMAT, ...) \
+ fprintf(stderr, "%s:%d\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ##__VA_ARGS__] UTF8String])
+ */
+/*
+ ZJTestMacroFuncTableViewController.m:115    str = hello world
+ 2025-05-13 00:31:31.961526+0800 ZJIOS[20681:4342405] s = ZJTestMacroFuncTableViewController.m
+ ch = ZJTestMacroFuncTableViewController.m
+ */
+
+- (void)test6 {
     NSString *str = @"hello world";
     ZJNSLog(@"str = %@", str);
     
     NSString *s =  [[NSString stringWithUTF8String:__FILE__] lastPathComponent];
     NSLog(@"s = %@", s);
+    
     const char *ch = [s UTF8String];
-    printf("ch = %s", ch);
+    printf("ch = %s\n", ch);
 }
-/*
- ZJTestMacroFuncTableViewController.m:93    str = hello world
- 2023-05-23 18:30:19.334887+0800 ZJIOS[78070:7895225] s = ZJTestMacroFuncTableViewController.m
- ch = ZJTestMacroFuncTableViewController.m
- */
 
 // '##': 不可以是第一个或者最后一个子串,所以(_##NAME)加了下划线,去掉下划线会报错
 #define RECORD_TIME(NAME) double _##NAME = [NSDate date].timeIntervalSince1970;
@@ -129,37 +151,11 @@ static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING(abc);
 static NSString *const CAMREA_RESIZE_VERTEX = @TTF_SHADER_STRING(abc);
 */
 
-- (void)test6 {
+- (void)test7 {
     RECORD_TIME(began);
     NSLog(@"_began = %f", _began);
     NSString *str = CAMREA_RESIZE_VERTEX;
     NSLog(@"str = %@", str);
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
-    }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    SEL s = NSSelectorFromString([NSString stringWithFormat:@"test%zd", indexPath.row]);
-    [self performSelector:s];
 }
 
 /*

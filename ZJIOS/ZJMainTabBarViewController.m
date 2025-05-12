@@ -53,7 +53,7 @@
     self.viewControllers = ary;
 
     NSLog(@"tabBar.items = %@", self.tabBar.items);
-    self.selectedIndex = 2;
+    self.selectedIndex = 4;
 }
 
 /*
