@@ -19,28 +19,29 @@ UILabel *label;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initAry];
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 35)];
     label.text = @"haha";
     [self.view addSubview:label];
-    
-    test1();
 }
 
-void test0(void) {
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2"];
+}
+
+
+- (void)test0 {
     char *s = "You are beautiful";
     printf("len = %zd\n", strlen(s));   // len = 17
     for (int i = 0; i < strlen(s); i++) {
-        printf("%c", s[i]);
+        printf("%c\n", s[i]);
     }
 }
 
 // 模拟器跑不出效果
-void test1(void) {
-    char src[100] = {0};
-    printf("请输入一个字符串:");
-    gets(src);
-    printf("%s\n", src);
-
+- (void)test1 {
     char str[10];
     printf("请输入:");
     scanf("%s", str);
@@ -48,6 +49,15 @@ void test1(void) {
 
     label.text = [[NSString alloc] initWithCString:str encoding:NSUTF8StringEncoding];
 }
+
+// 模拟器跑不出效果
+- (void)test2 {
+    char src[100] = {0};
+    printf("请输入一个字符串:");
+    gets(src);
+    printf("%s\n", src);
+}
+
 
 /*
 #pragma mark - Navigation

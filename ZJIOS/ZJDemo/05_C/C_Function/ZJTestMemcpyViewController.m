@@ -55,6 +55,7 @@ void * My_memcpy(void* dest, const void* src, size_t num) {
 
 // person = 0x10d3a3f50, person.name = Pierre de Fermar, person.age = 46
 - (void)test0 {
+    printf("person = %p\n", &person);
     char myname[] = "Pierre de Fermar";
     // using mencpy to copy string
     My_memcpy(person.name, myname, strlen(myname) + 1);
@@ -65,6 +66,8 @@ void * My_memcpy(void* dest, const void* src, size_t num) {
 // using mencpy to copy structure
 //person_copy = 0x109feaf7c, person_copy.name = Pierre de Fermar, person_copy.age = 46
 - (void)test1 {
+    printf("person = %p\n", &person);
+    printf("person_copy = %p\n", &person_copy);
     My_memcpy(&person_copy, &person, sizeof(person));
     printf("person_copy = %p, person_copy.name = %s, person_copy.age = %d\n", &person_copy, person_copy.name, person_copy.age);
 }

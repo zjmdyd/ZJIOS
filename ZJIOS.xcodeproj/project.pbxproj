@@ -1626,16 +1626,16 @@
 				65AE086D28F54E35000349D3 /* ZJCTipsTableViewController.m */,
 				65D56F09287FFD2700E94FBC /* ZJTestFloatViewController.h */,
 				65D56F0A287FFD2700E94FBC /* ZJTestFloatViewController.m */,
+				657D57BD281F870C008B1964 /* ZJTestUnsignedDataViewController.h */,
+				657D57BE281F870C008B1964 /* ZJTestUnsignedDataViewController.m */,
 				659B208128FD3A32002923F6 /* ZJTestPreMacroTableViewController.h */,
 				659B208228FD3A32002923F6 /* ZJTestPreMacroTableViewController.m */,
 				65D95C5528F6C29A00879A28 /* ZJTestMacroFuncTableViewController.h */,
 				65D95C5628F6C29A00879A28 /* ZJTestMacroFuncTableViewController.m */,
-				65D95C5128F6AF2800879A28 /* ZJTestStructViewController.h */,
-				65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */,
 				65AC698628702D2B002074ED /* ZJTestSizeViewController.h */,
 				65AC698728702D2B002074ED /* ZJTestSizeViewController.m */,
-				657D57BD281F870C008B1964 /* ZJTestUnsignedDataViewController.h */,
-				657D57BE281F870C008B1964 /* ZJTestUnsignedDataViewController.m */,
+				65D95C5128F6AF2800879A28 /* ZJTestStructViewController.h */,
+				65D95C5228F6AF2800879A28 /* ZJTestStructViewController.m */,
 				38B150CB28C3650600688F62 /* C_Function */,
 			);
 			path = 05_C;
@@ -2574,6 +2574,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ABJW33Z4D;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					PROD_ENV,
+				);
 				INFOPLIST_FILE = ZJIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2599,6 +2604,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ABJW33Z4D;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					PROD_ENV,
+				);
 				INFOPLIST_FILE = ZJIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

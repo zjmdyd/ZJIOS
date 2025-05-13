@@ -18,22 +18,28 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-// 休眠，其他ui事件会被阻塞，会在休眠期结束后执行
+// 休眠，其他ui、timer事件会被阻塞，会在休眠期结束后执行
 - (IBAction)swhEvent:(UISwitch *)sender {
     NSLog(@"%s", __func__);
     if (@available(iOS 10.0, *)) {
         [NSTimer scheduledTimerWithTimeInterval:10 repeats:NO block:^(NSTimer * _Nonnull timer) {
-            NSLog(@"timer执行了");
+            NSLog(@"timer执行了_1");
             sender.on = NO;
         }];
     } else {
-        // Fallback on earlier versions
+        // Fallback on earlier version、、
     }
+    
     sleep(10);
 }
 
 - (IBAction)btnEvent:(UIButton *)sender {
     NSLog(@"%s", __func__);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
 }
 
 /*

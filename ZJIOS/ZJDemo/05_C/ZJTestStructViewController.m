@@ -66,8 +66,6 @@ Simple2 u1, u2[20], *u3;
     // Do any additional setup after loading the view.
 }
 
-
-
 /*
 #pragma mark - Navigation
 

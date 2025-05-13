@@ -17,11 +17,10 @@
  步骤:
  1.复制target,修改target名称
  2.Manage Scheme,修改scheme名称
- 3.修改***copy-info.plist名称,再修改plist文件路径,月原来的info.plist文件路径保持一样
- 4.配置plist路径，点击新的target,然后在Built Setting 中搜索 info.plist 找到配置项
-    修改为新info.plist的路径($(SRCROOT)/*//*/*)
+ 3.修改***copy-info.plist名称,再修改plist文件路径,与原来的info.plist文件路径保持一样
+ 4.配置plist路径，点击新的target,然后在Built Setting 中搜索 info.plist 找到配置项 修改为新info.plist的路径($(SRCROOT)/*//*/*)
  5.Build Setting搜索preprocessor Macros可配置宏
- */
+*/
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,13 +40,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -22,8 +22,8 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"NSLog_P(FORMAT, ...)", @"ZJNSLog,NSLog,printf", @"RECORD_TIME"];
-    self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6"];
+    self.cellTitles = @[@"宏变量名转换符:#", @"宏连接符_1:##", @"宏连接符_2:##", @"宏替换符:__VA_ARGS__", @"宏替换符:##__VA_ARGS__", @"NSLog_P(FORMAT, ...)", @"ZJNSLog,NSLog,printf", @"assert函数", @"RECORD_TIME"];
+    self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8"];
 }
 
 // ‘#’运算符,字符串话操作符:用来把宏参数转换成字符串
@@ -41,7 +41,7 @@
 
 // '##'运算符:可以用于宏函数的替换部分。这个运算符把两个语言符号组合成单个语言符号，为宏扩展提供了一种连接实际变元的手段
 // ## 是宏连接符，作变量链接
-#define Func_Area(n) printf("the square of "#n", area_%s is %d.\n", #n, area_##n)
+#define Func_Area(n) printf("the square of "#n", area_%s is %d.\n", #n, area_##n)   // 第一个"#n"替换成参数a,第二个#n匹配%s输出
 
 - (void)test1 {
     int a = 30;
@@ -49,12 +49,12 @@
     
     int b = 10;
     int area_b = b*b;
-    Func_Area(a);   // 输出: the square of a is 900.
-    Func_Area(b);   // 输出: the square of b is 100.
+    Func_Area(a);   // 输出: the square of a, area_a is 900.
+    Func_Area(b);   // 输出: the square of b, area_b is 100.
 }
 
 /*
- ##：用于将带参数的宏定义中将两个子串(token)联接起来，
+ ##：连接操作符, 用于将带参数的宏定义中将两个子串(token)联接起来，
  从而形成一个新的子串；但它不可以是第一个或者最后一个子串。所谓的子串(token)就是指编译器能够识别的最小语法单元；
  */
 #define LOG(x) log##x()
@@ -70,7 +70,7 @@ void logB(void) {
 - (void)test2 {
     LOG(A); // 输出:log func A.
     LOG(B); // 输出:log func B.
-//    getchar();
+    //    getchar();
 }
 
 /*
@@ -90,13 +90,10 @@ void logB(void) {
 }
 
 - (void)test4 {
-//    debug_log_func1("debug");   // 会拓展成printf("debug",)末尾多了个逗号
+    //    debug_log_func1("debug");   // 会拓展成printf("debug",)末尾多了个逗号
     debug_log_func2("debug\n");   // 会将 printf("debug",) 多余的逗号去掉
 }
 
-/*
- 
- */
 #define NSLog_P(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat: FORMAT, ##__VA_ARGS__] UTF8String])
 
 - (void)test5 {
@@ -125,13 +122,40 @@ void logB(void) {
     printf("ch = %s\n", ch);
 }
 
+- (void)test7 {
+    NSArray *ary = @[@100];
+//    NSArray *ary = @[];   // 会触发断言
+    assert(ary.count);      // 如果条件为假, 则终止程序
+    P_S(ary[0]);
+    /*
+     Assertion failed: (ary.count), function -[ZJTestMacroFuncTableViewController test7], file ZJTestMacroFuncTableViewController.m, line 128.
+*/
+}
+
 // '##': 不可以是第一个或者最后一个子串,所以(_##NAME)加了下划线,去掉下划线会报错
 #define RECORD_TIME(NAME) double _##NAME = [NSDate date].timeIntervalSince1970;
 
 #define TTF_STRINGIZE(x) #x
-#define TTF_STRINGIZE2(x) TTF_STRINGIZE(x)
-//#define TTF_STRINGIZE2(x) #x
-#define TTF_SHADER_STRING(text) @TTF_STRINGIZE2(text)
+#define TTF_STRINGIZE2(x) #x//TTF_STRINGIZE(x)
+//#define TTF_SHADER_STRING(text) @TTF_STRINGIZE2(text)
+//#define TTF_SHADER_STRING(text) @(#text)
+
+#define TTF_SHADER_STRING(text) @#text
+
+// 替换成cha*类型就不用加'@'符号
+static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING(abc);
+
+- (void)test8 {
+    RECORD_TIME(began);
+    NSLog(@"_began = %f", _began);
+    NSString *str = CAMREA_RESIZE_VERTEX;
+    NSLog(@"str = %@", str);
+}
+/*
+ 去掉'@'的宏定义
+#define TTF_SHADER_STRING(text) TTF_STRINGIZE2(text)
+static NSString *const CAMREA_RESIZE_VERTEX = @TTF_SHADER_STRING(abc);
+*/
 
 //static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING
 //(
@@ -143,21 +167,6 @@ void logB(void) {
 //    gl_Position = position;
 //}
 //);
-
-static NSString *const CAMREA_RESIZE_VERTEX = TTF_SHADER_STRING(abc);
-/*
- 去掉'@'的宏定义
-#define TTF_SHADER_STRING(text) TTF_STRINGIZE2(text)
-static NSString *const CAMREA_RESIZE_VERTEX = @TTF_SHADER_STRING(abc);
-*/
-
-- (void)test7 {
-    RECORD_TIME(began);
-    NSLog(@"_began = %f", _began);
-    NSString *str = CAMREA_RESIZE_VERTEX;
-    NSLog(@"str = %@", str);
-}
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

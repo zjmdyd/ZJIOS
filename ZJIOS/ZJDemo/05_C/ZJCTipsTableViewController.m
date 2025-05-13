@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestFloatViewController", @"ZJTestPreMacroTableViewController", @"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestUnsignedDataViewController", @"ZJTestCFunctionnTableViewController"];
+    self.cellTitles = @[@"ZJTestFloatViewController", @"ZJTestUnsignedDataViewController", @"ZJTestPreMacroTableViewController", @"ZJTestMacroFuncTableViewController", @"ZJTestSizeViewController", @"ZJTestStructViewController", @"ZJTestCFunctionnTableViewController"];
 }
 
 - (void)initSetting {
