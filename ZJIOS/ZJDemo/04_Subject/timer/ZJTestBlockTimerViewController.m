@@ -25,7 +25,7 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2",  @"test3",  @"test4"];
+    self.cellTitles = @[@"test0", @"test1", @"test2",  @"test3"];
 }
 
 - (void)initSetting {
@@ -33,52 +33,63 @@
 }
 
 /*
- vc会执行dealloc方法，timer会被释放
+ vc会执行dealloc方法，self.timer会被释放, 需使用__weak关键字
+ 此方法与系统方法同一个效果
  */
 - (void)test0 {
+    __weak typeof(self) weakSelf = self;    // 需使用__weak关键字
     self.timer = [NSTimer zj_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@"执行timer的方法:%@", timer);
+        NSLog(@"timer = %@, self.timer = %@, valid = %d", timer, weakSelf.timer, weakSelf.timer.isValid);
+        if (!weakSelf.timer.isValid) {
+            [timer invalidate];
+        }
     }];
+    
+    NSLog(@"self.timer = %@", self.timer);
 }
 
 /*
- vc不会执行dealloc方法，timer不会被释放,因为self.index变量导致block()强引用self,
+ vc不会执行dealloc方法，self.timer不会被释放,
+ 因为self.index变量导致block()强引用self,解决办法: 使用__weak关键字修饰
  */
 - (void)test1 {
+    __weak typeof(self) weakSelf = self;    // 需使用__weak关键字
+
     self.timer = [NSTimer zj_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        self.index++;
-        NSLog(@"执行timer的方法:%@, index = %zd", timer, self.index);
+        weakSelf.index++;
+        NSLog(@"执行timer的方法:%@, index = %zd", timer, weakSelf.index);
+        if (!weakSelf.timer.isValid) {
+            [timer invalidate];
+        }
     }];
 }
 
 /*
- 解决方法:self转成weak_self
+ vc会执行dealloc方法，self.timer会被释放
  */
 - (void)test2 {
-    __weak typeof(self) weak_self = self;
-    self.timer = [NSTimer zj_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        weak_self.index++;
-        NSLog(@"执行timer的方法:%@, index = %zd", timer, weak_self.index);
-    }];
-}
-
-- (void)test3 {
+    __weak typeof(self) weakSelf = self;    // 需使用__weak关键字
     NSTimer *timer = [NSTimer zj_timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
         NSLog(@"timerEvent1:%@", timer);
+        if (!weakSelf.timer.isValid) {
+            [timer invalidate];
+        }
     }];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     self.timer = timer;
+    NSLog(@"self.timer = %@", self.timer);
 }
 
-// test3()的简化版
-- (void)test4 {
+// test2()的简化版
+- (void)test3 {
+    __weak typeof(self) weakSelf = self;    // 需使用__weak关键字
     self.timer = [NSTimer zj_timerWithTimeInterval:1 repeats:YES addToRunLoopWithMode:NSDefaultRunLoopMode block:^(NSTimer * _Nonnull timer) {
         NSLog(@"timerEvent2:%@", timer);
+        if (!weakSelf.timer.isValid) {
+            [timer invalidate];
+        }
     }];
-}
-
-- (void)timerEvent:(NSTimer *)sender {
-    NSLog(@"调用了timer事件");
+    NSLog(@"self.timer = %@", self.timer);
 }
 
 /*
