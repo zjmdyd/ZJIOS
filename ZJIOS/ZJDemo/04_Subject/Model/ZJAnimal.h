@@ -18,6 +18,7 @@ typedef void(^Block)(NSString *str);
 - (void)execute;
 - (void)jump;
 - (void)fly;
+
 @end
 
 NS_ASSUME_NONNULL_END

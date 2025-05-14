@@ -17,15 +17,10 @@
     [super viewDidLoad];
     
     [self initAry];
-    [self initSetting];
 }
 
 - (void)initAry {
     self.cellTitles = @[@"ZJTestSleepFuncViewController", @"ZJTestMemcpyViewController", @"ZJTestC_StringViewController"];
-}
-
-- (void)initSetting {
-    
 }
 
 #pragma mark - UITableViewDataSource

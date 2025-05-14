@@ -32,7 +32,7 @@
 
 - (void)execute
 {
-    _blk(@"回调数据");
+    _blk(@"block回调数据");
 }
 
 -(void)jump {
@@ -44,7 +44,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"person释放了");
+    NSLog(@"animal释放了");
 }
 
 @end

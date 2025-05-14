@@ -16,7 +16,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self test1];
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1"];
 }
 
 // vc不会执行dealloc方法，因为timer会强引用target，即使用weak修饰self也一样，因为timer运行的时候执行事件导致target无法被释放
@@ -32,6 +37,10 @@
 
 - (void)timerEvent:(NSTimer *)sender {
     NSLog(@"%s", __func__);
+    
+    if (self.timer != sender) {
+        [sender invalidate];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

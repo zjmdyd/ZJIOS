@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D88BB96F272775C24C25093 /* Pods_ZJIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */; };
 		2B10FF905631B4A23F8F57B2 /* Pods_ZJIOS_ZJIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016F98A08412B2EB198294DF /* Pods_ZJIOS_ZJIOSUITests.framework */; };
+		381A0FD22DD4E2C2002D8BFB /* ZJString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD12DD4E2C2002D8BFB /* ZJString.m */; };
+		381A0FD52DD4E5C3002D8BFB /* MyString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD42DD4E5C3002D8BFB /* MyString.m */; };
 		382EE8CD26750B04008AB02C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CC26750B04008AB02C /* AppDelegate.m */; };
 		382EE8D026750B04008AB02C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CF26750B04008AB02C /* SceneDelegate.m */; };
 		382EE8D926750B04008AB02C /* ZJIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8D726750B04008AB02C /* ZJIOS.xcdatamodeld */; };
@@ -461,6 +463,10 @@
 
 /* Begin PBXFileReference section */
 		016F98A08412B2EB198294DF /* Pods_ZJIOS_ZJIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOS_ZJIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		381A0FD02DD4E2C2002D8BFB /* ZJString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJString.h; sourceTree = "<group>"; };
+		381A0FD12DD4E2C2002D8BFB /* ZJString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJString.m; sourceTree = "<group>"; };
+		381A0FD32DD4E5C3002D8BFB /* MyString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyString.h; sourceTree = "<group>"; };
+		381A0FD42DD4E5C3002D8BFB /* MyString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyString.m; sourceTree = "<group>"; };
 		382EE8C826750B04008AB02C /* ZJIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382EE8CB26750B04008AB02C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		382EE8CC26750B04008AB02C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1026,6 +1032,10 @@
 				6593EDB727956650001CC588 /* ZJTestNSLogViewController.m */,
 				65AAE65C283645570095450E /* ZJTestNSURLViewController.h */,
 				65AAE65D283645570095450E /* ZJTestNSURLViewController.m */,
+				381A0FD32DD4E5C3002D8BFB /* MyString.h */,
+				381A0FD42DD4E5C3002D8BFB /* MyString.m */,
+				381A0FD02DD4E2C2002D8BFB /* ZJString.h */,
+				381A0FD12DD4E2C2002D8BFB /* ZJString.m */,
 				657D57BB281F7A20008B1964 /* resource */,
 			);
 			path = 01_Foundation;
@@ -1082,13 +1092,13 @@
 				6577B30328F2A7E0009471EA /* ZJTestMultiTargetViewController.m */,
 				38A1F0B3267AF3A000A4D044 /* ZJTestBlockViewController.h */,
 				38A1F0B4267AF3A000A4D044 /* ZJTestBlockViewController.m */,
+				658FC464279FEC8800A7FE1D /* timer */,
 				38B150C728C3643500688F62 /* File */,
 				38B150C028C361A000688F62 /* Animation */,
 				65F94A4F28A0E3490042F8F6 /* BezierPath */,
 				658CA1B9288956A90043B21A /* CIImage */,
 				656A4D3F28334727006BEBDC /* Layer */,
 				6585EF52294B134100392F66 /* Thread */,
-				658FC464279FEC8800A7FE1D /* timer */,
 				65FAF649279EAE4800183053 /* rest */,
 				38A1F0B9267B47D300A4D044 /* Model */,
 				388B32D9267D97AE0071F530 /* resource */,
@@ -2146,6 +2156,7 @@
 				65ADD1D6294C6BA600A93E9C /* ZJTestNSThreadFuncTableViewController.m in Sources */,
 				38EBE1492675BB8900E090D9 /* ZJSubjectTableViewController.m in Sources */,
 				6585EF68294B139D00392F66 /* ZJNSOperationDownLoaderDemoVC.m in Sources */,
+				381A0FD52DD4E5C3002D8BFB /* MyString.m in Sources */,
 				65AAE65E283645570095450E /* ZJTestNSURLViewController.m in Sources */,
 				38FF5B272A1CAE6200F7DBEC /* ZJTestAppearanceViewController.m in Sources */,
 				654682D6295161EC00B626B0 /* ZJTestDispatchSemaphoreTableViewController.m in Sources */,
@@ -2221,6 +2232,7 @@
 				6587E97A281E7FCE00AACDDB /* ZJManualReleaseTimerViewController.m in Sources */,
 				65B03284284615E800E9C08A /* ZJMentionObject.m in Sources */,
 				65F7C6CF2692E9CC00121EBD /* NSArray+ZJArray.m in Sources */,
+				381A0FD22DD4E2C2002D8BFB /* ZJString.m in Sources */,
 				65F7C6CE2692E9CC00121EBD /* NSDate+ZJDate.m in Sources */,
 				38B150C628C3639D00688F62 /* ZJTestFileTableViewController.m in Sources */,
 				38A1F0B2267A610500A4D044 /* ZJMemAnalyzeViewController.m in Sources */,

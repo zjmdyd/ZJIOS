@@ -13,20 +13,14 @@
 
 @implementation ZJTestTimerTableViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initAry];
-    [self initSetting];
 }
 
 - (void)initAry {
     self.cellTitles = @[@"ZJTestTimerViewController", @"ZJManualReleaseTimerViewController", @"ZJTestBlockTimerViewController", @"ZJTestScrollTimerTableViewController", @"ZJTestGCDTimerTableViewController"];
-}
-
-- (void)initSetting {
-    
 }
 
 #pragma mark - UITableViewDataSource

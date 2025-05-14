@@ -7,6 +7,7 @@
 
 #import "ZJTestStringViewController.h"
 #import "NSString+ZJString.h"
+#import "MyString.h"
 
 @interface ZJTestStringViewController ()
 
@@ -315,6 +316,13 @@
     NSString *str = @"hello";
     NSDictionary *dic = [str stringToJson];
     NSLog(@"dic = %@", dic);
+}
+
+- (void)tset9 {
+//    NSData *data = [@"自定义字符串" dataUsingEncoding:NSUTF8StringEncoding];
+//    MyString *str = [[MyString alloc] initWithData:data];
+//    NSLog(@"str = %@, superclass = %@", str, str.superclass);
+    NSLog(@"最好不要去继承类簇");
 }
 
 /*

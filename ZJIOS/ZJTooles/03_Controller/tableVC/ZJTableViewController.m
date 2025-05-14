@@ -25,9 +25,6 @@
 
 - (void)dealloc {
     NSLog(@"%s, currentVC = %@", __func__, self.class);
-    if (self.timer) {
-        [self.timer invalidate];
-    }
 }
 
 /*
