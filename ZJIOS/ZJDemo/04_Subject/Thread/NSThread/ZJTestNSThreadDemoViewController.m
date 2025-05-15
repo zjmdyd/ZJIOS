@@ -12,7 +12,7 @@
 @interface ZJTestNSThreadDemoViewController () <UICollectionViewDataSource, UICollectionViewDelegate>{
     NSMutableArray *_colors;
     NSTimer *_addItemTimer;
-    BOOL _isAutoControl;
+    BOOL _isAutoControl;    // 自动设置垂直方向的偏移量
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -79,7 +79,7 @@ static NSString *CollectID = @"collectID";
         [_addItemTimer invalidate];
     }else {
         [sender setTitle:@"暂停...." forState:UIControlStateNormal];
-        _addItemTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(addItem) userInfo:nil repeats:YES];
+        _addItemTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(addItem) userInfo:nil repeats:YES];
     }
 }
 
@@ -92,12 +92,10 @@ static NSString *CollectID = @"collectID";
     UIColor *backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
     [_colors addObject:backgroundColor];
     
-    NSLog(@"test1");
     /*
         睡眠时间内, 线程被阻塞,程序不往下执行,停止1s后继续执行
      */
-    [NSThread sleepForTimeInterval:1];
-    NSLog(@"test2");
+//    [NSThread sleepForTimeInterval:1];
 
     [self.collectionView reloadData];
     if (self.collectionView.contentSize.height > self.collectionView.height && _isAutoControl == YES) {
