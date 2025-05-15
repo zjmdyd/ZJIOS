@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 YunTu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJBaseTableViewController.h"
 
-@interface ZJNSOperationViewController : UIViewController
+@interface ZJNSOperationViewController : ZJBaseTableViewController
 
 @end

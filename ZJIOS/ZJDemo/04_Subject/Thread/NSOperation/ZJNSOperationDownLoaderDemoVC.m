@@ -48,7 +48,7 @@ NSString * const URL_STRING = @"http://sanjosetransit.com/extras/SJTransit_Icons
         }];
         
         self.downloader.delegate = self;
-        
+        [self.downloader start];
         [self.operationQueue addOperation:self.downloader];
         [self.operationQueue addOperationWithBlock:^{
             NSLog(@"next operation");

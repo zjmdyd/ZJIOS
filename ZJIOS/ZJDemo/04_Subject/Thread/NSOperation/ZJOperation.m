@@ -54,6 +54,10 @@ static const NSTimeInterval kRequestTimeout = 20.f;
 
 #pragma mark - NSOperation Methods
 
+- (void)main {
+    NSLog(@"%s", __func__);
+}
+
 - (void)start {
     if (self.isCancelled) {
         [self finish];

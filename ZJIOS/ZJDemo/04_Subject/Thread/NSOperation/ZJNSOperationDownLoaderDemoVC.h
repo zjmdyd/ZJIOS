@@ -6,8 +6,8 @@
 //  Copyright © 2015年 YunTu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJViewController.h"
 
-@interface ZJNSOperationDownLoaderDemoVC : UIViewController
+@interface ZJNSOperationDownLoaderDemoVC : ZJViewController
 
 @end
