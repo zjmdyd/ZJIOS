@@ -45,7 +45,7 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"testDispatch_group", @"test7", @"testDispatch_group2", @"testBlockMainThread", @"test_dispatch_apply"];
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"testDispatch_group", @"test_dispatch_group_enter", @"testDispatch_group2", @"testBlockMainThread", @"test_dispatch_apply"];
 }
 
 /*
@@ -225,9 +225,41 @@
 }
 
 /*
-    异步线程和同步线程混合使用
+ 手动创建串行(DISPATCH_QUEUE_SERIAL)和并行(DISPATCH_QUEUE_CONCURRENT)队列
  */
 - (void)test5 {
+    NSLog(@"用同步函数往并行队列中添加任务");
+    //创建并行队列    为什么还是在主线程中执行?
+    dispatch_queue_t  queue = dispatch_queue_create("wendingding", DISPATCH_QUEUE_CONCURRENT);
+    
+    //2.添加任务到队列中执行
+    dispatch_sync(queue, ^{
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
+    });
+    
+    //执行主线程
+    NSLog(@"主线程----%@", [NSThread mainThread]);
+}
+
+/*
+    异步线程和同步线程混合使用
+ */
+- (void)test6 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
     // 只会开启一个线程
@@ -322,7 +354,7 @@
  该函数通常用于需要同步等待异步任务结果的场景，如批量网络请求完成后进行数据聚合
  */
 
-- (void)test7 {
+- (void)test_dispatch_group_enter {
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
@@ -415,28 +447,36 @@
 
 /*
     总结:同步函数不具备开启线程的能力，无论是什么队列都不会开启线程；异步函数具备开启线程的能力，开启几条线程由队列决定（串行队列只会开启一条新的线程，并发队列会开启多条线程）。
-
     GCD的数据类型在ARC的环境下不需要再做release。
     CF（core Foundation）的数据类型在ARC环境下还是需要做release。
     异步函数具备开线程的能力，但不一定会开线程
- 
- 
     并发和并行:
         并发和并行又有区别，并行是指两个或者多个事件在同一时刻发生；而并发是指两个或多个事件在同一时间间隔内发生。
-     
         在操作系统中，并发是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行，但任一个时刻点上只有一个程序在处理机上运行。
      
         ①程序与计算不再一一对应，一个程序副本可以有多个计算
         ②并发程序之间有相互制约关系，直接制约体现为一个程序需要另一个程序的计算结果，间接制约体现为多个程序竞争某一资源，如处理机、缓冲区等。
         ③并发程序在执行中是走走停停，断续推进的。
-
 */
 
+/*
+ ‌基础特性‌
+ 同步执行所有迭代任务，阻塞当前线程直到所有任务完，执行指定次数的block迭代,并发队列时迭代并行执行（顺序不确定）
+ 迭代索引通过size_t参数传递给block，范围是[0, iterations-1]
+ 默认使用与当前队列优先级匹配的全局并发队列（DISPATCH_APPLY_AUTO）
+ ‌‌队列行为差异‌
+ ‌‌并发队列‌：迭代并行执行，顺序不确定
+ ‌‌串行队列‌：退化为顺序执行，等同于for循环
+ ‌‌主队列‌：导致界面卡顿，需避免直接使用
+ */
 - (void)test_dispatch_apply {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     NSLog(@"began");
-    dispatch_apply(10, queue, ^(size_t iteration) {
-        NSLog(@"iteration = %zd, %@", iteration, [NSThread currentThread]);
+    // 并发队列,迭代并执行，顺序不确定
+    dispatch_async(queue, ^{
+        dispatch_apply(10, queue, ^(size_t iteration) {
+            NSLog(@"iteration = %zd, %@", iteration, [NSThread currentThread]);
+        });
     });
     
     // dispatch_apply会阻塞当前线程，打印end不会立即执行。

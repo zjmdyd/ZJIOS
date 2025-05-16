@@ -1661,10 +1661,10 @@
 				6585EF54294B135B00392F66 /* ZJGCDTableViewController.m */,
 				654682D029515E2500B626B0 /* ZJTestGCDBasicTableViewController.h */,
 				654682D129515E2500B626B0 /* ZJTestGCDBasicTableViewController.m */,
-				65F4EB30295061B100F56675 /* ZJTestGCDBarrierTableViewController.h */,
-				65F4EB31295061B100F56675 /* ZJTestGCDBarrierTableViewController.m */,
 				65F4EB3529506BC300F56675 /* ZJTestThreadSafeViewController.h */,
 				65F4EB3629506BC300F56675 /* ZJTestThreadSafeViewController.m */,
+				65F4EB30295061B100F56675 /* ZJTestGCDBarrierTableViewController.h */,
+				65F4EB31295061B100F56675 /* ZJTestGCDBarrierTableViewController.m */,
 				654682D4295161EC00B626B0 /* ZJTestDispatchSemaphoreTableViewController.h */,
 				654682D5295161EC00B626B0 /* ZJTestDispatchSemaphoreTableViewController.m */,
 			);

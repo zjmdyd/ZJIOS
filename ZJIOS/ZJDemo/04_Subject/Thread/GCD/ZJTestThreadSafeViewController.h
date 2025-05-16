@@ -5,11 +5,11 @@
 //  Created by issuser on 2022/12/19.
 //
 
-#import "ZJViewController.h"
+#import "ZJBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestThreadSafeViewController : ZJViewController
+@interface ZJTestThreadSafeViewController : ZJBaseTableViewController
 
 @end
 

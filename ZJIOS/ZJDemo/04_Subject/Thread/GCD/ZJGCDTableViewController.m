@@ -58,8 +58,8 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"testGCDBasic", @"testBarrier", @"testThreadSafe", @"testDispatchSemaphore"];
-    self.vcNames = @[@"ZJTestGCDBasicTableViewController", @"ZJTestGCDBarrierTableViewController", @"ZJTestThreadSafeViewController", @"ZJTestDispatchSemaphoreTableViewController"];
+    self.cellTitles = @[@"testGCDBasic", @"testThreadSafe", @"testBarrier", @"testDispatchSemaphore"];
+    self.vcNames = @[@"ZJTestGCDBasicTableViewController", @"ZJTestThreadSafeViewController", @"ZJTestGCDBarrierTableViewController", @"ZJTestDispatchSemaphoreTableViewController"];
 }
 
 - (void)initSetting {
