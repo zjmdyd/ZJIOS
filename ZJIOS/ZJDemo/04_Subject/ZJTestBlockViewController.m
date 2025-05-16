@@ -45,6 +45,7 @@ struct __main_block_impl_0 {
 @property (nonatomic, copy) Blk_t blk;
 @property (nonatomic, strong) ZJAnimal *animal;
 @property (nonatomic, strong) ZJAnimal *animal2;
+@property (nonatomic, assign) NSInteger idx;
 
 @end
 
@@ -55,6 +56,7 @@ struct __main_block_impl_0 {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.idx = 100;
     [self initAry];
 }
 
@@ -293,6 +295,8 @@ Blk_rt func(int rate) {
     static int num = 25;
     void (^Block)(void) = ^{
         NSLog(@"age:%d, num:%d", age, num);
+        self.idx = 200; // 可以修改
+        //age = 20;     // 不可以修改 Variable is not assignable (missing __block type specifier)
     };
     age = 20;
     num = 11;

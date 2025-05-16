@@ -7,11 +7,11 @@
 //
 
 #import "ZJNSOperationDownLoaderDemoVC.h"
-#import "ZJOperation.h"
+#import "ZJNetOperation.h"
 
 @interface ZJNSOperationDownLoaderDemoVC ()<ZJHTTPDownloadDelegate>
 
-@property (nonatomic, strong) ZJOperation *downloader;
+@property (nonatomic, strong) ZJNetOperation *downloader;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @property (nonatomic, weak) IBOutlet UIProgressView *progress;
@@ -19,8 +19,8 @@
 
 @end
 
-NSString * const URL_STRING = @"http://sanjosetransit.com/extras/SJTransit_Icons.zip";
-
+//NSString * const URL_STRING = @"http://sanjosetransit.com/extras/SJTransit_Icons.zip";
+NSString * const URL_STRING = @"http://gips3.baidu.com/it/u=3886271102,3123389489&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960";
 @implementation ZJNSOperationDownLoaderDemoVC
 
 - (void)viewDidLoad {
@@ -31,24 +31,25 @@ NSString * const URL_STRING = @"http://sanjosetransit.com/extras/SJTransit_Icons
 - (IBAction)buttonAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"Download"]) {
         [sender setTitle:@"Cancel" forState:UIControlStateNormal];
-        self.progress.progress = 0.f;
         
+        self.progress.progress = 0.f;
         NSURL *URL = [NSURL URLWithString:URL_STRING];
-        self.downloader = [[ZJOperation alloc] initWithRequestURL:URL progress:^(float percent) {
+        __weak typeof(self) weakSelf = self;
+        self.downloader = [[ZJNetOperation alloc] initWithRequestURL:URL progress:^(float percent) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.progress.progress = percent;
+                weakSelf.progress.progress = percent;
             });
         } completion:^(id response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [sender setTitle:@"Finished" forState:UIControlStateNormal];
                 if (error) {
-                    self.progress.progress = 0.f;
+                    weakSelf.progress.progress = 0.f;
                 }
             });
         }];
         
         self.downloader.delegate = self;
-        [self.downloader start];
+        self.operationQueue = [[NSOperationQueue alloc] init];
         [self.operationQueue addOperation:self.downloader];
         [self.operationQueue addOperationWithBlock:^{
             NSLog(@"next operation");
@@ -62,16 +63,18 @@ NSString * const URL_STRING = @"http://sanjosetransit.com/extras/SJTransit_Icons
 
 #pragma mark - 
 
-- (void)zjHTTPDownload:(ZJOperation *)downloader downloadProgress:(double)progress {
+- (void)zjHTTPDownload:(ZJNetOperation *)downloader downloadProgress:(double)progress {
     NSLog(@"%s", __func__);
 }
 
-- (void)zjHTTPDownload:(ZJOperation *)downloader didDownloadWithData:(NSData *)data {
-    self.downloadIV.image = [UIImage imageWithData:data];
+- (void)zjHTTPDownload:(ZJNetOperation *)downloader didDownloadWithData:(NSData *)data {
     NSLog(@"%s", __func__);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.downloadIV.image = [UIImage imageWithData:data];
+    });
 }
 
-- (void)zjHTTPDownload:(ZJOperation *)downloader didFailWithError:(NSError *)error {
+- (void)zjHTTPDownload:(ZJNetOperation *)downloader didFailWithError:(NSError *)error {
     NSLog(@"%s", __func__);
 }
 

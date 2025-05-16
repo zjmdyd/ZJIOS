@@ -17,35 +17,23 @@
  1.GCD中有2个用来执行任务的函数
  
  说明：把右边的参数（任务）提交给左边的参数（队列）进行执行。
- 
  （1）用同步的方式执行任务 dispatch_sync(dispatch_queue_t queue, dispatch_block_t block);
- 
- 参数说明：
- 
- queue：队列
- 
- block：任务
- 
  （2）用异步的方式执行任务 dispatch_async(dispatch_queue_t queue, dispatch_block_t block);
- 
+ 参数说明：
+ queue：队列
+ block：任务
+
  2.同步和异步的区别
- 
  同步：在当前线程中执行
- 
  异步：在另一条线程中执行
 
 补充说明:
      同步和异步决定了要不要开启新的线程
-     
      同步：在当前线程中执行任务，不具备开启新线程的能力
-     
      异步：在新的线程中执行任务，具备开启新线程的能力
-     
  
      并发和串行决定了任务的执行方式
-     
      并发：多个任务并发（同时）执行
-     
      串行：一个任务执行完毕后，再执行下一个任务
  */
 
@@ -53,15 +41,11 @@
     [super viewDidLoad];
 
     [self initAry];
-    [self initSetting];
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"testDispatch_group", @"testDispatch_group2", @"testBlockMainThread", @"test_dispatch_apply"];
-}
-
-- (void)initSetting {
-    
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"testDispatch_group", @"test7", @"testDispatch_group2", @"testBlockMainThread", @"test_dispatch_apply"];
 }
 
 /*
@@ -75,18 +59,21 @@
     //2.添加任务到队列中，就可以执行任务
     //异步函数：具备开启新线程的能力
     dispatch_async(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_async(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_async(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
@@ -95,8 +82,7 @@
 }
 
 /*
-    用异步函数往并发队列中添加任务
-    同时开启三个子线程:3个子线程会 并发执行
+ 队列优先级
  */
 - (void)test1 {
     //1.获得全局的并发队列 : 使用dispatch_get_global_queue函数获得全局的并发队列
@@ -105,21 +91,25 @@
     //2.添加任务到队列中，就可以执行任务
     //异步函数：具备开启新线程的能力
     dispatch_async(queue1, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_async(queue1, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
-// DISPATCH_QUEUE_PRIORITY_LOW并不会让该任务放在最后执行,同样是会并发执行
-    dispatch_queue_t queue2 =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+// DISPATCH_QUEUE_PRIORITY_HIGH并不会让该任务放在最先执行,同样是会并发执行
+    dispatch_queue_t queue2 =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
 
     dispatch_async(queue2, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
@@ -139,27 +129,28 @@
     
     //2.添加任务到队列中执行
     dispatch_async(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
-    
     dispatch_async(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
-    
     dispatch_async(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     //执行主线程
     NSLog(@"主线程----%@", [NSThread mainThread]);
     
-    //3.释放资源 (MRC)
+    // 3.释放资源 (MRC)
     // dispatch_release(queue);
 }
 
@@ -167,24 +158,31 @@
     用同步函数往并发队列中添加任务
     不会开启新的线程，并发队列失去了并发的功能
  */
+
 - (void)test3 {
     //创建并行队列
     dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
-    //2.添加任务到队列中执行
+    //2.添加任务到队列中执行, 为什么在主线程中执行?
+    /*
+     As a performance optimization, this function executes blocks on the current thread whenever possible, with one exception: Blocks submitted to the main dispatch queue always run on the main thread.
+     */
     dispatch_sync(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_sync(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_sync(queue, ^{
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
@@ -204,40 +202,53 @@
     
     //2.添加任务到队列中执行
     dispatch_sync(queue, ^{
-        NSLog(@"下载图片1----%@", [NSThread currentThread]);
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
     });
     dispatch_sync(queue, ^{
-        NSLog(@"下载图片2----%@", [NSThread currentThread]);
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
     });
     dispatch_sync(queue, ^{
-        NSLog(@"下载图片3----%@", [NSThread currentThread]);
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
     });
     
     //执行主线程
-    NSLog(@"主线程----%@",[NSThread mainThread]);
+    NSLog(@"主线程----%@", [NSThread mainThread]);
 }
 
 /*
     异步线程和同步线程混合使用
  */
 - (void)test5 {
-    dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);    // 都在主线程里面执行
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
+    // 只会开启一个线程
     dispatch_async(queue, ^{
-        //2.添加任务到队列中执行:三个线程1、2、3串行执行
+        //2.添加任务到队列中执行:三个任务1、2、3串行执行
         dispatch_sync(queue, ^{
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 5; i++) {
                 NSLog(@"下载图片1----%@", [NSThread currentThread]);
+                [NSThread sleepForTimeInterval:1];
             }
         });
         dispatch_sync(queue, ^{
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 5; i++) {
                 NSLog(@"下载图片2----%@", [NSThread currentThread]);
+                [NSThread sleepForTimeInterval:1];
             }
         });
         dispatch_sync(queue, ^{
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 5; i++) {
                 NSLog(@"下载图片3----%@", [NSThread currentThread]);
+                [NSThread sleepForTimeInterval:1];
             }
         });
     });
@@ -250,83 +261,147 @@
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(group, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task one");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     dispatch_group_async(group, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task two");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     dispatch_group_async(group, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task three");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     // 3个任务会并发执行
     //得到线程执行完的通知
     dispatch_group_notify(group, globalQueue, ^{
-        NSLog(@"dispatch_group_notify_completed");
+        NSLog(@"dispatch_group_notify_completed, %@", [NSThread currentThread]);
     });
-    
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    NSLog(@"dispatch_group_wait_completed");
+    // DISPATCH_TIME_FOREVER会阻塞当前线程,所以不要在主线程执行dispatch_group_wait
+    dispatch_async(globalQueue, ^{
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+        NSLog(@"dispatch_group_wait_completed, %@", [NSThread currentThread]);
+    });
 
     dispatch_async(globalQueue, ^{
-        NSLog(@"task four");    // dispatch_group_wait_completed 之后才执行
+        NSLog(@"task four, %@", [NSThread currentThread]);
     });
-    // 因为你在使用的是同步的 dispatch_group_wait ，它会阻塞当前线程，所以你要用 dispatch_async 将整个方法放入后台队列以避免阻塞主线程。
-    // 输出的顺序与添加进队列的顺序无关，因为队列是Concurrent Dispatch Queue，但“dispatch_group_wait_completed”的输出一定是在后面的
+    NSLog(@"当前线程:%@", [NSThread currentThread]);
+}
+/*
+ dispatch_group_wait是GCD中用于同步等待任务组完成的函数，其核心机制和使用规范如下：
+ ‌‌基础功能‌
+ 阻塞当前线程直到组内所有任务完成或超时
+ 与dispatch_group_notify的异步回调形成互补
+ 通过返回值区分等待结果（0表示成功，非0表示超时）
+ ‌‌参数说明‌
+ long dispatch_group_wait(dispatch_group_t group, dispatch_time_t timeout);
+ group：要监视的调度组对象
+ timeout：
+ DISPATCH_TIME_NOW：立即返回当前状态
+ DISPATCH_TIME_FOREVER：永久阻塞直到任务完成
+ 自定义时间值（如dispatch_time(DISPATCH_TIME_NOW, 3*NSEC_PER_SEC)）
+
+ ‌注意事项‌
+ 主线程调用会导致界面卡顿
+ 必须保证dispatch_group_enter与dispatch_group_leave调用次数严格匹配
+ 与dispatch_group_notify混用时注意线程竞争
+ ‌‌调试建议‌
+ 使用DISPATCH_TIME_NOW快速检测组状态
+ 超时场景应配合错误处理逻辑
+ 避免在串行队列的目标队列上调用
+ 该函数通常用于需要同步等待异步任务结果的场景，如批量网络请求完成后进行数据聚合
+ */
+
+- (void)test7 {
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+    // 手动管理任务计数（必须配对使用）
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        /* 异步任务 */
+        for (int i = 0; i < 10; i++) {
+            NSLog(@"下载图片%d----%@", i, [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
+        }
+        dispatch_group_leave(group);
+    });
+    
+    dispatch_async(queue, ^{
+        // 同步等待（超时5秒）
+        long result = dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 5*NSEC_PER_SEC));
+        NSLog(@"dispatch_group_wait返回, %@", [NSThread currentThread]);
+
+        if (result != 0) {
+            NSLog(@"任务超时未完成");
+        }
+    });
 }
 
 - (void)testDispatch_group2 {
     dispatch_group_t group1 = dispatch_group_create();
     dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_async(group1, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task one");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"task one:%d, %@", i, [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     dispatch_group_async(group1, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task two");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"task two:%d, %@", i, [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     // 2个任务会并发执行
     //得到线程执行完的通知
     dispatch_group_notify(group1, globalQueue, ^{
-        NSLog(@"dispatch_group1_notify_completed");
+        NSLog(@"dispatch_group1_notify_completed, %@", [NSThread currentThread]);
     });
     
-    dispatch_group_wait(group1, DISPATCH_TIME_FOREVER);
-    NSLog(@"dispatch_group1_wait_completed");
+    dispatch_async(globalQueue, ^{
+        dispatch_group_wait(group1, DISPATCH_TIME_FOREVER);
+        NSLog(@"dispatch_group1_wait_completed, %@", [NSThread currentThread]);
+    });
 
     // 第二个group
     dispatch_group_t group2 = dispatch_group_create();
     dispatch_group_async(group2, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task three");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"task three:%d, %@", i, [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     
     dispatch_group_async(group2, globalQueue, ^{
-        for (int i = 0; i < 10; i++) {
-            NSLog(@"task four");
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"task four:%d, %@", i, [NSThread currentThread]);
+            [NSThread sleepForTimeInterval:1];
         }
     });
     //得到线程执行完的通知
     dispatch_group_notify(group2, globalQueue, ^{
-        NSLog(@"dispatch_group2_notify_completed");
+        NSLog(@"dispatch_group2_notify_completed, %@", [NSThread currentThread]);
     });
 }
 
 /*
+ 死锁风险‌
+ 在串行队列（包括主队列）中嵌套调用dispatch_sync会导致死锁
+ // 危险示例（主线程调用时死锁）
+ dispatch_sync(dispatch_get_main_queue(), ^{  任务  });
  阻塞主线程:
  */
 - (void)testBlockMainThread {
@@ -366,41 +441,6 @@
     
     // dispatch_apply会阻塞当前线程，打印end不会立即执行。
     NSLog(@"end");
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
-    if (!cell) {
-        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
-    }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    NSString *funcName = self.cellTitles[indexPath.row];
-    SEL sel = NSSelectorFromString(funcName);
-    if (indexPath.item == 3 || indexPath.item == 6 || indexPath.item == 7) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self performSelector:sel];
-        });
-    }else {
-        [self performSelector:sel];
-    }
-    
-    NSLog(@"如果执行的任务为同步任务，则需要用异步函数,否则会阻塞主线程方法");
 }
 
 /*

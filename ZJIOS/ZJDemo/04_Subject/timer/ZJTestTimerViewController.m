@@ -62,7 +62,7 @@
                 [weakSelf timerEvent:nil];  // 页面返回后,不会执行，因为self已经被销毁
             }else {
                 NSLog(@"self已经被销毁");    // 页面返回后,会执行，因为timer没有被销毁
-                [timer invalidate];
+//                [timer invalidate];
             }
         }];
     } else {
@@ -87,7 +87,7 @@
                 [weakSelf timerEvent:nil];  // 页面返回后,不会执行，因为self已经被销毁,执行else
             }else {
                 NSLog(@"self已经被销毁");    // 页面返回后,会执行，因为timer没有被销毁
-                [timer invalidate];
+//                [timer invalidate];
             }
         }];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];

@@ -1,12 +1,12 @@
 //
-//  ZJOperation.m
+//  ZJNetOperation.m
 //  ZJFoundation
 //
 //  Created by hanyou on 15/12/1.
 //  Copyright © 2015年 YunTu. All rights reserved.
 //
 
-#import "ZJOperation.h"
+#import "ZJNetOperation.h"
 
 #define DELEGATE_HAS_METHOD(delegate, method) delegate && [delegate respondsToSelector:@selector(method)]
 
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, ZJRequestState) {
 
 static const NSTimeInterval kRequestTimeout = 20.f;
 
-@interface ZJOperation ()
+@interface ZJNetOperation ()
 
 @property (nonatomic, strong) NSMutableData *fileData;
 @property (nonatomic, strong) NSMutableURLRequest *request;
@@ -29,18 +29,18 @@ static const NSTimeInterval kRequestTimeout = 20.f;
 @property (nonatomic, assign) ZJRequestState state;
 @property (nonatomic, assign) CFRunLoopRef operationRunLoop;
 
-@property (nonatomic, copy) completion completion;
-@property (nonatomic, copy) downloadProgress progress;
+@property (nonatomic, copy) Completion completion;
+@property (nonatomic, copy) DownloadProgress progress;
 
 @end
 
-@implementation ZJOperation
+@implementation ZJNetOperation
 
 @synthesize state = _state;
 
 - (instancetype)initWithRequestURL:(NSURL *)url
-                          progress:(downloadProgress)progress
-                        completion:(completion)completion {
+                          progress:(DownloadProgress)progress
+                        completion:(Completion)completion {
     if (self = [super init]) {
         self.progress = progress;
         self.completion = completion;
@@ -53,10 +53,6 @@ static const NSTimeInterval kRequestTimeout = 20.f;
 }
 
 #pragma mark - NSOperation Methods
-
-- (void)main {
-    NSLog(@"%s", __func__);
-}
 
 - (void)start {
     if (self.isCancelled) {
@@ -92,18 +88,11 @@ static const NSTimeInterval kRequestTimeout = 20.f;
     [self finish];
 }
 
-- (BOOL)isConcurrent {
-    return YES;
-}
-
-- (BOOL)isFinished {
-    return self.state == ZJRequestStateFinished;
-}
-
-- (BOOL)isExecuting {
-    return self.state == ZJRequestStateExecuting;
-}
-
+/*
+ KVO合规性问题‌
+ 自定义NSOperation需手动实现isExecuting和isFinished的KVO通知
+ 必须在状态变更时调用willChangeValueForKey:和didChangeValueForKey:
+ */
 - (void)finish {
     [self.connection cancel];
     self.connection = nil;
@@ -117,12 +106,39 @@ static const NSTimeInterval kRequestTimeout = 20.f;
     [self didChangeValueForKey:@"isFinished"];
 }
 
+- (BOOL)isConcurrent {
+    return YES;
+}
+
+- (BOOL)isFinished {
+    return self.state == ZJRequestStateFinished;
+}
+
+- (BOOL)isExecuting {
+    return self.state == ZJRequestStateExecuting;
+}
+
+- (ZJRequestState)state {
+    @synchronized(self) {
+        return _state;
+    }
+}
+
+- (void)setState:(ZJRequestState)newState {
+    @synchronized(self) {
+        [self willChangeValueForKey:@"state"];
+        _state = newState;
+        [self didChangeValueForKey:@"state"];
+    }
+}
+
 #pragma mark - NSURLConnectionDelegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     self.expectedLength = response.expectedContentLength;
     self.receivedLength = 0;
     self.fileData       = [NSMutableData data];
+    NSLog(@"response = %@", response);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -130,7 +146,7 @@ static const NSTimeInterval kRequestTimeout = 20.f;
     self.receivedLength += data.length;
     
     float percent = self.receivedLength / self.expectedLength;
-    
+    NSLog(@"percent = %f", percent);
     if (self.progress) self.progress(percent);
     
     if (DELEGATE_HAS_METHOD(self.delegate, zjHTTPDownload:downloadProgress:)) {
@@ -164,23 +180,8 @@ static const NSTimeInterval kRequestTimeout = 20.f;
     [self finish];
 }
 
-
-- (ZJRequestState)state {
-    @synchronized(self) {
-        return _state;
-    }
-}
-
-- (void)setState:(ZJRequestState)newState {
-    @synchronized(self) {
-        [self willChangeValueForKey:@"state"];
-        _state = newState;
-        [self didChangeValueForKey:@"state"];
-    }
-}
-
 - (void)dealloc {
-    [self.connection cancel];
+    NSLog(@"%s", __func__);
 }
 
 @end

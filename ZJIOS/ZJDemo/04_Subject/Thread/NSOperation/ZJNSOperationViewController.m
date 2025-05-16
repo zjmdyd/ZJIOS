@@ -7,6 +7,7 @@
 //
 
 #import "ZJNSOperationViewController.h"
+#import "ZJSyncOperation.h"
 
 @interface ZJNSOperationViewController ()
 
@@ -23,7 +24,7 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6"];
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8"];
 }
 
 /*
@@ -119,12 +120,69 @@
 
 - (void)run:(NSString *)msg {
     for (int i = 0; i < 5; i++) {
-        [NSThread sleepForTimeInterval:1];
         NSLog(@"%@", msg);
+        [NSThread sleepForTimeInterval:1];
     }
 }
 
+/*
+ - (void)addOperations:(NSArray<NSOperation *> *)ops
+    waitUntilFinished:(BOOL)wait;
+ ‌‌参数说明‌
+ ops：要添加的NSOperation对象数组
+ wait：
+ YES：阻塞当前线程直到所有操作完成
+ NO：异步添加操作立即返回
+ */
 - (void)test6 {
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    NSMutableArray *operations = [NSMutableArray array];
+    __block int count = 0;
+    
+    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"线程1执行操作%d", i);
+            [NSThread sleepForTimeInterval:1];
+        }
+    }];
+    [operations addObject:op1];
+    
+    NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+        for (int i = 0; i < 5; i++) {
+            NSLog(@"线程2执行操作%d", i);
+            [NSThread sleepForTimeInterval:1];
+        }
+    }];
+    [operations addObject:op2];
+
+    // 同步添加（阻塞当前线程）
+    [queue addOperations:operations waitUntilFinished:YES];
+    NSLog(@"总共任务数量是:%d", count);
+}
+
+/*
+ // 创建批量操作
+ for (int i = 0; i < 5; i++) {
+     NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+         [NSThread sleepForTimeInterval:1]; // 无效,因为maxConcurrentOperationCount默认为-1，系统会自动优化开启线程并发执行
+         NSLog(@"执行操作%d", i);
+//            count++;
+     }];
+     [operations addObject:op];
+ }
+ */
+// 自定义 NSOperation
+- (void)test7 {
+    ZJSyncOperation *op = [[ZJSyncOperation alloc] init];
+    
+    NSOperationQueue *myQ = [[NSOperationQueue alloc] init];
+    // 设置最大允许同时执行的线程数, 设为1即为串行,哪个线程先进队列就先执行完,再执行后面的进程
+    // 默认为-1，系统自动优化
+    NSLog(@"maxConcurrentOperationCount = %ld", (long)myQ.maxConcurrentOperationCount);
+    [myQ addOperation:op];
+}
+
+- (void)test8 {
     [self showVCWithNibName:@"ZJNSOperationDownLoaderDemoVC"];
 }
 

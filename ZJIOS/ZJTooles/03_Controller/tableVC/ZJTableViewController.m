@@ -25,6 +25,10 @@
 
 - (void)dealloc {
     NSLog(@"%s, currentVC = %@", __func__, self.class);
+    if (self.timer) {
+        NSLog(@"dealloc方法中执行了销毁timer的方法");
+        [self.timer invalidate];
+    }
 }
 
 /*
