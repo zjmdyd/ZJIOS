@@ -13,7 +13,7 @@
 {
     self = [super init];
     if (self) {
-        self.jsonReadOptions = NSJSONReadingFragmentsAllowed;
+        self.jsonReadOptions = NSJSONReadingMutableContainers | NSJSONReadingFragmentsAllowed;
     }
     
     return self;

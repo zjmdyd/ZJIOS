@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSJSONWritingOptions jsonWriteOptions;
 @property (nonatomic, strong) NSData *data;
 
-- (BOOL)writeFile:(id)obj atomically:(BOOL)useAuxiliaryFile;
-
 @end
 
 NS_ASSUME_NONNULL_END

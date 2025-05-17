@@ -352,6 +352,9 @@
  超时场景应配合错误处理逻辑
  避免在串行队列的目标队列上调用
  该函数通常用于需要同步等待异步任务结果的场景，如批量网络请求完成后进行数据聚合
+ 
+ dispatch_group_enter
+ 该函数通常用于需要精确控制异步任务生命周期的场景，如网络请求批处理。调试时可使用dispatch_group_wait进行超时检测
  */
 
 - (void)test_dispatch_group_enter {
@@ -367,9 +370,14 @@
             [NSThread sleepForTimeInterval:1];
         }
         dispatch_group_leave(group);
+        NSLog(@"dispatch_group_leave调用了");  // for循环执行完才会执行打印
     });
     
+    NSLog(@"dispatch_group_enter会不会阻塞主线程呀?");   // 不会阻塞
+    
+    // 会异步执行
     dispatch_async(queue, ^{
+        NSLog(@"任务2");
         // 同步等待（超时5秒）
         long result = dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 5*NSEC_PER_SEC));
         NSLog(@"dispatch_group_wait返回, %@", [NSThread currentThread]);
@@ -408,7 +416,7 @@
         NSLog(@"dispatch_group1_wait_completed, %@", [NSThread currentThread]);
     });
 
-    // 第二个group
+    // 第二个group,两个group会并发执行
     dispatch_group_t group2 = dispatch_group_create();
     dispatch_group_async(group2, globalQueue, ^{
         for (int i = 0; i < 5; i++) {
@@ -426,6 +434,10 @@
     //得到线程执行完的通知
     dispatch_group_notify(group2, globalQueue, ^{
         NSLog(@"dispatch_group2_notify_completed, %@", [NSThread currentThread]);
+    });
+    dispatch_async(globalQueue, ^{
+        dispatch_group_wait(group2, DISPATCH_TIME_FOREVER);
+        NSLog(@"dispatch_group2_wait_completed, %@", [NSThread currentThread]);
     });
 }
 
@@ -474,12 +486,16 @@
     NSLog(@"began");
     // 并发队列,迭代并执行，顺序不确定
     dispatch_async(queue, ^{
-        dispatch_apply(10, queue, ^(size_t iteration) {
+        dispatch_apply(1000, queue, ^(size_t iteration) {
             NSLog(@"iteration = %zd, %@", iteration, [NSThread currentThread]);
+        });
+        // 会在dispatch_apply任务执行完毕后才会执行
+        dispatch_async(queue, ^{
+            NSLog(@"dispatch_apply后面的任务, %@", [NSThread currentThread]);
         });
     });
     
-    // dispatch_apply会阻塞当前线程，打印end不会立即执行。
+    // dispatch_apply会阻塞当前线程，打印end不会立即执行。可以再包一层dispatch_async就不会阻塞
     NSLog(@"end");
 }
 

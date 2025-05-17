@@ -79,7 +79,7 @@
 - (NSString *)encodeFileName {
     if (!self) return nil;
     NSString *fileName = [self md5WithType:MD5Type32BitUppercase];
-    return [NSString stringWithFormat:@"%@", fileName];
+    return fileName;
 }
 
 @end

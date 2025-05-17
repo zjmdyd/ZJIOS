@@ -29,7 +29,8 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4"];
+    self.cellTitles = @[@"DISPATCH_QUEUE_CONCURRENT", @"@synchronized", @"DISPATCH_QUEUE_SERIAL", @"dispatch_barrier_async", @"dispatch_barrier_async_and_wait", @"test_barrier_async", @"test_barrier_sync"];
+    self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test_barrier_async", @"test_barrier_sync"];
 }
 
 /*
@@ -76,7 +77,7 @@
     for (int i = 0; i < 5; i++) {
         NSLog(@"for_i = %d, %@", i, [NSThread currentThread]);    // 此处是在主线程执行, 所以会阻塞主线程,但是不会闪退
         dispatch_group_async(group, queue, ^{
-            NSLog(@"i = %d, %@", i, [NSThread currentThread]);    //
+            NSLog(@"i = %d, %@", i, [NSThread currentThread]);    // 此处是子线程
             self.target = [NSString stringWithFormat:@"i->%d", i];
         });
     }
@@ -112,6 +113,7 @@
  保护共享资源（如数据库、文件），确保写操作独占执行。
  ‌‌任务依赖管理‌
  需严格按顺序执行的任务链中插入关键操作
+ 队列类型‌：必须为自定义并发队列，串行队列或全局队列无效
  
  */
 - (void)test3 {
@@ -202,6 +204,131 @@
  然而这只是保证了基本的线程安全（不崩溃），若是需要保证访问出符合预期的数据，则需要采用GCD的barrier或者自己在合适的时机加锁。
  */
 
+/*
+ 该函数会等待它之前提交的所有任务完成‌后执行自身任务，并确保‌后续任务等待它执行完毕‌才继续
+ 
+ 需要注意的是queue的选择，需要是自己创建的，dispatch_queue_create并且是concurrent的queue，
+ 不能是serial或者全局的global concurrent queues
+ */
+- (void)test_barrier_async {
+    NSLog(@"dispatch_barrier --- begin");
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        //追加任务1
+        NSLog(@"追加任务1");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务1-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        //追加任务2
+        NSLog(@"追加任务2");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:2];
+            //打印当前线程
+            NSLog(@"任务2-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+//    异步栅栏则跟async函数一样，开启新线程，不会阻塞当前线程,
+//    执行顺序是:任务1和任务2, 栅栏函数任务, 任务3任务4
+    dispatch_barrier_async(queue, ^{
+        //追加栅栏函数任务
+        NSLog(@"追加栅栏函数任务");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"barrier---i = %d, %@", i, [NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        //追加任务3
+        NSLog(@"追加任务3");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务3-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        //追加任务4
+        NSLog(@"追加任务4");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务4-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    
+    //不会被阻塞，不需要等待，直接执行
+    NSLog(@"dispatch_barrier --- end");
+}
+
+- (void)test_barrier_sync {
+    NSLog(@"dispatch_barrier --- begin");
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        //追加任务1
+        NSLog(@"追加任务1");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务1-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        //追加任务2
+        NSLog(@"追加任务2");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务2-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+//  同步栅栏,会阻塞线程,如果dispatch_barrier_sync在主线调用则会阻塞主线程
+//  任务3和任务4会在栅栏函数执行完毕再执行
+    dispatch_barrier_sync(queue, ^{
+        //追加栅栏函数任务
+        NSLog(@"追加栅栏函数任务");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"barrier-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        //追加任务3
+        NSLog(@"追加任务3");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务3-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        //追加任务4
+        NSLog(@"追加任务4");
+        for (int i = 0; i < 5; ++i) {
+            //模拟耗时操作
+            [NSThread sleepForTimeInterval:1];
+            //打印当前线程
+            NSLog(@"任务4-->i = %d,---%@", i, [NSThread currentThread]);
+        }
+    });
+    
+    //同步栅栏和sync函数一样，不会开启新线程，end是在同步之后打印的
+    NSLog(@"dispatch_barrier --- end");
+}
 /*
 #pragma mark - Navigation
 

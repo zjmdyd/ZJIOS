@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestMultiTargetViewController", @"ZJTestBlockViewController", @"ZJTestTimerTableViewController", @"ZJTestThreadTableViewController", @"ZJTestFileTableViewController", @"ZJTestCALayerTableViewController", @"ZJTestAnimationTableViewController", @"ZJTestCIImageTableViewController", @"ZJTestBezierPathViewController"];
+    self.cellTitles = @[@"ZJTestMultiTargetViewController", @"ZJTestBlockViewController", @"ZJTestTimerTableViewController", @"ZJTestThreadTableViewController", @"ZJTestDocumentTableViewController", @"ZJTestCALayerTableViewController", @"ZJTestAnimationTableViewController", @"ZJTestCIImageTableViewController", @"ZJTestBezierPathViewController"];
 }
 
 - (void)initSetting {

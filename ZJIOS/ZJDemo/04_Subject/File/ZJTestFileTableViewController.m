@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestDocumentTableViewController", @"ZJTestWriteFileTableViewController", @"ZJTestJsonTableViewController", @"ZJTestSandboxViewController", @"ZJTestCSVViewController"];
+    self.cellTitles = @[@"ZJTestDocumentTableViewController", @"ZJTestJsonTableViewController"];
 }
 
 - (void)initSetting {

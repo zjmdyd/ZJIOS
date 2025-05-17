@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)writeToFileWithPathComponent:(NSString *)name needEncodeFileName:(BOOL)need suffix:(nullable NSString *)suffix;
 
 - (void)writeToFileWithDocumentConfig:(ZJDocumentWriteCofig *)config;
+- (void)writeToFileWithDocumentConfig:(ZJDocumentWriteCofig *)config atomicallyType:(BOOL)type atomically:(BOOL)useAuxiliaryFile;
 
 #pragma mark - 读取
 

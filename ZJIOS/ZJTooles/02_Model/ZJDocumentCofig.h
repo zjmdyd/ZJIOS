@@ -26,8 +26,6 @@ typedef NS_ENUM(NSInteger, ZJDocumentType) {
 
 @property (nonatomic, copy) NSString *defaultBasePath;
 
-
-
 - (ZJDocumentType)documentTypeWithSuffix:(NSString *)suffix;
 
 @end

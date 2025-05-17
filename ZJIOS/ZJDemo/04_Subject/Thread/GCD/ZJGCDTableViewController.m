@@ -20,33 +20,23 @@
  说明：把右边的参数（任务）提交给左边的参数（队列）进行执行。
  
  （1）用同步的方式执行任务 dispatch_sync(dispatch_queue_t queue, dispatch_block_t block);
- 
+ （2）用异步的方式执行任务 dispatch_async(dispatch_queue_t queue, dispatch_block_t block);
  参数说明：
- 
  queue：队列
- 
  block：任务
  
- （2）用异步的方式执行任务 dispatch_async(dispatch_queue_t queue, dispatch_block_t block);
- 
  2.同步和异步的区别
- 
  同步：在当前线程中执行
- 
  异步：在另一条线程中执行
 
 补充说明:
      同步和异步决定了要不要开启新的线程
      
      同步：在当前线程中执行任务，不具备开启新线程的能力
-     
      异步：在新的线程中执行任务，具备开启新线程的能力
-     
  
      并发和串行决定了任务的执行方式
-     
      并发：多个任务并发（同时）执行
-     
      串行：一个任务执行完毕后，再执行下一个任务
  */
 
@@ -58,8 +48,8 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"testGCDBasic", @"testThreadSafe", @"testBarrier", @"testDispatchSemaphore"];
-    self.vcNames = @[@"ZJTestGCDBasicTableViewController", @"ZJTestThreadSafeViewController", @"ZJTestGCDBarrierTableViewController", @"ZJTestDispatchSemaphoreTableViewController"];
+    self.cellTitles = @[@"testGCDBasic", @"testThreadSafe", @"testDispatchSemaphore"];
+    self.vcNames = @[@"ZJTestGCDBasicTableViewController", @"ZJTestThreadSafeViewController", @"ZJTestDispatchSemaphoreTableViewController"];
 }
 
 - (void)initSetting {

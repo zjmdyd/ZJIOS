@@ -5,11 +5,11 @@
 //  Created by issuser on 2022/5/2.
 //
 
-#import "ZJTableViewController.h"
+#import "ZJBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestDocumentTableViewController : ZJTableViewController
+@interface ZJTestDocumentTableViewController : ZJBaseTableViewController
 
 @end
 

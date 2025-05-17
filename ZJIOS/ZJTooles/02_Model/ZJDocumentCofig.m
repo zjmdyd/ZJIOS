@@ -58,9 +58,9 @@
 - (NSString *)encodeFileName {
     if (!_encodeFileName) {
         if (self.needEncodFileName) {
-            _encodeFileName = [_fileName encodeFileName];
+            _encodeFileName = [self.fileName encodeFileName];
         }else {
-            _encodeFileName = _fileName;
+            _encodeFileName = self.fileName;
         }
     }
     
