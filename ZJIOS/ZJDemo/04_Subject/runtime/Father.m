@@ -10,7 +10,7 @@
 @implementation Father
 
 + (void)load {
-    NSLog(@"%@-->load", self);
+    NSLog(@"%s", __func__);
 }
 
 - (void)eat {

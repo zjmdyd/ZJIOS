@@ -29,7 +29,6 @@
  
  内存优化
  1、静态检测
-
  其实有些内存泄漏也可以用静态方法检测出来，静态检测分为手动检测和自动检测
  手动检测方式：快捷键command + shift + B
  自动检测方法：build setting --> analyze during building 设为YES，这样每次运行代码都会检测内存泄漏问题

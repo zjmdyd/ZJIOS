@@ -13,4 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ZJFruit ()
+
+- (void)testExtention;    // 扩展中能够的方法必须实现
+
+@property (nonatomic, copy) NSString *name;
+
+@end
 NS_ASSUME_NONNULL_END

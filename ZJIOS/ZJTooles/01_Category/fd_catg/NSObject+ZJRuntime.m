@@ -30,7 +30,7 @@
 
 - (id)nextResponderWithTargetClassName:(NSString *)className {
     Class class = objc_getClass([className UTF8String]);
-
+    NSLog(@"self = %@-->", self);
     if ([self isKindOfClass:class]) {
         return self;
     }

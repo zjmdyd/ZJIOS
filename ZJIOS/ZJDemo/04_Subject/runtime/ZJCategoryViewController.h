@@ -5,11 +5,11 @@
 //  Created by Zengjian on 2021/6/19.
 //
 
-//#import "ZJViewController.h"
-#import <UIKit/UIKit.h>
+#import "ZJBaseTableViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJCategoryViewController : UIViewController
+@interface ZJCategoryViewController : ZJBaseTableViewController
 
 @end
 

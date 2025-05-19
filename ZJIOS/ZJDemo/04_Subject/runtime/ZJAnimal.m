@@ -15,6 +15,15 @@
 
 @implementation ZJAnimal
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSLog(@"self = %@, 初始化了", self);
+    }
+    return self;
+}
+
 - (instancetype)initWithBlock:(Block)block
 {
     if (self = [super init]) {
@@ -35,12 +44,12 @@
     _blk(@"block回调数据");
 }
 
--(void)jump {
-    NSLog(@"%s", __func__);
+-(void)jump:(id)obj {
+    NSLog(@"%s, %@", __func__, obj);
 }
 
 - (void)fly {
-    NSLog(@"我要飞的更高");
+    NSLog(@"%s, %@", __func__, self);
 }
 
 -(void)dealloc{

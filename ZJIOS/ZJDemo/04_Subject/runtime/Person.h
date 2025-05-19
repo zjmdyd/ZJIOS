@@ -5,11 +5,11 @@
 //  Created by Zengjian on 2021/6/16.
 //
 
-#import <Foundation/Foundation.h>
+#import "ZJDefaultOject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Person : NSObject
+@interface Person : ZJDefaultOject
 
 @end
 

@@ -7,12 +7,13 @@
 
 #import "ZJFruit.h"
 
-@interface ZJFruit (TestCat)
-
-@property (nonatomic, copy) NSString *name;
-
-@end
-
 @implementation ZJFruit
+
++ (void)initialize
+{
+    if (self == [ZJFruit class]) {
+        NSLog(@"%s", __func__);
+    }
+}
 
 @end

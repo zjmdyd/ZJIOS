@@ -6,25 +6,56 @@
 //
 
 #import "ZJCategoryViewController.h"
-#import "ZJFruit+ZJFruitCatgy.h"
+#import "Person.h"
+#import "ZJFruit.h"
+
 
 @interface ZJCategoryViewController ()
 
-//- (void)testExtention;    // 扩展中能够的方法必须实现
 @end
 
 @implementation ZJCategoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ZJFruit *ft = [ZJFruit new];
-    NSLog(@"%@", ft.class);
+
     // Do any additional setup after loading the view.
+    [self initAry];
+}
+
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"testAddPerporty", @"testAddMethod", @"testExtensionPerporty"];
+    self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5"];
 }
 
 /*
- Extension（扩展）中声明的方法只能在该类的@implementation中实现，这也就意味着，你无法对系统的类（例如NSArray类）使用Extension（扩展）
+ 动态添加属性testAddPerporty
+ */
+- (void)test0 {
+    Person *p = [Person new];
+    p.personName = @"meimei";
+    NSLog(@"p.name = %@", p.personName);
+}
+
+/*
+ 动态添加方法testAddMethod
+ */
+- (void)test1 {
+    Person *p = [Person new];
+    [p performSelector:@selector(ggg:) withObject:@20];
+}
+
+- (void)test2 {
+    ZJFruit *ft = [ZJFruit new];
+    ft.name = @"苹果";
+    NSLog(@"name = %@", ft.name);
+    
+    // [ft testExtention]; // 分类方法不实现会闪退
+}
+
+/*
+ Extension（扩展）中声明的方法只能在该类的@ implementation中实现，这也就意味着，你无法对系统的类（例如NSArray类）使用Extension（扩展）
  因为Extension（扩展）是在编译阶段与该类同时编译的，就是类的一部分。既然作为类的一部分，且与类同时编译，那么就可以在编译阶段为类添加成员变量。
  Category的特性是：可以在运行时阶段动态的为已有类添加新行为。Category是在运行时阶段决定的。而成员变量的内存布局已经在编译阶段确定好了，如果在运行时阶段添加成员变量的话，就会破坏原有类的内存布局
  在category默认添加属性是没有效果的，因为分类的结构体指针中，没有成员变量的成员结构
@@ -61,7 +92,7 @@
  
  category特点:
  1.category只能给某个已有的类扩充方法，不能扩充成员变量。编译的时候，是可以通过的，但是会报警告。
- 2.category中也可以添加属性，只不过@property只会生成setter和getter的声明，不会生成setter和getter的实现以及成员变量。这个是从设计上考虑保持类别特性的单纯
+ 2.category中也可以添加属性，只不过@ property只会生成setter和getter的声明，不会生成setter和getter的实现以及成员变量。这个是从设计上考虑保持类别特性的单纯
  3.如果category中的方法和类中原有方法同名，运行时会优先调用category中的方法。也就是，category中的方法会覆盖掉类中原有的方法。
  所以开发中尽量保证不要让分类中的方法和原有类中的方法名相同。避免出现这种情况的解决方案是给分类的方法名统一添加前缀。比如category_。
  如果多个category中存在同名的方法，运行时到底调用哪个方法由编译器决定，最后一个参与编译的方法会被调用。

@@ -9,13 +9,21 @@
 
 @implementation Student
 
++ (void)initialize
+{
+    if (self == [Student class]) {
+        NSLog(@"%s", __func__);
+    }
+}
+
 /*
  2021-06-20 18:40:31.083870+0800 ZJIOS[2417:115176] Student
  2021-06-20 18:40:31.084057+0800 ZJIOS[2417:115176] Student
  */
 - (void)testSuperClass {
-    NSLog(@"%@",NSStringFromClass([self class]));
-    NSLog(@"%@",NSStringFromClass([super class]));
+    NSLog(@"%@", NSStringFromClass([self class]));  // Student
+    NSLog(@"%@", NSStringFromClass([[self class] superclass])); // Person
+    NSLog(@"%@", NSStringFromClass([super class])); // Student
 }
 
 /*

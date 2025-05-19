@@ -16,7 +16,7 @@ typedef void(^Block)(NSString *str);
 - (instancetype)initWithBlock:(Block)block;
 - (void)Block:(Block)block;
 - (void)execute;
-- (void)jump;
+-(void)jump:(id)obj;
 - (void)fly;
 
 @end
