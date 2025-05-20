@@ -73,13 +73,7 @@
     if (sender.tag >= 100) {
         [self.borderView.layer removeBorderWithType:type];
     }else {
-//        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type];
-//        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type posion_value_1:50 posion_value_2:150];
-
-//        [self.borderView.layer addDashBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type];
-//        [self.borderView.layer addDashBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type posion_value_1:50 posion_value_2:150];
-
-        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:2 borderType:type posion_value_1:50 posion_value_2:150 needDash:NO];
+        [self.borderView.layer addBorderForColor:[UIColor greenColor] borderWidth:4 borderType:type posion_value_1:0 posion_value_2:200 needDash:NO];
     }
 }
 

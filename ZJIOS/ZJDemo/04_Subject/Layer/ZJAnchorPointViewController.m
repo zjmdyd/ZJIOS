@@ -18,11 +18,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
-    [self test0];
-    [self test1];
 }
+
+- (IBAction)btnEvent:(UIButton *)sender {
+    if (sender.tag == 0) {
+        [self test0];
+    }else if (sender.tag == 1) {
+        [self test1];
+    }else {
+        [self test2];
+    }
+}
+
 /*
  2025-05-10 23:28:50.443553+0800 ZJIOS[75098:2934913] anchorPoint = {0.5, 0.5}
  2025-05-10 23:28:50.443804+0800 ZJIOS[75098:2934913] bgView_position = {187.5, 333.5}
@@ -43,21 +51,29 @@
  2025-05-10 23:28:50.444492+0800 ZJIOS[75098:2934913] moveView_anchorPoint = {0.5, 0.5}
  2025-05-10 23:28:50.444641+0800 ZJIOS[75098:2934913] moveView_position = {225, 150}
  2025-05-10 23:28:50.444862+0800 ZJIOS[75098:2934913] moveView_anchorPoint = {0, 0.5}
- 2025-05-10 23:28:50.445024+0800 ZJIOS[75098:2934913] moveView_position = {150, 150}
+ 2025-05-10 23:28:50.445024+0800 ZJIOS[75098:2934913] moveView_position = {225, 150}
  */
 - (void)test1 {
+    static BOOL finishAnimation = NO;
     NSLog(@"moveView_anchorPoint = %@", NSStringFromCGPoint(self.moveView.layer.anchorPoint));
     NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
 
     self.moveView.layer.anchorPoint = CGPointMake(0, 0.5);
 //    The value of this property is specified in points and is always specified relative to the value in the anchorPoint property
-//    self.moveView.layer.position = CGPointMake(150, 150); // 修改无效，与锚点相关联
+//    self.moveView.layer.position = CGPointMake(150, 150); //
 
     NSLog(@"moveView_anchorPoint = %@", NSStringFromCGPoint(self.moveView.layer.anchorPoint));
     NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
     
     [UIView animateWithDuration:2 animations:^{
         self.moveView.transform = CGAffineTransformMakeRotation(M_PI_2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2 animations:^{
+            self.moveView.transform = CGAffineTransformIdentity;
+            self.moveView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        } completion:^(BOOL finished) {
+
+        }];
     }];
 }
 
@@ -72,28 +88,14 @@
     view2.backgroundColor = [UIColor greenColor];
     [UIView animateWithDuration:2 animations:^{
         view2.transform = CGAffineTransformMakeRotation(M_PI_2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2 animations:^{
+            view2.transform = CGAffineTransformIdentity;
+            view2.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        } completion:^(BOOL finished) {
+
+        }];
     }];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSLog(@"%s", __func__);
-    NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
-//    self.moveView.layer.position = CGPointMake(150, 150);
-}
-
-/*
- 约束会导致之前设置的position无效
- */
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    NSLog(@"%s", __func__);
-    NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
-//    self.moveView.layer.position = CGPointMake(150, 150);
-
 }
 
 /*

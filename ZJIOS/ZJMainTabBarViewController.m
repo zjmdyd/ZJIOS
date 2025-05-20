@@ -9,8 +9,11 @@
 #import "UIViewController+ZJViewController.h"
 #import "AppConfigHeader.h"
 #import "ZJNavigationController.h"
+#import "ZJTabBar.h"
 
 @interface ZJMainTabBarViewController ()
+
+@property (nonatomic, strong) ZJTabBar *zjTabBar;
 
 @end
 
@@ -19,13 +22,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self refactorCenterBtn];
     [self initSetting];
+}
+
+- (void)refactorCenterBtn {
+    self.zjTabBar = [[ZJTabBar alloc] initWithImageName:@"b-tab-41"];
+    [self.zjTabBar.centerBtn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    // 选中时的颜色
+    self.zjTabBar.tintColor = [UIColor colorWithRed:27.0/255.0 green:118.0/255.0 blue:208/255.0 alpha:1];
+    // 透明设置为NO，显示白色，view的高度到tabbar顶部截止，YES的话到底部
+    self.zjTabBar.translucent = NO;
+    
+    // 在自定义 UITabBarController 子类中替换默认 TabBar
+    [self setValue:self.zjTabBar forKeyPath:@"tabBar"];
+//    __weak typeof(self) weekSelf = self;
+//    self.delegate =  weekSelf;
+}
+
+- (void)btnEvent:(UIButton *)sender {
+    
 }
 
 - (void)initSetting {
     NSArray *titles = @[@"Foundation", @"UIKit", @"Controller", @"Subject", @"C"];
-    NSArray *images = @[@"b-tab-1", @"b-tab-11", @"b-tab-31", @"b-tab-31", @"b-tab-31"];
-    NSArray *selectImages = @[@"b-tab-2", @"b-tab-12", @"b-tab-32", @"b-tab-32", @"b-tab-32"];
+    NSArray *images = @[@"b-tab-1", @"b-tab-11", @"", @"b-tab-31", @"b-tab-31"];    // b-tab-31
+    NSArray *selectImages = @[@"b-tab-2", @"b-tab-12", @"", @"b-tab-32", @"b-tab-32"];  // b-tab-32
     NSArray *vcNames = @[@"ZJFoundationTableViewController", @"ZJUIKitTableViewController", @"ZJCtrlTableViewController", @"ZJSubjectTableViewController", @"ZJCTipsTableViewController"];
     
     NSMutableArray *ary = [NSMutableArray array];

@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, ZJBaseTableViewType) {
     ZJBaseTableViewTypeExecute,
 };
 
-@interface ZJBaseTableViewController : ZJTableViewController
+@interface ZJBaseTableViewController : ZJTableViewController 
 
 @property (nonatomic, assign) NSInteger vcType;
 

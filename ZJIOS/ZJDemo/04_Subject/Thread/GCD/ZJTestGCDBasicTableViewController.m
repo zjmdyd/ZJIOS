@@ -48,9 +48,20 @@
     self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"testDispatch_group", @"test_dispatch_group_enter", @"testDispatch_group2", @"testBlockMainThread", @"test_dispatch_apply"];
 }
 
+
+- (void)keepAlive {
+    @autoreleasepool {
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        [runLoop run]; // 线程不会退出
+    }
+}
+
 /*
     用异步函数往并发队列中添加任务
     同时开启三个子线程:3个子线程会 并发执行
+ 
+ 每个线程有且仅有一个RunLoop对象与之关联
  */
 - (void)test0 {
     //1.获得全局的并发队列 : 使用dispatch_get_global_queue函数获得全局的并发队列
@@ -61,18 +72,21 @@
     dispatch_async(queue, ^{
         for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片1----%@", [NSThread currentThread]);
+            NSLog(@"currentRunLoop1 = %@", [NSRunLoop currentRunLoop]);
             [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_async(queue, ^{
         for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片2----%@", [NSThread currentThread]);
+            NSLog(@"currentRunLoop2 = %@", [NSRunLoop currentRunLoop]);
             [NSThread sleepForTimeInterval:1];
         }
     });
     dispatch_async(queue, ^{
         for (int i = 0; i < 5; i++) {
             NSLog(@"下载图片3----%@", [NSThread currentThread]);
+            NSLog(@"currentRunLoop3 = %@", [NSRunLoop currentRunLoop]);
             [NSThread sleepForTimeInterval:1];
         }
     });

@@ -7,7 +7,6 @@
 
 #import "ZJTestBezierPathViewController.h"
 #import "UIView+ZJToucMathEvent.h"
-#import "ZJTestBezierPathView.h"
 #import "ZJTestRoundView.h"
 
 @interface ZJTestBezierPathViewController ()
@@ -30,7 +29,6 @@
 
 - (void)initAry {
     NSMutableArray *ary = [NSMutableArray array];
-    
     CGFloat began = 0;
     CGFloat span = M_PI*2/5;
     
@@ -44,15 +42,8 @@
     self.colors = @[[UIColor greenColor], [UIColor purpleColor], [UIColor orangeColor], [UIColor cyanColor], [UIColor yellowColor]];
 }
 
-- (void)test0 {
-    ZJTestBezierPathView *view = [[ZJTestBezierPathView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    view.center = self.view.center;
-    [self.view addSubview:view];
-    view.backgroundColor = [UIColor greenColor];
-}
-
 - (void)test1 {
-    self.touchView = [[ZJTestRoundView alloc] initWithFrame:CGRectMake(0, 0, 800, 800)];
+    self.touchView = [[ZJTestRoundView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     self.touchView.center = self.view.center;
     self.touchView.angles = self.angleObjects;
     self.touchView.colors = self.colors;

@@ -22,6 +22,42 @@
     
     [self test2];
 }
+/*
+ 一、休眠触发条件
+ ‌‌无事件状态‌
+ 当 RunLoop 检测到当前模式下无待处理的 Source（输入源）、Timer（定时器）或 Observer（观察者）时，线程会进入休眠状态16。
+ 主线程休眠时仍能响应系统级事件（如锁屏、来电）4
+ 子线程休眠后完全暂停执行，直到被新事件唤醒35
+ ‌‌内核态切换‌
+ 休眠时 RunLoop 通过 mach_msg() 系统调用将线程从用户态切换到内核态，释放 CPU 资源18。
+
+ 二、休眠实现原理
+ ‌‌基于 Mach Port 的等待机制‌
+ RunLoop 内部维护一个 mach_port 队列，休眠时监听这些端口的事件28
+ 当端口有消息到达（如触摸事件、定时器触发），内核将线程唤醒至用户态14
+ ‌‌事件源优先级‌
+ Source1（端口事件）优先唤醒，Timer 和 Source0 需等待当前模式激活47
+ 主线程休眠时仍保留对 UIApplication 事件的监听8
+ 三、休眠与唤醒流程
+ ‌‌典型循环步骤‌
+ plaintext
+ Copy Code
+ 1. 检查事件 → 2. 处理事件 → 3. 无事件则休眠 → 4. 被唤醒后回到步骤1:ml-citation{ref="1,6" data="citationList"}
+ ‌‌唤醒条件‌
+ 新 Source 加入（如网络数据到达）
+ Timer 到达预设时间5
+ 手动调用 CFRunLoopWakeUp()
+ 
+ 四、工程应用注意
+ ‌‌子线程保活‌
+ 通过添加 NSMachPort 防止 RunLoop 因无事件源而立即退出
+ 
+ NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+ [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+ [runLoop run]; // 线程持续休眠-唤醒循环
+
+ 
+ */
 
 /*
  timer不准确: NSTimer 的runloop类型是NSDefaultRunloopMode 主线程中， 界面的刷新也在主线程中，
@@ -71,7 +107,6 @@
 
  NSRunLoopCommonModes的使用场景
  NSRunLoopCommonModes的使用场景主要包括：
-
  ‌‌主线程中的定时器‌：在主线程中创建定时器时，为了避免定时器被UI事件干扰，可以使用NSRunLoopCommonModes模式。
  ‌‌需要跨模式运行的定时器‌：在某些情况下，定时器需要在不同的模式下运行，NSRunLoopCommonModes可以满足这种需求。
  通过使用NSRunLoopCommonModes，可以确保定时器在默认模式下运行，同时也能在需要时切换到跟踪模式，从而提供更稳定和可靠的定时器服务。

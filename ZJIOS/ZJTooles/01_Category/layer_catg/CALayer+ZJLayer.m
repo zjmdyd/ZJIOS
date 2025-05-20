@@ -132,9 +132,14 @@
 
 - (void)removeBorderWithType:(UIBorderSideType)borderType {
     NSLog(@"移除前sublayers = %@", self.sublayers);
-    for (CALayer *obj in self.sublayers) {
-        if ([obj isKindOfClass:[ZJShapeLayer class]]) {
-            if (((ZJShapeLayer *)obj).borderType == borderType) {
+    for(int i = 0; i < self.sublayers.count; i++) {
+        ZJShapeLayer *obj = self.sublayers[i];
+        if (borderType == UIBorderSideTypeAll) {
+            [obj removeFromSuperlayer];
+            NSLog(@"移除后sublayers = %@", self.sublayers);
+            i--;
+        }else {
+            if (obj.borderType == borderType) {
                 [obj removeFromSuperlayer];
                 NSLog(@"移除后sublayers = %@", self.sublayers);
                 break;
