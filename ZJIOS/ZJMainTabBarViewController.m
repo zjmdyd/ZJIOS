@@ -55,10 +55,14 @@
         UIViewController *vc = [UIViewController createVCWithName:vcNames[i] title:titles[i]];
         ZJNavigationController *navi = [[ZJNavigationController alloc] initWithRootViewController:vc];
         if (images.count == vcNames.count) {
-            vc.tabBarItem.image = [[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            if ([images[i] length]) {
+                vc.tabBarItem.image = [[UIImage imageNamed:images[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            }
         }
         if (selectImages.count == vcNames.count) {
-            vc.tabBarItem.selectedImage = [[UIImage imageNamed:selectImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            if ([selectImages[i] length]) {
+                vc.tabBarItem.selectedImage = [[UIImage imageNamed:selectImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            }
         }
         
         self.tabBar.tintColor = MainColor;

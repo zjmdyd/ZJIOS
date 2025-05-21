@@ -42,14 +42,14 @@ struct __main_block_impl_0 {
 
 @interface ZJTestBlockViewController ()
 
-@property (nonatomic, copy) Blk_t blk;
+@property (nonatomic, strong) Blk_t blk;
 @property (nonatomic, strong) ZJAnimal *animal;
 @property (nonatomic, strong) ZJAnimal *animal2;
 @property (nonatomic, assign) NSInteger idx;
 
 @end
 
-//Blk_t block;
+Blk_t tempBlock;
 
 @implementation ZJTestBlockViewController
 
@@ -134,10 +134,25 @@ struct __main_block_impl_0 {
         block2 = ^{ NSLog(@"临时 Block"); }; // 栈 Block，作用域外可能被释放
     }
     block2(); // 可能调用已释放的 Block
-    
+   
     NSLog(@"block2 = %@", block2);    // __NSGlobalBlock__
     
     __weak typeof(self) weakSelf = self;
+    if (@available(iOS 10.0, *)) {
+        [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            block2 = nil; // 置空就会崩溃,但前提是定义的时候添加__block关键字，不然无法在bblock内部修改变量的值
+            if (block2 == nil) {    // 崩溃: Thread 1: EXC_BAD_ACCESS (code=1, address=0x20)
+                NSLog(@"block = %@", block2);
+                [timer invalidate];
+            }
+            
+            if (!weakSelf) {
+                [timer invalidate];
+            }
+        }];
+    } else {
+        // Fallback on earlier versions
+    }
 }
 void (^block2)(void);
 
@@ -223,11 +238,11 @@ Blk_rt func(int rate) {
     // 栈空间上的block，不会持有对象；堆空间的block，会持有对象
     Student *stu = [[Student alloc] init];
     stu.age = 10;
-    Blk_t block = ^{
+    Blk_t blk = ^{
         NSLog(@"%ld", (long)stu.age);
     };
-    NSLog(@"block = %@", block);    // __NSMallocBlock__
-    block();
+    NSLog(@"block = %@", blk);    // __NSMallocBlock__
+    blk();    // 执行完Student就释放掉了，如果block变为self.blk则不会释放
 }
 /*
  Q：为什么block对auto和static变量捕获有差异？

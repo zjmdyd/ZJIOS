@@ -19,12 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSArray *colors = @[
-    kRGBA(218, 143, 129, 1),
-    kRGBA(241, 166, 130, 1),
-    kRGBA(252, 161, 133, 1),
-    ];
     
     CAGradientLayer *graLayer = [CAGradientLayer layer];
     graLayer.frame = CGRectMake(0, 0, 200, 200);

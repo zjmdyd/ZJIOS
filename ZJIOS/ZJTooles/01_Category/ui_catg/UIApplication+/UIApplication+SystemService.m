@@ -31,6 +31,7 @@
 }
 
 //https://itunes.apple.com/cn/app/id1476388726?mt=8
+//#define AppID @"1316366051"
 + (void)openAppDownloadPageWithAppID:(NSString *)appID {
     if (appID.length) {
         NSString *urlString = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8", appID];

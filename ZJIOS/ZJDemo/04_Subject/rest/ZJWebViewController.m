@@ -48,7 +48,11 @@
     // 是使用h5的视频播放器在线播放, 还是使用原生播放器全屏播放
     config.allowsInlineMediaPlayback = YES;
     //设置视频是否需要用户手动播放  设置为NO则会允许自动播放
-    config.mediaTypesRequiringUserActionForPlayback = YES;
+    if (@available(iOS 10.0, *)) {
+        config.mediaTypesRequiringUserActionForPlayback = YES;
+    } else {
+        // Fallback on earlier versions
+    }
     //设置是否允许画中画技术 在特定设备上有效
     if (@available(iOS 9.0, *)) {
         config.allowsPictureInPictureMediaPlayback = YES;
@@ -78,12 +82,12 @@
     //         [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsToOcWithPrams"];
     //        config.userContentController = wkUController;
     
-    _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:config];
-    _webView.navigationDelegate = self;
-    _webView.UIDelegate = self;
+    self.webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:config];
+    self.webView.navigationDelegate = self;
+    self.webView.UIDelegate = self;
     //        _webView.delegate = self;
     //        [_webView scalesPageToFit];
-    [self.view addSubview:_webView];
+    [self.view addSubview:self.webView];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"userHelp.html" ofType:nil];
     NSString *htmlString = [[NSString alloc]initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
@@ -114,11 +118,6 @@
     //用于进行JavaScript注入
     WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     [config.userContentController addUserScript:wkUScript];
-    
-    //用完记得移除
-    //移除注册的js方法
-//    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcNoPrams"];
-//    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcWithPrams"];
 }
 
 #pragma mark - WKScriptMessageHandler
@@ -275,6 +274,17 @@
         [webView loadRequest:navigationAction.request];
     }
     return nil;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    //用完记得移除
+    //移除注册的js方法
+    [[self.webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcNoPrams"];
+    [[self.webView configuration].userContentController removeScriptMessageHandlerForName:@"jsToOcWithPrams"];
+    [self.webView stopLoading];
+    self.webView = nil;
 }
 
 //- (NSString *)reSizeImageWithHTML:(NSString *)html {

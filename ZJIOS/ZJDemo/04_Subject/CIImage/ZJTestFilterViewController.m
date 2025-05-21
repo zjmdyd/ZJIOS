@@ -23,7 +23,7 @@
     UIImage *originImg = [UIImage imageNamed:@"filter_1"];
     CIImage *image = [[CIImage alloc] initWithImage:originImg];
     
-    CIFilter *filter = [CIFilter filterWithName:@"CIBoxBlur" keysAndValues:kCIInputImageKey,image, nil];
+    CIFilter *filter = [CIFilter filterWithName:@"CIBoxBlur" keysAndValues:kCIInputImageKey, image, nil];
     [filter setDefaults];
     
     CIContext *context = [[CIContext alloc] initWithOptions:nil];
@@ -33,11 +33,13 @@
     UIImage *newImage = [UIImage imageWithCGImage:ref];
     CGImageRelease(ref);
     
-    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 250, 400)];
+    CGFloat width = self.view.bounds.size.width;
+    CGFloat height = (self.view.bounds.size.height-100)/2;
+    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, width, height)];
     imageView1.image = originImg;
     [self.view addSubview:imageView1];
     
-    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(250, 100, 250, 400)];
+    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100 + height, width, height)];
     imageView2.image = newImage ;
     [self.view addSubview:imageView2];
 }
