@@ -1,20 +1,20 @@
 //
-//  ZJTestLayerViewController.m
+//  ZJTestLayerMaskViewController.m
 //  ZJTest
 //
 //  Created by ZJ on 2019/7/10.
 //  Copyright © 2019 HY. All rights reserved.
 //
 
-#import "ZJTestLayerViewController.h"
+#import "ZJTestLayerMaskViewController.h"
 
-@interface ZJTestLayerViewController ()
+@interface ZJTestLayerMaskViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
-@implementation ZJTestLayerViewController
+@implementation ZJTestLayerMaskViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

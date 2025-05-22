@@ -1,5 +1,5 @@
 //
-//  ZJTestLayerViewController.h
+//  ZJTestLayerMaskViewController.h
 //  ZJTest
 //
 //  Created by ZJ on 2019/7/10.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestLayerViewController : ZJViewController
+@interface ZJTestLayerMaskViewController : ZJViewController
 
 @end
 

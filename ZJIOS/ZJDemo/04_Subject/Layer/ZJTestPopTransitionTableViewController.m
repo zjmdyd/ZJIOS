@@ -1,30 +1,32 @@
 //
-//  ZJTestCALayerTableViewController.m
-//  ZJIOS
+//  ZJTestPopTransitionTableViewController.m
+//  ZJTest
 //
-//  Created by issuser on 2022/5/15.
+//  Created by ZJ on 2019/4/12.
+//  Copyright © 2019 HY. All rights reserved.
 //
 
-#import "ZJTestCALayerTableViewController.h"
+#import "ZJTestPopTransitionTableViewController.h"
 
-@interface ZJTestCALayerTableViewController ()
+@interface ZJTestPopTransitionTableViewController ()
 
 @end
 
-@implementation ZJTestCALayerTableViewController
+@implementation ZJTestPopTransitionTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initAry];
-    [self initSetting];
+    [self initSettiing];
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestLayerBorderViewController", @"ZJTestLayerMaskViewController", @"ZJAnchorPointViewController", @"ZJTestTouchViewController", @"ZJMergeViewController"];
+    self.cellTitles = @[@"FromRight", @"FromLeft", @"FromTop", @"FromBottom"];
+    self.values = @[kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom];
 }
 
-- (void)initSetting {
+- (void)initSettiing {
     
 }
 
@@ -35,22 +37,33 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
+    ZJNormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
     if (!cell) {
-        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
+        cell = [[ZJNormalTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"pop";
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    
+    [self.navigationController popViewControllerFromDirection:self.values[indexPath.row]];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return DefaultSectionTitleHeight;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return FLT_EPSILON;
 }
 
 /*
