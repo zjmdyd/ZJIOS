@@ -7,6 +7,7 @@
 //
 
 #import "ZJTestCAGradientLayerViewController.h"
+#import "ZJFuncDefine.h"
 
 @interface ZJTestCAGradientLayerViewController ()
 
@@ -21,9 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW - 60, 40)];
-    self.bgView.center = CGPointMake(kScreenW/2, 100);
+    CGFloat width = self.view.bounds.size.width;
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, width - 60, 150)];
+    self.bgView.center = CGPointMake(width/2, 300);
     [self.view addSubview:self.bgView];
     
     NSLog(@"self.bgView.frame = %@", NSStringFromCGRect(self.bgView.frame));
@@ -44,11 +45,22 @@
     [self.bgView.layer addSublayer:self.gradientLayer];
     
     CGRect frame = self.bgView.frame;
-    self.colorView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y + 150, frame.size.width, 150)];
+    self.colorView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y + 170, frame.size.width, 150)];
     self.colorView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.colorView];
 }
 
+/*
+ CGContextRef CGBitmapContextCreate(
+     void *data,                 // 指向存储像素数据的内存块（可为NULL）:ml-citation{ref="1,2" data="citationList"}
+     size_t width,               // 位图宽度（像素）:ml-citation{ref="1,2" data="citationList"}
+     size_t height,              // 位图高度（像素）:ml-citation{ref="1,2" data="citationList"}
+     size_t bitsPerComponent,    // 每个颜色分量的位数（如RGBA中每通道8bit）:ml-citation{ref="2,4" data="citationList"}
+     size_t bytesPerRow,         // 每行字节数（需对齐，可为0自动计算）:ml-citation{ref="1,7" data="citationList"}
+     CGColorSpaceRef colorspace, // 颜色空间（如sRGB）:ml-citation{ref="1,4" data="citationList"}
+     CGBitmapInfo bitmapInfo     // 像素格式与Alpha通道配置:ml-citation{ref="1,7" data="citationList"}
+ );
+ */
 - (UIColor *)colorOfPoint:(CGPoint)point {
     NSLog(@"point = %@", NSStringFromCGPoint(point));
     unsigned char pixel[4] = {0};

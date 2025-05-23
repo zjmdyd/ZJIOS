@@ -16,7 +16,7 @@
         // 当needCancel为YES时，默认第一个item为cancel
         self.needCancel = YES;
         self.cancelIndex = 0;
-        self.actTitles = @[@"取消", @"确定"];
+        self.defaultActTitles = @[@"取消", @"确定"];
         self.alertCtrlStyle = UIAlertControllerStyleAlert;
     }
     
@@ -27,4 +27,8 @@
     return self.actTitles.count == self.actTitleColors.count;
 }
 
+- (void)setNeedCancel:(BOOL)needCancel {
+    _needCancel = needCancel;
+    self.defaultActTitles = @[@"确定"];
+}
 @end

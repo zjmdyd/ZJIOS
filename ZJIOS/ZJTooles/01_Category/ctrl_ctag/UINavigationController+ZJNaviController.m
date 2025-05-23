@@ -7,7 +7,7 @@
 
 #import "UINavigationController+ZJNaviController.h"
 
-#define TransDuration 0.25
+#define TransDuration 1//0.25
 
 @implementation UINavigationController (ZJNaviController)
 

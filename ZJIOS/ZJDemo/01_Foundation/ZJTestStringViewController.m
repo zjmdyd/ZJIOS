@@ -23,7 +23,7 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8"];
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4", @"test5", @"test6", @"test7", @"test8", @"test9"];
 }
 
 - (void)printEvent:(NSString *)str {
@@ -318,10 +318,10 @@
     NSLog(@"dic = %@", dic);
 }
 
-- (void)tset9 {
-//    NSData *data = [@"自定义字符串" dataUsingEncoding:NSUTF8StringEncoding];
-//    MyString *str = [[MyString alloc] initWithData:data];
-//    NSLog(@"str = %@, superclass = %@", str, str.superclass);
+- (void)test9 {
+    NSData *data = [@"自定义字符串" dataUsingEncoding:NSUTF8StringEncoding];
+    MyString *str = [[MyString alloc] initWithData:data];
+    NSLog(@"str = %@, superclass = %@", str, str.superclass);
     NSLog(@"最好不要去继承类簇");
 }
 

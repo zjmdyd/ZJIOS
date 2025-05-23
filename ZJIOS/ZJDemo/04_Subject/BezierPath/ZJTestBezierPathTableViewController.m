@@ -24,7 +24,7 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"test0", @"test1", @"test2"];
+    self.cellTitles = @[@"test0", @"test1", @"test2", @"test3", @"test4"];
 }
 
 - (void)addPathView:(BOOL)need {
@@ -49,6 +49,15 @@
 - (void)test2 {
     [self showVCWithName:@"ZJTestBezierPathViewController"];
 }
+
+- (void)test3 {
+    [self showVCWithName:@"ZJBezierViewController"];
+}
+
+- (void)test4 {
+    [self showVCWithNibName:@"ZJWriteViewController"];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

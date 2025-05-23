@@ -201,7 +201,6 @@ void eat2(id self, SEL sel, id obj) {
  频繁动态添加方法会增加运行时开销
  ‌‌消息转发优先级‌
  若返回 NO 或未处理，会进入 forwardingTargetForSelector: 等消息转发流程
- 
  */
 + (BOOL)resolveInstanceMethod:(SEL)sel {
     NSString * selStr = NSStringFromSelector(sel);

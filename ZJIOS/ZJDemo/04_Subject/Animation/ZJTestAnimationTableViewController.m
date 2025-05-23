@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestRotateAnimatonViewController"];
+    self.cellTitles = @[@"ZJTransform2DTableViewController", @"ZJCATransform3DTypeTableViewController", @"ZJCAReplicatorTableViewController", @"ZJTestUIViewAnimationViewController", @"ZJUIAttachmentBehaviorViewController", @"ZJUIGravityBehaviorViewController",  @"ZJTestPushTransitionTableViewController", @"ZJTestPopTransitionTableViewController", ];
 }
 
 - (void)initSetting {

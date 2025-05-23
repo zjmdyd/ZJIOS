@@ -69,7 +69,7 @@ typedef void(^AlertActionCompl)(ZJAlertAction *act, NSArray *textFields);
 
 #pragma mark - alert
 
-- (void)alertFunc:(ZJAlertObject *)object alertCompl:(AlertActionCompl)callBack;
+- (void)alertWithobj:(ZJAlertObject *)object compl:(AlertActionCompl)callBack;
 
 
 #pragma mark - 系统分享

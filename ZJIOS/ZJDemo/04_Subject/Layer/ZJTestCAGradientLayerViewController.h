@@ -6,11 +6,11 @@
 //  Copyright © 2019 HY. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestCAGradientLayerViewController : UIViewController
+@interface ZJTestCAGradientLayerViewController : ZJViewController
 
 @end
 

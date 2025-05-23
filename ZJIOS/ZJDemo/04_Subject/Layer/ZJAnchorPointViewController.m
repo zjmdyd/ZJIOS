@@ -12,6 +12,9 @@
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIView *moveView;
 
+@property (strong, nonatomic) UIView *testView;
+@property (strong, nonatomic) UIView *frontView;
+
 @end
 
 @implementation ZJAnchorPointViewController
@@ -54,7 +57,6 @@
  2025-05-10 23:28:50.445024+0800 ZJIOS[75098:2934913] moveView_position = {225, 150}
  */
 - (void)test1 {
-    static BOOL finishAnimation = NO;
     NSLog(@"moveView_anchorPoint = %@", NSStringFromCGPoint(self.moveView.layer.anchorPoint));
     NSLog(@"moveView_position = %@", NSStringFromCGPoint(self.moveView.layer.position));
 
@@ -96,6 +98,45 @@
 
         }];
     }];
+}
+
+- (void)test3 {
+    [super viewDidLoad];
+    
+    for (int i = 0; i < 2; i++) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+        view.center = self.view.center;
+        if (i == 0) {
+            view.backgroundColor = [UIColor redColor];
+            self.testView = view;
+        }else if (i == 1) {
+            view.backgroundColor = [UIColor blueColor];
+            self.frontView = view;
+            self.frontView.alpha = 0.5;
+        }
+        [self.view addSubview:view];
+    }
+    
+    /*
+        锚点的范围:(0, 1)
+        默认值:(0.5, 0.5) --> 中心位置
+        锚点改变,中心点不会改变,中心点其实就是锚点在视图中的位置,所以锚点不管怎么改变,改变之后视图都将钉在默认的锚点位置,所以center不会改变
+        看锚点变后的位置关键是参照默认锚点位置
+     */
+    NSLog(@"center = %@, anchor = %@", NSStringFromCGPoint(self.frontView.center), NSStringFromCGPoint(self.frontView.layer.anchorPoint));
+    NSLog(@"frame = %@", NSStringFromCGRect(self.frontView.frame));
+
+/*
+    self.testView.layer.anchorPoint = CGPointMake(0, 0);
+    NSLog(@"center = %@, anchor = %@", NSStringFromCGPoint(self.testView.center), NSStringFromCGPoint(self.testView.layer.anchorPoint));
+    NSLog(@"frame = %@", NSStringFromCGRect(self.testView.frame));
+    // center = {160, 284}, anchor = {0, 0}
+    // frame = {{160, 284}, {200, 200}}
+*/
+    self.frontView.layer.anchorPoint = CGPointMake(1, 0.5);
+    NSLog(@"center = %@, anchor = %@", NSStringFromCGPoint(self.frontView.center), NSStringFromCGPoint(self.frontView.layer.anchorPoint));
+    NSLog(@"frame = %@", NSStringFromCGRect(self.frontView.frame));
+    // 改变锚点，center不会改变
 }
 
 /*

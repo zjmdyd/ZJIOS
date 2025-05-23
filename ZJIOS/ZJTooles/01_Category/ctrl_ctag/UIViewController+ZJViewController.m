@@ -256,10 +256,10 @@
 /* UIAlertController改标题颜色
  [[alert valueForKey:@"alertController"] setValue:[@"aa" attrWithForegroundColor:[UIColor redColor]] forKey:@"attributedTitle"];
  */
-- (void)alertFunc:(ZJAlertObject *)object alertCompl:(AlertActionCompl)callBack {
+- (void)alertWithobj:(ZJAlertObject *)object compl:(AlertActionCompl)callBack {
     UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:object.title message:object.msg preferredStyle:object.alertCtrlStyle];
-    NSUInteger count = object.actTitles.count;
-    for (int i = 0; i < count; i++) {
+    NSArray *titles = object.actTitles ? object.actTitles: object.defaultActTitles;
+    for (int i = 0; i < titles.count; i++) {
         UIAlertActionStyle style;
         if (i == object.cancelIndex && object.needCancel) {
             style = UIAlertActionStyleCancel;
@@ -268,7 +268,7 @@
         }else {
             style = UIAlertActionStyleDefault;
         }
-        NSString *title = object.actTitles[i];
+        NSString *title = titles[i];
         ZJAlertAction *act = [ZJAlertAction actionWithTitle:title style:style handler:^(UIAlertAction * _Nonnull action) {
             callBack((ZJAlertAction *)action, ctrl.textFields);
         }];
@@ -301,12 +301,10 @@
 
 #pragma mark - 系统分享
 
-/**
+/*
  系统分享
  */
 - (void)systemShareWithIcon:(NSString *)icon text:(NSString *)text url:(NSString *)url {
-    
-    
     //分享的url
     //    NSURL *urlToShare;
     //    if (url.length) {

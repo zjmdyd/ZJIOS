@@ -204,7 +204,7 @@
     NSLog(@"needCancelActStyle = %d, cancelIndex = %ld", self.needCancelActStyle, (long)self.cancelIndex);
     NSLog(@"needDestructiveActStyle = %d, destructiveIndex = %ld", self.needDestructiveActStyle, (long)self.destructiveIndex);
     
-    [self alertFunc:obj alertCompl:^(ZJAlertAction *act, NSArray *textFields) {
+    [self alertWithobj:obj compl:^(ZJAlertAction *act, NSArray *textFields) {
         NSLog(@"title = %@, %@, tag = %ld", act.title, textFields, (long)act.tag);
     }];
 }

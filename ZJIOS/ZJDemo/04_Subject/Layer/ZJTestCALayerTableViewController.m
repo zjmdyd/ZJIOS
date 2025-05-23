@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestLayerBorderViewController", @"ZJTestLayerMaskViewController", @"ZJAnchorPointViewController", @"ZJTestTouchViewController", @"ZJMergeViewController"];
+    self.cellTitles = @[@"ZJTestLayerBorderViewController", @"ZJTestLayerMaskViewController", @"ZJTestCAGradientLayerViewController", @"ZJAnchorPointViewController", @"ZJTestTouchViewController",];
 }
 
 - (void)initSetting {

@@ -1,32 +1,30 @@
 //
-//  ZJTestPushTransitionTableViewController.m
-//  ZJTest
+//  ZJTransform2DTableViewController.m
+//  ZJIOS
 //
-//  Created by ZJ on 2019/4/11.
-//  Copyright © 2019 HY. All rights reserved.
+//  Created by Zengjian on 2025/5/22.
 //
 
-#import "ZJTestPushTransitionTableViewController.h"
+#import "ZJTransform2DTableViewController.h"
 
-@interface ZJTestPushTransitionTableViewController ()
+@interface ZJTransform2DTableViewController ()
 
 @end
 
-@implementation ZJTestPushTransitionTableViewController
+@implementation ZJTransform2DTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initAry];
-    [self initSettiing];
+    [self initSetting];
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"FromLeft", @"FromRight", @"FromBottom", @"FromTop"];
-    self.values = @[kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromBottom, kCATransitionFromTop];
+    self.cellTitles = @[@"ZJCGAffineTransformViewController", @"ZJCGContextViewController", @"ZJClockDemoViewController"];
 }
 
-- (void)initSettiing {
+- (void)initSetting {
     
 }
 
@@ -37,35 +35,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJNormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
+    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
     if (!cell) {
-        cell = [[ZJNormalTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
+        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
     }
     cell.textLabel.text = self.cellTitles[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
-}
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"push";
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UIViewController *vc = [self createVCWithName:@"ZJTestPopTransitionTableViewController" title:self.cellTitles[indexPath.row] isGroupTableVC:YES];
-    [self.navigationController pushViewController:vc direction:self.values[indexPath.row]];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return DefaultSectionTitleHeight;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return FLT_EPSILON;
+    NSString *vcName = self.cellTitles[indexPath.row];
+    [self showVCWithName:vcName title:vcName];
 }
 
 /*
