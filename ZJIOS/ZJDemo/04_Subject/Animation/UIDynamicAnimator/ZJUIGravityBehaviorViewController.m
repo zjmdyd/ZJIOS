@@ -22,18 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *titles = @[@"gravityBehavior", @"gravity+collisionBehavior"];
+    NSArray *titles = @[@"gravityBehavior", @"自定组合类gravity+collision"];
     for (int i = 0; i < titles.count; i++) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 80 + 45*i, 250, 35)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 100 + 45*i, 250, 35)];
         btn.backgroundColor = [UIColor blueColor];
         btn.tag = i;
         [btn setTitle:titles[i] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(gravityBehaviorAction:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
 }
 
-- (void)gravityBehaviorAction:(UIButton *)sender {
+- (void)btnEvent:(UIButton *)sender {
     if (self.animationView.superview) {
         [self.animationView removeFromSuperview];
         self.animator = nil;
@@ -45,25 +45,15 @@
     
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];    //此处不能用局部变量，否则出了作用域，animator被ARC释放，动画效果失效
     
-    /* 自定义Behavior组合创建 */
-    /*
+    // 自定义Behavior组合创建 gravityBehavior + collisionBehavior
     if (sender.tag == 1) {
         GravityWithCollisionBehavior *behavior = [[GravityWithCollisionBehavior alloc] initWithItem:@[self.animationView]];
         [self.animator addBehavior:behavior];
-        
+        behavior.delegate = self;
         return;
-    }
-     */
-    
-    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
-    [self.animator addBehavior:self.gravityBehavior];
-    
-    // gravityBehavior + collisionBehavior
-    if (sender.tag == 1) {
-        UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.animationView]];
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-        collisionBehavior.collisionDelegate = self;
-        [self.animator addBehavior:collisionBehavior];
+    }else {
+        self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
+        [self.animator addBehavior:self.gravityBehavior];
     }
 }
 

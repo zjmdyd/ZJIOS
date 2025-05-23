@@ -10,10 +10,11 @@
 #import "UIViewExt.h"
 
 @interface ZJFlipAnimationViewController (){
-    NSArray *_bgImgs;
-    NSArray *_fgImgs;
     NSMutableArray *_btnAry;
 }
+
+@property (nonatomic, strong) NSArray *bgImgs;
+@property (nonatomic, strong) NSArray *fgImgs;
 
 @end
 
@@ -40,12 +41,31 @@
         btn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         [btn addTarget:self action:@selector(flipAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn setBackgroundImage:[UIImage imageNamed:_fgImgs[i]] forState:UIControlStateNormal];
-        [_btnAry addObject:[NSNumber numberWithInt:0]];
+        [_btnAry addObject:[NSNumber numberWithInt:0]]; // 标记是否翻转
         [self.view addSubview:btn];
     }
 }
 
 - (void)flipAction:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    if ([_btnAry[sender.tag] intValue] == 0) {  //左翻转
+        [_btnAry replaceObjectAtIndex:sender.tag withObject:[NSNumber numberWithInt:1]];
+        [UIView transitionWithView:sender duration:kDuration options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            [sender setBackgroundImage:[UIImage imageNamed:weakSelf.bgImgs[sender.tag]] forState:UIControlStateNormal];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }else {//右翻转
+        [_btnAry replaceObjectAtIndex:sender.tag withObject:[NSNumber numberWithInt:0]];
+        [UIView transitionWithView:sender duration:kDuration options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+            [sender setBackgroundImage:[UIImage imageNamed:weakSelf.fgImgs[sender.tag]] forState:UIControlStateNormal];
+        } completion:^(BOOL finished) {
+        }];
+    }
+}
+
+// API_DEPRECATED
+- (void)test0:(UIButton *)sender {
     CGContextRef context = UIGraphicsGetCurrentContext();
     [UIView beginAnimations:nil context:context];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -64,6 +84,25 @@
     [UIView setAnimationDelegate:self];
 
     [UIView commitAnimations];
+}
+
+- (void)test1:(UIButton *)sender {
+
+}
+
+- (void)test2 {
+    // 创建转场动画对象
+//       CATransition *anim = [CATransition animation];
+//
+//       // 设置转场类型
+//       anim.type = @"pageCurl";
+//
+//       // 设置动画的方向
+//       anim.subtype = kCATransitionFromLeft;
+//
+//       anim.duration = 3;
+//
+//       [_imageV.layer addAnimation:anim forKey:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -22,21 +22,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *titles = @[@"attachmentBehavior", @"attachment+collisionBehavior"];
+    NSArray *titles = @[@"attachment+gravity", @"attach+gravity+collision"];
     for (int i = 0; i < titles.count; i++) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 80 + 45*i, 250, 35)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 100 + 45*i, 250, 35)];
         btn.backgroundColor = [UIColor blueColor];
         btn.tag = i;
         [btn setTitle:titles[i] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(attachmentBehaviorAction:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleAttachmentGesture:)];
     [self.view addGestureRecognizer:panGesture];
+    
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view]; //此处不能用局部变量，否则出了作用域，animator被ARC释放，动画效果失效
 }
 
-- (void)attachmentBehaviorAction:(UIButton *)sender {
+- (UIDynamicAnimator *)animator {
+    if (!_animator) {
+        _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    }
+    
+    return _animator;
+}
+
+- (void)btnEvent:(UIButton *)sender {
     if (self.animationView.superview) {
         [self.animationView removeFromSuperview];
         self.animator = nil;
@@ -46,12 +56,10 @@
     [self.view addSubview:self.animationView];
     self.animationView.transform = CGAffineTransformRotate(self.animationView.transform, 45);
     
-    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];    //此处不能用局部变量，否则出了作用域，animator被ARC释放，动画效果失效
-    
     // gravityBehavior
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.animationView]];
     
-    if (sender.tag == 1) {      // attachmentBehavior + collisionBehavior
+    if (sender.tag == 1) {      // gravityBehavior + attachmentBehavior + collisionBehavior
         UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.animationView]];
         collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
         collisionBehavior.collisionDelegate = self;
@@ -61,9 +69,11 @@
 
 - (void)handleAttachmentGesture:(UIPanGestureRecognizer *)panGesture {
     if (panGesture.state == UIGestureRecognizerStateBegan) {
+        if (!self.animationView) {
+            [self btnEvent:nil];
+        }
         [self.animator addBehavior:self.gravityBehavior];
-        
-        // attachmentBehavior
+
         CGPoint point = CGPointMake(self.animationView.center.x, self.animationView.center.y - 100);
         self.attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self.animationView attachedToAnchor:point];
         [self.animator addBehavior:self.attachmentBehavior];
@@ -80,18 +90,30 @@
     NSLog(@"%@, %@", item, identifier);
 }
 
+/*
+ UIGravityBehavior    模拟重力下落效果
+ UICollisionBehavior    定义碰撞边界与物体交互
+ UIAttachmentBehavior    连接两个动力项或锚点（如弹簧效果）
+ UIPushBehavior    施加瞬时或持续推力
+ UISnapBehavior
+ 
+ let itemBehavior = UIDynamicItemBehavior(items: [ballView])
+ itemBehavior.elasticity = 0.8  // 弹性系数
+ animator.addBehavior(itemBehavior)
+ 
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

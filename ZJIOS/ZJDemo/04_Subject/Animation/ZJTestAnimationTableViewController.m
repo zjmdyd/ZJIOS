@@ -21,7 +21,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTransform2DTableViewController", @"ZJCATransform3DTypeTableViewController", @"ZJCAReplicatorTableViewController", @"ZJTestUIViewAnimationViewController", @"ZJUIAttachmentBehaviorViewController", @"ZJUIGravityBehaviorViewController",  @"ZJTestPushTransitionTableViewController", @"ZJTestPopTransitionTableViewController", ];
+    self.cellTitles = @[@"ZJTransform2DTableViewController", @"ZJCATransform3DTypeTableViewController", @"ZJCAReplicatorTableViewController", @"ZJTestBasicAnimationViewController", @"ZJUIAttachmentBehaviorViewController", @"ZJUIGravityBehaviorViewController",  @"ZJTestPushTransitionTableViewController", @"ZJTestPopTransitionTableViewController", ];
 }
 
 - (void)initSetting {

@@ -1,17 +1,17 @@
 //
-//  ZJTestUIViewAnimationViewController.m
+//  ZJTestBasicAnimationViewController.m
 //  ZJIOS
 //
 //  Created by Zengjian on 2025/5/22.
 //
 
-#import "ZJTestUIViewAnimationViewController.h"
+#import "ZJTestBasicAnimationViewController.h"
 
-@interface ZJTestUIViewAnimationViewController ()
+@interface ZJTestBasicAnimationViewController ()
 
 @end
 
-@implementation ZJTestUIViewAnimationViewController
+@implementation ZJTestBasicAnimationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,7 +21,8 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestScaleAnimationViewController", @"ZJFlipAnimationViewController"];
+    self.cellTitles = @[@"CABasicAnimation", @"transitionWithView"];
+    self.values = @[@"ZJTestScaleAnimationViewController", @"ZJFlipAnimationViewController"];
 }
 
 - (void)initSetting {
@@ -48,7 +49,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *vcName = self.cellTitles[indexPath.row];
+    NSString *vcName = self.values[indexPath.row];
     [self showVCWithName:vcName title:vcName];
 }
 

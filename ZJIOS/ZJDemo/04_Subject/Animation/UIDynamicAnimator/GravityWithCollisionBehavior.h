@@ -12,4 +12,6 @@
 
 - (instancetype) initWithItem:(NSArray *)items;
 
+@property (nonatomic, weak) id <UICollisionBehaviorDelegate> delegate;
+
 @end

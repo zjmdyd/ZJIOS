@@ -6,8 +6,8 @@
 //  Copyright © 2016 YunTu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJViewController.h"
 
-@interface ZJTestScaleAnimationViewController : UIViewController
+@interface ZJTestScaleAnimationViewController : ZJViewController
 
 @end

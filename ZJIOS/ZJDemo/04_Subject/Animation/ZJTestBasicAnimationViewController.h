@@ -1,5 +1,5 @@
 //
-//  ZJTestUIViewAnimationViewController.h
+//  ZJTestBasicAnimationViewController.h
 //  ZJIOS
 //
 //  Created by Zengjian on 2025/5/22.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZJTestUIViewAnimationViewController : ZJTableViewController
+@interface ZJTestBasicAnimationViewController : ZJTableViewController
 
 @end
 

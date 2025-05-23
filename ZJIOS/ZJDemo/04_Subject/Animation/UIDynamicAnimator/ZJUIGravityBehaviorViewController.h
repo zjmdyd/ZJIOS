@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 YunTu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJViewController.h"
 
-@interface ZJUIGravityBehaviorViewController : UIViewController
+@interface ZJUIGravityBehaviorViewController : ZJViewController
 
 @end

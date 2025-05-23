@@ -111,8 +111,8 @@
 		380165D12DDF2EC200E80396 /* fg6.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B62DDF2EC100E80396 /* fg6.png */; };
 		380165D42DDF2FC300E80396 /* ZJTransform2DTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D32DDF2FC300E80396 /* ZJTransform2DTableViewController.m */; };
 		380165D52DDF2FC300E80396 /* ZJTransform2DTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D32DDF2FC300E80396 /* ZJTransform2DTableViewController.m */; };
-		380165DA2DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D92DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m */; };
-		380165DB2DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D92DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m */; };
+		380165DA2DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */; };
+		380165DB2DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */; };
 		380165DC2DDF6C5100E80396 /* MyString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD42DD4E5C3002D8BFB /* MyString.m */; };
 		381A0FD52DD4E5C3002D8BFB /* MyString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD42DD4E5C3002D8BFB /* MyString.m */; };
 		381A0FD72DD5ECD8002D8BFB /* block和函数区别.md in Resources */ = {isa = PBXBuildFile; fileRef = 381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */; };
@@ -651,8 +651,8 @@
 		380165B72DDF2EC100E80396 /* ZJFlipAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJFlipAnimationViewController.h; sourceTree = "<group>"; };
 		380165D22DDF2FC300E80396 /* ZJTransform2DTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTransform2DTableViewController.h; sourceTree = "<group>"; };
 		380165D32DDF2FC300E80396 /* ZJTransform2DTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTransform2DTableViewController.m; sourceTree = "<group>"; };
-		380165D82DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestUIViewAnimationViewController.h; sourceTree = "<group>"; };
-		380165D92DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestUIViewAnimationViewController.m; sourceTree = "<group>"; };
+		380165D82DDF31FC00E80396 /* ZJTestBasicAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestBasicAnimationViewController.h; sourceTree = "<group>"; };
+		380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestBasicAnimationViewController.m; sourceTree = "<group>"; };
 		381A0FD32DD4E5C3002D8BFB /* MyString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyString.h; sourceTree = "<group>"; };
 		381A0FD42DD4E5C3002D8BFB /* MyString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyString.m; sourceTree = "<group>"; };
 		381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "block和函数区别.md"; sourceTree = "<group>"; };
@@ -1667,8 +1667,8 @@
 				380165D72DDF2FDD00E80396 /* CATransform2D */,
 				380165292DDF1B2900E80396 /* CATransform3D */,
 				380165892DDF291D00E80396 /* RReplicator */,
-				380165D82DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.h */,
-				380165D92DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m */,
+				380165D82DDF31FC00E80396 /* ZJTestBasicAnimationViewController.h */,
+				380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */,
 				380165582DDF1B5200E80396 /* ZJTestScaleAnimationViewController.h */,
 				380165532DDF1B5100E80396 /* ZJTestScaleAnimationViewController.m */,
 				380165552DDF1B5200E80396 /* ZJTestScaleAnimationViewController.xib */,
@@ -2478,7 +2478,7 @@
 				381A10252DDC943D002D8BFB /* ZJAVPlayerViewController.m in Sources */,
 				650808382830FA6B0010D447 /* ZJTouchMathEventViewController.m in Sources */,
 				6590A42F274B8C2400BDB826 /* Father.m in Sources */,
-				380165DA2DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m in Sources */,
+				380165DA2DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m in Sources */,
 				380165202DDF1A3500E80396 /* ZJCGAffineTransformViewController.m in Sources */,
 				38FF5B232A0E885E00F7DBEC /* ZJBaseTableViewController.m in Sources */,
 				652B58F227BA5CE200745D11 /* ZJTestSearchBarViewController.m in Sources */,
@@ -2805,7 +2805,7 @@
 				380165042DDF181400E80396 /* ZJCALayerFirstViewController.m in Sources */,
 				65BD900728E13CC600CDC2CC /* Student.m in Sources */,
 				65BD900928E13CC600CDC2CC /* UIScrollView+ZJScrollView.m in Sources */,
-				380165DB2DDF31FC00E80396 /* ZJTestUIViewAnimationViewController.m in Sources */,
+				380165DB2DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m in Sources */,
 				65D95C5028F66BB700879A28 /* ZJTestSizeViewController.m in Sources */,
 				65BD900A28E13CC600CDC2CC /* ZJTestNSRangeViewController.m in Sources */,
 				65BD900B28E13CC600CDC2CC /* ZJMVCViewController.m in Sources */,

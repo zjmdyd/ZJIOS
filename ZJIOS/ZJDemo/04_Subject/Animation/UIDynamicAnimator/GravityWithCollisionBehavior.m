@@ -8,17 +8,29 @@
 
 #import "GravityWithCollisionBehavior.h"
 
+@interface GravityWithCollisionBehavior ()
+
+@property (nonatomic, strong) UICollisionBehavior *cb;
+
+@end
+
 @implementation GravityWithCollisionBehavior
 
 - (instancetype)initWithItem:(NSArray *)items {
     if (self = [super init]) {
         UIGravityBehavior *gb = [[UIGravityBehavior alloc] initWithItems:items];
-        UICollisionBehavior *cb = [[UICollisionBehavior alloc] initWithItems:items];
-        cb.translatesReferenceBoundsIntoBoundary = YES;
+        self.cb = [[UICollisionBehavior alloc] initWithItems:items];
+        self.cb.translatesReferenceBoundsIntoBoundary = YES;
         [self addChildBehavior:gb];
-        [self addChildBehavior:cb];
+        [self addChildBehavior:self.cb];
     }
     return self;
+}
+
+- (void)setDelegate:(id<UICollisionBehaviorDelegate>)delegate {
+    _delegate = delegate;
+    
+    self.cb.collisionDelegate = _delegate;
 }
 
 @end
