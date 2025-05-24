@@ -13,12 +13,13 @@
 
 @interface ZJRotationReplicatorViewController ()<CAAnimationDelegate, CALayerDelegate> {
     CABasicAnimation *_moveAnimation;
-    CALayer *_barLayer;
-    
-    //
-    CALayer *_instanceLayer;
-    CAReplicatorLayer *_replicatorLayer;
     CABasicAnimation *_fadeAnimation;
+
+    CALayer *_barLayer;
+    CALayer *_instanceLayer;
+    
+    CAReplicatorLayer *_replicatorLayer1;
+    CAReplicatorLayer *_replicatorLayer;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *replicatorLayerView;
@@ -41,12 +42,13 @@ static NSString *FADEANIMATION = @"fadeAnimation";
     [super viewDidLoad];
     
     [self initSettiing];
-    [self createVolumBars];
+//    [self createVolumBars];
     [self activityIndicator];
 }
 
 - (void)initSettiing {
     self.rightItemView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 33)];
+//    self.rightItemView.layer.borderWidth = 1;
     [self.rightItemView addTapGestureWithDelegate:nil target:self];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barbuttonWithCustomView:self.rightItemView];
     
@@ -63,27 +65,34 @@ static NSString *FADEANIMATION = @"fadeAnimation";
 
 // 播放音乐动态按钮
 - (void)createVolumBars {
-    CAReplicatorLayer *replicatorLayer = [CAReplicatorLayer layer];
-    replicatorLayer.frame = self.rightItemView.bounds;
+    _replicatorLayer1 = [CAReplicatorLayer layer];
+    _replicatorLayer1.frame = self.rightItemView.bounds;
     /*
      确切地说，position是layer中的anchorPoint点在superLayer中的位置坐标。因此可以说, position点是相对suerLayer的，anchorPoint点是相对layer的，两者是相对不同的坐标空间的一个重合点。
      再来看看position的原始定义:The layer’s position in its superlayer’s coordinate space。 中文可以理解成为position是layer相对superLayer坐标空间的位置，很显然，这里的位置是根据anchorPoint来确定的.
      */
-    replicatorLayer.position = CGPointMake(self.rightItemView.center.x - self.rightItemView.left + 30, self.rightItemView.center.y);
-    replicatorLayer.instanceCount = 3;      // The number of copies to create
-    replicatorLayer.instanceDelay = 0.33;   // instanceDelay is the temporal offset between each copy that the replicator layer renders
-    replicatorLayer.masksToBounds = YES;
-    
+//    NSLog(@"position = %@", NSStringFromCGPoint(replicatorLayer.position));
+    _replicatorLayer1.position = CGPointMake(self.rightItemView.width/2 + 30, self.rightItemView.center.y);
+//    NSLog(@"position = %@", NSStringFromCGPoint(replicatorLayer.position)); // {65, 16.5}
+
+    _replicatorLayer1.instanceCount = 3;      // The number of copies to create
+    _replicatorLayer1.instanceDelay = 0.33;   // instanceDelay is the temporal offset between each copy that the replicator layer renders
+    _replicatorLayer1.masksToBounds = YES;
+//    replicatorLayer.borderWidth = 1;
+//    replicatorLayer.borderColor = [UIColor greenColor].CGColor;
     // 复制图层在被创建时产生的和上一个复制图层的位移
-    replicatorLayer.instanceTransform = CATransform3DMakeTranslation(15.0, 0.0, 0.0);
-    [self.rightItemView.layer addSublayer:replicatorLayer];
+    _replicatorLayer1.instanceTransform = CATransform3DMakeTranslation(15.0, 0.0, 0.0);
+    [self.rightItemView.layer addSublayer:_replicatorLayer1];
     
     _barLayer = [CALayer layer];
     _barLayer.bounds = CGRectMake(0, 0, 8, 33);
-    _barLayer.position = CGPointMake(10, 43);
+//    NSLog(@"anchorPoint = %@", NSStringFromCGPoint(_barLayer.anchorPoint));
+//    NSLog(@"frame = %@", NSStringFromCGRect(_barLayer.frame));
+//    NSLog(@"position = %@", NSStringFromCGPoint(_barLayer.position));
+    _barLayer.position = CGPointMake(8, 43);
     _barLayer.backgroundColor = [UIColor redColor].CGColor;
-    [replicatorLayer addSublayer:_barLayer];  // replicatorLayer的每份拷贝都会添加此layer及layer的动画
-    
+    [_replicatorLayer1 addSublayer:_barLayer];  // replicatorLayer的每份拷贝都会添加此layer及layer的动画
+
     //
     _moveAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
     _moveAnimation.toValue = @(_barLayer.position.y - 25);
@@ -106,38 +115,39 @@ static NSString *FADEANIMATION = @"fadeAnimation";
     
     //
     self.instanceDelaySlider.value = _replicatorLayer.instanceDelay;
-    self.instanceCountSliderValueLabel.text = [NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:_replicatorLayer.instanceCount]];
+    self.instanceCountSliderValueLabel.text = [NSString stringWithFormat:@"%ld", (long)_replicatorLayer.instanceCount];
     self.instanceDelaySliderValueLabel.text = [NSString stringWithFormat:@"%.2f", _replicatorLayer.instanceDelay];
     
-    // 3
+    // 3, 可以不要第三步，但初始原色要设成白色
     _replicatorLayer.instanceRedOffset = 0.0;    // Defines the offset added to the red component of the color for each replicated instance
     _replicatorLayer.instanceGreenOffset = -0.5;
     _replicatorLayer.instanceBlueOffset = -0.5;
     _replicatorLayer.instanceAlphaOffset = 0.0;  // end color component: red:1 green:0.5 blue:0.5 alpha:1.0 462907284,在与偏差色共同作用下的颜色
-    
+    __weak typeof(self) weakSelf = self;
+
     // 4
     CGFloat angle = (M_PI * 2.0) / 29;
-    _replicatorLayer.instanceTransform = CATransform3DRotate(_replicatorLayer.transform, angle, 0.0, 0.0, 1.0); //  旋转
-    [self.replicatorLayerView.layer addSublayer:_replicatorLayer];
-    
+    _replicatorLayer.instanceTransform = CATransform3DRotate(_replicatorLayer.transform, angle, 0.0, 0.0, 1.0); //  z轴旋转
+    [weakSelf.replicatorLayerView.layer addSublayer:_replicatorLayer];
+
     // 5
     _instanceLayer = [CALayer layer];
     _instanceLayer.frame = [self getAdjustInstanceLayerFrame:10];
     _instanceLayer.backgroundColor = [UIColor whiteColor].CGColor;
-    _instanceLayer.delegate = self;
+    _instanceLayer.opacity = 0.0; // 0表示完全透明，1表示完全不透明）
+    _instanceLayer.delegate = weakSelf;
     [_replicatorLayer addSublayer:_instanceLayer];
     self.layerSizeSliderValueLabel.text = @"10 x 30";
     
     // 6
     _fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     _fadeAnimation.fromValue = @0.0;
-    _fadeAnimation.toValue = @1.0;
+    _fadeAnimation.toValue = @1.0;  // （0表示完全透明，1表示完全不透明）
     _fadeAnimation.duration = 1;
     _fadeAnimation.repeatCount = MAXFLOAT;
-    _fadeAnimation.delegate = self;
-
+    _fadeAnimation.delegate = weakSelf;
+    
     // 7
-    _instanceLayer.opacity = 0.0;
     [_instanceLayer addAnimation:_fadeAnimation forKey:FADEANIMATION];
     
     /*
@@ -177,12 +187,14 @@ static NSString *FADEANIMATION = @"fadeAnimation";
     NSLog(@"%s", __func__);
 }
 
+#pragma mark - CAAnimationDelegate
 - (void)animationDidStart:(CAAnimation *)anim {
     NSLog(@"%s", __func__);
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     NSLog(@"%s, flag = %d", __func__, flag);
+    
 }
 
 - (CGRect)getAdjustInstanceLayerFrame:(CGFloat)value {
@@ -202,8 +214,7 @@ static NSString *FADEANIMATION = @"fadeAnimation";
         _replicatorLayer.instanceCount = (NSInteger)sender.value;
         CGFloat angle = (M_PI * 2) / (sender.value - 1);
         _replicatorLayer.instanceTransform = CATransform3DRotate(_replicatorLayer.transform, angle, 0.0, 0.0, 1.0);
-        _instanceLayer.frame = [self getAdjustInstanceLayerFrame:_instanceLayer.frame.size.width];
-        
+//        _instanceLayer.frame = [self getAdjustInstanceLayerFrame:_instanceLayer.frame.size.width];
         self.instanceCountSliderValueLabel.text = [NSString stringWithFormat:@"%.0f", sender.value];
     }else if (sender.tag == 2) {
         _replicatorLayer.instanceDelay = (CFTimeInterval)sender.value;
@@ -243,6 +254,14 @@ static NSString *FADEANIMATION = @"fadeAnimation";
 - (void)handleNotification {
     [_barLayer addAnimation:_moveAnimation forKey:VOLUMBARANIMATION];
     [_instanceLayer addAnimation:_fadeAnimation forKey:FADEANIMATION];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    _fadeAnimation.delegate = nil;  // 必须,不然不会释放
+
+//    [_barLayer removeAnimationForKey:VOLUMBARANIMATION];
+//    [_instanceLayer removeAnimationForKey:FADEANIMATION];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -64,5 +64,4 @@
     CGContextRestoreGState(context);
 }
 
-
 @end

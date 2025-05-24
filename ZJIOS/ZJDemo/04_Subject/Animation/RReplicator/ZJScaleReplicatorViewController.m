@@ -28,7 +28,6 @@
     UIView *animationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 200)];
     animationView.center = self.view.center;
     animationView.backgroundColor = [UIColor lightGrayColor];
-    animationView.clipsToBounds = YES;
     [self.view addSubview:animationView];
     
     //
@@ -55,7 +54,7 @@
     
     // 透明度动画 (其实也可以直接设置CAReplicatorLayer的instanceAlphaOffset来实现)
     CABasicAnimation *alphaAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    alphaAnim.toValue = @0;
+    alphaAnim.toValue = @0; // （0表示完全透明，1表示完全不透明）
     
     //
     CAAnimationGroup *animGroup = [[CAAnimationGroup alloc] init];

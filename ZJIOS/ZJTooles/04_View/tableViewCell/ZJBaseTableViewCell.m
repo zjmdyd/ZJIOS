@@ -51,4 +51,11 @@
  2019-04-13 10:31:08.282615+0800 ZJTest[4817:1679904] -[ZJBaseTableViewCell layoutSubviews]   此时控件的frame已经确定 此方法每次页面显示都会调用
  2019-04-13 10:31:08.287870+0800 ZJTest[4817:1679904] -[ZJBaseTableViewCell drawRect:]    此方法默认只会调用一次，除非开发者自己调用刷新
  */
+/*
+ 相关方法对比‌
+ ‌‌方法‌    ‌             作用‌    ‌                                调用关系‌
+ setNeedsDisplay   标记需要重绘，异步触发 drawRect:1           不立即执行，依赖 RunLoop
+ setNeedsLayout    标记需要重新布局，触发 layoutSubviews       处理视图布局，与绘制无关
+ layoutIfNeeded    强制立即更新布局（同步）                     直接调用 layoutSubviews
+ */
 @end

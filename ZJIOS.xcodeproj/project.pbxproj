@@ -85,30 +85,6 @@
 		380165A72DDF2DD000E80396 /* ZJWriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165A02DDF2DCF00E80396 /* ZJWriteViewController.m */; };
 		380165B82DDF2EC200E80396 /* ZJFlipAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165A92DDF2EC100E80396 /* ZJFlipAnimationViewController.m */; };
 		380165B92DDF2EC200E80396 /* ZJFlipAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165A92DDF2EC100E80396 /* ZJFlipAnimationViewController.m */; };
-		380165BA2DDF2EC200E80396 /* fg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AB2DDF2EC100E80396 /* fg2.png */; };
-		380165BB2DDF2EC200E80396 /* fg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AB2DDF2EC100E80396 /* fg2.png */; };
-		380165BC2DDF2EC200E80396 /* bg6.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AC2DDF2EC100E80396 /* bg6.png */; };
-		380165BD2DDF2EC200E80396 /* bg6.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AC2DDF2EC100E80396 /* bg6.png */; };
-		380165BE2DDF2EC200E80396 /* fg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AD2DDF2EC100E80396 /* fg3.png */; };
-		380165BF2DDF2EC200E80396 /* fg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AD2DDF2EC100E80396 /* fg3.png */; };
-		380165C02DDF2EC200E80396 /* fg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AE2DDF2EC100E80396 /* fg1.png */; };
-		380165C12DDF2EC200E80396 /* fg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AE2DDF2EC100E80396 /* fg1.png */; };
-		380165C22DDF2EC200E80396 /* bg5.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AF2DDF2EC100E80396 /* bg5.png */; };
-		380165C32DDF2EC200E80396 /* bg5.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165AF2DDF2EC100E80396 /* bg5.png */; };
-		380165C42DDF2EC200E80396 /* bg4.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B02DDF2EC100E80396 /* bg4.png */; };
-		380165C52DDF2EC200E80396 /* bg4.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B02DDF2EC100E80396 /* bg4.png */; };
-		380165C62DDF2EC200E80396 /* fg4.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B12DDF2EC100E80396 /* fg4.png */; };
-		380165C72DDF2EC200E80396 /* fg4.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B12DDF2EC100E80396 /* fg4.png */; };
-		380165C82DDF2EC200E80396 /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B22DDF2EC100E80396 /* bg1.png */; };
-		380165C92DDF2EC200E80396 /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B22DDF2EC100E80396 /* bg1.png */; };
-		380165CA2DDF2EC200E80396 /* fg5.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B32DDF2EC100E80396 /* fg5.png */; };
-		380165CB2DDF2EC200E80396 /* fg5.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B32DDF2EC100E80396 /* fg5.png */; };
-		380165CC2DDF2EC200E80396 /* bg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B42DDF2EC100E80396 /* bg3.png */; };
-		380165CD2DDF2EC200E80396 /* bg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B42DDF2EC100E80396 /* bg3.png */; };
-		380165CE2DDF2EC200E80396 /* bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B52DDF2EC100E80396 /* bg2.png */; };
-		380165CF2DDF2EC200E80396 /* bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B52DDF2EC100E80396 /* bg2.png */; };
-		380165D02DDF2EC200E80396 /* fg6.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B62DDF2EC100E80396 /* fg6.png */; };
-		380165D12DDF2EC200E80396 /* fg6.png in Resources */ = {isa = PBXBuildFile; fileRef = 380165B62DDF2EC100E80396 /* fg6.png */; };
 		380165D42DDF2FC300E80396 /* ZJTransform2DTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D32DDF2FC300E80396 /* ZJTransform2DTableViewController.m */; };
 		380165D52DDF2FC300E80396 /* ZJTransform2DTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D32DDF2FC300E80396 /* ZJTransform2DTableViewController.m */; };
 		380165DA2DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */; };
@@ -636,18 +612,6 @@
 		380165A02DDF2DCF00E80396 /* ZJWriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJWriteViewController.m; sourceTree = "<group>"; };
 		380165A12DDF2DCF00E80396 /* ZJWriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJWriteView.h; sourceTree = "<group>"; };
 		380165A92DDF2EC100E80396 /* ZJFlipAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJFlipAnimationViewController.m; sourceTree = "<group>"; };
-		380165AB2DDF2EC100E80396 /* fg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fg2.png; sourceTree = "<group>"; };
-		380165AC2DDF2EC100E80396 /* bg6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg6.png; sourceTree = "<group>"; };
-		380165AD2DDF2EC100E80396 /* fg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fg3.png; sourceTree = "<group>"; };
-		380165AE2DDF2EC100E80396 /* fg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fg1.png; sourceTree = "<group>"; };
-		380165AF2DDF2EC100E80396 /* bg5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg5.png; sourceTree = "<group>"; };
-		380165B02DDF2EC100E80396 /* bg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg4.png; sourceTree = "<group>"; };
-		380165B12DDF2EC100E80396 /* fg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fg4.png; sourceTree = "<group>"; };
-		380165B22DDF2EC100E80396 /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
-		380165B32DDF2EC100E80396 /* fg5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fg5.png; sourceTree = "<group>"; };
-		380165B42DDF2EC100E80396 /* bg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg3.png; sourceTree = "<group>"; };
-		380165B52DDF2EC100E80396 /* bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg2.png; sourceTree = "<group>"; };
-		380165B62DDF2EC100E80396 /* fg6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fg6.png; sourceTree = "<group>"; };
 		380165B72DDF2EC100E80396 /* ZJFlipAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJFlipAnimationViewController.h; sourceTree = "<group>"; };
 		380165D22DDF2FC300E80396 /* ZJTransform2DTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTransform2DTableViewController.h; sourceTree = "<group>"; };
 		380165D32DDF2FC300E80396 /* ZJTransform2DTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTransform2DTableViewController.m; sourceTree = "<group>"; };
@@ -1200,25 +1164,6 @@
 			path = 03_Writing;
 			sourceTree = "<group>";
 		};
-		380165AA2DDF2EC100E80396 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				380165AB2DDF2EC100E80396 /* fg2.png */,
-				380165AC2DDF2EC100E80396 /* bg6.png */,
-				380165AD2DDF2EC100E80396 /* fg3.png */,
-				380165AE2DDF2EC100E80396 /* fg1.png */,
-				380165AF2DDF2EC100E80396 /* bg5.png */,
-				380165B02DDF2EC100E80396 /* bg4.png */,
-				380165B12DDF2EC100E80396 /* fg4.png */,
-				380165B22DDF2EC100E80396 /* bg1.png */,
-				380165B32DDF2EC100E80396 /* fg5.png */,
-				380165B42DDF2EC100E80396 /* bg3.png */,
-				380165B52DDF2EC100E80396 /* bg2.png */,
-				380165B62DDF2EC100E80396 /* fg6.png */,
-			);
-			path = image;
-			sourceTree = "<group>";
-		};
 		380165D72DDF2FDD00E80396 /* CATransform2D */ = {
 			isa = PBXGroup;
 			children = (
@@ -1236,6 +1181,20 @@
 				3801650E2DDF1A2700E80396 /* ZJContextView.m */,
 			);
 			path = CATransform2D;
+			sourceTree = "<group>";
+		};
+		380165DE2DE2156200E80396 /* Basic_TransAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				380165D82DDF31FC00E80396 /* ZJTestBasicAnimationViewController.h */,
+				380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */,
+				380165582DDF1B5200E80396 /* ZJTestScaleAnimationViewController.h */,
+				380165532DDF1B5100E80396 /* ZJTestScaleAnimationViewController.m */,
+				380165552DDF1B5200E80396 /* ZJTestScaleAnimationViewController.xib */,
+				380165B72DDF2EC100E80396 /* ZJFlipAnimationViewController.h */,
+				380165A92DDF2EC100E80396 /* ZJFlipAnimationViewController.m */,
+			);
+			path = Basic_TransAnimation;
 			sourceTree = "<group>";
 		};
 		381A0FF12DDB78B3002D8BFB /* runtime */ = {
@@ -1666,15 +1625,8 @@
 				658E129D2855F49C004C4748 /* ZJTestAnimationTableViewController.m */,
 				380165D72DDF2FDD00E80396 /* CATransform2D */,
 				380165292DDF1B2900E80396 /* CATransform3D */,
+				380165DE2DE2156200E80396 /* Basic_TransAnimation */,
 				380165892DDF291D00E80396 /* RReplicator */,
-				380165D82DDF31FC00E80396 /* ZJTestBasicAnimationViewController.h */,
-				380165D92DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m */,
-				380165582DDF1B5200E80396 /* ZJTestScaleAnimationViewController.h */,
-				380165532DDF1B5100E80396 /* ZJTestScaleAnimationViewController.m */,
-				380165552DDF1B5200E80396 /* ZJTestScaleAnimationViewController.xib */,
-				380165B72DDF2EC100E80396 /* ZJFlipAnimationViewController.h */,
-				380165A92DDF2EC100E80396 /* ZJFlipAnimationViewController.m */,
-				380165AA2DDF2EC100E80396 /* image */,
 				380165222DDF1B2800E80396 /* UIDynamicAnimator */,
 				380164F52DDEC1D600E80396 /* ZJTestPushTransitionTableViewController.h */,
 				380164F62DDEC1D600E80396 /* ZJTestPushTransitionTableViewController.m */,
@@ -2215,7 +2167,6 @@
 			files = (
 				38A1F0A22679A6B400A4D044 /* MVC.jpeg in Resources */,
 				6585EF6A294B139D00392F66 /* ZJNSOperationDownLoaderDemoVC.xib in Resources */,
-				380165BA2DDF2EC200E80396 /* fg2.png in Resources */,
 				654ABAC3277C47260048F7A8 /* zjFoundation.md in Resources */,
 				38AB576B268334B80014CECE /* block_malloc.png in Resources */,
 				38A1F0A32679A6B400A4D044 /* MVVM.jpeg in Resources */,
@@ -2231,10 +2182,8 @@
 				6504AF632830104D005E1275 /* sortedArrayUsingComparator.png in Resources */,
 				380165632DDF1B5300E80396 /* ZJRotationReplicatorViewController.xib in Resources */,
 				3883B9BC268EBE9800236663 /* userHelp.html in Resources */,
-				380165BE2DDF2EC200E80396 /* fg3.png in Resources */,
 				38A1F09C267993D200A4D044 /* runloop.png in Resources */,
 				38A1F0AE267A5E8D00A4D044 /* 野指针调试.jpeg in Resources */,
-				380165D02DDF2EC200E80396 /* fg6.png in Resources */,
 				380165792DDF27D900E80396 /* ZJCATransform3DRotation2ViewController.xib in Resources */,
 				658CA1C128895CC70043B21A /* ZJTestImageOverlayViewController.xib in Resources */,
 				380165612DDF1B5300E80396 /* ZJTestScaleAnimationViewController.xib in Resources */,
@@ -2248,7 +2197,6 @@
 				3801651E2DDF1A3500E80396 /* ZJCGAffineTransformViewController.xib in Resources */,
 				381A10212DDC943D002D8BFB /* ZJAVPlayerViewController.xib in Resources */,
 				38D13DB92680BFBB00BCAC42 /* block_forwarding.png in Resources */,
-				380165C82DDF2EC200E80396 /* bg1.png in Resources */,
 				38D13DC42680C00E00BCAC42 /* 数组指针.jpeg in Resources */,
 				3801654D2DDF1B2900E80396 /* 1434511542665314.jpg in Resources */,
 				65AAD3FF281532D600A89F10 /* 点与环形区域.png in Resources */,
@@ -2257,22 +2205,14 @@
 				65ABF0D326D7A48300A08267 /* ZJTestNibViewController.xib in Resources */,
 				381A0FFF2DDC43F0002D8BFB /* alert_message.wav in Resources */,
 				65D62C03288A9436001C616E /* a.cikernel in Resources */,
-				380165BC2DDF2EC200E80396 /* bg6.png in Resources */,
 				382EE8DE26750B04008AB02C /* LaunchScreen.storyboard in Resources */,
-				380165C62DDF2EC200E80396 /* fg4.png in Resources */,
 				38A1F095267901E600A4D044 /* runtime_class.png in Resources */,
 				380165982DDF2D6C00E80396 /* ZJPaletteViewController.xib in Resources */,
-				380165C02DDF2EC200E80396 /* fg1.png in Resources */,
 				38A1F0A52679A8AD00A4D044 /* MVP.png in Resources */,
 				38A1F09726790A6800A4D044 /* metaClass.png in Resources */,
-				380165C22DDF2EC200E80396 /* bg5.png in Resources */,
 				381A0FD72DD5ECD8002D8BFB /* block和函数区别.md in Resources */,
-				380165C42DDF2EC200E80396 /* bg4.png in Resources */,
-				380165CC2DDF2EC200E80396 /* bg3.png in Resources */,
-				380165CA2DDF2EC200E80396 /* fg5.png in Resources */,
 				6504AF6528301098005E1275 /* NSTaggedPointerString.docx in Resources */,
 				38D13DC52680C00E00BCAC42 /* 内存五大区.png in Resources */,
-				380165CE2DDF2EC200E80396 /* bg2.png in Resources */,
 				38B150D028C3659300688F62 /* ZJTestSleepFuncViewController.xib in Resources */,
 				658E12A32855F69A004C4748 /* ZJAnchorPointViewController.xib in Resources */,
 				38D13DC32680C00E00BCAC42 /* block_bref_2.png in Resources */,
@@ -2302,24 +2242,18 @@
 			files = (
 				65BD904D28E13CC600CDC2CC /* MVC.jpeg in Resources */,
 				65BD904E28E13CC600CDC2CC /* zjFoundation.md in Resources */,
-				380165C32DDF2EC200E80396 /* bg5.png in Resources */,
-				380165D12DDF2EC200E80396 /* fg6.png in Resources */,
 				380165A52DDF2DD000E80396 /* ZJWriteViewController.xib in Resources */,
 				65BD904F28E13CC600CDC2CC /* block_malloc.png in Resources */,
 				65BD905028E13CC600CDC2CC /* MVVM.jpeg in Resources */,
 				380165642DDF1B5300E80396 /* ZJRotationReplicatorViewController.xib in Resources */,
 				65BD905128E13CC600CDC2CC /* block_stack.png in Resources */,
 				65BD905228E13CC600CDC2CC /* block-struct.jpeg in Resources */,
-				380165CD2DDF2EC200E80396 /* bg3.png in Resources */,
 				65BD905328E13CC600CDC2CC /* changeColor.cikernel in Resources */,
-				380165C12DDF2EC200E80396 /* fg1.png in Resources */,
 				6585EF5B294B137C00392F66 /* ZJTestNSThreadDemoViewController.xib in Resources */,
 				65BD905428E13CC600CDC2CC /* ZJTestServerViewController.xib in Resources */,
 				65BD905528E13CC600CDC2CC /* MVC.gif in Resources */,
 				381A10192DDC7A49002D8BFB /* mao_snow.mp4 in Resources */,
-				380165C72DDF2EC200E80396 /* fg4.png in Resources */,
 				65BD905628E13CC600CDC2CC /* sortedArrayUsingComparator.png in Resources */,
-				380165BD2DDF2EC200E80396 /* bg6.png in Resources */,
 				3801651B2DDF1A3500E80396 /* 251933285905256.jpg in Resources */,
 				65BD905728E13CC600CDC2CC /* userHelp.html in Resources */,
 				65BD905828E13CC600CDC2CC /* runloop.png in Resources */,
@@ -2333,28 +2267,22 @@
 				3801657A2DDF27D900E80396 /* ZJCATransform3DRotation2ViewController.xib in Resources */,
 				381A10222DDC943D002D8BFB /* ZJAVPlayerViewController.xib in Resources */,
 				65BD906028E13CC600CDC2CC /* 数组指针.jpeg in Resources */,
-				380165BB2DDF2EC200E80396 /* fg2.png in Resources */,
 				65BD906128E13CC600CDC2CC /* 点与环形区域.png in Resources */,
 				3801651D2DDF1A3500E80396 /* 251948306213713.png in Resources */,
 				380165782DDF27D900E80396 /* ZJCATransform3DViewController.xib in Resources */,
 				380165912DDF2C6300E80396 /* ZJClockDemoViewController.xib in Resources */,
-				380165CB2DDF2EC200E80396 /* fg5.png in Resources */,
 				3801654E2DDF1B2900E80396 /* 1434511542665314.jpg in Resources */,
 				65BD906228E13CC600CDC2CC /* 野指针log.webp in Resources */,
 				65BD906328E13CC600CDC2CC /* ZJTestNibViewController.xib in Resources */,
 				65BD906428E13CC600CDC2CC /* a.cikernel in Resources */,
-				380165C52DDF2EC200E80396 /* bg4.png in Resources */,
 				381A10002DDC43F0002D8BFB /* alert_message.wav in Resources */,
 				65BD907928E1440100CDC2CC /* ZJIOSPro.plist in Resources */,
 				3801651F2DDF1A3500E80396 /* ZJCGAffineTransformViewController.xib in Resources */,
 				65BD906528E13CC600CDC2CC /* LaunchScreen.storyboard in Resources */,
 				65BD906628E13CC600CDC2CC /* runtime_class.png in Resources */,
-				380165BF2DDF2EC200E80396 /* fg3.png in Resources */,
 				65BD906728E13CC600CDC2CC /* MVP.png in Resources */,
-				380165C92DDF2EC200E80396 /* bg1.png in Resources */,
 				65BD906828E13CC600CDC2CC /* metaClass.png in Resources */,
 				65BD906928E13CC600CDC2CC /* NSTaggedPointerString.docx in Resources */,
-				380165CF2DDF2EC200E80396 /* bg2.png in Resources */,
 				65BD906A28E13CC600CDC2CC /* 内存五大区.png in Resources */,
 				65BD906B28E13CC600CDC2CC /* ZJTestSleepFuncViewController.xib in Resources */,
 				65BD906C28E13CC600CDC2CC /* ZJAnchorPointViewController.xib in Resources */,

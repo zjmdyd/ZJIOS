@@ -6,8 +6,8 @@
 //  Copyright © 2017 ZJ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJViewController.h"
 
-@interface ZJScaleReplicatorViewController : UIViewController
+@interface ZJScaleReplicatorViewController : ZJViewController
 
 @end
