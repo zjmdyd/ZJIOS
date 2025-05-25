@@ -30,32 +30,38 @@
     [self.view addSubview:self.button];
     [self.view addSubview:self.slider];
     [self.view addSubview:self.iv];
-
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"my_song" ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    AVURLAsset *set = [AVURLAsset URLAssetWithURL:url options:nil];
-    for (AVMetadataItem *item in set.commonMetadata) {
-        if ([item.commonKey isEqualToString:@"artwork"]) {
-            if ([item.value isKindOfClass:[NSData class]]) {
-                self.iv.image = [UIImage imageWithData:(NSData *)item.value];
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"my_song" ofType:@"mp3"];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        AVURLAsset *set = [AVURLAsset URLAssetWithURL:url options:nil];
+        for (AVMetadataItem *item in set.commonMetadata) {
+            if ([item.commonKey isEqualToString:@"artwork"]) {
+                if ([item.value isKindOfClass:[NSData class]]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.iv.image = [UIImage imageWithData:(NSData *)item.value];
+                    });
+                }
+                break;
             }
-            break;
         }
-    }
-    //    NSURL *url = [NSURL URLWithString:@"http://wl.baidu190.com/1474860041/20170927eb7c42da5df7f1320f0bafc0803a5d.mp3"];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-//    self.player.numberOfLoops = 1;  // -1为无限循环, n为n+1次
-    [self.player prepareToPlay];
-    self.player.delegate = self;
-    NSLog(@"duration = %f", self.player.duration);
-    self.slider.maximumValue = self.player.duration;
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    NSError *error;
-    [session setActive:YES error:&error];
-    if (error) {
-        NSLog(@"setActive_error = %@", error);
-    }
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+        //    NSURL *url = [NSURL URLWithString:@"http://wl.baidu190.com/1474860041/20170927eb7c42da5df7f1320f0bafc0803a5d.mp3"];
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    //    self.player.numberOfLoops = 1;  // -1为无限循环, n为n+1次
+        [self.player prepareToPlay];
+        self.player.delegate = self;
+        NSLog(@"duration = %f", self.player.duration);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.slider.maximumValue = self.player.duration;            
+        });
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        NSError *error;
+        [session setActive:YES error:&error];
+        if (error) {
+            NSLog(@"setActive_error = %@", error);
+        }
+        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    });
 }
 
 - (void)beganTimer {
@@ -67,6 +73,24 @@
     } else {
         // Fallback on earlier versions
     }
+}
+
+- (void)btnEvent:(UIButton *)sender {
+    if ([self.player prepareToPlay])
+    if (self.player.isPlaying) {
+        [self.player pause];
+    }else {
+        [self.player play];
+        self.slider.enabled = YES;
+        [self beganTimer];
+    }
+    NSArray *titles = @[@"play", @"pause"];
+    [sender setTitle:titles[self.player.isPlaying] forState:UIControlStateNormal];
+}
+
+- (void)sliderEvent:(UISlider *)sender {
+    NSLog(@"%s, %f", __func__, sender.value);
+    self.player.currentTime = sender.value;
 }
 
 #pragma mark - AVAudioPlayerDelegate
@@ -114,22 +138,6 @@
     return _iv;
 }
 
-- (void)btnEvent:(UIButton *)sender {
-    if (self.player.isPlaying) {
-        [self.player pause];
-    }else {
-        [self.player play];
-        self.slider.enabled = YES;
-        [self beganTimer];
-    }
-    NSArray *titles = @[@"play", @"pause"];
-    [sender setTitle:titles[self.player.isPlaying] forState:UIControlStateNormal];
-}
-
-- (void)sliderEvent:(UISlider *)sender {
-    NSLog(@"%s, %f", __func__, sender.value);
-    self.player.currentTime = sender.value;
-}
 //
 //- (void)sliderEvent2:(UISlider *)sender {
 //    NSLog(@"%s, %f", __func__, sender.value);

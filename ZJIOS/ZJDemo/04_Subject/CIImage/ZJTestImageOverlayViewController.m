@@ -25,6 +25,7 @@
     [self test0];
     [self test1];
     [self test2];
+//    [self test3];
 }
 
 // CIWarpKernel

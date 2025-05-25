@@ -10,9 +10,7 @@
 #import "AppDelegate.h"
 #import "ZJLover.h"
 
-@interface ZJNSKeyedArchiverViewController () {
-    AppDelegate *_appDelegate;
-}
+@interface ZJNSKeyedArchiverViewController ()
 
 @end
 
@@ -21,18 +19,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self testSystemArchiver];
-//    [self testCustomArchiver];
+    [self initAry];
 }
 
-- (void)testSystemArchiver {
+- (void)initAry {
+    self.vcType = ZJBaseTableViewTypeExecute;
+    
+    self.cellTitles = @[@"testSystemArchiver", @"testCustomArchiver"];
+    self.values = @[@"test0", @"test1"];
+}
+
+- (void)test0 {
     NSArray *arr = @[@"张三", @"李四", @"王五"];
     
-    /**
+    /*
      *  归档解档: 方式一
      */
     
-    /*/Users/zj/Desktop/ZJIOSProgramme
+    /*/
      归档:把对象--->data
      */
     //1.创建一个可变长度的data
@@ -45,7 +49,9 @@
     [arch finishEncoding];
     
     NSError *error;
-    BOOL isSuccess = [md writeToFile:@"/Users/zj/Desktop/names" atomically:YES];
+    NSString *path0 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *path1 = [path0 stringByAppendingPathComponent:@"/names"];
+    BOOL isSuccess = [md writeToFile:path1 atomically:YES];
     if (isSuccess) {
         NSLog(@"归档成功");
     }else {
@@ -54,18 +60,19 @@
     /*
      反归档:把Data-->对象
      */
-    NSData *data = [NSData dataWithContentsOfFile:@"/Users/zj/Desktop/names"];
+    NSData *data = [NSData dataWithContentsOfFile:path1];
     //1.创建反归档对象
     NSKeyedUnarchiver *unArch = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     //2.解码:把对象解出来
     NSArray *newNames = [unArch decodeObjectForKey:@"names"];
+    NSLog(@"解归档");
     for (NSString *name in newNames) {
         NSLog(@"%@", name);
     }
     
     NSLog(@"\n\n**************\n\n");
     
-    /**
+    /*
      *  归档解档: 方式二
      */
     NSData *d = [NSKeyedArchiver archivedDataWithRootObject:arr];
@@ -73,11 +80,9 @@
     for (NSString *name in n) {
         NSLog(@"%@", name);
     }
-    
-    NSLog(@"\n\n**************\n\n");
 }
 
-- (void)testCustomArchiver {
+- (void)test1 {
     ZJLover *lover = [[ZJLover alloc] init];
     lover.name = @"aa";
     lover.age = 12;
@@ -95,8 +100,10 @@
     [arch finishEncoding];
     
     NSError *error;
-    BOOL isSuccess = [md writeToFile:@"/Users/zj/Desktop/custom" options:NSDataWritingAtomic error:&error];
-    if (isSuccess) {        // 在模拟器会成功, 真机写入不成功, why???
+    NSString *path0 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *path1 = [path0 stringByAppendingPathComponent:@"/custom"];
+    BOOL isSuccess = [md writeToFile:path1 options:NSDataWritingAtomic error:&error];
+    if (isSuccess) {
         NSLog(@"归档成功");
     }else {
         NSLog(@"归档失败 error = %@", error);
@@ -105,11 +112,12 @@
     /*
      反归档:把Data-->对象
      */
-    NSData *data = [NSData dataWithContentsOfFile:@"/Users/zj/Desktop/custom"];
+    NSData *data = [NSData dataWithContentsOfFile:path1];
     //1.创建反归档对象
     NSKeyedUnarchiver *unArch = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     //2.解码:把对象解出来
     ZJLover *newLover = [unArch decodeObjectForKey:@"lover"];
+    NSLog(@"解归档");
     NSLog(@"name = %@, age = %ld", newLover.name, (long)newLover.age);
 }
 

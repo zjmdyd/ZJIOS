@@ -129,6 +129,13 @@ dispatch_source_t dis_timer;
 }
 
 /*
+
+ 
+ QoS 等级                         适用场景                                性能影响
+ ‌‌QOS_CLASS_USER_INTERACTIVE    用户直接感知的即时操作（如动画）           最高 CPU/GPU 资源占用
+ ‌‌QOS_CLASS_USER_INITIATED      用户触发但可稍后完成的任务（如文件保存）    中等优先级，允许短暂延迟
+ ‌‌QOS_CLASS_UTILITY             后台计算或下载任务                      低优先级，资源受限时可能被延迟
+ 
  currentMode = (null); 常见原因
  不在主线程上运行：NSRunLoop 主要与主线程（即 UI 线程）相关联。如果你的代码不在主线程上运行，那么 currentMode 可能会返回 nil
  */

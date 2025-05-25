@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 YunTu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZJBaseTableViewController.h"
 
-@interface ZJNSKeyedArchiverViewController : UIViewController
+@interface ZJNSKeyedArchiverViewController : ZJBaseTableViewController
 
 @end

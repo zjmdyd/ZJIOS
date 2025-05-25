@@ -22,8 +22,8 @@
 
 - (void)initAry {
     self.vcType = ZJBaseTableViewTypeExecute;
-    self.cellTitles = @[@"__LINE__", @"__FILE__", @"__func__&&_cmd", @"空指针常量"];
-    self.values = @[@"test0", @"test1", @"test2"];
+    self.cellTitles = @[@"__LINE__", @"__FILE__", @"__func__&&_cmd", @"空指针常量", @"设置多个target"];
+    self.values = @[@"test0", @"test1", @"test2", @"test3", @"test4"];
 }
 
 //源码文件中的行号
@@ -47,6 +47,30 @@
     int *p = NULL, q = 10;
     p = &q;
     printf("a= %d\n", *p);
+}
+
+/*
+ 步骤:
+ 1.复制target,修改target名称
+ 2.Manage Scheme,修改scheme名称
+ 3.修改***copy-info.plist名称,再修改plist文件路径,与原来的info.plist文件路径保持一样
+ 4.配置plist路径，点击新的target,然后在Built Setting 中搜索 info.plist 找到配置项 修改为新info.plist的路径($(SRCROOT)/*//*/*)
+ 5.Build Setting搜索preprocessor Macros可配置宏
+*/
+- (void)test4 {
+#ifdef PROD_ENV
+#ifdef DEBUG
+    NSLog(@"net_debug版本");
+#else
+    NSLog(@"net_release版本");
+#endif
+#else
+#ifdef DEBUG
+    NSLog(@"com_debug版本");
+#else
+    NSLog(@"com_release版本");
+#endif
+#endif
 }
 
 /*
