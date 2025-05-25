@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:NameCache+CoreDataClass.h">
+   </FileRef>
+   <FileRef
+      location = "group:NameCache+CoreDataClass.m">
+   </FileRef>
+   <FileRef
+      location = "group:NameCache+CoreDataProperties.h">
+   </FileRef>
+   <FileRef
+      location = "group:NameCache+CoreDataProperties.m">
+   </FileRef>
+   <FileRef
       location = "group:ZJIOS.xcodeproj">
    </FileRef>
    <FileRef
