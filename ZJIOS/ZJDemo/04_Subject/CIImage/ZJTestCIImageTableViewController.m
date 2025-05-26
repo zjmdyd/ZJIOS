@@ -6,6 +6,7 @@
 //
 
 #import "ZJTestCIImageTableViewController.h"
+#import "ZJTestCIKernelCollectionViewController.h"
 
 @interface ZJTestCIImageTableViewController ()
 
@@ -21,7 +22,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestFilterViewController", @"ZJTestImageOverlayViewController"];
+    self.cellTitles = @[@"ZJTestFilterViewController", @"ZJTestCIKernelCollectionViewController"];
 }
 
 - (void)initSetting {
@@ -46,11 +47,20 @@
 }
 
 #pragma mark - UITableViewDelegate
-
+//    @property (nonatomic, assign) CGFloat minimumLineSpacing;       // 默认为0 行间距
+//    @property (nonatomic, assign) CGFloat minimumInteritemSpacing;  // 默认为0 item间距
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName];
+    if (indexPath.row == 1) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 1;
+        ZJTestCIKernelCollectionViewController *vc = [[ZJTestCIKernelCollectionViewController alloc] initWithCollectionViewLayout:layout];
+        [self showViewController:vc sender:nil];
+    }else {
+        NSString *vcName = self.cellTitles[indexPath.row];
+        [self showVCWithName:vcName];
+    }
 }
 
 /*

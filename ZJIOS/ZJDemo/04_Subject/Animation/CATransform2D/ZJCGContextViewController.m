@@ -21,6 +21,10 @@ static NSInteger count = 6;
 - (void)viewDidLoad {
     [super viewDidLoad];
         
+    [self performSelector:@selector(test0) withObject:nil afterDelay:0.05];
+}
+
+- (void)test0 {
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 120, self.view.width - 20, self.view.height - 140)];
 //    scrollView.delegate = self;
 //    scrollView.pagingEnabled = YES;
@@ -39,9 +43,9 @@ static NSInteger count = 6;
         }
         view.backgroundColor = [UIColor redColor];
         view.frame = CGRectMake(i * (scrollView.width + offsetX), 0, scrollView.width, scrollView.height);
+
         [scrollView addSubview:view];
     }
-    
     scrollView.contentSize = CGSizeMake(scrollView.width * count + offsetX * (count-1), 0);
 }
 

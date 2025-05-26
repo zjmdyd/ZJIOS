@@ -52,7 +52,7 @@
         self.player.delegate = self;
         NSLog(@"duration = %f", self.player.duration);
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.slider.maximumValue = self.player.duration;            
+            self.slider.maximumValue = self.player.duration;
         });
         AVAudioSession *session = [AVAudioSession sharedInstance];
         NSError *error;
@@ -76,7 +76,6 @@
 }
 
 - (void)btnEvent:(UIButton *)sender {
-    if ([self.player prepareToPlay])
     if (self.player.isPlaying) {
         [self.player pause];
     }else {

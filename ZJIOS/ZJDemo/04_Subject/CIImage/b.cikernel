@@ -1,0 +1,5 @@
+// 压缩一半
+kernel vec2 warpEffect(float scale) {
+    vec2 p = destCoord();
+    return vec2(p.x * scale, p.y);
+}

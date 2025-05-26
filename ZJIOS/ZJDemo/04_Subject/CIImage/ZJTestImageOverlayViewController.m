@@ -9,10 +9,10 @@
 
 @interface ZJTestImageOverlayViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgIV;
 @property (weak, nonatomic) IBOutlet UIImageView *originIV;
 @property (weak, nonatomic) IBOutlet UIImageView *warpIV;
 @property (weak, nonatomic) IBOutlet UIImageView *hazeIV;
-@property (weak, nonatomic) IBOutlet UIImageView *bgIV;
 @property (weak, nonatomic) IBOutlet UIImageView *changeColorIV;
 
 @end
@@ -26,8 +26,14 @@
     [self test1];
     [self test2];
 //    [self test3];
+    self.cellTitles = @[@"originInputImg", @"CIWarpKernel", @"CIColorKernel/haze", @"CIColorKernel/changeColor"];
 }
-
+/*
+ extent         CGRect                      输出图像的尺寸范围，通常与输入图像一致1。
+ roiCallback    (Int, CGRect) -> CGRect     回调函数，根据输出区域返回输入图像中对应的处理区域26。
+ inputImage     CIImage                     待处理的输入图像12。
+ arguments      [Any]                       传递给内核的动态参数数组（如浮点数、向量等
+ */
 // CIWarpKernel
 - (void)test0 {
     UIImage *originInputImg = [UIImage imageNamed:@"ic_hehua"];
@@ -38,7 +44,6 @@
     NSError *error;
     NSString *kernelCode = [NSString stringWithContentsOfURL:kernelURL
                                                     encoding:NSUTF8StringEncoding error:&error];
-    
     NSArray *kernels = [CIKernel kernelsWithString:kernelCode];
     NSLog(@"kernels = %@", kernels);
     
@@ -51,6 +56,7 @@
         CIContext *context = [[CIContext alloc] initWithOptions:nil];
         CGImageRef ref = [context createCGImage:resultCIImg fromRect:[resultCIImg extent]];
         UIImage *newImage = [UIImage imageWithCGImage:ref];
+        //[UIImage imageWithCIImage:resultCIImg];
         CGImageRelease(ref);
         self.warpIV.image = newImage;
     }
@@ -76,6 +82,7 @@
             CIColor *color = [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
             NSNumber *inputDistance = @0.2;
             NSNumber *inputSlope = @0;
+            
             CIImage *resultCIImg = [kernels.firstObject applyWithExtent:ciInputImage.extent arguments:@[src, color, inputDistance, inputSlope]];
             
             CIContext *context = [[CIContext alloc] initWithOptions:nil];
@@ -121,8 +128,8 @@
 
 - (void)test3 {
     UIImage *originFgImg = [UIImage imageNamed:@"makeup_color_upper-transaction_layer"];
-    UIImage *originBgImg = [UIImage imageNamed:@"ic_hehua"];
-    self.originIV.image = originBgImg;
+//    UIImage *originBgImg = [UIImage imageNamed:@"ic_hehua"];
+//    self.originIV.image = originBgImg;
     
     CIImage *ciFgImage = [[CIImage alloc] initWithImage:originFgImg];
 //    CIImage *ciBgImage = [[CIImage alloc] initWithImage:originBgImg];
@@ -148,7 +155,7 @@
             CGImageRef ref = [context createCGImage:ciChangedImg fromRect:[ciChangedImg extent]];
             UIImage *newImage = [UIImage imageWithCGImage:ref];
             CGImageRelease(ref);
-            self.warpIV.image = newImage;
+//            self.warpIV.image = newImage;
         }
     } else {
         // Fallback on earlier versions

@@ -1,0 +1,14 @@
+kernel vec2 mirrorX ( float imageWidth )
+{
+// 获取待处理点的位置
+vec2 currentVec = destCoord();
+// 返回最终显示位置
+return vec2 ( imageWidth - currentVec.x , currentVec.y );
+}
+
+// destCoord() 返回目标像素坐标（输出图像空间）
+// srcCoord() 返回源像素坐标（输入图像空间）
+
+// osg::Vec2可以用于保存2D纹理坐标。
+// osg::Vec3是一个三维浮点数数组。
+// osg::Vec4用于保存颜色数据。
