@@ -103,7 +103,7 @@
  一、核心机制
  ‌‌任务隔离‌
  在自定义并发队列（DISPATCH_QUEUE_CONCURRENT）中，该函数会等待其‌之前提交的所有任务完成‌后执行自身任务，并确保‌后续任务等待其执行完毕‌才继续。
- ‌‌异步提交‌：函数立即返回，不阻塞当前线程。
+ ‌‌异步提交‌：函数立即返回，不阻塞当前线程。不会阻塞主线程
  ‌‌栅栏效应‌：实现任务间的“隔离带”，避免数据竞争。
  ‌‌无效场景‌
  全局队列（dispatch_get_global_queue）和串行队列中使用时栅栏功能失效，任务按普通异步任务处理。
@@ -133,7 +133,7 @@
 
 /*
  dispatch_barrier_async_and_wait
- 异步将任务提交到并发队列，但会阻塞当前线程直到该任务完成
+ 异步将任务提交到并发队列，但会阻塞当前线程直到该任务完成，会阻塞主线程
  */
 - (void)test4 {
     NSLog(@"c1 = %@", [NSThread currentThread]);    // name = main
@@ -234,7 +234,7 @@
         }
     });
 //    异步栅栏则跟async函数一样，开启新线程，不会阻塞当前线程,
-//    执行顺序是:任务1和任务2, 栅栏函数任务, 任务3任务4
+//    执行顺序是:任务1和任务2并发执行, 栅栏函数任务, 任务3任务4并发执行
     dispatch_barrier_async(queue, ^{
         //追加栅栏函数任务
         NSLog(@"追加栅栏函数任务");
@@ -270,6 +270,12 @@
     NSLog(@"dispatch_barrier --- end");
 }
 
+/*
+ 使用建议
+ 需要精确取消控制时优先选用 NSOperationQueue
+ 定时器管理使用 dispatch_source_cancel() + dispatch_source_set_event_handler 组合
+ 避免对非定时器源调用 dispatch_cancel()（可能引发崩溃）
+ */
 - (void)test_barrier_sync {
     NSLog(@"dispatch_barrier --- begin");
     dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
@@ -293,7 +299,7 @@
             NSLog(@"任务2-->i = %d,---%@", i, [NSThread currentThread]);
         }
     });
-//  同步栅栏,会阻塞线程,如果dispatch_barrier_sync在主线调用则会阻塞主线程
+//  同步栅栏,会阻塞线程,如果dispatch_barrier_sync在主线调用则会阻塞主线程，dispatch_barrier_sync栅栏函数执行完才会释放主线程
 //  任务3和任务4会在栅栏函数执行完毕再执行
     dispatch_barrier_sync(queue, ^{
         //追加栅栏函数任务
@@ -329,6 +335,7 @@
     //同步栅栏和sync函数一样，不会开启新线程，end是在同步之后打印的
     NSLog(@"dispatch_barrier --- end");
 }
+
 /*
 #pragma mark - Navigation
 

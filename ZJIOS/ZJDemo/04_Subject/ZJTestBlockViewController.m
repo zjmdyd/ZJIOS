@@ -79,14 +79,15 @@ Blk_t tempBlock;
 - (void)test1 {
     int a = 10;
     void(^block)(void) = ^{
-        NSLog(@"a = %d", a);
+        NSLog(@"a = %d", a);    // a = 10
     };
+    a = 20; // 已经被bblock捕获，不会造成block内部值改变,如果加上__block关键字，a就会改变为20
     block();
     NSLog(@"%@", block);
     
     __weak typeof(self) weakSelf = self;
     if (@available(iOS 10.0, *)) {
-        [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
             NSLog(@"block = %@", block);
             if (!weakSelf) {
                 [timer invalidate];
@@ -114,8 +115,8 @@ Blk_t tempBlock;
     __weak typeof(self) weakSelf = self;
     if (@available(iOS 10.0, *)) {
         [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            block = nil; // 置空就会崩溃,但前提是定义的时候添加__block关键字，不然无法在bblock内部修改变量的值
-            if (block == nil) {    // 崩溃: Thread 1: EXC_BAD_ACCESS (code=1, address=0x20)
+            block = nil; // 置空就会崩溃,解决办法:定义的时候添加__block关键字，不然无法在bblock内部修改变量的值
+            if (block == nil) {    // 崩溃: Thread 1: EXC_BAD_ACCESS (code=1, address=0x20)，在上面执行置空操作就可以了，不置空的话block被释放，成了野指针
                 NSLog(@"block = %@", block);
                 [timer invalidate];
             }
@@ -140,11 +141,12 @@ Blk_t tempBlock;
     __weak typeof(self) weakSelf = self;
     if (@available(iOS 10.0, *)) {
         [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            block2 = nil; // 置空就会崩溃,但前提是定义的时候添加__block关键字，不然无法在bblock内部修改变量的值
-            if (block2 == nil) {    // 崩溃: Thread 1: EXC_BAD_ACCESS (code=1, address=0x20)
+            block2 = nil; // __NSGlobalBlock__可以在block内部修改block的值
+            if (block2 == nil) {
                 NSLog(@"block = %@", block2);
                 [timer invalidate];
             }
+            NSLog(@"block2 = %@", block2);    // __NSGlobalBlock__
             
             if (!weakSelf) {
                 [timer invalidate];
@@ -157,7 +159,9 @@ Blk_t tempBlock;
 void (^block2)(void);
 
 //函数返回的block如果是配置在栈上的，当block作为函数返回值再进行调用时，block变量作用域就结束了，block已经被释放废弃了
-typedef int (^__weak Blk_rt)(int);
+//typedef int (^__weak Blk_rt)(int); // 如定义成weak类型会闪退
+typedef int (^Blk_rt)(int); // 如定义此语句
+
 /*
  在ARC环境下，当block作为函数返回值时,编译器会自动将栈上的block复制到堆上,所以此时block不会被释放掉
  */
@@ -176,13 +180,8 @@ typedef int (^__weak Blk_rt)(int);
 //
     __weak typeof(self) weakSelf = self;
     if (@available(iOS 10.0, *)) {
-        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
             NSLog(@"blk_rtt = %@", blk_rt);  // blk_rtt = (null) ,被释放掉了
-            
-            if (!blk_rt) {
-                // blk_rt(3);  // Thread 1: EXC_BAD_ACCESS (code=1, address=0x10)
-                [timer invalidate];
-            }
             if (!weakSelf ) {
                 [timer invalidate];
             }

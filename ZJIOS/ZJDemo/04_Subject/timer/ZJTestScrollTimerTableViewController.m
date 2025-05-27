@@ -33,15 +33,13 @@
 
  二、休眠实现原理
  ‌‌基于 Mach Port 的等待机制‌
- RunLoop 内部维护一个 mach_port 队列，休眠时监听这些端口的事件28
- 当端口有消息到达（如触摸事件、定时器触发），内核将线程唤醒至用户态14
+ RunLoop 内部维护一个 mach_port 队列，休眠时监听这些端口的事件
+ 当端口有消息到达（如触摸事件、定时器触发），内核将线程唤醒至用户态
  ‌‌事件源优先级‌
- Source1（端口事件）优先唤醒，Timer 和 Source0 需等待当前模式激活47
+ Source1（端口事件）优先唤醒，Timer 和 Source0 需等待当前模式激活
  主线程休眠时仍保留对 UIApplication 事件的监听8
  三、休眠与唤醒流程
  ‌‌典型循环步骤‌
- plaintext
- Copy Code
  1. 检查事件 → 2. 处理事件 → 3. 无事件则休眠 → 4. 被唤醒后回到步骤1:ml-citation{ref="1,6" data="citationList"}
  ‌‌唤醒条件‌
  新 Source 加入（如网络数据到达）
@@ -55,8 +53,6 @@
  NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
  [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
  [runLoop run]; // 线程持续休眠-唤醒循环
-
- 
  */
 
 /*

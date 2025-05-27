@@ -464,9 +464,9 @@
  */
 - (void)testBlockMainThread {
     dispatch_queue_t queue1 = dispatch_get_main_queue();
-    dispatch_sync(queue1, ^{    // 会造成死锁
-        NSLog(@"222 Hello?");
-    });
+//    dispatch_sync(queue1, ^{    // 会造成死锁
+//        NSLog(@"222 Hello?");
+//    });
     
     NSLog(@"aaaaaaa");
 }

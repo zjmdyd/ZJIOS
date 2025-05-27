@@ -112,9 +112,11 @@
     if ([str2 respondsToSelector:@selector(appendString:)]) {
         NSLog(@"可以调用appendString:");    
         if ([str2 isKindOfClass:[NSMutableString class]]) {   //isKindOfClass会检测通过,NSString不适用isKindOfClass方法
-            NSLog(@"str2是可变字符串通过");
+            NSLog(@"str2是可变字符串通过, NSString不适用isKindOfClass方法");
             if ([str2 isMemberOfClass:[NSMutableString class]]) {
                 NSLog(@"str2是可变字符串");
+            }else {
+                NSLog(@"str2是可变字符串不通过, NSString适用isMemberOfClass方法");
             }
 
 //             [(NSMutableString *)str2 appendString:@"123"];    // Attempt to mutate immutable object with appendString:

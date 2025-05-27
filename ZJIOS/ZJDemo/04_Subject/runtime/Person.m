@@ -61,6 +61,44 @@
     objc_setAssociatedObject(self, @selector(personName), personName, OBJC_ASSOCIATION_COPY_NONATOMIC);
     //    objc_setAssociatedObject(self, @"personName", personName, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
+
+/*
+ 使用objc_setAssociatedObject和objc_getAssociatedObject函数实现属性的动态绑定，数据存储在全局哈希表中（非对象内存布局内)
+ bjc_setAssociatedObject 核心原理解析‌
+ ‌‌1. 关联对象的核心数据结构‌
+ Objective-C 通过 ‌全局关联对象管理器‌ 实现动态属性附加，关键数据结构包括：
+ ‌‌AssociationsManager‌：全局锁管理器，保证线程安全
+ ‌‌AssociationsHashMap‌：以对象内存地址为键的哈希表，存储所有对象的关联关系,
+ ‌‌ObjectAssociationMap‌：存储单个对象的所有关联键值对（key → ObjcAssociation）
+ ‌‌ObjcAssociation‌：封装关联值（value）和内存策略（policy）
+ 数据结构层级：
+ AssociationsManager → AssociationsHashMap → ObjectAssociationMap → ObjcAssociation
+ 
+ ‌2. 关联过程源码级步骤‌
+ ‌‌键值对存储‌
+ 通过objc_setAssociatedObject传入的object、key、value、policy生成ObjcAssociation对象
+ 以object的内存地址为键，在AssociationsHashMap中查找或创建ObjectAssociationMap
+ 将key与ObjcAssociation插入ObjectAssociationMap，完成关联
+ ‌‌内存策略处理‌
+
+ 根据policy决定value的持有方式（如RETAIN、COPY等）
+ 若value为nil，则自动移除对应key的关联37
+ ‌‌3. 线程安全机制‌
+ ‌‌AssociationsManager内部使用自旋锁‌（或升级后的互斥锁），确保哈希表操作的原子性
+ 关联/解关联操作全程加锁，避免多线程竞争导致数据错乱
+ 
+ ‌4. 典型应用场景‌
+ 场景    实现方式    优势
+ ‌‌Category添加属性‌    通过关联对象模拟成员变量存储    无需修改原类，动态扩展
+ ‌‌动态行为绑定‌    将业务逻辑对象（如Delegate）关联到系统控件（如UIButton）    解耦视图与逻辑
+ ‌‌状态标记‌    使用OBJC_ASSOCIATION_ASSIGN关联轻量级标记（如BOOL值）    避免冗余属性声
+ 
+ 5. 内存管理要点‌
+ ‌‌对象释放时自动清理‌：当宿主对象object被销毁时，Runtime会遍历其ObjectAssociationMap，按policy释放关联对象
+ ‌‌循环引用风险‌：若policy为RETAIN且关联对象反向强引用宿主对象，需手动断开关联
+ ‌‌总结‌
+ objc_setAssociatedObject本质是通过全局哈希表实现的对象扩展存储系统，其线程安全设计和灵活的内存策略使其成为Objective-C动态特性的重要支撑
+ */
 /*
  void
  objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy) {

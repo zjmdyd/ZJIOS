@@ -129,8 +129,6 @@ dispatch_source_t dis_timer;
 }
 
 /*
-
- 
  QoS 等级                         适用场景                                性能影响
  ‌‌QOS_CLASS_USER_INTERACTIVE    用户直接感知的即时操作（如动画）           最高 CPU/GPU 资源占用
  ‌‌QOS_CLASS_USER_INITIATED      用户触发但可稍后完成的任务（如文件保存）    中等优先级，允许短暂延迟
@@ -234,10 +232,10 @@ dispatch_source_t dis_timer;
 
 void timerEvent(void) {
     static int count = 0;
-//    NSLock *lock = [[NSLock alloc] init];
-//    [lock lock];
+    NSLock *lock = [[NSLock alloc] init];
+    [lock lock];
     count++;
-//    [lock unlock];
+    [lock unlock];
     NSLog(@"currentThread = %@, count = %d", [NSThread currentThread], count);
 
     //终止定时器
@@ -288,6 +286,12 @@ void timerEvent(void) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    dispatch_source_cancel(dis_timer);  // 或者调用dispatch_cancel(timer);
 }
 
 /*
