@@ -20,7 +20,7 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJAudioToolboxTableViewController", @"ZJAVAudioPlayerViewController", @"ZJAVPlayerViewController"];
+    self.cellTitles = @[@"ZJAudioToolboxTableViewController", @"ZJAVAudioPlayerViewController", @"ZJAVPlayerViewController", @"ZJRecorderViewController"];
 }
 - (void)keepAlive {
     @autoreleasepool {

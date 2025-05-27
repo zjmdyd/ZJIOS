@@ -54,6 +54,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.slider.maximumValue = self.player.duration;
         });
+        
+        // 启用会话
         AVAudioSession *session = [AVAudioSession sharedInstance];
         NSError *error;
         [session setActive:YES error:&error];
@@ -145,7 +147,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.player stop];
     
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    // 结束使用后停用（如录音完成后）
+    [session setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+
     [self.timer invalidate];
 }
 

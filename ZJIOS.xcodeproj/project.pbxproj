@@ -108,6 +108,20 @@
 		3801660C2DE4C6D500E80396 /* ZJKernelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380166082DE4C6D500E80396 /* ZJKernelCollectionViewCell.xib */; };
 		3801660E2DE4DB8D00E80396 /* b.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 3801660D2DE4DB8D00E80396 /* b.cikernel */; };
 		3801660F2DE4DB8D00E80396 /* b.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 3801660D2DE4DB8D00E80396 /* b.cikernel */; };
+		380166132DE5B43000E80396 /* ZJRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380166112DE5B43000E80396 /* ZJRecorderViewController.m */; };
+		380166142DE5B43000E80396 /* ZJRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380166112DE5B43000E80396 /* ZJRecorderViewController.m */; };
+		380166152DE5B43000E80396 /* ZJRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380166122DE5B43000E80396 /* ZJRecorderViewController.xib */; };
+		380166162DE5B43000E80396 /* ZJRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380166122DE5B43000E80396 /* ZJRecorderViewController.xib */; };
+		380166202DE5CF3D00E80396 /* ZJVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380166192DE5CF3C00E80396 /* ZJVideoViewController.m */; };
+		380166212DE5CF3D00E80396 /* ZJVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380166192DE5CF3C00E80396 /* ZJVideoViewController.m */; };
+		380166222DE5CF3D00E80396 /* ZJVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3801661A2DE5CF3C00E80396 /* ZJVideoViewController.xib */; };
+		380166232DE5CF3D00E80396 /* ZJVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3801661A2DE5CF3C00E80396 /* ZJVideoViewController.xib */; };
+		380166242DE5CF3D00E80396 /* ZJCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3801661B2DE5CF3C00E80396 /* ZJCameraViewController.xib */; };
+		380166252DE5CF3D00E80396 /* ZJCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3801661B2DE5CF3C00E80396 /* ZJCameraViewController.xib */; };
+		380166262DE5CF3D00E80396 /* ZJCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661C2DE5CF3C00E80396 /* ZJCameraViewController.m */; };
+		380166272DE5CF3D00E80396 /* ZJCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661C2DE5CF3C00E80396 /* ZJCameraViewController.m */; };
+		380166282DE5CF3D00E80396 /* ZJAVCaptureSessionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */; };
+		380166292DE5CF3D00E80396 /* ZJAVCaptureSessionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */; };
 		381A0FD52DD4E5C3002D8BFB /* MyString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD42DD4E5C3002D8BFB /* MyString.m */; };
 		381A0FD72DD5ECD8002D8BFB /* block和函数区别.md in Resources */ = {isa = PBXBuildFile; fileRef = 381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */; };
 		381A0FE02DD71B38002D8BFB /* ZJSyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FDF2DD71B38002D8BFB /* ZJSyncOperation.m */; };
@@ -649,6 +663,17 @@
 		380166072DE4C6D500E80396 /* ZJKernelCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJKernelCollectionViewCell.m; sourceTree = "<group>"; };
 		380166082DE4C6D500E80396 /* ZJKernelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJKernelCollectionViewCell.xib; sourceTree = "<group>"; };
 		3801660D2DE4DB8D00E80396 /* b.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = b.cikernel; sourceTree = "<group>"; };
+		380166102DE5B42F00E80396 /* ZJRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJRecorderViewController.h; sourceTree = "<group>"; };
+		380166112DE5B43000E80396 /* ZJRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJRecorderViewController.m; sourceTree = "<group>"; };
+		380166122DE5B43000E80396 /* ZJRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJRecorderViewController.xib; sourceTree = "<group>"; };
+		380166182DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAVCaptureSessionTableViewController.h; sourceTree = "<group>"; };
+		380166192DE5CF3C00E80396 /* ZJVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVideoViewController.m; sourceTree = "<group>"; };
+		3801661A2DE5CF3C00E80396 /* ZJVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJVideoViewController.xib; sourceTree = "<group>"; };
+		3801661B2DE5CF3C00E80396 /* ZJCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJCameraViewController.xib; sourceTree = "<group>"; };
+		3801661C2DE5CF3C00E80396 /* ZJCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCameraViewController.m; sourceTree = "<group>"; };
+		3801661D2DE5CF3C00E80396 /* ZJVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoViewController.h; sourceTree = "<group>"; };
+		3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAVCaptureSessionTableViewController.m; sourceTree = "<group>"; };
+		3801661F2DE5CF3C00E80396 /* ZJCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCameraViewController.h; sourceTree = "<group>"; };
 		381A0FD32DD4E5C3002D8BFB /* MyString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyString.h; sourceTree = "<group>"; };
 		381A0FD42DD4E5C3002D8BFB /* MyString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyString.m; sourceTree = "<group>"; };
 		381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "block和函数区别.md"; sourceTree = "<group>"; };
@@ -1260,6 +1285,21 @@
 			path = DataStore;
 			sourceTree = "<group>";
 		};
+		380166172DE5CF3C00E80396 /* AVCaptureSession */ = {
+			isa = PBXGroup;
+			children = (
+				380166182DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.h */,
+				3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */,
+				3801661F2DE5CF3C00E80396 /* ZJCameraViewController.h */,
+				3801661C2DE5CF3C00E80396 /* ZJCameraViewController.m */,
+				3801661B2DE5CF3C00E80396 /* ZJCameraViewController.xib */,
+				3801661D2DE5CF3C00E80396 /* ZJVideoViewController.h */,
+				380166192DE5CF3C00E80396 /* ZJVideoViewController.m */,
+				3801661A2DE5CF3C00E80396 /* ZJVideoViewController.xib */,
+			);
+			path = AVCaptureSession;
+			sourceTree = "<group>";
+		};
 		381A0FF12DDB78B3002D8BFB /* runtime */ = {
 			isa = PBXGroup;
 			children = (
@@ -1288,6 +1328,7 @@
 		381A10152DDC70C0002D8BFB /* AV */ = {
 			isa = PBXGroup;
 			children = (
+				380166172DE5CF3C00E80396 /* AVCaptureSession */,
 				381A10112DDC7066002D8BFB /* ZJAVTableViewController.h */,
 				381A10122DDC7066002D8BFB /* ZJAVTableViewController.m */,
 				381A0FFA2DDC42FA002D8BFB /* ZJAudioToolboxTableViewController.h */,
@@ -1299,6 +1340,9 @@
 				381A101D2DDC943B002D8BFB /* ZJAVPlayerViewController.xib */,
 				381A101C2DDC943B002D8BFB /* ZJPlayerView.h */,
 				381A101E2DDC943C002D8BFB /* ZJPlayerView.m */,
+				380166102DE5B42F00E80396 /* ZJRecorderViewController.h */,
+				380166112DE5B43000E80396 /* ZJRecorderViewController.m */,
+				380166122DE5B43000E80396 /* ZJRecorderViewController.xib */,
 				381A0FFE2DDC43F0002D8BFB /* alert_message.wav */,
 				381A10162DDC7A49002D8BFB /* mao_snow.mp4 */,
 				381A10172DDC7A49002D8BFB /* my_song.mp3 */,
@@ -1423,6 +1467,7 @@
 				65939426281BF3A300D4872C /* ZJTestTableViewController.m */,
 				659EB72527B66C8F0016D91D /* ZJTestColorTableViewController.h */,
 				659EB72627B66C8F0016D91D /* ZJTestColorTableViewController.m */,
+				380165942DDF2D6C00E80396 /* 02_palette */,
 				656A4D432833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.h */,
 				656A4D442833480C006BEBDC /* ZJTestNavigationBarItemsTableViewController.m */,
 				65894A31283B8BB7000219B5 /* ZJTestNavigationSettingTableViewController.h */,
@@ -1893,8 +1938,8 @@
 				658CA1BF28895CC70043B21A /* ZJTestImageOverlayViewController.xib */,
 				65D62C02288A9436001C616E /* a.cikernel */,
 				3801660D2DE4DB8D00E80396 /* b.cikernel */,
-				65D62C06288AB300001C616E /* changeColor.cikernel */,
 				65D62C04288A9EA4001C616E /* haze.cikernel */,
+				65D62C06288AB300001C616E /* changeColor.cikernel */,
 			);
 			path = CIImage;
 			sourceTree = "<group>";
@@ -2079,7 +2124,6 @@
 		65FAF649279EAE4800183053 /* rest */ = {
 			isa = PBXGroup;
 			children = (
-				380165942DDF2D6C00E80396 /* 02_palette */,
 				38D13DB1268084F300BCAC42 /* ZJPointerAryViewController.h */,
 				38D13DB2268084F300BCAC42 /* ZJPointerAryViewController.m */,
 				38A1F09D2679A6A500A4D044 /* ZJMVCViewController.h */,
@@ -2257,6 +2301,7 @@
 				658CA1C128895CC70043B21A /* ZJTestImageOverlayViewController.xib in Resources */,
 				380165612DDF1B5300E80396 /* ZJTestScaleAnimationViewController.xib in Resources */,
 				65D62C05288A9EA4001C616E /* haze.cikernel in Resources */,
+				380166242DE5CF3D00E80396 /* ZJCameraViewController.xib in Resources */,
 				380164F02DDE396700E80396 /* ZJTestLayerMaskViewController.xib in Resources */,
 				65AAD40128153A8800A89F10 /* 四象限.png in Resources */,
 				3801654F2DDF1B2900E80396 /* red.png in Resources */,
@@ -2268,6 +2313,7 @@
 				38D13DB92680BFBB00BCAC42 /* block_forwarding.png in Resources */,
 				38D13DC42680C00E00BCAC42 /* 数组指针.jpeg in Resources */,
 				3801654D2DDF1B2900E80396 /* 1434511542665314.jpg in Resources */,
+				380166152DE5B43000E80396 /* ZJRecorderViewController.xib in Resources */,
 				65AAD3FF281532D600A89F10 /* 点与环形区域.png in Resources */,
 				38A1F0AF267A5E8D00A4D044 /* 野指针log.webp in Resources */,
 				380165A42DDF2DD000E80396 /* ZJWriteViewController.xib in Resources */,
@@ -2286,6 +2332,7 @@
 				38B150D028C3659300688F62 /* ZJTestSleepFuncViewController.xib in Resources */,
 				658E12A32855F69A004C4748 /* ZJAnchorPointViewController.xib in Resources */,
 				38D13DC32680C00E00BCAC42 /* block_bref_2.png in Resources */,
+				380166222DE5CF3D00E80396 /* ZJVideoViewController.xib in Resources */,
 				382EE8DB26750B04008AB02C /* Assets.xcassets in Resources */,
 				6504AF622830104D005E1275 /* sorted.rtf in Resources */,
 				381A101A2DDC7A49002D8BFB /* my_song.mp3 in Resources */,
@@ -2313,9 +2360,11 @@
 				65BD904D28E13CC600CDC2CC /* MVC.jpeg in Resources */,
 				65BD904E28E13CC600CDC2CC /* zjFoundation.md in Resources */,
 				380165A52DDF2DD000E80396 /* ZJWriteViewController.xib in Resources */,
+				380166252DE5CF3D00E80396 /* ZJCameraViewController.xib in Resources */,
 				65BD904F28E13CC600CDC2CC /* block_malloc.png in Resources */,
 				3801660F2DE4DB8D00E80396 /* b.cikernel in Resources */,
 				65BD905028E13CC600CDC2CC /* MVVM.jpeg in Resources */,
+				380166162DE5B43000E80396 /* ZJRecorderViewController.xib in Resources */,
 				380165642DDF1B5300E80396 /* ZJRotationReplicatorViewController.xib in Resources */,
 				65BD905128E13CC600CDC2CC /* block_stack.png in Resources */,
 				65BD905228E13CC600CDC2CC /* block-struct.jpeg in Resources */,
@@ -2329,6 +2378,7 @@
 				65BD905728E13CC600CDC2CC /* userHelp.html in Resources */,
 				65BD905828E13CC600CDC2CC /* runloop.png in Resources */,
 				65BD905928E13CC600CDC2CC /* 野指针调试.jpeg in Resources */,
+				380166232DE5CF3D00E80396 /* ZJVideoViewController.xib in Resources */,
 				65BD905B28E13CC600CDC2CC /* ZJTestImageOverlayViewController.xib in Resources */,
 				65BD905C28E13CC600CDC2CC /* haze.cikernel in Resources */,
 				65BD905D28E13CC600CDC2CC /* 四象限.png in Resources */,
@@ -2481,6 +2531,7 @@
 				380165DA2DDF31FC00E80396 /* ZJTestBasicAnimationViewController.m in Sources */,
 				380165202DDF1A3500E80396 /* ZJCGAffineTransformViewController.m in Sources */,
 				38FF5B232A0E885E00F7DBEC /* ZJBaseTableViewController.m in Sources */,
+				380166132DE5B43000E80396 /* ZJRecorderViewController.m in Sources */,
 				652B58F227BA5CE200745D11 /* ZJTestSearchBarViewController.m in Sources */,
 				658FC467279FECC100A7FE1D /* ZJTestBlockTimerViewController.m in Sources */,
 				65B0328C284615E800E9C08A /* ZJDocumentCofig.m in Sources */,
@@ -2501,6 +2552,7 @@
 				380165A62DDF2DD000E80396 /* ZJWriteViewController.m in Sources */,
 				657D57C5281F921D008B1964 /* ZJTestSandboxViewController.m in Sources */,
 				65B0328B284615E800E9C08A /* ZJDocumentWriteCofig.m in Sources */,
+				380166262DE5CF3D00E80396 /* ZJCameraViewController.m in Sources */,
 				38A1F08D26774A6200A4D044 /* ZJViewController.m in Sources */,
 				658FB044283228F1004CD08C /* ZJShapeLayer.m in Sources */,
 				65F7C6D82692EC7000121EBD /* UIDevice+ZJDevice.m in Sources */,
@@ -2596,6 +2648,7 @@
 				65ABF0D226D7A48300A08267 /* ZJTestNibViewController.m in Sources */,
 				658AE87026A0119A00688CC5 /* ZJTestBarButtonItemViewController.m in Sources */,
 				65A18776284607DA00DD78D4 /* ZJTestPushViewController.m in Sources */,
+				380166282DE5CF3D00E80396 /* ZJAVCaptureSessionTableViewController.m in Sources */,
 				380165652DDF1B5300E80396 /* ZJCAReplicatorTableViewController.m in Sources */,
 				380165872DDF287E00E80396 /* ZJUIAttachmentBehaviorViewController.m in Sources */,
 				65939420281BE8CD00D4872C /* ZJTestUIAppearanceViewController.m in Sources */,
@@ -2607,6 +2660,7 @@
 				381A0FF82DDB89C1002D8BFB /* ZJTestBezierPathTableViewController.m in Sources */,
 				6594920E2711711E00FDD87D /* UIApplication+Cooks.m in Sources */,
 				38AD524C2DD0A050004168E3 /* ZJDarmModeView.m in Sources */,
+				380166202DE5CF3D00E80396 /* ZJVideoViewController.m in Sources */,
 				65AE086E28F54E35000349D3 /* ZJCTipsTableViewController.m in Sources */,
 				382EE8D926750B04008AB02C /* ZJIOS.xcdatamodeld in Sources */,
 				65A00FAA27A14F3000B60045 /* ZJTestScrollTimerTableViewController.m in Sources */,
@@ -2782,12 +2836,14 @@
 				65BD8FEC28E13CC600CDC2CC /* ZJTestBlockViewController.m in Sources */,
 				3801657C2DDF27D900E80396 /* ZJCATransform3DTypeTableViewController.m in Sources */,
 				65BD8FED28E13CC600CDC2CC /* NSObject+ZJRuntime.m in Sources */,
+				380166272DE5CF3D00E80396 /* ZJCameraViewController.m in Sources */,
 				65BD8FEE28E13CC600CDC2CC /* ZJAlertObject.m in Sources */,
 				380165FB2DE3108700E80396 /* ZJLover.m in Sources */,
 				65BD8FEF28E13CC600CDC2CC /* ZJAngleObject.m in Sources */,
 				65BD8FF028E13CC600CDC2CC /* NSMutableArray+ZJMutableArray.m in Sources */,
 				65BD8FF128E13CC600CDC2CC /* ZJRuntimeViewController.m in Sources */,
 				65BD8FF228E13CC600CDC2CC /* ZJTestImageOverlayViewController.m in Sources */,
+				380166212DE5CF3D00E80396 /* ZJVideoViewController.m in Sources */,
 				65D95C4F28F66BB400879A28 /* ZJTestUnsignedDataViewController.m in Sources */,
 				65BD8FF328E13CC600CDC2CC /* UIApplication+SystemSound.m in Sources */,
 				65BD8FF528E13CC600CDC2CC /* NSString+ZJTextEncode.m in Sources */,
@@ -2811,6 +2867,7 @@
 				380164FC2DDEC1D600E80396 /* ZJTestPushTransitionTableViewController.m in Sources */,
 				65BD900428E13CC600CDC2CC /* ZJTestNSURLViewController.m in Sources */,
 				65BD900528E13CC600CDC2CC /* ZJPointerAryViewController.m in Sources */,
+				380166142DE5B43000E80396 /* ZJRecorderViewController.m in Sources */,
 				65D95C5428F6AF2800879A28 /* ZJTestStructViewController.m in Sources */,
 				380165042DDF181400E80396 /* ZJCALayerFirstViewController.m in Sources */,
 				65BD900728E13CC600CDC2CC /* Student.m in Sources */,
@@ -2825,6 +2882,7 @@
 				65BD900E28E13CC600CDC2CC /* ZJTestPushViewController.m in Sources */,
 				65D95C4E28F66BA100879A28 /* ZJCTipsTableViewController.m in Sources */,
 				65D95C4C28F66B7F00879A28 /* ZJTestMemcpyViewController.m in Sources */,
+				380166292DE5CF3D00E80396 /* ZJAVCaptureSessionTableViewController.m in Sources */,
 				380165212DDF1A3500E80396 /* ZJCGAffineTransformViewController.m in Sources */,
 				65BD900F28E13CC600CDC2CC /* ZJTestUIAppearanceViewController.m in Sources */,
 				65BD901028E13CC600CDC2CC /* ZJBaseTableViewCell.m in Sources */,

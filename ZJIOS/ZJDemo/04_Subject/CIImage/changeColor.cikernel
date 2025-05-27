@@ -1,7 +1,9 @@
-kernel vec4 changeColor(sampler image, __color color)
+kernel vec4 changeColor(sampler src, __color color)
 {
     vec4 pixel;
-    pixel = sample(image, samplerCoord(image));
+    //vec2 coord = samplerCoord(src);
+    pixel = sample(src, samplerCoord(src));
     pixel.g = pixel.b = pixel.r=1.0;
     return pixel * color;
 }
+

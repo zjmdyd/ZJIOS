@@ -40,7 +40,6 @@
     for (UISlider *slider in self.sliders) {
         [slider setThumbImage:[UIImage imageNamed:@"playing_slider_thumb"] forState:UIControlStateNormal];
     }
-    
     self.colorView.layer.cornerRadius = 10.0;
     self.colorView.layer.masksToBounds = YES;
     self.colorView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
@@ -67,7 +66,7 @@
 }
 
 - (IBAction)generateColor:(UISlider *)sender {
-    CGFloat value = sender.tag == 3 ? 1 - sender.value : sender.value;
+    CGFloat value = sender.value;
     
     [self refreshUIValue:sender.tag withObj:[NSNumber numberWithFloat:value]];
 }

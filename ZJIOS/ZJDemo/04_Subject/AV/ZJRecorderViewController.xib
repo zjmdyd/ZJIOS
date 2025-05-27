@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZJRecorderViewController">
+            <connections>
+                <outlet property="progress" destination="rWy-RE-hsP" id="WHd-yQ-54d"/>
+                <outlet property="recordBtn" destination="auB-Yg-Ohz" id="rNI-fx-ngl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auB-Yg-Ohz">
+                    <rect key="frame" x="8" y="411" width="75" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.11827956990000001" blue="0.11827956990000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="JEg-WS-ytd"/>
+                    </constraints>
+                    <state key="normal" title="Record">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="recordClick:" destination="-1" eventType="touchUpInside" id="Abv-Pb-i4h"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzS-Ej-Fwv">
+                    <rect key="frame" x="310" y="411" width="75" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.11827956990000001" blue="0.11827956990000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="aWJ-5R-GRF"/>
+                    </constraints>
+                    <state key="normal" title="Stop">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="stopRecord:" destination="-1" eventType="touchUpInside" id="HBR-ij-p8B"/>
+                    </connections>
+                </button>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rWy-RE-hsP">
+                    <rect key="frame" x="8" y="375" width="377" height="4"/>
+                </progressView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nzS-Ej-Fwv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BX6-Rx-J5d"/>
+                <constraint firstItem="auB-Yg-Ohz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="H7P-KW-EPK"/>
+                <constraint firstAttribute="trailing" secondItem="rWy-RE-hsP" secondAttribute="trailing" constant="8" id="PEx-5s-d9w"/>
+                <constraint firstItem="auB-Yg-Ohz" firstAttribute="top" secondItem="rWy-RE-hsP" secondAttribute="bottom" constant="32" id="PSY-ZU-SAO"/>
+                <constraint firstItem="rWy-RE-hsP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="iqT-dK-VO6"/>
+                <constraint firstItem="auB-Yg-Ohz" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="kDg-ze-AHa"/>
+                <constraint firstAttribute="trailing" secondItem="nzS-Ej-Fwv" secondAttribute="trailing" constant="8" id="ugO-8Z-aez"/>
+            </constraints>
+            <point key="canvasLocation" x="1444.2748091603053" y="324.64788732394368"/>
+        </view>
+    </objects>
+</document>

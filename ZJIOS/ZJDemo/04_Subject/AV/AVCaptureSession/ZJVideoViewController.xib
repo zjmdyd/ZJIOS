@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZJVideoViewController">
+            <connections>
+                <outlet property="cameraShowView" destination="03d-tL-Ezg" id="yLU-r1-khF"/>
+                <outlet property="shutterButton" destination="OIb-dV-LCb" id="fr3-Pv-uOZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03d-tL-Ezg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjA-BO-Ffp">
+                    <rect key="frame" x="0.0" y="599" width="375" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIb-dV-LCb">
+                            <rect key="frame" x="156.5" y="30" width="62" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.11827956990000001" blue="0.11827956990000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="62" id="uEi-gW-K9s"/>
+                            </constraints>
+                            <state key="normal" title="shutter">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="shutterCamera:" destination="-1" eventType="touchUpInside" id="7yd-Hb-Ags"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.57526628280000003" green="0.92749918190000002" blue="0.72785246739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="ffu-dr-A5t"/>
+                        <constraint firstAttribute="bottom" secondItem="OIb-dV-LCb" secondAttribute="bottom" constant="8" id="mCc-CK-RZT"/>
+                        <constraint firstItem="OIb-dV-LCb" firstAttribute="centerX" secondItem="RjA-BO-Ffp" secondAttribute="centerX" id="miU-4G-QJZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="RjA-BO-Ffp" firstAttribute="top" secondItem="03d-tL-Ezg" secondAttribute="bottom" id="6BB-mf-d4Q"/>
+                <constraint firstItem="RjA-BO-Ffp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BRW-1v-CtT"/>
+                <constraint firstItem="03d-tL-Ezg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JrE-hN-stN"/>
+                <constraint firstAttribute="trailing" secondItem="RjA-BO-Ffp" secondAttribute="trailing" id="S74-ZS-czB"/>
+                <constraint firstAttribute="trailing" secondItem="03d-tL-Ezg" secondAttribute="trailing" id="dUz-fS-Vhx"/>
+                <constraint firstAttribute="bottom" secondItem="RjA-BO-Ffp" secondAttribute="bottom" id="ggX-dA-GE9"/>
+                <constraint firstItem="03d-tL-Ezg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gxo-dg-pRa"/>
+            </constraints>
+            <point key="canvasLocation" x="-18" y="32"/>
+        </view>
+    </objects>
+</document>

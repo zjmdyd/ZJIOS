@@ -1,66 +1,46 @@
 //
-//  ZJTestColorTableViewController.m
-//  ZJIOS
+//  ZJAVCaptureSessionTableViewController.m
+//  ZJFoundation
 //
-//  Created by issuser on 2022/2/11.
+//  Created by ZJ on 9/20/16.
+//  Copyright © 2016 YunTu. All rights reserved.
 //
 
-#import "ZJTestColorTableViewController.h"
-#import "UIColor+ZJColor.h"
-#import "ZJLayoutDefines.h"
+#import "ZJAVCaptureSessionTableViewController.h"
 
-@interface ZJTestColorTableViewController ()
-
-@property (nonatomic, strong) UIView *colorView;
+@interface ZJAVCaptureSessionTableViewController () {
+    NSArray *_cellTitles, *_vcNames;
+}
 
 @end
 
-@implementation ZJTestColorTableViewController
+NSString *TitleCell2 = @"cell";
+
+@implementation ZJAVCaptureSessionTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initAry];
-    [self initSetting];
+    [self initArray];
 }
 
-- (void)initAry {
-    self.cellTitles = @[@"maskViewColor", @"maskViewAlphaColor", @"ZJPaletteViewController"];
-    self.values = @[[UIColor maskViewColor], [UIColor maskViewAlphaColor], [UIColor maskViewAlphaColor]];
-}
-
-- (void)initSetting {
-    self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
-    self.colorView.alpha = 0;
-    self.colorView.hidden = YES;
-    [KeyWindow addSubview:self.colorView];
-
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    btn.frame = CGRectMake(0, 0, 100, 50);
-    btn.center = self.colorView.center;
-    [btn setTitle:@"关闭" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.colorView addSubview:btn];
-}
-
-- (void)btnEvent:(UIButton *)sender {
-    self.colorView.alpha = 0;
-    self.colorView.hidden = YES;
+- (void)initArray {
+    _cellTitles = @[@"camera", @"video"];
+    _vcNames = @[@"ZJCameraViewController", @"ZJVideoViewController"];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.values.count;
+    return _cellTitles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TitleCell2];
     if (!cell) {
-        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TitleCell2];
     }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = _cellTitles[indexPath.row];
     
     return cell;
 }
@@ -69,15 +49,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row < 2) {
-        self.colorView.backgroundColor = self.values[indexPath.row];
-        self.colorView.hidden = NO;
-        [UIView animateWithDuration:0.25 animations:^{
-            self.colorView.alpha = 1;
-        }];
+    
+    UIViewController *vc = [NSClassFromString(_vcNames[indexPath.row]) alloc];
+    if ([vc isKindOfClass:[UITableViewController class]]) {
+        vc = [((UITableViewController *)vc) initWithStyle:UITableViewStyleGrouped];
     }else {
-        [self showVCWithName:self.cellTitles[indexPath.row]];
+        vc = [vc init];
     }
+    if (vc) {
+        vc.title = _cellTitles[indexPath.row];
+//        vc.view.backgroundColor = [UIColor whiteColor];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return FLT_EPSILON;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 /*
