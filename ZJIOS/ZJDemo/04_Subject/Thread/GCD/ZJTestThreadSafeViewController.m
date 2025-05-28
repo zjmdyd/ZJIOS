@@ -265,7 +265,6 @@
             NSLog(@"任务4-->i = %d,---%@", i, [NSThread currentThread]);
         }
     });
-    
     //不会被阻塞，不需要等待，直接执行
     NSLog(@"dispatch_barrier --- end");
 }

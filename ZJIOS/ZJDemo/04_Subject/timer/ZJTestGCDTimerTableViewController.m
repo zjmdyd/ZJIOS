@@ -168,6 +168,7 @@ dispatch_source_t dis_timer;
         
         // currentMode = (null),因为不在主线程上运行
         // 滑动事件不会干扰定时器
+        NSLog(@"currentRunLoop = %@", [NSRunLoop currentRunLoop]);
         NSLog(@"self = %@, currentMode = %@", weakSelf, [NSRunLoop currentRunLoop].currentMode);
         if (!weakSelf) {
             NSLog(@"self销毁,主动调用dispatch_cancel");
@@ -291,7 +292,9 @@ void timerEvent(void) {
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    dispatch_source_cancel(dis_timer);  // 或者调用dispatch_cancel(timer);
+    if (dis_timer) {
+        dispatch_source_cancel(dis_timer);  // 或者调用dispatch_cancel(timer);
+    }
 }
 
 /*
