@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>帮助文档</title>
-	<style type="text/css">
-		h1 {text-align: center;}
-		p {font-size: 19px;}
-	</style>
-</head>
-<body>
-<div>
-	
-<h1>合礼社区app——用户帮助</h1>
-<h2>1.如何开门</h2>
-<p id='p1'>开门方式为：手机蓝牙开门、手机网络开门、TOTP密码开门、在线密码开门、人脸开门。用户需经管理处或业主授权后，方可使用开门功能。</p>
-
-
-</div>
-</body>
+    <head>
+        <title>帮助文档</title>
+        <style type="text/css">
+            h1 {text-align: center;}
+            p {font-size: 19px;}
+            .fontClass {
+                color: blue;
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>合礼社区app——用户帮助</h1>
+            <h2>1.如何开门</h2>
+            <p id='p1'>开门方式为：手机蓝牙开门、手机网络开门、TOTP密码开门、在线密码开门、人脸开门。用户需经管理处或业主授权后，方可使用开门功能。</p>
+            <p id='p2' style="font-size: 50px; color: red">你好呀，沙茶。</p>
+            <p id="demo" class="fontClass">等待计算结果</p>
+            <input type="text" id="inputValue" class="fontClass" placeholder="输入数字">
+                <button id="btn" class="fontClass" onclick="toCelsius(10)">计算</button>
+                
+                <script>
+                    function toCelsius(f) {
+                        return (5/9) * (f-32);
+                    }
+                    // 访问没有 () 的函数将返回函数定义：
+                    // document.getElementById("demo").innerHTML = toCelsius;
+                    document.getElementById("btn").addEventListener("click", function() {
+                        var inputValue = document.getElementById("inputValue").value;
+                        document.getElementById("demo").innerHTML = toCelsius(inputValue);
+                        
+                        if (window.webkit) {
+                            document.getElementById("demo").style.backgroundColor = "green";
+                            window.webkit.messageHandlers.jsToOcWithPrams.postMessage({params: "Hello from JavaScript"});
+                        }else {
+                            document.getElementById("demo").style.backgroundColor = "red";
+                        }
+                        nativeFunction();
+                    });
+                    
+                    function changeColor(e) {
+                        document.getElementById("demo").style.backgroundColor = e;
+                        console.log('js方法调用了: ');
+                        console.log(e);
+                    }
+                </script>
+        </div>
+    </body>
 </html>

@@ -7,6 +7,7 @@
 
 #import "ZJWebViewController.h"
 #import <WebKit/WebKit.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface ZJWebViewController ()<WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler>
 
@@ -14,18 +15,6 @@
 
 @end
 
-/*
- 2.修改颜色和字体
- 
- // WKNavigationDelegate 页面加载完成之后调用
- - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
- //修改字体大小 300%
- [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"completionHandler:nil];
- 
- //修改字体颜色  #9098b8
- [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'"completionHandler:nil];
- }
- */
 @implementation ZJWebViewController
 
 - (void)viewDidLoad {
@@ -61,15 +50,14 @@
     //设置请求的User-Agent信息中应用程序名称 iOS9后可用
     config.applicationNameForUserAgent = @"ChinaDaily";
 
-    //自定义的WKScriptMessageHandler 是为了解决内存不释放的问题
-    //        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
-    //    //这个类主要用来做native与JavaScript的交互管理
-    //    WKUserContentController * wkUController = [[WKUserContentController alloc] init];
-    //    //注册一个name为jsToOcNoPrams的js方法
-    //    [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsToOcNoPrams"];
-    //    [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsToOcWithPrams"];
-    //    config.userContentController = wkUController;
+    //这个类主要用来做native与JavaScript的交互管理
+    WKUserContentController * wkUController = [[WKUserContentController alloc] init];
+    //注册一个name为jsToOcNoPrams的js方法，设置处理接收JS方法的代理
+    [wkUController addScriptMessageHandler:self name:@"jsToOcNoPrams"];
+    [wkUController addScriptMessageHandler:self name:@"jsToOcWithPrams"];
+    config.userContentController = wkUController;
     
+    // 创建webView之前要配置与js交互的WKUserContentController对象,不然js交互会失败
     self.webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:config];
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
@@ -78,53 +66,34 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"userHelp.html" ofType:nil];
     NSString *htmlString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     //加载本地html文件
-//    [self.webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.hao123.com/"]]];
-    //这个类主要用来做native与JavaScript的交互管理
-    WKUserContentController * wkUController = [[WKUserContentController alloc] init];
-    //注册一个name为jsToOcNoPrams的js方法，设置处理接收JS方法的代理
-    [wkUController addScriptMessageHandler:self name:@"jsToOcNoPrams"];
-    [wkUController addScriptMessageHandler:self name:@"jsToOcWithPrams"];
-    config.userContentController = wkUController;
-    
-    //OC调用JS  changeColor()是JS方法名，completionHandler是异步回调block
-//    NSString *jsString = [NSString stringWithFormat:@"changeColor('%@')", @"Js参数"];
-//    [_webView evaluateJavaScript:jsString completionHandler:^(id _Nullable data, NSError * _Nullable error) {
-//        NSLog(@"改变HTML的背景色");
-//    }];
-    
-//    // 改变字体大小 调用原生JS方法
-//    NSString *jsFont = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'", arc4random()%99 + 100];
-//    [_webView evaluateJavaScript:jsFont completionHandler:nil];
-//    [self.webView evaluateJavaScript:@"document.getElementsByName('mytext').style.webkitTextSizeAdjust= '200%'"completionHandler:nil];
-//
-//    // 以下代码适配文本大小，由UIWebView换为WKWebView后，会发现字体小了很多，这应该是WKWebView与html的兼容问题，解决办法是修改原网页，要么我们手动注入JS
-//    NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
-//    // 用于进行JavaScript注入
-//    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-//    [config.userContentController addUserScript:wkUScript];
+    [self.webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.hao123.com/"]]];
 }
 
 #pragma mark - WKScriptMessageHandler
 
-//通过接收JS传出消息的name进行捕捉的回调方法
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+// 通过接收JS传出消息的name进行捕捉的回调方法
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     NSLog(@"name:%@\n body:%@\n frameInfo:%@\n", message.name, message.body, message.frameInfo);
-    //用message.body获得JS传出的参数体
-    //    NSDictionary * parameter = message.body;
-    //    //JS调用OC
-    //    if([message.name isEqualToString:@"jsToOcNoPrams"]){
-    //        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"js调用到了oc" message:@"不带参数" preferredStyle:UIAlertControllerStyleAlert];
-    //        [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    //        }])];
-    //        [self presentViewController:alertController animated:YES completion:nil];
-    //
-    //    }else if([message.name isEqualToString:@"jsToOcWithPrams"]){
-    //        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"js调用到了oc" message:parameter[@"params"] preferredStyle:UIAlertControllerStyleAlert];
-    //        [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    //        }])];
-    //        [self presentViewController:alertController animated:YES completion:nil];
-    //    }
+    // 用message.body获得JS传出的参数体
+    id value = @"默认值";
+    if ([message.body isKindOfClass:[NSDictionary class]]) {
+        value = message.body[@"params"];
+    }else if ([message.body isKindOfClass:[NSString class]]) {
+        value = message.body;
+    }
+    // JS调用OC
+    if([message.name isEqualToString:@"jsToOcNoPrams"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"js调用到了oc" message:@"不带参数" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }])];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else if([message.name isEqualToString:@"jsToOcWithPrams"]){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"js调用到了oc" message:value preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }])];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - WKNavigationDelegate
@@ -135,23 +104,8 @@
     
     decisionHandler(WKNavigationActionPolicyAllow); return;
 
-    NSString * urlStr = navigationAction.request.URL.absoluteString;
-    NSLog(@"发送跳转请求：%@", urlStr);
-    //自己定义的协议头
-    NSString *htmlHeadString = @"github://";
-    if([urlStr hasPrefix:htmlHeadString]){
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"通过截取URL调用OC" message:@"你想前往我的Github主页?" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        }])];
-        [alertController addAction:([UIAlertAction actionWithTitle:@"打开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSURL * url = [NSURL URLWithString:[urlStr stringByReplacingOccurrencesOfString:@"github://callName_?" withString:@""]];
-            [[UIApplication sharedApplication] openURL:url];
-        }])];
-        [self presentViewController:alertController animated:YES completion:nil];
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }else{
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
+//    NSString * urlStr = navigationAction.request.URL.absoluteString;
+//    NSLog(@"当前跳转地址：%@",urlStr);
 }
 
 // 页面开始加载时调用
@@ -163,14 +117,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     NSLog(@"%s", __func__);
     
-    decisionHandler(WKNavigationResponsePolicyAllow); return;
-
-    //   NSString * urlStr = navigationResponse.response.URL.absoluteString;
-    //   NSLog(@"当前跳转地址：%@",urlStr);
-    //   //允许跳转
-    //   decisionHandler(WKNavigationResponsePolicyAllow);
-    //不允许跳转
-    //decisionHandler(WKNavigationResponsePolicyCancel);
+    decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 // 接收到服务器跳转请求即服务重定向时之后调用
@@ -191,11 +138,30 @@
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"%s", __func__);
-//    NSString *jsString = @"document.getElementById('p1').style.fontSize = '50px';";
-//    NSString *jsString = @"document.getElementById('p1').innerHTML = 'hello kitty!';document.getElementById('p1').style.color = 'blue';";
-//    NSString *jsString2 = @"document.getElementById('p1').style.margin = '16px';";
+    NSString *jsString = @"document.getElementById('p1').style.fontSize = '50px'; document.getElementById('p1').style.color = 'blue'; document.getElementById('p1').style.margin = '16px'; document.getElementById('p2').innerHTML = 'hello kitty!';";
+
+//      改变字体大小 调用原生JS方法
+//    NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'", arc4random()%99 + 200];
+    [self.webView evaluateJavaScript:jsString completionHandler:nil];
     
-//    [self.webView evaluateJavaScript:jsString completionHandler:nil];
+//    NSLog(@"Sending message to JavaScript");
+//    NSString *jsString3 = @"window.webkit.messageHandlers.jsToOcNoPrams.postMessage('')";
+//    [self.webView evaluateJavaScript:jsString3 completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+//        NSLog(@"result = %@", result);
+//        NSLog(@"error = %@", error);
+//        if (error) {
+//            printf("Error sending\n");
+//        }
+//    }];
+    
+//    OC调用JS  changeColor()是JS方法名，completionHandler是异步回调block
+    NSString *jsString2 = [NSString stringWithFormat:@"changeColor('%@')", @"#ffff00"];
+    [self.webView evaluateJavaScript:jsString2 completionHandler:^(id _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"改变了HTML元素的背景色");
+            NSLog(@"data = %@, error = %@", data, error);
+        }
+    }];
 }
 
 // 当主文档已committed时，如果发生错误将进行调用
@@ -207,7 +173,7 @@
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
     NSLog(@"%s", __func__);
     //用户身份信息
-    NSURLCredential * newCred = [[NSURLCredential alloc] initWithUser:@"user123" password:@"123" persistence:NSURLCredentialPersistenceNone];
+    NSURLCredential *newCred = [[NSURLCredential alloc] initWithUser:@"user123" password:@"123" persistence:NSURLCredentialPersistenceNone];
     //为 challenge 的发送方提供 credential
     [challenge.sender useCredential:newCred forAuthenticationChallenge:challenge];
     completionHandler(NSURLSessionAuthChallengeUseCredential,newCred);
@@ -286,6 +252,23 @@
     [self.webView stopLoading];
     self.webView = nil;
 }
+
+/*
+ //自定义的WKScriptMessageHandler 是为了解决内存不释放的问题
+ //        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
+ //    //这个类主要用来做native与JavaScript的交互管理
+ //    WKUserContentController * wkUController = [[WKUserContentController alloc] init];
+ //    //注册一个name为jsToOcNoPrams的js方法
+ //    [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsToOcNoPrams"];
+ //    [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsToOcWithPrams"];
+ //    config.userContentController = wkUController;
+ 
+ //  以下代码适配文本大小，由UIWebView换为WKWebView后，会发现字体小了很多，这应该是WKWebView与html的兼容问题，解决办法是修改原网页，要么我们手动注入JS
+ //    NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+ //     用于进行JavaScript注入
+ //    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+ //    [config.userContentController addUserScript:wkUScript];
+ */
 
 //- (NSString *)reSizeImageWithHTML:(NSString *)html {
 //    return [NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", [UIScreen mainScreen].bounds.size.width - 20, html];

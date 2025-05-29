@@ -39,8 +39,6 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
 
 - (void)test {
     [self test0];
-//    [self test1];
-//    [self test2];
     [self test3];
 }
 
@@ -102,7 +100,6 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
 
 /*
  // Listing 9-1  A kernel routine for the haze removal filter
-
  kernel vec4 myHazeRemovalKernel(sampler src,             // 1
                       __color color,
                      float distance,
@@ -118,7 +115,6 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
      return premultiply(t);                               // 5
  }
  代码如下：
-
  1.接受四个输入参数并返回一个向量。在声明过滤器的接口时，必须确保声明与在内核中指定的相同数量的输入参数。内核必须返回一个vec4数据类型。
  2.根据目标坐标的y值和斜率和距离输入参数计算一个值。destCoord例程（由Core Image提供）返回当前正在计算的像素在工作空间坐标中的位置。
  3.在应用与src关联的任何变换矩阵之后，获取采样器src中与当前输出像素关联的采样器空间中的像素值。回想一下，Core
@@ -147,10 +143,37 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
     }
 }
 
+- (NSDictionary *)customAttributes {
+    return @{
+        @"inputDistance" :  @{
+            kCIAttributeMin       : @0.0,
+            kCIAttributeMax       : @1.0,
+            kCIAttributeSliderMin : @0.0,
+            kCIAttributeSliderMax : @0.7,
+            kCIAttributeDefault   : @0.2,
+            kCIAttributeIdentity  : @0.0,
+            kCIAttributeType      : kCIAttributeTypeScalar
+        },
+        @"inputSlope" : @{
+            kCIAttributeSliderMin : @-0.01,
+            kCIAttributeSliderMax : @0.01,
+            kCIAttributeDefault   : @0.00,
+            kCIAttributeIdentity  : @0.00,
+            kCIAttributeType      : kCIAttributeTypeScalar
+        },
+        kCIInputColorKey : @{
+            kCIAttributeDefault : [CIColor colorWithRed:1.0
+                                                  green:1.0
+                                                   blue:1.0
+                                                  alpha:1.0]
+        },
+    };
+}
+
 /*
  ‌Core Image CISampler 核心解析‌
  ‌‌1. 基本概念‌
- CISampler 是 Core Image 框架中用于图像采样（Texture Sampling）的类，主要用于定义如何从输入图像中读取像素数据，包括采样位置、插值方式等参数13。其核心作用包括：
+ CISampler 是 Core Image 框架中用于图像采样（Texture Sampling）的类，主要用于定义如何从输入图像中读取像素数据，包括采样位置、插值方式等参数。其核心作用包括：
 
  ‌‌纹理坐标映射‌：将图像坐标转换为实际采样位置。
  ‌‌插值策略控制‌：指定像素采样时的插值算法（如线性插值、最近邻插值）。
@@ -180,7 +203,7 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
  
  ‌sample() 方法详解‌
  ‌‌1. 功能定义‌
- ‌‌核心作用‌：sample() 是 Core Image Kernel Language (CIKL) 中的内置函数，用于从采样器（sampler）中获取指定坐标的像素颜色值37。
+ ‌‌核心作用‌：sample() 是 Core Image Kernel Language (CIKL) 中的内置函数，用于从采样器（sampler）中获取指定坐标的像素颜色值。
  ‌‌返回值‌：返回 vec4 类型（RGBA颜色值），若坐标越界则返回透明色（vec4(0.0)）
  vec4 sample(sampler src, vec2 coord)
  ‌src‌：绑定到输入图像的采样器对象。
@@ -207,8 +230,8 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
  B_unpremultiplied = B_premultiplied / A
  若 Alpha 为 0，则结果通常置为 04。
  ‌‌2. 使用场景‌
- ‌‌图像合成‌：在混合多层图像时，需将预乘格式还原以正确应用透明度4。
- ‌‌滤镜处理‌：某些 Core Image 滤镜要求输入为非预乘颜色数据4。
+ ‌‌图像合成‌：在混合多层图像时，需将预乘格式还原以正确应用透明度。
+ ‌‌滤镜处理‌：某些 Core Image 滤镜要求输入为非预乘颜色数据。
  ‌‌3. 代码示例（Core Image 内核）‌
  以下 CIKL 代码实现 unpremultiply 操作
  kernel vec4 unpremultiplyColor(sampler src) {
@@ -219,7 +242,6 @@ static NSString * const reuseIdentifier = @"KernelCollectionViewCell";
      return color;
  }
  说明‌：通过采样输入颜色并除以 Alpha 值实现还原
- 
  
  自定义去雾内核 myHazeRemovalKernel 实现指南‌
  ‌‌1. 核心设计思路‌
