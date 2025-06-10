@@ -86,14 +86,15 @@ static int CreateClinetSocket() {
     ClinetSocket = socket(AF_INET, SOCK_STREAM, 0);
     return ClinetSocket;
 }
+
 // 客户端向特定网络地址的服务器发送连接请求，连接成功返回0，失败返回 -1。
 // int connect(int socketFileDescriptor,sockaddr *serverAddress, int serverAddressLength)
 static int ConnectionToServer(int client_socket,const char * server_ip,unsigned short port) {
     //生成一个sockaddr_in类型结构体
-    struct sockaddr_in sAddr={0};
-    sAddr.sin_len=sizeof(sAddr);
+    struct sockaddr_in sAddr = {0};
+    sAddr.sin_len = sizeof(sAddr);
     //设置IPv4
-    sAddr.sin_family=AF_INET;
+    sAddr.sin_family = AF_INET;
 
     //inet_aton是一个改进的方法来将一个字符串IP地址转换为一个32位的网络序列IP地址
     //如果这个函数成功，函数的返回值非零，如果输入地址不正确则会返回零。

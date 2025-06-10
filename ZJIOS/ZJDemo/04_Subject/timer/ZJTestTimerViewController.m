@@ -28,9 +28,11 @@
  scheduledTimerWithTimeInterval:会默认将这个 NSTimer 以 NSDefaultRunLoopMode 模式放入当前线程的 RunLoop。
  */
 - (void)test0 {
+    NSLog(@"currentThread0 = %@", [NSThread currentThread]);
     if (@available(iOS 10.0, *)) {
         __weak typeof(self) weakSelf = self;    // 需要添加__weak关键字，不然会循环引用造成内存泄漏
         [NSTimer scheduledTimerWithTimeInterval:1.5 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            NSLog(@"currentThread1 = %@", [NSThread currentThread]);
             // block 方法中有用到self时，需要用weak修饰，不然vc不会被释放
             // vc虽然执行了dealloc方法，但timer的block方法还是会继续执行，因为timer没有被销毁，需手动销毁timer
             // 执行完invalid方法后timer才会被销毁，timer的block方法才不会再执行

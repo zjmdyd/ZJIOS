@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -122,6 +122,9 @@
 		380166272DE5CF3D00E80396 /* ZJCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661C2DE5CF3C00E80396 /* ZJCameraViewController.m */; };
 		380166282DE5CF3D00E80396 /* ZJAVCaptureSessionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */; };
 		380166292DE5CF3D00E80396 /* ZJAVCaptureSessionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */; };
+		381265F72DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */; };
+		381265F82DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */; };
+		381265FA2DE96BC2000C53A8 /* Pods_ZJIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381265F92DE96BC2000C53A8 /* Pods_ZJIOS.framework */; };
 		381A0FD52DD4E5C3002D8BFB /* MyString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD42DD4E5C3002D8BFB /* MyString.m */; };
 		381A0FD72DD5ECD8002D8BFB /* block和函数区别.md in Resources */ = {isa = PBXBuildFile; fileRef = 381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */; };
 		381A0FE02DD71B38002D8BFB /* ZJSyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FDF2DD71B38002D8BFB /* ZJSyncOperation.m */; };
@@ -150,8 +153,6 @@
 		381A10242DDC943D002D8BFB /* ZJPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A101E2DDC943C002D8BFB /* ZJPlayerView.m */; };
 		381A10252DDC943D002D8BFB /* ZJAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A10202DDC943D002D8BFB /* ZJAVPlayerViewController.m */; };
 		381A10262DDC943D002D8BFB /* ZJAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A10202DDC943D002D8BFB /* ZJAVPlayerViewController.m */; };
-		381A10292DDCAFA7002D8BFB /* ZJHitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A10282DDCAFA7002D8BFB /* ZJHitTestViewController.m */; };
-		381A102A2DDCAFA7002D8BFB /* ZJHitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A10282DDCAFA7002D8BFB /* ZJHitTestViewController.m */; };
 		381A102D2DDCB1EC002D8BFB /* ZJTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A102C2DDCB1EC002D8BFB /* ZJTabBar.m */; };
 		381A102E2DDCB1EC002D8BFB /* ZJTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A102C2DDCB1EC002D8BFB /* ZJTabBar.m */; };
 		382EE8CD26750B04008AB02C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EE8CC26750B04008AB02C /* AppDelegate.m */; };
@@ -475,7 +476,6 @@
 		65BD904728E13CC600CDC2CC /* ZJMemAnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A1F0B1267A610500A4D044 /* ZJMemAnalyzeViewController.m */; };
 		65BD904828E13CC600CDC2CC /* ZJTestCFunctionnTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B150C928C364C800688F62 /* ZJTestCFunctionnTableViewController.m */; };
 		65BD904928E13CC600CDC2CC /* AppDelegate+ZJBackgroundAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659EB72127B4BAA50016D91D /* AppDelegate+ZJBackgroundAppDelegate.m */; };
-		65BD904B28E13CC600CDC2CC /* Pods_ZJIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */; };
 		65BD904D28E13CC600CDC2CC /* MVC.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 38A1F0A02679A6B300A4D044 /* MVC.jpeg */; };
 		65BD904E28E13CC600CDC2CC /* zjFoundation.md in Resources */ = {isa = PBXBuildFile; fileRef = 654ABAC2277C47260048F7A8 /* zjFoundation.md */; };
 		65BD904F28E13CC600CDC2CC /* block_malloc.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB5769268334B70014CECE /* block_malloc.png */; };
@@ -510,7 +510,6 @@
 		65BD906D28E13CC600CDC2CC /* block_bref_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D13DBE2680C00E00BCAC42 /* block_bref_2.png */; };
 		65BD906E28E13CC600CDC2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382EE8DA26750B04008AB02C /* Assets.xcassets */; };
 		65BD906F28E13CC600CDC2CC /* sorted.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6504AF602830104D005E1275 /* sorted.rtf */; };
-		65BD907928E1440100CDC2CC /* ZJIOSPro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65BD907828E1440100CDC2CC /* ZJIOSPro.plist */; };
 		65C574F1274CF22100D8FE00 /* ZJTestStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F0274CF22100D8FE00 /* ZJTestStringViewController.m */; };
 		65C574F4274CF30400D8FE00 /* ZJTestNSRangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C574F3274CF30400D8FE00 /* ZJTestNSRangeViewController.m */; };
 		65D56F0B287FFD2800E94FBC /* ZJTestFloatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D56F0A287FFD2700E94FBC /* ZJTestFloatViewController.m */; };
@@ -674,6 +673,9 @@
 		3801661D2DE5CF3C00E80396 /* ZJVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoViewController.h; sourceTree = "<group>"; };
 		3801661E2DE5CF3C00E80396 /* ZJAVCaptureSessionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAVCaptureSessionTableViewController.m; sourceTree = "<group>"; };
 		3801661F2DE5CF3C00E80396 /* ZJCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCameraViewController.h; sourceTree = "<group>"; };
+		381265F52DE96860000C53A8 /* ZJTestCSTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCSTViewController.h; sourceTree = "<group>"; };
+		381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCSTViewController.m; sourceTree = "<group>"; };
+		381265F92DE96BC2000C53A8 /* Pods_ZJIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ZJIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		381A0FD32DD4E5C3002D8BFB /* MyString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyString.h; sourceTree = "<group>"; };
 		381A0FD42DD4E5C3002D8BFB /* MyString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyString.m; sourceTree = "<group>"; };
 		381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "block和函数区别.md"; sourceTree = "<group>"; };
@@ -698,8 +700,6 @@
 		381A101E2DDC943C002D8BFB /* ZJPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPlayerView.m; sourceTree = "<group>"; };
 		381A101F2DDC943C002D8BFB /* ZJAVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAVPlayerViewController.h; sourceTree = "<group>"; };
 		381A10202DDC943D002D8BFB /* ZJAVPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAVPlayerViewController.m; sourceTree = "<group>"; };
-		381A10272DDCAFA7002D8BFB /* ZJHitTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHitTestViewController.h; sourceTree = "<group>"; };
-		381A10282DDCAFA7002D8BFB /* ZJHitTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJHitTestViewController.m; sourceTree = "<group>"; };
 		381A102B2DDCB1EC002D8BFB /* ZJTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTabBar.h; sourceTree = "<group>"; };
 		381A102C2DDCB1EC002D8BFB /* ZJTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTabBar.m; sourceTree = "<group>"; };
 		382EE8C826750B04008AB02C /* ZJIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -818,8 +818,6 @@
 		38FF5B252A1CAE6200F7DBEC /* ZJTestAppearanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestAppearanceViewController.h; sourceTree = "<group>"; };
 		38FF5B262A1CAE6200F7DBEC /* ZJTestAppearanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestAppearanceViewController.m; sourceTree = "<group>"; };
 		39D2543F0682D2A6B42DA3DC /* Pods_ZJIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.release.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.release.xcconfig"; sourceTree = "<group>"; };
-		4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6504AF5D282FF881005E1275 /* ZJTestArySortedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestArySortedViewController.h; sourceTree = "<group>"; };
 		6504AF5E282FF881005E1275 /* ZJTestArySortedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestArySortedViewController.m; sourceTree = "<group>"; };
 		6504AF602830104D005E1275 /* sorted.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = sorted.rtf; sourceTree = "<group>"; };
@@ -1104,6 +1102,8 @@
 		7D5B11AAB902812A6B9388AA /* Pods-ZJIOS-ZJIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS-ZJIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-ZJIOS-ZJIOSUITests/Pods-ZJIOS-ZJIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B3278A924BC55623BC2C0084 /* Pods-ZJIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C311B914E0CBBDCD21DDBB27 /* Pods-ZJIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOSTests.release.xcconfig"; path = "Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		CBB30C15FFA4308A4C7FBCA3 /* Pods-ZJIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.release.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.release.xcconfig"; sourceTree = "<group>"; };
+		D3E8E899787C7927B5801938 /* Pods-ZJIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOS/Pods-ZJIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EB8BF3BCACD123B9C798D25B /* Pods-ZJIOS-ZJIOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJIOS-ZJIOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ZJIOS-ZJIOSUITests/Pods-ZJIOS-ZJIOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1137,7 +1137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BD904B28E13CC600CDC2CC /* Pods_ZJIOS.framework in Frameworks */,
+				381265FA2DE96BC2000C53A8 /* Pods_ZJIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,8 +1495,8 @@
 				65ABF0CF26D7A48300A08267 /* ZJTestNibViewController.h */,
 				65ABF0D026D7A48300A08267 /* ZJTestNibViewController.m */,
 				65ABF0D126D7A48300A08267 /* ZJTestNibViewController.xib */,
-				381A10272DDCAFA7002D8BFB /* ZJHitTestViewController.h */,
-				381A10282DDCAFA7002D8BFB /* ZJHitTestViewController.m */,
+				381265F52DE96860000C53A8 /* ZJTestCSTViewController.h */,
+				381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */,
 				65939424281BEBC300D4872C /* View */,
 				657D57BC281F7A2D008B1964 /* resource */,
 			);
@@ -1798,12 +1798,12 @@
 		48C53D443FAF6198397B0741 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */,
-				4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */,
 				EB8BF3BCACD123B9C798D25B /* Pods-ZJIOS-ZJIOSUITests.debug.xcconfig */,
 				7D5B11AAB902812A6B9388AA /* Pods-ZJIOS-ZJIOSUITests.release.xcconfig */,
 				B3278A924BC55623BC2C0084 /* Pods-ZJIOSTests.debug.xcconfig */,
 				C311B914E0CBBDCD21DDBB27 /* Pods-ZJIOSTests.release.xcconfig */,
+				D3E8E899787C7927B5801938 /* Pods-ZJIOS.debug.xcconfig */,
+				CBB30C15FFA4308A4C7FBCA3 /* Pods-ZJIOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2144,6 +2144,7 @@
 		71B5735D91BA7E857506CE7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				381265F92DE96BC2000C53A8 /* Pods_ZJIOS.framework */,
 				F3E26F7670AEBFE13CDE3065 /* Pods_ZJIOS.framework */,
 				016F98A08412B2EB198294DF /* Pods_ZJIOS_ZJIOSUITests.framework */,
 				39D2543F0682D2A6B42DA3DC /* Pods_ZJIOSTests.framework */,
@@ -2180,6 +2181,7 @@
 				382EE8E226750B05008AB02C /* Sources */,
 				382EE8E326750B05008AB02C /* Frameworks */,
 				382EE8E426750B05008AB02C /* Resources */,
+				3C09F3E0AA94E93A9521B719 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2214,7 +2216,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65BD907128E13CC600CDC2CC /* Build configuration list for PBXNativeTarget "ZJIOSPro" */;
 			buildPhases = (
-				65BD8FAE28E13CC600CDC2CC /* [CP] Check Pods Manifest.lock */,
 				65BD8FAF28E13CC600CDC2CC /* Sources */,
 				65BD904A28E13CC600CDC2CC /* Frameworks */,
 				65BD904C28E13CC600CDC2CC /* Resources */,
@@ -2235,7 +2236,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ZJ;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					382EE8C726750B04008AB02C = {
 						CreatedOnToolsVersion = 12.5;
@@ -2398,7 +2399,6 @@
 				65BD906328E13CC600CDC2CC /* ZJTestNibViewController.xib in Resources */,
 				65BD906428E13CC600CDC2CC /* a.cikernel in Resources */,
 				381A10002DDC43F0002D8BFB /* alert_message.wav in Resources */,
-				65BD907928E1440100CDC2CC /* ZJIOSPro.plist in Resources */,
 				3801651F2DDF1A3500E80396 /* ZJCGAffineTransformViewController.xib in Resources */,
 				65BD906528E13CC600CDC2CC /* LaunchScreen.storyboard in Resources */,
 				65BD906628E13CC600CDC2CC /* runtime_class.png in Resources */,
@@ -2443,26 +2443,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		65BD8FAE28E13CC600CDC2CC /* [CP] Check Pods Manifest.lock */ = {
+		3C09F3E0AA94E93A9521B719 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZJIOS-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZJIOSTests/Pods-ZJIOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9108AAC8AF5388DFC78A35CE /* [CP] Check Pods Manifest.lock */ = {
@@ -2517,6 +2512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6590A437274BA52400BDB826 /* Son.m in Sources */,
+				381265F72DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */,
 				380165132DDF1A2800E80396 /* ZJContextView.m in Sources */,
 				380165A22DDF2DD000E80396 /* ZJWriteView.m in Sources */,
 				6597C21627450A24003161AB /* ZJCtrlTableViewController.m in Sources */,
@@ -2679,7 +2675,6 @@
 				65AAD3FA2814F86000A89F10 /* CALayer+ZJLayer.m in Sources */,
 				65B03282284615E800E9C08A /* ZJTextInputConfig.m in Sources */,
 				65FA5F9C28043B4400D6C61A /* XHPageControl.m in Sources */,
-				381A10292DDCAFA7002D8BFB /* ZJHitTestViewController.m in Sources */,
 				658E12A22855F69A004C4748 /* ZJAnchorPointViewController.m in Sources */,
 				65B03286284615E800E9C08A /* ZJDateFormatter.m in Sources */,
 				38A1F0B8267B47CA00A4D044 /* ZJAnimal.m in Sources */,
@@ -2812,6 +2807,7 @@
 				380165122DDF1A2800E80396 /* ZJCGContextViewController.m in Sources */,
 				65BD8FD628E13CC600CDC2CC /* UICollectionView+ZJCollectionView.m in Sources */,
 				65BD8FD728E13CC600CDC2CC /* ZJTestBezierPathView.m in Sources */,
+				381265F82DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */,
 				65BD8FD828E13CC600CDC2CC /* ZJTestTouchViewController.m in Sources */,
 				380165F92DE3108700E80396 /* ZJNSKeyedArchiverViewController.m in Sources */,
 				65BD8FD928E13CC600CDC2CC /* UITextField+ZJTextField.m in Sources */,
@@ -2877,7 +2873,6 @@
 				65BD900A28E13CC600CDC2CC /* ZJTestNSRangeViewController.m in Sources */,
 				65BD900B28E13CC600CDC2CC /* ZJMVCViewController.m in Sources */,
 				65BD900C28E13CC600CDC2CC /* ZJTestNibViewController.m in Sources */,
-				381A102A2DDCAFA7002D8BFB /* ZJHitTestViewController.m in Sources */,
 				65BD900D28E13CC600CDC2CC /* ZJTestBarButtonItemViewController.m in Sources */,
 				65BD900E28E13CC600CDC2CC /* ZJTestPushViewController.m in Sources */,
 				65D95C4E28F66BA100879A28 /* ZJCTipsTableViewController.m in Sources */,
@@ -3047,7 +3042,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3100,7 +3095,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -3110,7 +3105,7 @@
 		};
 		382EE8FB26750B05008AB02C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */;
+			baseConfigurationReference = D3E8E899787C7927B5801938 /* Pods-ZJIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3140,7 +3135,7 @@
 		};
 		382EE8FC26750B05008AB02C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */;
+			baseConfigurationReference = CBB30C15FFA4308A4C7FBCA3 /* Pods-ZJIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3249,7 +3244,6 @@
 		};
 		65BD907228E13CC600CDC2CC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E1D0F8432F1F0052DCA9957 /* Pods-ZJIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3262,7 +3256,7 @@
 					PROD_ENV,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ZJIOS/ZJIOSPro.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3277,7 +3271,6 @@
 		};
 		65BD907328E13CC600CDC2CC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4372EF4DDF19A7A41560C45C /* Pods-ZJIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -3290,7 +3283,7 @@
 					PROD_ENV,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ZJIOS/ZJIOSPro.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
