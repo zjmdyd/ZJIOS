@@ -1,17 +1,17 @@
 //
-//  ZJTestCFunctionnTableViewController.m
+//  ZJTestAlgorithmTableViewController.m
 //  ZJIOS
 //
-//  Created by Zengjian on 2022/9/3.
+//  Created by Zengjian on 2025/6/25.
 //
 
-#import "ZJTestCFunctionnTableViewController.h"
+#import "ZJTestAlgorithmTableViewController.h"
 
-@interface ZJTestCFunctionnTableViewController ()
+@interface ZJTestAlgorithmTableViewController ()
 
 @end
 
-@implementation ZJTestCFunctionnTableViewController
+@implementation ZJTestAlgorithmTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -20,31 +20,13 @@
 }
 
 - (void)initAry {
-    self.cellTitles = @[@"ZJTestSleepFuncViewController", @"ZJTestMemcpyViewController", @"ZJTestC_StringViewController", @"ZJTestAlgorithmTableViewController"];
+    self.vcType = ZJBaseTableViewTypeExecute;
+    self.cellTitles = @[@"test0", @"test1", @"test2"];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cellTitles.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZJBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemTableViewCell];
-    if (!cell) {
-        cell = [[ZJBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SystemTableViewCell];
-    }
-    cell.textLabel.text = self.cellTitles[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *vcName = self.cellTitles[indexPath.row];
-    [self showVCWithName:vcName title:vcName];
+- (void)test0 {
+    ZJAlgorithm *algm = [ZJAlgorithm new];
+    [algm testHash];
 }
 
 /*

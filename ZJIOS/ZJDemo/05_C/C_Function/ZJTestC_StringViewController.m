@@ -31,7 +31,6 @@ UILabel *label;
     self.cellTitles = @[@"test0", @"test1", @"test2"];
 }
 
-
 - (void)test0 {
     char *s = "You are beautiful";
     printf("len = %zd\n", strlen(s));   // len = 17

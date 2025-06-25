@@ -125,6 +125,10 @@
 		381265F72DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */; };
 		381265F82DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */; };
 		381265FA2DE96BC2000C53A8 /* Pods_ZJIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381265F92DE96BC2000C53A8 /* Pods_ZJIOS.framework */; };
+		381632152E0AFB0D00D0D9A5 /* ZJAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 381632142E0AFB0D00D0D9A5 /* ZJAlgorithm.m */; };
+		381632162E0AFB0D00D0D9A5 /* ZJAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 381632142E0AFB0D00D0D9A5 /* ZJAlgorithm.m */; };
+		3816321A2E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381632192E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m */; };
+		3816321B2E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381632192E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m */; };
 		381A0FD52DD4E5C3002D8BFB /* MyString.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FD42DD4E5C3002D8BFB /* MyString.m */; };
 		381A0FD72DD5ECD8002D8BFB /* block和函数区别.md in Resources */ = {isa = PBXBuildFile; fileRef = 381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */; };
 		381A0FE02DD71B38002D8BFB /* ZJSyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 381A0FDF2DD71B38002D8BFB /* ZJSyncOperation.m */; };
@@ -676,6 +680,10 @@
 		381265F52DE96860000C53A8 /* ZJTestCSTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestCSTViewController.h; sourceTree = "<group>"; };
 		381265F62DE96860000C53A8 /* ZJTestCSTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestCSTViewController.m; sourceTree = "<group>"; };
 		381265F92DE96BC2000C53A8 /* Pods_ZJIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ZJIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		381632132E0AFB0D00D0D9A5 /* ZJAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJAlgorithm.h; sourceTree = "<group>"; };
+		381632142E0AFB0D00D0D9A5 /* ZJAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJAlgorithm.m; sourceTree = "<group>"; };
+		381632182E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJTestAlgorithmTableViewController.h; sourceTree = "<group>"; };
+		381632192E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJTestAlgorithmTableViewController.m; sourceTree = "<group>"; };
 		381A0FD32DD4E5C3002D8BFB /* MyString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyString.h; sourceTree = "<group>"; };
 		381A0FD42DD4E5C3002D8BFB /* MyString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyString.m; sourceTree = "<group>"; };
 		381A0FD62DD5ECD8002D8BFB /* block和函数区别.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "block和函数区别.md"; sourceTree = "<group>"; };
@@ -1300,6 +1308,15 @@
 			path = AVCaptureSession;
 			sourceTree = "<group>";
 		};
+		381632172E0AFB1F00D0D9A5 /* 06_ Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				381632132E0AFB0D00D0D9A5 /* ZJAlgorithm.h */,
+				381632142E0AFB0D00D0D9A5 /* ZJAlgorithm.m */,
+			);
+			path = "06_ Algorithm";
+			sourceTree = "<group>";
+		};
 		381A0FF12DDB78B3002D8BFB /* runtime */ = {
 			isa = PBXGroup;
 			children = (
@@ -1540,6 +1557,7 @@
 				38EBE0422675B43100E090D9 /* ZJByteData.h */,
 				38EBE0402675B43100E090D9 /* ZJByteData.c */,
 				38EBE0412675B43100E090D9 /* ZJHeaderFile.h */,
+				381632172E0AFB1F00D0D9A5 /* 06_ Algorithm */,
 			);
 			path = ZJTooles;
 			sourceTree = "<group>";
@@ -1769,6 +1787,8 @@
 				65D95C4A28F66B7F00879A28 /* ZJTestMemcpyViewController.m */,
 				659B20AC28FD5218002923F6 /* ZJTestC_StringViewController.h */,
 				659B20AD28FD5218002923F6 /* ZJTestC_StringViewController.m */,
+				381632182E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.h */,
+				381632192E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m */,
 			);
 			path = C_Function;
 			sourceTree = "<group>";
@@ -2520,6 +2540,7 @@
 				381A10032DDC4598002D8BFB /* ZJAVAudioPlayerViewController.m in Sources */,
 				6508086F2831129A0010D447 /* ZJTestLayerBorderViewController.m in Sources */,
 				65FA5F9F28043CDC00D6C61A /* ZJTestPageCtrlViewController.m in Sources */,
+				3816321A2E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m in Sources */,
 				3801655F2DDF1B5300E80396 /* ZJRotationReplicatorViewController.m in Sources */,
 				381A10252DDC943D002D8BFB /* ZJAVPlayerViewController.m in Sources */,
 				650808382830FA6B0010D447 /* ZJTouchMathEventViewController.m in Sources */,
@@ -2662,6 +2683,7 @@
 				65A00FAA27A14F3000B60045 /* ZJTestScrollTimerTableViewController.m in Sources */,
 				388B32E2267E55160071F530 /* ZJFruit.m in Sources */,
 				658FB04728323BD7004CD08C /* ZJTestBezierPathViewController.m in Sources */,
+				381632152E0AFB0D00D0D9A5 /* ZJAlgorithm.m in Sources */,
 				65AC698828702D2B002074ED /* ZJTestSizeViewController.m in Sources */,
 				65F7C6CB2692E9CC00121EBD /* NSNumber+ZJNumber.m in Sources */,
 				38EBE1462675BB7800E090D9 /* ZJUIKitTableViewController.m in Sources */,
@@ -2807,6 +2829,7 @@
 				380165122DDF1A2800E80396 /* ZJCGContextViewController.m in Sources */,
 				65BD8FD628E13CC600CDC2CC /* UICollectionView+ZJCollectionView.m in Sources */,
 				65BD8FD728E13CC600CDC2CC /* ZJTestBezierPathView.m in Sources */,
+				3816321B2E0B058A00D0D9A5 /* ZJTestAlgorithmTableViewController.m in Sources */,
 				381265F82DE96860000C53A8 /* ZJTestCSTViewController.m in Sources */,
 				65BD8FD828E13CC600CDC2CC /* ZJTestTouchViewController.m in Sources */,
 				380165F92DE3108700E80396 /* ZJNSKeyedArchiverViewController.m in Sources */,
@@ -2829,6 +2852,7 @@
 				65BD8FE828E13CC600CDC2CC /* UIImage+ZJImage.m in Sources */,
 				65BD8FE928E13CC600CDC2CC /* UIBezierPath+ZJBezierPath.m in Sources */,
 				65BD8FEA28E13CC600CDC2CC /* ZJTestNSLogViewController.m in Sources */,
+				381632162E0AFB0D00D0D9A5 /* ZJAlgorithm.m in Sources */,
 				65BD8FEC28E13CC600CDC2CC /* ZJTestBlockViewController.m in Sources */,
 				3801657C2DDF27D900E80396 /* ZJCATransform3DTypeTableViewController.m in Sources */,
 				65BD8FED28E13CC600CDC2CC /* NSObject+ZJRuntime.m in Sources */,
